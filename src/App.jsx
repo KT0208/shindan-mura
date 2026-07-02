@@ -26,6 +26,50 @@ import { categories, scenes, sceneSets, diagnoses, options } from './diagnosisDa
 import { useEffect, useState } from 'react'
 import './App.css'
 
+// シェア導線で使う小さなインラインアイコン群。
+// 外部アイコンフォント/画像を使わず、ボタンの色(currentColor)を継承するSVGとして定義する。
+function IconStoryImage() {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="5" width="18" height="14" rx="2.5" />
+      <circle cx="8.5" cy="10" r="1.3" fill="currentColor" stroke="none" />
+      <path d="m4 17 5-5 3.5 3.5L15 12l5 5" />
+    </svg>
+  )
+}
+
+function IconX() {
+  return (
+    <svg viewBox="0 0 19 19" width="18" height="18" aria-hidden="true">
+      <path
+        fill="currentColor"
+        fillRule="evenodd"
+        d="M1.893 1.98c.052.072 1.245 1.769 2.653 3.77l2.892 4.114c.183.261.333.48.333.486s-.068.089-.152.183l-.522.593-.765.867-3.597 4.087c-.375.426-.734.834-.798.905a1 1 0 0 0-.118.148c0 .01.236.017.664.017h.663l.729-.83c.4-.457.796-.906.879-.999a692 692 0 0 0 1.794-2.038c.034-.037.301-.34.594-.675l.551-.624.345-.392a7 7 0 0 1 .34-.374c.006 0 .93 1.306 2.052 2.903l2.084 2.965.045.063h2.275c1.87 0 2.273-.003 2.266-.021-.008-.02-1.098-1.572-3.894-5.547-2.013-2.862-2.28-3.246-2.273-3.266.008-.019.282-.332 2.085-2.38l2-2.274 1.567-1.782c.022-.028-.016-.03-.65-.03h-.674l-.3.342a871 871 0 0 1-1.782 2.025c-.067.075-.405.458-.75.852a100 100 0 0 1-.803.91c-.148.172-.299.344-.99 1.127-.304.343-.32.358-.345.327-.015-.019-.904-1.282-1.976-2.808L6.365 1.85H1.8zm1.782.91 8.078 11.294c.772 1.08 1.413 1.973 1.425 1.984.016.017.241.02 1.05.017l1.03-.004-2.694-3.766L7.796 5.75 5.722 2.852l-1.039-.004-1.039-.004z"
+        clipRule="evenodd"
+      />
+    </svg>
+  )
+}
+
+function IconLine() {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M12 3.5c-4.97 0-9 3.36-9 7.5 0 3.7 3.14 6.78 7.38 7.38.29.06.68.19.78.44.09.22.06.57.03.79l-.13.79c-.04.22-.17.87.76.47s5.02-2.96 6.85-5.07C19.85 14.1 21 12.4 21 11c0-4.14-4.03-7.5-9-7.5"
+      />
+    </svg>
+  )
+}
+
+function IconCopy() {
+  return (
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="8" y="8" width="12" height="12" rx="2.5" />
+      <path d="M5.5 15.5H5A2.5 2.5 0 0 1 2.5 13V5A2.5 2.5 0 0 1 5 2.5h8A2.5 2.5 0 0 1 15.5 5v.5" />
+    </svg>
+  )
+}
 
 const answerComments = {
   'hidden-personality': [
@@ -151,59 +195,44 @@ function getBalancedTendencyIndex(answers) {
   return tendencyScores.indexOf(Math.max(...tendencyScores))
 }
 
+// 診断IDごとの「傾向インデックス算出関数」と「結果タイトル一覧」の対応表。
+// 診断を追加する際はこの2つのマップにエントリを足すだけでよい。
+const tendencyIndexResolvers = {
+  'love-complicated': getLoveComplicatedTendencyIndex,
+  'hidden-personality': getHiddenPersonalityTendencyIndex,
+  'menhera-level': getMenheraLevelTendencyIndex,
+  'sns-approval': getSnsApprovalTendencyIndex,
+  'dangerous-man': getBalancedTendencyIndex,
+  'dark-fall': getBalancedTendencyIndex,
+  'popularity-season': getBalancedTendencyIndex,
+  'money-luck': getBalancedTendencyIndex,
+  'work-style': getBalancedTendencyIndex,
+  'life-bug': getBalancedTendencyIndex,
+}
+
+const resultTypesByDiagnosis = {
+  'love-complicated': loveComplicatedResultTypes,
+  'hidden-personality': hiddenPersonalityResultTypes,
+  'menhera-level': menheraLevelResultTypes,
+  'sns-approval': snsApprovalResultTypes,
+  'dangerous-man': dangerousManResultTypes,
+  'dark-fall': darkFallResultTypes,
+  'popularity-season': popularitySeasonResultTypes,
+  'money-luck': moneyLuckResultTypes,
+  'work-style': workStyleResultTypes,
+  'life-bug': lifeBugResultTypes,
+}
+
 function getResultTitle(diagnosis, answers, score, maxScore) {
   if (!diagnosis) return ''
 
   const scoreBand = Math.min(3, Math.floor((score / maxScore) * 4))
+  const tendencyResolver = tendencyIndexResolvers[diagnosis.id]
+  const resultTypes = resultTypesByDiagnosis[diagnosis.id]
 
-  if (diagnosis.id === 'love-complicated') {
-    const tendencyIndex = getLoveComplicatedTendencyIndex(answers)
-    return loveComplicatedResultTypes[scoreBand][tendencyIndex]
-  }
-
-  if (diagnosis.id === 'hidden-personality') {
-    const tendencyIndex = getHiddenPersonalityTendencyIndex(answers)
-    return hiddenPersonalityResultTypes[scoreBand][tendencyIndex]
-  }
-
-  if (diagnosis.id === 'menhera-level') {
-    const tendencyIndex = getMenheraLevelTendencyIndex(answers)
-    return menheraLevelResultTypes[scoreBand][tendencyIndex]
-  }
-
-  if (diagnosis.id === 'sns-approval') {
-    const tendencyIndex = getSnsApprovalTendencyIndex(answers)
-    return snsApprovalResultTypes[scoreBand][tendencyIndex]
-  }
-
-  if (diagnosis.id === 'dangerous-man') {
-    const tendencyIndex = getBalancedTendencyIndex(answers)
-    return dangerousManResultTypes[scoreBand][tendencyIndex]
-  }
-
-  if (diagnosis.id === 'dark-fall') {
-    const tendencyIndex = getBalancedTendencyIndex(answers)
-    return darkFallResultTypes[scoreBand][tendencyIndex]
-  }
-
-  if (diagnosis.id === 'popularity-season') {
-    const tendencyIndex = getBalancedTendencyIndex(answers)
-    return popularitySeasonResultTypes[scoreBand][tendencyIndex]
-  }
-
-  if (diagnosis.id === 'money-luck') {
-    const tendencyIndex = getBalancedTendencyIndex(answers)
-    return moneyLuckResultTypes[scoreBand][tendencyIndex]
-  }
-
-  if (diagnosis.id === 'work-style') {
-    const tendencyIndex = getBalancedTendencyIndex(answers)
-    return workStyleResultTypes[scoreBand][tendencyIndex]
-  }
-
-  if (diagnosis.id === 'life-bug') {
-    const tendencyIndex = getBalancedTendencyIndex(answers)
-    return lifeBugResultTypes[scoreBand][tendencyIndex]
+  if (tendencyResolver && resultTypes) {
+    const tendencyIndex = tendencyResolver(answers)
+    return resultTypes[scoreBand][tendencyIndex]
   }
 
   return diagnosis.results[scoreBand]
@@ -267,7 +296,7 @@ function getCharacterImagePath(diagnosisId, resultTitle, savedImage = '') {
   const characterCollection = getCharacterCollection(diagnosisId)
   const character = characterCollection?.characters[resultTitle] || null
   const currentImage = character && characterCollection
-    ? `/characters/${characterCollection.basePath}/${character.imageKey}.png`
+    ? `/characters/${characterCollection.basePath}/${character.imageKey}.webp`
     : ''
 
   return currentImage || savedImage
@@ -402,6 +431,100 @@ function drawStoryQrCode(ctx, qrImage) {
   ctx.fillText('診断村へ', 853, 1720)
 }
 
+function loadImageAsync(src) {
+  return new Promise((resolve, reject) => {
+    const image = new Image()
+    image.crossOrigin = 'anonymous'
+    image.onload = () => resolve(image)
+    image.onerror = reject
+    image.src = src
+  })
+}
+
+// 診断結果・診断履歴の両方から呼ばれる、ストーリー共有用画像(1080x1920)を
+// 1枚のcanvasに描画してBlobとして返す共通処理。
+// 呼び出し側は表示するテキストと画像パスだけを渡す。
+async function createResultStoryBlob({
+  headingLabel,
+  resultTitle,
+  nameLine,
+  subLine,
+  characterImagePath,
+  fallbackLabel,
+  fallbackFontSize = 120,
+}) {
+  const canvas = document.createElement('canvas')
+  canvas.width = 1080
+  canvas.height = 1920
+
+  const ctx = canvas.getContext('2d')
+
+  const gradient = ctx.createLinearGradient(0, 0, 1080, 1920)
+  gradient.addColorStop(0, '#fff4fb')
+  gradient.addColorStop(1, '#e9ddff')
+  ctx.fillStyle = gradient
+  ctx.fillRect(0, 0, 1080, 1920)
+
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
+  ctx.beginPath()
+  ctx.roundRect(80, 100, 920, 1720, 56)
+  ctx.fill()
+
+  ctx.textAlign = 'center'
+
+  ctx.fillStyle = '#8f4ed8'
+  ctx.font = '700 42px system-ui, sans-serif'
+  ctx.fillText('診断村', 540, 200)
+
+  ctx.fillStyle = '#29183a'
+  ctx.font = '800 72px system-ui, sans-serif'
+  ctx.fillText(headingLabel, 540, 310)
+
+  ctx.fillStyle = '#ff69ad'
+  ctx.font = '800 50px system-ui, sans-serif'
+  ctx.fillText(resultTitle, 540, 410)
+
+  if (characterImagePath) {
+    try {
+      const image = await loadImageAsync(characterImagePath)
+      drawImageContain(ctx, image, 140, 520, 800, 800)
+    } catch {
+      ctx.fillStyle = '#8f4ed8'
+      ctx.font = `800 ${fallbackFontSize}px system-ui, sans-serif`
+      ctx.fillText(fallbackLabel, 540, 920)
+    }
+  }
+
+  ctx.fillStyle = '#29183a'
+  ctx.font = '800 54px system-ui, sans-serif'
+  ctx.fillText(nameLine, 540, 1430)
+
+  ctx.fillStyle = '#6f5c7d'
+  ctx.font = '600 34px system-ui, sans-serif'
+  ctx.fillText(subLine, 540, 1510)
+
+  ctx.fillStyle = '#ff69ad'
+  ctx.font = '800 42px system-ui, sans-serif'
+  ctx.fillText('#診断村', 540, 1710)
+
+  ctx.fillStyle = '#8c7a98'
+  ctx.font = '600 28px system-ui, sans-serif'
+  ctx.fillText('診断結果をストーリーでシェアしてね', 540, 1770)
+
+  try {
+    const qrImage = await loadImageAsync(getQrCodeImageUrl(getShareUrl()))
+    drawStoryQrCode(ctx, qrImage)
+  } catch {
+    ctx.fillStyle = '#8f4ed8'
+    ctx.font = '700 24px system-ui, sans-serif'
+    ctx.fillText('診断村で検索', 853, 1708)
+  }
+
+  return new Promise((resolve) => {
+    canvas.toBlob((blob) => resolve(blob), 'image/png')
+  })
+}
+
 function pickRandomComment(pool, usedComments) {
   const availableComments = pool.filter((comment) => !usedComments.includes(comment))
   const targetPool = availableComments.length > 0 ? availableComments : pool
@@ -522,7 +645,7 @@ function App() {
       resultDetail: currentResultDetail || null,
       characterName: character?.characterName || '',
       characterImage: character && characterCollection
-        ? `/characters/${characterCollection.basePath}/${character.imageKey}.png`
+        ? `/characters/${characterCollection.basePath}/${character.imageKey}.webp`
         : '',
       score: totalScore,
       maxScore: totalMaxScore,
@@ -552,7 +675,7 @@ function App() {
       characterName: character.characterName,
       role: character.role,
       visualConcept: character.visualConcept,
-      image: `/characters/${characterCollection.basePath}/${character.imageKey}.png`,
+      image: `/characters/${characterCollection.basePath}/${character.imageKey}.webp`,
     }))
   })
 
@@ -631,8 +754,7 @@ function App() {
 
       if (hash.startsWith('#history=')) {
         const historyId = decodeURIComponent(hash.replace('#history=', ''))
-        let savedHistory = []
-
+        let savedHistory
         try {
           savedHistory = JSON.parse(localStorage.getItem('shindanMuraHistory')) || []
         } catch {
@@ -822,86 +944,15 @@ function App() {
     const historyCharacterName = selectedHistory.characterName || historyCharacter?.characterName || ''
     const historyResultDetail = selectedHistory.resultDetail || resultDetails[selectedHistory.diagnosisId]?.[selectedHistory.resultTitle] || null
 
-    const loadHistoryImage = (src) => new Promise((resolve, reject) => {
-      const image = new Image()
-      image.crossOrigin = 'anonymous'
-      image.onload = () => resolve(image)
-      image.onerror = reject
-      image.src = src
+    const createHistoryStoryImage = () => createResultStoryBlob({
+      headingLabel: '診断履歴',
+      resultTitle: selectedHistory.resultTitle,
+      nameLine: historyCharacterName || selectedHistory.resultTitle,
+      subLine: selectedHistory.diagnosisTitle,
+      characterImagePath: historyCharacterImage,
+      fallbackLabel: '診断村',
+      fallbackFontSize: 90,
     })
-
-    const createHistoryStoryImage = async () => {
-      const canvas = document.createElement('canvas')
-      canvas.width = 1080
-      canvas.height = 1920
-
-      const ctx = canvas.getContext('2d')
-
-      const gradient = ctx.createLinearGradient(0, 0, 1080, 1920)
-      gradient.addColorStop(0, '#fff4fb')
-      gradient.addColorStop(1, '#e9ddff')
-      ctx.fillStyle = gradient
-      ctx.fillRect(0, 0, 1080, 1920)
-
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
-      ctx.beginPath()
-      ctx.roundRect(80, 100, 920, 1720, 56)
-      ctx.fill()
-
-      ctx.textAlign = 'center'
-
-      ctx.fillStyle = '#8f4ed8'
-      ctx.font = '700 42px system-ui, sans-serif'
-      ctx.fillText('診断村', 540, 200)
-
-      ctx.fillStyle = '#29183a'
-      ctx.font = '800 72px system-ui, sans-serif'
-      ctx.fillText('診断履歴', 540, 310)
-
-      ctx.fillStyle = '#ff69ad'
-      ctx.font = '800 50px system-ui, sans-serif'
-      ctx.fillText(selectedHistory.resultTitle, 540, 410)
-
-      if (historyCharacterImage) {
-        try {
-          const image = await loadHistoryImage(historyCharacterImage)
-          drawImageContain(ctx, image, 140, 520, 800, 800)
-        } catch {
-          ctx.fillStyle = '#8f4ed8'
-          ctx.font = '800 90px system-ui, sans-serif'
-          ctx.fillText('診断村', 540, 920)
-        }
-      }
-
-      ctx.fillStyle = '#29183a'
-      ctx.font = '800 54px system-ui, sans-serif'
-      ctx.fillText(historyCharacterName || selectedHistory.resultTitle, 540, 1430)
-
-      ctx.fillStyle = '#6f5c7d'
-      ctx.font = '600 34px system-ui, sans-serif'
-      ctx.fillText(selectedHistory.diagnosisTitle, 540, 1510)
-
-      ctx.fillStyle = '#ff69ad'
-      ctx.font = '800 42px system-ui, sans-serif'
-      ctx.fillText('#診断村', 540, 1710)
-
-      ctx.fillStyle = '#8c7a98'
-      ctx.font = '600 28px system-ui, sans-serif'
-      ctx.fillText('診断結果をストーリーでシェアしてね', 540, 1770)
-
-      try {
-        const qrImage = await loadHistoryImage(getQrCodeImageUrl(getShareUrl()))
-        drawStoryQrCode(ctx, qrImage)
-      } catch {
-        ctx.fillStyle = '#8f4ed8'
-        ctx.font = '700 24px system-ui, sans-serif'
-        ctx.fillText('診断村で検索', 853, 1708)
-      }
-
-      return new Promise((resolve) => {
-        canvas.toBlob((blob) => resolve(blob), 'image/png')
-      })
-    }
 
     const shareHistoryStoryImage = async () => {
       try {
@@ -911,10 +962,6 @@ function App() {
           alert('画像の作成に失敗しました。')
           return
         }
-
-        const file = new File([blob], 'shindan-mura-history-story.png', {
-          type: 'image/png',
-        })
 
         const url = URL.createObjectURL(blob)
         const link = document.createElement('a')
@@ -975,18 +1022,30 @@ function App() {
 
           <div className="share">私は「{selectedHistory.diagnosisTitle}」で「{selectedHistory.resultTitle}」でした。#診断村</div>
 
-          <div className="share-actions">
-            <button className="share-button story" onClick={shareHistoryStoryImage}>ストーリー画像を作る</button>
+          <div className="share-primary">
+            <button className="share-button story" onClick={shareHistoryStoryImage}>
+              <IconStoryImage />
+              ストーリー画像を作る
+            </button>
+          </div>
+
+          <div className="share-icon-row" role="group" aria-label="シェア">
             <button
-              className="share-button"
+              className="icon-button copy"
+              type="button"
+              aria-label="結果文をコピー"
+              title="結果文をコピー"
               onClick={async () => {
                 const text = `私は「${selectedHistory.diagnosisTitle}」で「${selectedHistory.resultTitle}」でした。\n${historyResultDetail?.description || ''}\n#診断村`
                 await navigator.clipboard.writeText(text)
                 alert('履歴の結果文をコピーしました。')
               }}
             >
-              結果文をコピー
+              <IconCopy />
             </button>
+          </div>
+
+          <div className="result-nav-actions">
             <button
               className="share-button"
               onClick={() => {
@@ -1013,7 +1072,7 @@ function App() {
 
     const copyShareText = async () => {
       await navigator.clipboard.writeText(shareText)
-      alert('結果文をコピーしました。SNSに貼り付けてシェアできます。')
+      alert('結果文をコピーしました。X・LINE・Instagramなど好きな場所に貼り付けてシェアできます。')
     }
 
     const shareToX = () => {
@@ -1027,91 +1086,17 @@ function App() {
       window.open(`https://social-plugins.line.me/lineit/share?url=${url}`, '_blank')
     }
 
-    const copyForInstagram = async () => {
-      await navigator.clipboard.writeText(shareText)
-      alert('Instagram用に結果文をコピーしました。ストーリーや投稿に貼り付けてください。')
-    }
-
-    const loadImage = (src) => new Promise((resolve, reject) => {
-      const image = new Image()
-      image.crossOrigin = 'anonymous'
-      image.onload = () => resolve(image)
-      image.onerror = reject
-      image.src = src
+    const createStoryImage = () => createResultStoryBlob({
+      headingLabel: '診断結果',
+      resultTitle,
+      nameLine: currentCharacter?.characterName || diagnosis.title,
+      subLine: diagnosis.title,
+      characterImagePath: currentCharacter && currentCharacterCollection
+        ? `/characters/${currentCharacterCollection.basePath}/${currentCharacter.imageKey}.webp`
+        : '',
+      fallbackLabel: diagnosis.emoji,
+      fallbackFontSize: 120,
     })
-
-    const createStoryImage = async () => {
-      const canvas = document.createElement('canvas')
-      canvas.width = 1080
-      canvas.height = 1920
-
-      const ctx = canvas.getContext('2d')
-
-      const gradient = ctx.createLinearGradient(0, 0, 1080, 1920)
-      gradient.addColorStop(0, '#fff4fb')
-      gradient.addColorStop(1, '#e9ddff')
-      ctx.fillStyle = gradient
-      ctx.fillRect(0, 0, 1080, 1920)
-
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
-      ctx.beginPath()
-      ctx.roundRect(80, 100, 920, 1720, 56)
-      ctx.fill()
-
-      ctx.textAlign = 'center'
-
-      ctx.fillStyle = '#8f4ed8'
-      ctx.font = '700 42px system-ui, sans-serif'
-      ctx.fillText('診断村', 540, 200)
-
-      ctx.fillStyle = '#29183a'
-      ctx.font = '800 72px system-ui, sans-serif'
-      ctx.fillText('診断結果', 540, 310)
-
-      ctx.fillStyle = '#ff69ad'
-      ctx.font = '800 50px system-ui, sans-serif'
-      ctx.fillText(resultTitle, 540, 410)
-
-      if (currentCharacter && currentCharacterCollection) {
-        try {
-          const image = await loadImage(`/characters/${currentCharacterCollection.basePath}/${currentCharacter.imageKey}.png`)
-          drawImageContain(ctx, image, 140, 520, 800, 800)
-        } catch {
-          ctx.fillStyle = '#8f4ed8'
-          ctx.font = '800 120px system-ui, sans-serif'
-          ctx.fillText(diagnosis.emoji, 540, 920)
-        }
-      }
-
-      ctx.fillStyle = '#29183a'
-      ctx.font = '800 54px system-ui, sans-serif'
-      ctx.fillText(currentCharacter?.characterName || diagnosis.title, 540, 1430)
-
-      ctx.fillStyle = '#6f5c7d'
-      ctx.font = '600 34px system-ui, sans-serif'
-      ctx.fillText(diagnosis.title, 540, 1510)
-
-      ctx.fillStyle = '#ff69ad'
-      ctx.font = '800 42px system-ui, sans-serif'
-      ctx.fillText('#診断村', 540, 1710)
-
-      ctx.fillStyle = '#8c7a98'
-      ctx.font = '600 28px system-ui, sans-serif'
-      ctx.fillText('診断結果をストーリーでシェアしてね', 540, 1770)
-
-      try {
-        const qrImage = await loadImage(getQrCodeImageUrl(getShareUrl()))
-        drawStoryQrCode(ctx, qrImage)
-      } catch {
-        ctx.fillStyle = '#8f4ed8'
-        ctx.font = '700 24px system-ui, sans-serif'
-        ctx.fillText('診断村で検索', 853, 1708)
-      }
-
-      return new Promise((resolve) => {
-        canvas.toBlob((blob) => resolve(blob), 'image/png')
-      })
-    }
 
     const shareStoryImage = async () => {
       try {
@@ -1121,10 +1106,6 @@ function App() {
           alert('画像の作成に失敗しました。')
           return
         }
-
-        const file = new File([blob], 'shindan-mura-story.png', {
-          type: 'image/png',
-        })
 
         const url = URL.createObjectURL(blob)
         const link = document.createElement('a')
@@ -1220,7 +1201,7 @@ function App() {
               <div className="character-card">
                 <div className={`character-portrait ${currentCharacter.imageKey}`}>
                   <img
-                    src={`/characters/${currentCharacterCollection.basePath}/${currentCharacter.imageKey}.png`}
+                    src={`/characters/${currentCharacterCollection.basePath}/${currentCharacter.imageKey}.webp`}
                     alt={currentCharacter.characterName}
                     className="character-image"
                     onError={(event) => {
@@ -1247,12 +1228,26 @@ function App() {
 
             <div className="share">私は「{diagnosis.title}」で「{resultTitle}」でした。#診断村</div>
 
-            <div className="share-actions">
-              <button className="share-button story" onClick={shareStoryImage}>ストーリー画像を作る</button>
-              <button className="share-button x" onClick={shareToX}>Xでシェア</button>
-              <button className="share-button line" onClick={shareToLine}>LINEでシェア</button>
-              <button className="share-button instagram" onClick={copyForInstagram}>Instagram用にコピー</button>
-              <button className="share-button" onClick={copyShareText}>結果文をコピー</button>
+            <div className="share-primary">
+              <button className="share-button story" onClick={shareStoryImage}>
+                <IconStoryImage />
+                ストーリー画像を作る
+              </button>
+            </div>
+
+            <div className="share-icon-row" role="group" aria-label="SNSでシェア">
+              <button className="icon-button x" type="button" onClick={shareToX} aria-label="Xでシェア" title="Xでシェア">
+                <IconX />
+              </button>
+              <button className="icon-button line" type="button" onClick={shareToLine} aria-label="LINEでシェア" title="LINEでシェア">
+                <IconLine />
+              </button>
+              <button className="icon-button copy" type="button" onClick={copyShareText} aria-label="結果文をコピー" title="結果文をコピー">
+                <IconCopy />
+              </button>
+            </div>
+
+            <div className="result-nav-actions">
               <button
                 className="share-button"
                 onClick={() => {
@@ -1266,9 +1261,8 @@ function App() {
               >
                 他の診断も見る
               </button>
+              <button className="primary" onClick={() => startDiagnosis(diagnosis.id)}>もう一度診断する</button>
             </div>
-
-            <button className="primary" onClick={() => startDiagnosis(diagnosis.id)}>もう一度診断する</button>
           </section>
         )}
       </main>

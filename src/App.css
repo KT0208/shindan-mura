@@ -840,15 +840,23 @@ button {
   margin-top: 4px;
 }
 
-.share-actions {
+/*
+ * シェア導線は3段構成にする:
+ * 1. share-primary   … 一番目立たせたいストーリー画像作成ボタン
+ * 2. share-icon-row  … X / LINE / コピーの小さな丸アイコンボタン
+ * 3. result-nav-actions … 「他の診断を見る」「もう一度診断する」などの画面遷移ボタン
+ * こうすることで、同じ見た目の重みのボタンが横にずらっと並んでごちゃつくのを防ぐ。
+ */
+.share-primary {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
-  margin: 22px 0 20px;
+  margin: 22px 0 14px;
 }
 
 .share-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   min-height: 44px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 999px;
@@ -867,27 +875,64 @@ button {
   transform: translateY(-1px);
 }
 
-.share-button.x {
-  background: rgba(10, 8, 18, 0.72);
-  border-color: rgba(255, 255, 255, 0.28);
-}
-
-.share-button.instagram {
-  padding-inline: 24px;
-  background: linear-gradient(135deg, rgba(255, 78, 205, 0.95), rgba(124, 92, 255, 0.95));
-  border-color: rgba(255, 255, 255, 0.34);
-  box-shadow: 0 16px 42px rgba(255, 78, 205, 0.26);
-}
-
 .share-button.story {
+  padding-inline: 26px;
   background: linear-gradient(135deg, #ff67ad, #8f4ed8);
   color: #fff;
   border-color: rgba(255, 255, 255, 0.34);
   box-shadow: 0 14px 30px rgba(143, 78, 216, 0.26);
 }
 
-.result .primary {
-  margin-top: 22px;
+.share-icon-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.icon-button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.icon-button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+.icon-button.x {
+  background: rgba(10, 8, 18, 0.85);
+}
+
+.icon-button.line {
+  background: #06c755;
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.icon-button.copy {
+  color: #e3c8ff;
+}
+
+.result-nav-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.result-nav-actions .primary {
+  width: auto;
+  min-width: 220px;
+  margin-top: 0;
 }
 
 .history-panel {
@@ -1039,12 +1084,19 @@ button {
     height: 260px;
   }
 
-  .share-actions {
-    display: grid;
-    grid-template-columns: 1fr;
+  .share-icon-row {
+    gap: 18px;
+  }
+
+  .result-nav-actions {
+    flex-direction: column;
   }
 
   .share-button {
+    width: 100%;
+  }
+
+  .result-nav-actions .primary {
     width: 100%;
   }
 
@@ -1158,19 +1210,19 @@ button {
 .gate-morning .village-gate-card {
   background-image:
     linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 244, 230, 0.1)),
-    url('/images/gates/gate-day.png');
+    url('/images/gates/gate-day.webp');
 }
 
 .gate-evening .village-gate-card {
   background-image:
     linear-gradient(180deg, rgba(255, 128, 88, 0.08), rgba(52, 20, 48, 0.14)),
-    url('/images/gates/gate-evening.png');
+    url('/images/gates/gate-evening.webp');
 }
 
 .gate-night .village-gate-card {
   background-image:
     linear-gradient(180deg, rgba(18, 20, 76, 0.08), rgba(4, 4, 18, 0.18)),
-    url('/images/gates/gate-night.png');
+    url('/images/gates/gate-night.webp');
 }
 
 .gate-sky,
@@ -1362,19 +1414,19 @@ button {
 .top-morning .top-hero {
   background-image:
     linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 247, 255, 0.36)),
-    url('/images/top/top-village-day.png');
+    url('/images/top/top-village-day.webp');
 }
 
 .top-evening .top-hero {
   background-image:
     linear-gradient(180deg, rgba(255, 244, 232, 0.01), rgba(255, 238, 248, 0.34)),
-    url('/images/top/top-village-evening.png');
+    url('/images/top/top-village-evening.webp');
 }
 
 .top-night .top-hero {
   background-image:
     linear-gradient(180deg, rgba(16, 18, 62, 0.02), rgba(24, 18, 54, 0.38)),
-    url('/images/top/top-village-night.png');
+    url('/images/top/top-village-night.webp');
 }
 
 .top-app .top-hero::before {
