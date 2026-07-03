@@ -619,15 +619,20 @@ button {
 .answer {
   min-height: 52px;
   border-radius: 16px;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #29183a;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.94);
   font-weight: 800;
 }
 
 .answer.active,
 .primary {
   background: linear-gradient(135deg, #ff4ecd, #7c5cff);
+}
+
+.answer.active {
+  color: #fff;
+  border-color: transparent;
 }
 
 .primary {
@@ -642,7 +647,9 @@ button {
 
 .primary:disabled {
   cursor: not-allowed;
-  opacity: 0.4;
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.55);
+  opacity: 1;
 }
 
 .result h2 {
@@ -693,6 +700,109 @@ button {
 
 .result-detail p {
   margin: 0;
+}
+
+.recommend-pick {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  margin: 20px 0;
+  padding: 18px 20px 20px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(255, 214, 102, 0.14), rgba(255, 255, 255, 0.06));
+  border: 1px solid rgba(255, 214, 102, 0.3);
+}
+
+.pr-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(255, 214, 102, 0.9);
+  color: #3a2a00;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+}
+
+.recommend-title {
+  margin: 2px 0 0;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.recommend-text {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.recommend-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  width: fit-content;
+  min-height: 44px;
+  margin-top: 6px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff67ad, #8f4ed8);
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  box-shadow: 0 14px 30px rgba(143, 78, 216, 0.26);
+  transition: transform 0.2s ease;
+}
+
+.recommend-button:hover {
+  transform: translateY(-1px);
+}
+
+.ad-banner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 28px auto;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+.ad-banner img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ad-banner-pc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ad-banner-sp {
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .ad-banner {
+    margin: 24px auto;
+  }
+
+  .ad-banner-pc {
+    display: none;
+  }
+
+  .ad-banner-sp {
+    display: flex;
+  }
 }
 
 .character-card {
@@ -856,6 +966,7 @@ button {
 .share-button {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   min-height: 44px;
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -1015,6 +1126,16 @@ button {
   font-style: normal;
 }
 
+.history-empty {
+  margin: 24px 0;
+  padding: 22px;
+  border-radius: 22px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
 @media (max-width: 900px) {
   .grid,
   .scene-row,
@@ -1058,7 +1179,6 @@ button {
   }
 
   .grid,
-  .answers,
   .mini-grid,
   .scene-row,
   .scene-sets,
@@ -1066,6 +1186,18 @@ button {
   .top-feature-grid,
   .popular-character-list {
     grid-template-columns: 1fr;
+  }
+
+  .answers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .answer {
+    min-height: 64px;
+    padding: 8px 10px;
+    font-size: 14px;
+    line-height: 1.3;
   }
 
   .list-heading,
@@ -1106,6 +1238,10 @@ button {
 
   .character-guide-card {
     grid-template-rows: 220px 1fr;
+  }
+
+  .character-guide-copy {
+    text-align: center;
   }
 
   .character-guide-copy .share-button {
@@ -1534,9 +1670,9 @@ button {
   box-shadow: 0 16px 36px rgba(114, 77, 151, 0.12);
 }
 
-.top-app .top-feature-grid::before {
-  content: 'シチュエーション検索';
+.top-app .top-feature-grid-title {
   grid-column: 1 / -1;
+  margin: 0;
   color: #705196;
   font-size: 18px;
   font-weight: 900;
@@ -1644,7 +1780,8 @@ button {
 }
 
 .top-app .history-list {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 260px));
+  justify-content: center;
 }
 
 .top-app .history-item {
@@ -1761,6 +1898,13 @@ button {
     display: none;
   }
 
+  .top-hero .language-switcher {
+    top: 12px;
+    right: 12px;
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
   .top-app .top-feature-grid {
     margin-left: 12px;
     margin-right: 12px;
@@ -1770,7 +1914,7 @@ button {
     overflow-x: visible;
   }
 
-  .top-app .top-feature-grid::before {
+  .top-app .top-feature-grid-title {
     justify-self: center;
     text-align: center;
     font-size: 19px;
@@ -1781,7 +1925,7 @@ button {
   }
 
   .top-app .top-feature-card {
-    min-height: 92px;
+    min-height: 104px;
     gap: 5px;
     padding: 10px 4px;
     border-radius: 16px;
@@ -1793,9 +1937,8 @@ button {
 
   .top-app .top-feature-card strong {
     font-size: 11px;
-    letter-spacing: -0.06em;
+    letter-spacing: -0.02em;
     line-height: 1.25;
-    white-space: nowrap;
   }
 
   .top-app .top-feature-card p {
@@ -1927,6 +2070,7 @@ button {
   flex-wrap: wrap;
   gap: 10px;
   align-items: center;
+  justify-content: center;
 }
 
 .character-guide-actions .share-button,
@@ -1953,7 +2097,13 @@ button {
 
   .character-guide-actions {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .character-guide-actions .share-button,
+  .character-guide-actions .like-button {
+    padding-inline: 10px;
+    font-size: 13px;
   }
 }
 .top-app .popular-character-item {
@@ -2203,5 +2353,51 @@ button {
 
   .footer-links button {
     font-size: 11px;
+  }
+}
+/* 言語切り替えボタン（診断村ゲート/トップページのヒーロー右上に表示） */
+.language-switcher {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(20, 10, 32, 0.45);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.language-switcher:hover {
+  background: rgba(143, 78, 216, 0.55);
+  transform: translateY(-1px);
+}
+
+.language-switcher span {
+  font-size: 14px;
+}
+
+.top-hero .language-switcher {
+  top: 18px;
+  right: 22px;
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+@media (max-width: 620px) {
+  .language-switcher {
+    top: 12px;
+    right: 12px;
+    padding: 7px 12px;
+    font-size: 12px;
   }
 }

@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# サーバーの実DB接続情報(実パスワードを含むため公開リポジトリに含めない)
+server/api/config.php

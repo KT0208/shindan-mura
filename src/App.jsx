@@ -20,11 +20,59 @@ import {
   workStyleResultTypes,
   lifeBugResultTypes,
 } from './characterData'
-import { resultDetails } from './resultDetails'
-import { randomCommentPools } from './randomComments'
-import { categories, scenes, sceneSets, diagnoses, options } from './diagnosisData'
+import {
+  hiddenPersonalityCharactersEn,
+  loveComplicatedCharactersEn,
+  menheraLevelCharactersEn,
+  snsApprovalCharactersEn,
+  dangerousManCharactersEn,
+  darkFallCharactersEn,
+  popularitySeasonCharactersEn,
+  moneyLuckCharactersEn,
+  workStyleCharactersEn,
+  lifeBugCharactersEn,
+  loveComplicatedResultTypesEn,
+  hiddenPersonalityResultTypesEn,
+  menheraLevelResultTypesEn,
+  snsApprovalResultTypesEn,
+  dangerousManResultTypesEn,
+  darkFallResultTypesEn,
+  popularitySeasonResultTypesEn,
+  moneyLuckResultTypesEn,
+  workStyleResultTypesEn,
+  lifeBugResultTypesEn,
+} from './characterData.en'
+import { resultDetails as resultDetailsJa } from './resultDetails'
+import { resultDetailsEn } from './resultDetails.en'
+import { randomCommentPools as randomCommentPoolsJa } from './randomComments'
+import { randomCommentPoolsEn } from './randomComments.en'
+import { categories as categoriesJa, scenes as scenesJa, sceneSets as sceneSetsJa, diagnoses as diagnosesJa, options as optionsJa } from './diagnosisData'
+import { categoriesEn, scenesEn, sceneSetsEn, diagnosesEn, optionsEn } from './diagnosisData.en'
+import { uiText, legalPagesByLanguage, answerCommentsByLanguage } from './i18n'
+import AdBanner from './components/AdBanner'
 import { useEffect, useState } from 'react'
 import './App.css'
+
+const dataByLanguage = {
+  ja: {
+    categories: categoriesJa,
+    scenes: scenesJa,
+    sceneSets: sceneSetsJa,
+    diagnoses: diagnosesJa,
+    options: optionsJa,
+    resultDetails: resultDetailsJa,
+    randomCommentPools: randomCommentPoolsJa,
+  },
+  en: {
+    categories: categoriesEn,
+    scenes: scenesEn,
+    sceneSets: sceneSetsEn,
+    diagnoses: diagnosesEn,
+    options: optionsEn,
+    resultDetails: resultDetailsEn,
+    randomCommentPools: randomCommentPoolsEn,
+  },
+}
 
 // シェア導線で使う小さなインラインアイコン群。
 // 外部アイコンフォント/画像を使わず、ボタンの色(currentColor)を継承するSVGとして定義する。
@@ -71,67 +119,55 @@ function IconCopy() {
   )
 }
 
-const answerComments = {
-  'hidden-personality': [
-    'まだ村人モードです。今のところ裏の顔は控えめで、かなり平和に見えています。',
-    '少しだけ裏の顔が見えています。笑っている時でも、頭の中ではちゃんと観察しているタイプです。',
-    'かなり裏人格が出ています。優しそうに見えて、実は相手の違和感をかなり見抜いています。',
-    'これはもう裏ボス級です。表では穏やかでも、心の中では全部見透かしている可能性があります。',
-  ],
-  'love-complicated': [
-    '今のところ恋愛はわりと素直です。まだこじらせ村の入口には立っていません。',
-    '少しこじらせています。好きな人の一言で、心の中の会議が始まりがちです。',
-    'かなりこじらせています。返信ひとつで感情が動くタイプなので、相手は責任重大です。',
-    'これは恋愛沼の住人です。好きなのに強がる、気になるのに冷静ぶる、全部セットで出ています。',
-  ],
-  'menhera-level': [
-    '今のところ安定寄りです。愛情確認はそこまで強くありません。',
-    '少し不安になりやすいタイプです。平気なふりをしていても、内心はちゃんと気にしています。',
-    'かなり感情が揺れやすいです。相手のテンションひとつで、心の天気が変わりがちです。',
-    'これは愛情確認モードが強めです。大丈夫と言いながら、全然大丈夫じゃない可能性があります。',
-  ],
-  'dangerous-man': [
-    'まだ安全圏です。危ない雰囲気より、普通にいい人感が勝っています。',
-    '少しミステリアスです。何を考えているか分からない感じが、ちょっと気にならせます。',
-    'かなり危ない魅力が出ています。近づきにくいのに気になる、少し沼らせるタイプです。',
-    'これは深沼の支配者感があります。優しさと距離感のギャップで、相手を強く惹きつけがちです。',
-  ],
-  'popularity-season': [
-    'まだ小さなつぼみ状態です。今は無理に咲こうとせず、自分の魅力を育てる時期です。',
-    '少しずつ花びらが開き始めています。自分では気づかなくても、雰囲気はちゃんと変わっています。',
-    'モテ期の風が近づいています。最近の変化に、周りが少しずつ気づき始めているかもしれません。',
-    'かなり満開寄りです。変に遠慮せず、堂々としていた方が魅力がきれいに出ます。',
-  ],
-  'sns-approval': [
-    'SNSとはほどよい距離感です。反応に振り回されすぎないタイプです。',
-    '少し気にしています。投稿後に反応を見に行く回数が、ちょっと多めかもしれません。',
-    'かなり承認欲求が出ています。見てほしい人に向けた投稿、心当たりがありそうです。',
-    'これはSNS村の住人です。いいね、閲覧者、匂わせ、全部ちゃんと気にしています。',
-  ],
-  'dark-fall': [
-    'まだ光側です。多少疲れていても、心の闇はそこまで濃くありません。',
-    '少し闇が出ています。笑っていても、内心では冷静に距離を測っているかもしれません。',
-    'かなり闇落ちに近いです。期待しないようにしているのは、過去に疲れた証拠かもしれません。',
-    'これは深淵に近い状態です。優しさの奥に、なかなか強めの黒い感情が眠っています。',
-  ],
-  'money-luck': [
-    'お金との距離感はかなり安定しています。無理な勝負より堅実寄りです。',
-    '少しお金に気持ちが動きやすいです。欲しいものと将来不安の間で揺れがちです。',
-    'かなりお金に反応するタイプです。稼ぐ話や増やす話に、ついアンテナが立ちます。',
-    'これは財運マスター候補です。大きく稼ぐ話やお金のチャンスにワクワクする才能があります。',
-  ],
-  'work-style': [
-    '安定運用タイプです。決まった流れの中で、落ち着いて力を出せます。',
-    '少し自由度がほしいタイプです。ルールが多すぎると、やる気が削られやすいです。',
-    'かなり自走型です。言われたことだけより、自分で考えて動く方が向いています。',
-    'これはビジネス覇者寄りです。型にはめられるより、自分のやり方で突破するタイプです。',
-  ],
-  'life-bug': [
-    'まだ正常プレイです。人生のバグは少なめで、比較的まともなルートを歩いています。',
-    '少しバグっています。普通にしているのに、なぜか変なイベントに巻き込まれがちです。',
-    'かなりイベント多めです。人生の脚本を書いている人が、少しふざけている可能性があります。',
-    'これはカオスプレイヤー感があります。何が起きても、なんだかんだ生き残る謎の運があります。',
-  ],
+// アフィリエイト(A8.net ちょびリッチ)の広告枠。
+// 景品表示法のステマ規制対応として「PR」表記を必ず視認性の高い位置に出す。
+const RECOMMEND_PICK_URL = 'https://px.a8.net/svt/ejp?a8mat=4B7SGX+FHV6LU+389A+67RK1'
+// A8.net推奨の効果測定用トラッキングピクセル(1x1、非表示)。クリックの成果計測には必須ではないが、
+// インプレッション計測の精度を上げるためバナー掲載時と同様に埋め込んでおく。
+const RECOMMEND_PICK_PIXEL = 'https://www11.a8.net/0.gif?a8mat=4B7SGX+FHV6LU+389A+67RK1'
+
+// キャラクターの「いいね」を全訪問者分で集計するためのAPI(Xserver上のPHP+MySQL)。
+// 同一オリジンなので相対パスでOK。public_html直下に /api/likes.php を配置している前提。
+const LIKES_API_URL = '/api/likes.php'
+
+function RecommendPick({ t }) {
+  if (!t.recommend) return null
+  return (
+    <div className="recommend-pick">
+      <span className="pr-badge">{t.recommend.badge}</span>
+      <p className="recommend-title">{t.recommend.title}</p>
+      <p className="recommend-text">{t.recommend.description}</p>
+      <a
+        className="recommend-button"
+        href={RECOMMEND_PICK_URL}
+        target="_blank"
+        rel="noopener noreferrer sponsored"
+      >
+        {t.recommend.buttonLabel}
+      </a>
+      <img src={RECOMMEND_PICK_PIXEL} alt="" width="1" height="1" style={{ position: 'absolute', width: 1, height: 1 }} />
+    </div>
+  )
+}
+
+// 言語切り替えボタン。日本語/英語をトグルする。
+// 将来的に中国語・韓国語・タイ語を追加する際は、ここをドロップダウンに拡張する。
+function LanguageSwitcher({ language, setLanguage }) {
+  const nextLanguage = language === 'ja' ? 'en' : 'ja'
+  const label = language === 'ja' ? 'EN' : '日本語'
+  const currentText = uiText[language] || uiText.ja
+
+  return (
+    <button
+      type="button"
+      className="language-switcher"
+      onClick={() => setLanguage(nextLanguage)}
+      aria-label={currentText.languageSwitcher.aria}
+      title={currentText.languageSwitcher.label}
+    >
+      <span aria-hidden="true">🌐</span> {label}
+    </button>
+  )
 }
 
 function getLoveComplicatedTendencyIndex(answers) {
@@ -210,7 +246,7 @@ const tendencyIndexResolvers = {
   'life-bug': getBalancedTendencyIndex,
 }
 
-const resultTypesByDiagnosis = {
+const resultTypesByDiagnosisJa = {
   'love-complicated': loveComplicatedResultTypes,
   'hidden-personality': hiddenPersonalityResultTypes,
   'menhera-level': menheraLevelResultTypes,
@@ -223,12 +259,30 @@ const resultTypesByDiagnosis = {
   'life-bug': lifeBugResultTypes,
 }
 
-function getResultTitle(diagnosis, answers, score, maxScore) {
+const resultTypesByDiagnosisEn = {
+  'love-complicated': loveComplicatedResultTypesEn,
+  'hidden-personality': hiddenPersonalityResultTypesEn,
+  'menhera-level': menheraLevelResultTypesEn,
+  'sns-approval': snsApprovalResultTypesEn,
+  'dangerous-man': dangerousManResultTypesEn,
+  'dark-fall': darkFallResultTypesEn,
+  'popularity-season': popularitySeasonResultTypesEn,
+  'money-luck': moneyLuckResultTypesEn,
+  'work-style': workStyleResultTypesEn,
+  'life-bug': lifeBugResultTypesEn,
+}
+
+const resultTypesByDiagnosisByLanguage = {
+  ja: resultTypesByDiagnosisJa,
+  en: resultTypesByDiagnosisEn,
+}
+
+function getResultTitle(diagnosis, answers, score, maxScore, language = 'ja') {
   if (!diagnosis) return ''
 
   const scoreBand = Math.min(3, Math.floor((score / maxScore) * 4))
   const tendencyResolver = tendencyIndexResolvers[diagnosis.id]
-  const resultTypes = resultTypesByDiagnosis[diagnosis.id]
+  const resultTypes = (resultTypesByDiagnosisByLanguage[language] || resultTypesByDiagnosisJa)[diagnosis.id]
 
   if (tendencyResolver && resultTypes) {
     const tendencyIndex = tendencyResolver(answers)
@@ -238,68 +292,101 @@ function getResultTitle(diagnosis, answers, score, maxScore) {
   return diagnosis.results[scoreBand]
 }
 
-function getCharacterCollection(diagnosisId) {
-  const characterCollections = {
-    'love-complicated': {
-      basePath: 'love',
-      characters: loveComplicatedCharacters,
-    },
-    'hidden-personality': {
-      basePath: 'hidden-personality',
-      characters: hiddenPersonalityCharacters,
-    },
-    'menhera-level': {
-      basePath: 'menheraLevelCharacters',
-      characters: menheraLevelCharacters,
-    },
-    'sns-approval': {
-      basePath: 'snsApprovalCharacters',
-      characters: snsApprovalCharacters,
-    },
-    'dangerous-man': {
-      basePath: 'dangerousManCharacters',
-      characters: dangerousManCharacters,
-    },
-    'dark-fall': {
-      basePath: 'darkFallCharacters',
-      characters: darkFallCharacters,
-    },
-    'popularity-season': {
-      basePath: 'popularitySeasonCharacters',
-      characters: popularitySeasonCharacters,
-    },
-    'money-luck': {
-      basePath: 'moneyLuckCharacters',
-      characters: moneyLuckCharacters,
-    },
-    'work-style': {
-      basePath: 'workStyleCharacters',
-      characters: workStyleCharacters,
-    },
-    'life-bug': {
-      basePath: 'lifeBugCharacters',
-      characters: lifeBugCharacters,
-    },
-  }
+const characterCollectionsJa = {
+  'love-complicated': { basePath: 'love', characters: loveComplicatedCharacters },
+  'hidden-personality': { basePath: 'hidden-personality', characters: hiddenPersonalityCharacters },
+  'menhera-level': { basePath: 'menheraLevelCharacters', characters: menheraLevelCharacters },
+  'sns-approval': { basePath: 'snsApprovalCharacters', characters: snsApprovalCharacters },
+  'dangerous-man': { basePath: 'dangerousManCharacters', characters: dangerousManCharacters },
+  'dark-fall': { basePath: 'darkFallCharacters', characters: darkFallCharacters },
+  'popularity-season': { basePath: 'popularitySeasonCharacters', characters: popularitySeasonCharacters },
+  'money-luck': { basePath: 'moneyLuckCharacters', characters: moneyLuckCharacters },
+  'work-style': { basePath: 'workStyleCharacters', characters: workStyleCharacters },
+  'life-bug': { basePath: 'lifeBugCharacters', characters: lifeBugCharacters },
+}
 
+const characterCollectionsEn = {
+  'love-complicated': { basePath: 'love', characters: loveComplicatedCharactersEn },
+  'hidden-personality': { basePath: 'hidden-personality', characters: hiddenPersonalityCharactersEn },
+  'menhera-level': { basePath: 'menheraLevelCharacters', characters: menheraLevelCharactersEn },
+  'sns-approval': { basePath: 'snsApprovalCharacters', characters: snsApprovalCharactersEn },
+  'dangerous-man': { basePath: 'dangerousManCharacters', characters: dangerousManCharactersEn },
+  'dark-fall': { basePath: 'darkFallCharacters', characters: darkFallCharactersEn },
+  'popularity-season': { basePath: 'popularitySeasonCharacters', characters: popularitySeasonCharactersEn },
+  'money-luck': { basePath: 'moneyLuckCharacters', characters: moneyLuckCharactersEn },
+  'work-style': { basePath: 'workStyleCharacters', characters: workStyleCharactersEn },
+  'life-bug': { basePath: 'lifeBugCharacters', characters: lifeBugCharactersEn },
+}
+
+const characterCollectionsByLanguage = {
+  ja: characterCollectionsJa,
+  en: characterCollectionsEn,
+}
+
+function getCharacterCollection(diagnosisId, language = 'ja') {
+  const characterCollections = characterCollectionsByLanguage[language] || characterCollectionsJa
   return characterCollections[diagnosisId] || null
 }
 
-function getCharacterForResult(diagnosisId, resultTitle) {
-  const characterCollection = getCharacterCollection(diagnosisId)
+function getCharacterForResult(diagnosisId, resultTitle, language = 'ja') {
+  const characterCollection = getCharacterCollection(diagnosisId, language)
   return characterCollection?.characters[resultTitle] || null
 }
 
-
-
-function getCharacterImagePath(diagnosisId, resultTitle, savedImage = '') {
-  const characterCollection = getCharacterCollection(diagnosisId)
+function getCharacterImagePath(diagnosisId, resultTitle, savedImage = '', language = 'ja') {
+  const characterCollection = getCharacterCollection(diagnosisId, language)
   const character = characterCollection?.characters[resultTitle] || null
   const currentImage = character && characterCollection
     ? `/characters/${characterCollection.basePath}/${character.imageKey}.webp`
     : ''
 
   return currentImage || savedImage
+}
+
+// 診断履歴は保存した時点の言語のテキストがそのまま入っている。
+// 表示言語を切り替えた後でも診断タイトル・結果タイトル・キャラ名・説明文を
+// 現在の言語で出し直せるように、resultTypesのグリッド上の位置(行・列)から
+// 現在言語での結果タイトルを逆引きするヘルパー。
+function findResultPosition(diagnosisId, resultTitle) {
+  for (const lang of ['ja', 'en']) {
+    const grid = resultTypesByDiagnosisByLanguage[lang]?.[diagnosisId]
+    if (!grid) continue
+
+    for (let row = 0; row < grid.length; row += 1) {
+      const col = grid[row].indexOf(resultTitle)
+      if (col !== -1) return { row, col }
+    }
+  }
+
+  return null
+}
+
+function localizeHistoryEntry(item, language, diagnoses, resultDetails) {
+  const diagnosisItem = diagnoses.find((entry) => entry.id === item.diagnosisId)
+  const diagnosisTitle = diagnosisItem?.title || item.diagnosisTitle
+
+  let resultTitle = item.resultTitle
+  const position = findResultPosition(item.diagnosisId, item.resultTitle)
+  if (position) {
+    const grid = resultTypesByDiagnosisByLanguage[language]?.[item.diagnosisId]
+    if (grid?.[position.row]?.[position.col]) {
+      resultTitle = grid[position.row][position.col]
+    }
+  }
+
+  const character = getCharacterForResult(item.diagnosisId, resultTitle, language)
+  const characterName = character?.characterName || item.characterName || ''
+  const characterImage = getCharacterImagePath(item.diagnosisId, resultTitle, item.characterImage, language)
+  const resultDetail = resultDetails[item.diagnosisId]?.[resultTitle] || item.resultDetail || null
+
+  return {
+    ...item,
+    diagnosisTitle,
+    resultTitle,
+    characterName,
+    characterImage,
+    resultDetail,
+  }
 }
 
 function drawImageContain(ctx, image, x, y, width, height) {
@@ -321,83 +408,6 @@ function drawImageContain(ctx, image, x, y, width, height) {
   ctx.drawImage(image, drawX, drawY, drawWidth, drawHeight)
 }
 
-const legalPages = {
-  privacy: {
-    label: 'Privacy Policy',
-    title: 'プライバシーポリシー',
-    lead: '診断村では、ユーザーの安心と安全を大切にし、個人情報や端末内データの取り扱いについて以下の通り定めます。',
-    sections: [
-      {
-        heading: '取得する情報について',
-        body: '診断村では、氏名、住所、電話番号など、個人を直接特定する情報を原則として取得しません。診断結果、診断履歴、好きボタンの情報は、サービス体験向上のために利用されます。',
-      },
-      {
-        heading: '端末内に保存される情報について',
-        body: '診断履歴、好きボタン、入口画面の通過状態などは、ユーザーの端末内のlocalStorageに保存されます。これらの情報は、同じ端末・同じブラウザで表示を便利にするために利用されます。',
-      },
-      {
-        heading: '広告配信について',
-        body: '診断村では、Google AdSenseなどの第三者配信事業者による広告を掲載する場合があります。広告配信事業者は、Cookie等を使用して、ユーザーの興味に応じた広告を表示する場合があります。',
-      },
-      {
-        heading: 'アクセス解析について',
-        body: '診断村では、サービス改善のためにGoogle Analytics等のアクセス解析ツールを利用する場合があります。これらのツールはCookie等を使用して匿名の利用状況データを収集することがあります。',
-      },
-      {
-        heading: 'Cookieについて',
-        body: 'ユーザーはブラウザの設定によりCookieを無効にすることができます。ただし、Cookieを無効にした場合、一部の機能が正しく動作しない場合があります。',
-      },
-      {
-        heading: '免責事項',
-        body: '診断村の診断結果はエンターテインメントを目的としたものであり、医学的、心理学的、法律的、金融的な助言を行うものではありません。診断結果の利用により生じた損害について、運営者は責任を負いかねます。',
-      },
-      {
-        heading: '著作権について',
-        body: '診断村に掲載される文章、画像、キャラクター、デザイン等の著作権は、運営者または正当な権利者に帰属します。無断転載、無断使用、二次配布を禁止します。',
-      },
-      {
-        heading: '改定について',
-        body: '本ポリシーは、必要に応じて予告なく変更される場合があります。変更後の内容は、本ページに掲載された時点で有効となります。',
-      },
-    ],
-  },
-  contact: {
-    label: 'Contact',
-    title: 'お問い合わせ',
-    lead: '診断村に関するお問い合わせは、下記メールアドレスまでお願いいたします。',
-    sections: [
-      {
-        heading: 'お問い合わせ先',
-        body: 'katuya0208@gmail.com',
-      },
-    ],
-  },
-  operator: {
-    label: 'Operator',
-    title: '運営者情報',
-    lead: '診断村の運営者情報です。',
-    sections: [
-      {
-        heading: 'サイト名',
-        body: '診断村',
-      },
-      {
-        heading: '運営者',
-        body: 'Katsuya Ohara',
-      },
-      {
-        heading: 'サイト内容',
-        body: '恋愛、性格、仕事、お金、SNSなどをテーマにしたキャラクター診断コンテンツを提供しています。診断結果はエンターテインメントを目的としています。',
-      },
-      {
-        heading: '著作権表記',
-        body: '© 2026 Katsuya Ohara / 診断村. All Rights Reserved.',
-      },
-    ],
-  },
-}
-
-
 function getGateTheme() {
   const hour = new Date().getHours()
 
@@ -410,25 +420,44 @@ function getShareUrl() {
   return `${window.location.origin}${window.location.pathname}`
 }
 
+// 画像Blobを、対応端末ではOSの共有シート経由でInstagramストーリーズ等に直接シェアし、
+// 非対応の場合(主にPCブラウザ)は従来通りダウンロードにフォールバックする。
+async function shareOrDownloadImageBlob(blob, filename) {
+  if (blob && typeof navigator !== 'undefined' && navigator.share && navigator.canShare) {
+    try {
+      const file = new File([blob], filename, { type: blob.type || 'image/png' })
+      if (navigator.canShare({ files: [file] })) {
+        await navigator.share({ files: [file] })
+        return true
+      }
+    } catch (error) {
+      if (error?.name === 'AbortError') {
+        return true
+      }
+    }
+  }
+
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  link.download = filename
+  document.body.appendChild(link)
+  link.click()
+  link.remove()
+  URL.revokeObjectURL(url)
+  return false
+}
+
 function getQrCodeImageUrl(text) {
   return `https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=10&data=${encodeURIComponent(text)}`
 }
 
-function drawStoryQrCode(ctx, qrImage) {
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.96)'
-  ctx.beginPath()
-  ctx.roundRect(748, 1518, 210, 246, 28)
-  ctx.fill()
-
-  ctx.strokeStyle = 'rgba(143, 78, 216, 0.18)'
-  ctx.lineWidth = 4
-  ctx.stroke()
-
-  ctx.drawImage(qrImage, 778, 1544, 150, 150)
+function drawStoryQrCode(ctx, qrImage, storyText, centerX = 540, topY = 1590, size = 130) {
+  ctx.drawImage(qrImage, centerX - size / 2, topY, size, size)
 
   ctx.fillStyle = '#8f4ed8'
-  ctx.font = '800 22px system-ui, sans-serif'
-  ctx.fillText('診断村へ', 853, 1720)
+  ctx.font = '700 24px system-ui, sans-serif'
+  ctx.fillText(storyText.qrCaption, centerX, topY + size + 38)
 }
 
 function loadImageAsync(src) {
@@ -452,6 +481,9 @@ async function createResultStoryBlob({
   characterImagePath,
   fallbackLabel,
   fallbackFontSize = 120,
+  brandName = '診断村',
+  hashtag = '#診断村',
+  storyText = { qrCaption: '診断村へ', shareCaption: '診断結果をストーリーでシェアしてね', qrFallback: '診断村で検索' },
 }) {
   const canvas = document.createElement('canvas')
   canvas.width = 1080
@@ -474,7 +506,7 @@ async function createResultStoryBlob({
 
   ctx.fillStyle = '#8f4ed8'
   ctx.font = '700 42px system-ui, sans-serif'
-  ctx.fillText('診断村', 540, 200)
+  ctx.fillText(brandName, 540, 200)
 
   ctx.fillStyle = '#29183a'
   ctx.font = '800 72px system-ui, sans-serif'
@@ -497,27 +529,27 @@ async function createResultStoryBlob({
 
   ctx.fillStyle = '#29183a'
   ctx.font = '800 54px system-ui, sans-serif'
-  ctx.fillText(nameLine, 540, 1430)
+  ctx.fillText(nameLine, 540, 1390)
 
   ctx.fillStyle = '#6f5c7d'
   ctx.font = '600 34px system-ui, sans-serif'
-  ctx.fillText(subLine, 540, 1510)
+  ctx.fillText(subLine, 540, 1450)
 
   ctx.fillStyle = '#ff69ad'
   ctx.font = '800 42px system-ui, sans-serif'
-  ctx.fillText('#診断村', 540, 1710)
+  ctx.fillText(hashtag, 540, 1512)
 
   ctx.fillStyle = '#8c7a98'
   ctx.font = '600 28px system-ui, sans-serif'
-  ctx.fillText('診断結果をストーリーでシェアしてね', 540, 1770)
+  ctx.fillText(storyText.shareCaption, 540, 1558)
 
   try {
     const qrImage = await loadImageAsync(getQrCodeImageUrl(getShareUrl()))
-    drawStoryQrCode(ctx, qrImage)
+    drawStoryQrCode(ctx, qrImage, storyText, 540, 1590, 130)
   } catch {
     ctx.fillStyle = '#8f4ed8'
     ctx.font = '700 24px system-ui, sans-serif'
-    ctx.fillText('診断村で検索', 853, 1708)
+    ctx.fillText(storyText.qrFallback, 540, 1660)
   }
 
   return new Promise((resolve) => {
@@ -531,49 +563,133 @@ function pickRandomComment(pool, usedComments) {
   return targetPool[Math.floor(Math.random() * targetPool.length)]
 }
 
+// Safariのプライベートブラウズモードや一部アプリ内ブラウザ(LINE等)では
+// localStorageへのアクセス自体や書き込みが例外を投げることがある。
+// ここで例外を握りつぶし、保存や履歴の読み書きが原因で画面が固まったり
+// ループしたりしないようにする。
+function safeGetItem(key) {
+  try {
+    return localStorage.getItem(key)
+  } catch {
+    return null
+  }
+}
+
+function safeSetItem(key, value) {
+  try {
+    localStorage.setItem(key, value)
+    return true
+  } catch {
+    return false
+  }
+}
+
 function App() {
+  const [language, setLanguage] = useState(() => safeGetItem('shindanMuraLanguage') || 'ja')
+  const { categories, scenes, sceneSets, diagnoses, options, resultDetails, randomCommentPools } = dataByLanguage[language] || dataByLanguage.ja
+  const t = uiText[language] || uiText.ja
+  const currentLegalPages = legalPagesByLanguage[language] || legalPagesByLanguage.ja
+  const currentAnswerComments = answerCommentsByLanguage[language] || answerCommentsByLanguage.ja
   const [selectedId, setSelectedId] = useState(null)
   const [answers, setAnswers] = useState([])
   const [showResult, setShowResult] = useState(false)
-  const [hasEnteredVillage, setHasEnteredVillage] = useState(() => localStorage.getItem('shindanMuraEntered') === 'true')
+  const [hasEnteredVillage, setHasEnteredVillage] = useState(() => safeGetItem('shindanMuraEntered') === 'true')
   const [gateOpening, setGateOpening] = useState(false)
   const [showCharacterGuide, setShowCharacterGuide] = useState(false)
+  const [showAllHistory, setShowAllHistory] = useState(false)
   const [legalPage, setLegalPage] = useState(null)
-  const [activeCategory, setActiveCategory] = useState('すべて')
+  const [activeCategory, setActiveCategory] = useState(categories[0])
   const [activeScene, setActiveScene] = useState('all')
   const [randomComments, setRandomComments] = useState({})
   const [selectedHistory, setSelectedHistory] = useState(null)
   const [likedCharacterIds, setLikedCharacterIds] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem('shindanMuraLikedCharacters')) || []
+      return JSON.parse(safeGetItem('shindanMuraLikedCharacters')) || []
     } catch {
       return []
     }
   })
   const [characterLikeCounts, setCharacterLikeCounts] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem('shindanMuraCharacterLikes')) || {}
+      return JSON.parse(safeGetItem('shindanMuraCharacterLikes')) || {}
     } catch {
       return {}
     }
   })
   const [diagnosisHistory, setDiagnosisHistory] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem('shindanMuraHistory')) || []
+      return JSON.parse(safeGetItem('shindanMuraHistory')) || []
     } catch {
       return []
     }
   })
   const diagnosis = diagnoses.find((item) => item.id === selectedId)
   const filteredDiagnoses = diagnoses.filter((item) => {
-    const categoryMatched = activeCategory === 'すべて' || item.category === activeCategory
+    const categoryMatched = activeCategory === categories[0] || item.category === activeCategory
     const sceneMatched = activeScene === 'all' || item.scenes.includes(activeScene)
     return categoryMatched && sceneMatched
   })
   const score = answers.reduce((sum, value) => sum + value, 0)
   const maxScore = diagnosis ? diagnosis.questions.length * 3 : 1
   const scoreBand = Math.min(3, Math.floor((score / maxScore) * 4))
-  const resultTitle = getResultTitle(diagnosis, answers, score, maxScore)
+  const resultTitle = getResultTitle(diagnosis, answers, score, maxScore, language)
+
+  // 言語を切り替えた時は、カテゴリー/シーンの絞り込みも新しい言語のラベルに合わせてリセットする。
+  // (レンダー中にstateを調整する公式パターン。effect内でsetStateすると
+  //  cascading renderの警告が出るため、prevLanguageとの比較で行う)
+  const [prevLanguage, setPrevLanguage] = useState(language)
+  if (language !== prevLanguage) {
+    setPrevLanguage(language)
+    setActiveCategory(categories[0])
+    setActiveScene('all')
+  }
+
+  useEffect(() => {
+    safeSetItem('shindanMuraLanguage', language)
+  }, [language])
+
+  // 起動時に一度だけ、サーバー(全員分の集計)から「いいね」数を取得してローカルの値を上書きする。
+  // 取得できるまでの間はローカルキャッシュの値をそのまま表示しておく(チラつき防止)。
+  useEffect(() => {
+    fetch(LIKES_API_URL)
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data) => {
+        if (data && typeof data === 'object') {
+          setCharacterLikeCounts(data)
+          safeSetItem('shindanMuraCharacterLikes', JSON.stringify(data))
+        }
+      })
+      .catch(() => {
+        // 取得に失敗した場合はローカルキャッシュのまま表示を続ける。
+      })
+  }, [])
+
+  // 画面が切り替わるたびにタブのタイトルを更新する。
+  // GA4は自動計測でpushState/hashchangeのたびにページビューを送るが、
+  // ページタイトルが常に固定だと「どの診断が見られているか」がレポート上で区別できない。
+  // ここでタイトルを都度変えることで、GA4のレポートで診断ごとの閲覧数を追えるようにする。
+  useEffect(() => {
+    const baseTitle = language === 'en'
+      ? 'Shindan Mura | Free Character Quizzes for Love, Personality, Career & Money'
+      : '診断村 | 恋愛・性格・仕事・お金の無料キャラ診断'
+    let nextTitle = baseTitle
+
+    if (legalPage && currentLegalPages[legalPage]) {
+      nextTitle = `${currentLegalPages[legalPage].title} | ${t.brandName}`
+    } else if (showCharacterGuide) {
+      nextTitle = `${t.characterGuide.title} | ${t.brandName}`
+    } else if (showAllHistory) {
+      nextTitle = `${t.historyList.title} | ${t.brandName}`
+    } else if (selectedHistory) {
+      nextTitle = `${selectedHistory.resultTitle} | ${selectedHistory.diagnosisTitle} | ${t.brandName}`
+    } else if (diagnosis) {
+      nextTitle = showResult
+        ? `${resultTitle} | ${diagnosis.title} | ${t.brandName}`
+        : `${diagnosis.title} | ${t.brandName}`
+    }
+
+    document.title = nextTitle
+  }, [diagnosis, legalPage, showCharacterGuide, showAllHistory, selectedHistory, showResult, resultTitle, language, t, currentLegalPages])
 
   const startDiagnosis = (id, shouldPushState = true) => {
     const nextDiagnosis = diagnoses.find((item) => item.id === id)
@@ -615,7 +731,7 @@ function App() {
   }
 
   const resetFilters = () => {
-    setActiveCategory('すべて')
+    setActiveCategory(categories[0])
     setActiveScene('all')
   }
 
@@ -629,10 +745,32 @@ function App() {
       [characterId]: Math.max(0, (characterLikeCounts[characterId] || 0) + (alreadyLiked ? -1 : 1)),
     }
 
+    // 楽観的更新: まずローカルの見た目とキャッシュを即時反映する。
     setLikedCharacterIds(nextLikedCharacterIds)
     setCharacterLikeCounts(nextCharacterLikeCounts)
-    localStorage.setItem('shindanMuraLikedCharacters', JSON.stringify(nextLikedCharacterIds))
-    localStorage.setItem('shindanMuraCharacterLikes', JSON.stringify(nextCharacterLikeCounts))
+    safeSetItem('shindanMuraLikedCharacters', JSON.stringify(nextLikedCharacterIds))
+    safeSetItem('shindanMuraCharacterLikes', JSON.stringify(nextCharacterLikeCounts))
+
+    // サーバー側(全員分の集計)にも反映する。失敗してもローカルの見た目はそのまま維持し、
+    // 次回のGET取得時に実際の集計値へ静かに補正される。
+    fetch(LIKES_API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ characterId, action: alreadyLiked ? 'unlike' : 'like' }),
+    })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data) => {
+        if (data && typeof data.likeCount === 'number') {
+          setCharacterLikeCounts((current) => {
+            const merged = { ...current, [characterId]: data.likeCount }
+            safeSetItem('shindanMuraCharacterLikes', JSON.stringify(merged))
+            return merged
+          })
+        }
+      })
+      .catch(() => {
+        // オフライン等で失敗した場合は何もしない(ローカルの楽観的更新のまま)。
+      })
   }
 
   const saveDiagnosisHistory = ({ diagnosisItem, result, character, characterCollection, totalScore, totalMaxScore }) => {
@@ -654,13 +792,13 @@ function App() {
 
     const nextHistory = [historyItem, ...diagnosisHistory].slice(0, 30)
     setDiagnosisHistory(nextHistory)
-    localStorage.setItem('shindanMuraHistory', JSON.stringify(nextHistory))
+    safeSetItem('shindanMuraHistory', JSON.stringify(nextHistory))
   }
 
   const gateTheme = getGateTheme()
 
   const allCharacterItems = diagnoses.flatMap((diagnosisItem) => {
-    const characterCollection = getCharacterCollection(diagnosisItem.id)
+    const characterCollection = getCharacterCollection(diagnosisItem.id, language)
 
     if (!characterCollection) {
       return []
@@ -698,7 +836,7 @@ function App() {
     setGateOpening(true)
 
     setTimeout(() => {
-      localStorage.setItem('shindanMuraEntered', 'true')
+      safeSetItem('shindanMuraEntered', 'true')
       setHasEnteredVillage(true)
       setGateOpening(false)
       window.history.pushState(null, '', '#home')
@@ -711,12 +849,12 @@ function App() {
       const rawHash = window.location.hash
       const hash = rawHash || '#home'
 
-      if (!rawHash && localStorage.getItem('shindanMuraEntered') !== 'true') {
+      if (!rawHash && safeGetItem('shindanMuraEntered') !== 'true') {
         return
       }
 
       if (rawHash && rawHash !== '#') {
-        localStorage.setItem('shindanMuraEntered', 'true')
+        safeSetItem('shindanMuraEntered', 'true')
         setHasEnteredVillage(true)
       }
 
@@ -727,6 +865,7 @@ function App() {
         setRandomComments({})
         setSelectedHistory(null)
         setShowCharacterGuide(false)
+        setShowAllHistory(false)
         setLegalPage(hash.replace('#', ''))
         window.scrollTo({ top: 0, behavior: 'smooth' })
         return
@@ -739,7 +878,21 @@ function App() {
         setRandomComments({})
         setSelectedHistory(null)
         setLegalPage(null)
+        setShowAllHistory(false)
         setShowCharacterGuide(true)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        return
+      }
+
+      if (hash === '#history-list') {
+        setSelectedId(null)
+        setShowResult(false)
+        setAnswers([])
+        setRandomComments({})
+        setSelectedHistory(null)
+        setLegalPage(null)
+        setShowCharacterGuide(false)
+        setShowAllHistory(true)
         window.scrollTo({ top: 0, behavior: 'smooth' })
         return
       }
@@ -748,6 +901,7 @@ function App() {
         const nextId = decodeURIComponent(hash.replace('#diagnosis=', ''))
         setSelectedHistory(null)
         setShowCharacterGuide(false)
+        setShowAllHistory(false)
         startDiagnosis(nextId, false)
         return
       }
@@ -756,7 +910,7 @@ function App() {
         const historyId = decodeURIComponent(hash.replace('#history=', ''))
         let savedHistory
         try {
-          savedHistory = JSON.parse(localStorage.getItem('shindanMuraHistory')) || []
+          savedHistory = JSON.parse(safeGetItem('shindanMuraHistory')) || []
         } catch {
           savedHistory = []
         }
@@ -764,21 +918,13 @@ function App() {
         const historyItem = savedHistory.find((item) => item.id === historyId)
 
         if (historyItem) {
-          const historyCharacter = getCharacterForResult(historyItem.diagnosisId, historyItem.resultTitle)
-          const historyCharacterImage = getCharacterImagePath(historyItem.diagnosisId, historyItem.resultTitle, historyItem.characterImage)
-          const historyCharacterName = historyItem.characterName || historyCharacter?.characterName || ''
-
           setSelectedId(null)
           setShowResult(false)
           setAnswers([])
           setRandomComments({})
           setShowCharacterGuide(false)
-          setSelectedHistory({
-            ...historyItem,
-            characterName: historyCharacterName,
-            characterImage: historyCharacterImage,
-            resultDetail: historyItem.resultDetail || resultDetails[historyItem.diagnosisId]?.[historyItem.resultTitle] || null,
-          })
+          setShowAllHistory(false)
+          setSelectedHistory(localizeHistoryEntry(historyItem, language, diagnoses, resultDetails))
           window.scrollTo({ top: 0, behavior: 'smooth' })
           return
         }
@@ -791,6 +937,7 @@ function App() {
       setSelectedHistory(null)
       setLegalPage(null)
       setShowCharacterGuide(false)
+      setShowAllHistory(false)
     }
 
     syncRoute()
@@ -801,19 +948,22 @@ function App() {
       window.removeEventListener('popstate', syncRoute)
       window.removeEventListener('hashchange', syncRoute)
     }
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [language])
 
   if (!hasEnteredVillage) {
     return (
       <main className={`gate-page gate-${gateTheme} ${gateOpening ? 'gate-opening' : ''}`}>
         <section className="village-gate-card">
+          <LanguageSwitcher language={language} setLanguage={setLanguage} />
+
           <div className="gate-sky">
             <div className="gate-moon" />
             <div className="gate-sun" />
             <div className="gate-stars" />
           </div>
 
-          <div className="gate-sign">診断村</div>
+          <div className="gate-sign">{t.brandName}</div>
 
           <div className="gate-frame">
             <div className="gate-post gate-post-left" />
@@ -830,19 +980,19 @@ function App() {
           </div>
 
           <button className="gate-enter-button" onClick={enterVillage}>
-            診断村に入る
+            {t.gate.enterButton}
           </button>
 
           <p className="gate-caption">
-            恋愛・性格・闇属性・仕事・お金・SNSまで、あなたにぴったりの診断が見つかる村。
+            {t.gate.caption}
           </p>
         </section>
       </main>
     )
   }
 
-  if (legalPage && legalPages[legalPage]) {
-    const page = legalPages[legalPage]
+  if (legalPage && currentLegalPages[legalPage]) {
+    const page = currentLegalPages[legalPage]
 
     return (
       <main className="app">
@@ -854,7 +1004,7 @@ function App() {
             window.scrollTo({ top: 0, behavior: 'smooth' })
           }}
         >
-          ← 診断村に戻る
+          {t.backToVillage}
         </button>
 
         <section className="hero detail legal-hero">
@@ -886,13 +1036,13 @@ function App() {
             window.scrollTo({ top: 0, behavior: 'smooth' })
           }}
         >
-          ← 診断村に戻る
+          {t.backToVillage}
         </button>
 
         <section className="hero detail character-guide-hero">
-          <p className="label">診断村キャラ図鑑</p>
-          <h1>村人図鑑</h1>
-          <p>診断村に登場するキャラクターたちを一覧で見られます。気になるキャラから診断を始めてみてください。</p>
+          <p className="label">{t.characterGuide.label}</p>
+          <h1>{t.characterGuide.title}</h1>
+          <p>{t.characterGuide.lead}</p>
         </section>
 
         <section className="character-guide-grid">
@@ -916,14 +1066,14 @@ function App() {
                 <p>{character.role || character.visualConcept}</p>
                 <div className="character-guide-actions">
                   <button className="share-button story" onClick={() => startDiagnosis(character.diagnosisId)}>
-                    この診断をやる
+                    {t.characterGuide.startButton}
                   </button>
                   <button
                     className={likedCharacterIds.includes(character.id) ? 'like-button liked' : 'like-button'}
                     type="button"
                     onClick={() => toggleCharacterLike(character.id)}
                   >
-                    {likedCharacterIds.includes(character.id) ? '♥ 好き' : '♡ 好き'}
+                    {likedCharacterIds.includes(character.id) ? t.characterGuide.likeOn : t.characterGuide.likeOff}
                   </button>
                 </div>
               </div>
@@ -934,24 +1084,90 @@ function App() {
     )
   }
 
+  if (showAllHistory) {
+    return (
+      <main className="app">
+        <button
+          className="back"
+          onClick={() => {
+            window.history.pushState(null, '', '#home')
+            setShowAllHistory(false)
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          }}
+        >
+          {t.backToVillage}
+        </button>
+
+        <section className="hero detail">
+          <p className="label">{t.historyList.label}</p>
+          <h1>{t.historyList.title}</h1>
+        </section>
+
+        {diagnosisHistory.length === 0 ? (
+          <p className="history-empty">{t.historyList.empty}</p>
+        ) : (
+          <section className="history-panel">
+            <div className="history-list">
+              {diagnosisHistory.map((item) => {
+                const localizedItem = localizeHistoryEntry(item, language, diagnoses, resultDetails)
+
+                return (
+                  <button
+                    className="history-item"
+                    key={item.id}
+                    onClick={() => {
+                      window.history.pushState(null, '', `#history=${item.id}`)
+                      setSelectedHistory(localizedItem)
+                      setShowAllHistory(false)
+                      window.scrollTo({ top: 0, behavior: 'smooth' })
+                    }}
+                  >
+                    {localizedItem.characterImage && (
+                      <img
+                        src={localizedItem.characterImage}
+                        alt={localizedItem.characterName || localizedItem.resultTitle}
+                      />
+                    )}
+
+                    <span>
+                      <small>{localizedItem.diagnosisTitle}</small>
+                      <strong>{localizedItem.resultTitle}</strong>
+                      {localizedItem.characterName && <em>{localizedItem.characterName}</em>}
+                    </span>
+                  </button>
+                )
+              })}
+            </div>
+          </section>
+        )}
+
+        <AdBanner />
+      </main>
+    )
+  }
+
   if (selectedHistory) {
-    const historyCharacter = getCharacterForResult(selectedHistory.diagnosisId, selectedHistory.resultTitle)
+    const historyCharacter = getCharacterForResult(selectedHistory.diagnosisId, selectedHistory.resultTitle, language)
     const historyCharacterImage = getCharacterImagePath(
       selectedHistory.diagnosisId,
       selectedHistory.resultTitle,
       selectedHistory.characterImage,
+      language,
     )
     const historyCharacterName = selectedHistory.characterName || historyCharacter?.characterName || ''
     const historyResultDetail = selectedHistory.resultDetail || resultDetails[selectedHistory.diagnosisId]?.[selectedHistory.resultTitle] || null
 
     const createHistoryStoryImage = () => createResultStoryBlob({
-      headingLabel: '診断履歴',
+      headingLabel: t.history.label,
       resultTitle: selectedHistory.resultTitle,
       nameLine: historyCharacterName || selectedHistory.resultTitle,
       subLine: selectedHistory.diagnosisTitle,
       characterImagePath: historyCharacterImage,
-      fallbackLabel: '診断村',
+      fallbackLabel: t.brandName,
       fallbackFontSize: 90,
+      brandName: t.brandName,
+      hashtag: t.hashtag,
+      storyText: t.storyImage,
     })
 
     const shareHistoryStoryImage = async () => {
@@ -959,20 +1175,13 @@ function App() {
         const blob = await createHistoryStoryImage()
 
         if (!blob) {
-          alert('画像の作成に失敗しました。')
+          alert(t.diagnosis.imageFailAlert)
           return
         }
 
-        const url = URL.createObjectURL(blob)
-        const link = document.createElement('a')
-        link.href = url
-        link.download = 'shindan-mura-history-story.png'
-        document.body.appendChild(link)
-        link.click()
-        link.remove()
-        URL.revokeObjectURL(url)
+        await shareOrDownloadImageBlob(blob, 'shindan-mura-history-story.png')
       } catch {
-        alert('ストーリー画像の作成に失敗しました。')
+        alert(t.diagnosis.storyImageFailAlert)
       }
     }
 
@@ -986,13 +1195,13 @@ function App() {
             window.scrollTo({ top: 0, behavior: 'smooth' })
           }}
         >
-          ← 診断履歴に戻る
+          {t.backToHistory}
         </button>
 
         <section className="result">
-          <p className="label">診断履歴</p>
+          <p className="label">{t.history.label}</p>
           <h2>{selectedHistory.resultTitle}</h2>
-          <p>あなたは「{selectedHistory.diagnosisTitle}」で、{selectedHistory.resultTitle}でした。</p>
+          <p>{t.history.resultLine(selectedHistory.diagnosisTitle, selectedHistory.resultTitle)}</p>
 
           {historyCharacterImage && (
             <div className="character-card">
@@ -1004,10 +1213,10 @@ function App() {
                 />
               </div>
               <div className="character-copy">
-                <p className="label">診断キャラクター</p>
+                <p className="label">{t.history.characterLabel}</p>
                 <h3>{historyCharacterName || selectedHistory.resultTitle}</h3>
                 <strong>{selectedHistory.diagnosisTitle}</strong>
-                <p>過去に保存された診断結果です。</p>
+                <p>{t.history.savedNote}</p>
               </div>
             </div>
           )}
@@ -1020,25 +1229,27 @@ function App() {
             </div>
           )}
 
-          <div className="share">私は「{selectedHistory.diagnosisTitle}」で「{selectedHistory.resultTitle}」でした。#診断村</div>
+          {language === 'ja' && <RecommendPick t={t} />}
+
+          <div className="share">{t.history.resultSentence(selectedHistory.diagnosisTitle, selectedHistory.resultTitle)}{t.hashtag}</div>
 
           <div className="share-primary">
             <button className="share-button story" onClick={shareHistoryStoryImage}>
               <IconStoryImage />
-              ストーリー画像を作る
+              {t.diagnosis.storyImageButton}
             </button>
           </div>
 
-          <div className="share-icon-row" role="group" aria-label="シェア">
+          <div className="share-icon-row" role="group" aria-label={t.diagnosis.shareAria}>
             <button
               className="icon-button copy"
               type="button"
-              aria-label="結果文をコピー"
-              title="結果文をコピー"
+              aria-label={t.diagnosis.copyAria}
+              title={t.diagnosis.copyAria}
               onClick={async () => {
-                const text = `私は「${selectedHistory.diagnosisTitle}」で「${selectedHistory.resultTitle}」でした。\n${historyResultDetail?.description || ''}\n#診断村`
+                const text = `${t.history.resultSentence(selectedHistory.diagnosisTitle, selectedHistory.resultTitle)}\n${historyResultDetail?.description || ''}\n${t.hashtag}\n${getShareUrl()}`
                 await navigator.clipboard.writeText(text)
-                alert('履歴の結果文をコピーしました。')
+                alert(t.history.copyAlert)
               }}
             >
               <IconCopy />
@@ -1054,7 +1265,7 @@ function App() {
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
             >
-              診断村に戻る
+              {t.history.backButton}
             </button>
           </div>
         </section>
@@ -1066,28 +1277,38 @@ function App() {
     const answeredCount = answers.filter((answer) => answer !== null).length
     const completed = answeredCount === diagnosis.questions.length
     const currentResultDetail = resultDetails[diagnosis.id]?.[resultTitle] || resultDetails[diagnosis.id]?.[diagnosis.results[scoreBand]]
-    const currentCharacterCollection = getCharacterCollection(diagnosis.id)
+    const currentCharacterCollection = getCharacterCollection(diagnosis.id, language)
     const currentCharacter = currentCharacterCollection?.characters[resultTitle] || null
-    const shareText = `私は「${diagnosis.title}」で「${resultTitle}」でした。\n${currentCharacter ? `診断キャラ：${currentCharacter.characterName}\n` : ''}${currentResultDetail?.description || ''}\n#診断村`
+    const shareText = `${t.diagnosis.resultSentence(diagnosis.title, resultTitle)}\n${currentCharacter ? `${t.diagnosis.characterLinePrefix}${currentCharacter.characterName}\n` : ''}${currentResultDetail?.description || ''}\n${t.hashtag}\n${getShareUrl()}`
 
     const copyShareText = async () => {
       await navigator.clipboard.writeText(shareText)
-      alert('結果文をコピーしました。X・LINE・Instagramなど好きな場所に貼り付けてシェアできます。')
+      alert(t.diagnosis.copyAlert)
     }
 
     const shareToX = () => {
-      const text = encodeURIComponent(shareText)
-      const url = encodeURIComponent(window.location.href)
-      window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank')
+      // Xは280文字が上限で、日本語などの全角文字は2文字分としてカウントされる。
+      // shareTextには診断結果の説明文まで含まれており、長い結果だとXの上限を
+      // 超えて投稿できないことがあるため、X共有専用に説明文を省いた短い文言を使う。
+      const xShareText = `${t.diagnosis.resultSentence(diagnosis.title, resultTitle)}
+${currentCharacter ? `${t.diagnosis.characterLinePrefix}${currentCharacter.characterName}
+` : ''}${t.hashtag}
+${getShareUrl()}`
+      const text = encodeURIComponent(xShareText)
+      window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank')
     }
 
     const shareToLine = () => {
-      const url = encodeURIComponent(`${window.location.origin}${window.location.pathname}`)
-      window.open(`https://social-plugins.line.me/lineit/share?url=${url}`, '_blank')
+      // 旧来のsocial-plugins.line.me/lineit/shareは、LINEアプリへの受け渡し処理の途中で
+      // ブラウザのプライベートモード等ではCookie/セッションが正しく引き継がれず、
+      // アプリ起動⇔ブラウザ表示を行き来する無限ループになる報告があるため、
+      // より単純で直接的な「LINEでメッセージを送る」形式のURLに変更する。
+      const text = encodeURIComponent(shareText)
+      window.open(`https://line.me/R/msg/text/?${text}`, '_blank')
     }
 
     const createStoryImage = () => createResultStoryBlob({
-      headingLabel: '診断結果',
+      headingLabel: t.diagnosis.resultHeading,
       resultTitle,
       nameLine: currentCharacter?.characterName || diagnosis.title,
       subLine: diagnosis.title,
@@ -1096,6 +1317,9 @@ function App() {
         : '',
       fallbackLabel: diagnosis.emoji,
       fallbackFontSize: 120,
+      brandName: t.brandName,
+      hashtag: t.hashtag,
+      storyText: t.storyImage,
     })
 
     const shareStoryImage = async () => {
@@ -1103,20 +1327,13 @@ function App() {
         const blob = await createStoryImage()
 
         if (!blob) {
-          alert('画像の作成に失敗しました。')
+          alert(t.diagnosis.imageFailAlert)
           return
         }
 
-        const url = URL.createObjectURL(blob)
-        const link = document.createElement('a')
-        link.href = url
-        link.download = 'shindan-mura-story.png'
-        document.body.appendChild(link)
-        link.click()
-        link.remove()
-        URL.revokeObjectURL(url)
+        await shareOrDownloadImageBlob(blob, 'shindan-mura-story.png')
       } catch {
-        alert('ストーリー画像の作成に失敗しました。')
+        alert(t.diagnosis.storyImageFailAlert)
       }
     }
     return (
@@ -1132,7 +1349,7 @@ function App() {
             window.scrollTo({ top: 0, behavior: 'smooth' })
           }}
         >
-          ← 診断村に戻る
+          {t.backToVillage}
         </button>
 
         <section className="hero detail">
@@ -1144,7 +1361,7 @@ function App() {
 
         {!showResult ? (
           <section className="panel">
-            <div className="progress">{answeredCount} / {diagnosis.questions.length} 問回答済み</div>
+            <div className="progress">{t.diagnosis.progress(answeredCount, diagnosis.questions.length)}</div>
 
             {diagnosis.questions.map((question, index) => (
               <div className="question" key={question}>
@@ -1163,7 +1380,7 @@ function App() {
 
                 {answers[index] !== null && (
                   <div className="question-comment">
-                    {randomComments[index] || answerComments[diagnosis.id]?.[answers[index]]}
+                    {randomComments[index] || currentAnswerComments[diagnosis.id]?.[answers[index]]}
                   </div>
                 )}
               </div>
@@ -1188,14 +1405,14 @@ function App() {
                 }, 100)
               }}
             >
-              診断結果を見る
+              {t.diagnosis.seeResultButton}
             </button>
           </section>
         ) : (
           <section className="result">
-            <p className="label">スコア {score} / {maxScore}</p>
+            <p className="label">{t.diagnosis.scoreLabel(score, maxScore)}</p>
             <h2>{resultTitle}</h2>
-            <p>あなたは「{diagnosis.title}」で、{resultTitle}でした。</p>
+            <p>{t.diagnosis.resultLine(diagnosis.title, resultTitle)}</p>
 
             {currentCharacter && (
               <div className="character-card">
@@ -1210,7 +1427,7 @@ function App() {
                   />
                 </div>
                 <div className="character-copy">
-                  <p className="label">診断キャラクター</p>
+                  <p className="label">{t.diagnosis.characterLabel}</p>
                   <h3>{currentCharacter.characterName}</h3>
                   <strong>{currentCharacter.role}</strong>
                   <p>{currentCharacter.visualConcept}</p>
@@ -1226,26 +1443,30 @@ function App() {
               </div>
             )}
 
-            <div className="share">私は「{diagnosis.title}」で「{resultTitle}」でした。#診断村</div>
+            {language === 'ja' && <RecommendPick t={t} />}
+
+            <div className="share">{t.diagnosis.resultSentence(diagnosis.title, resultTitle)}{t.hashtag}</div>
 
             <div className="share-primary">
               <button className="share-button story" onClick={shareStoryImage}>
                 <IconStoryImage />
-                ストーリー画像を作る
+                {t.diagnosis.storyImageButton}
               </button>
             </div>
 
-            <div className="share-icon-row" role="group" aria-label="SNSでシェア">
-              <button className="icon-button x" type="button" onClick={shareToX} aria-label="Xでシェア" title="Xでシェア">
+            <div className="share-icon-row" role="group" aria-label={t.diagnosis.shareAria}>
+              <button className="icon-button x" type="button" onClick={shareToX} aria-label={t.diagnosis.shareXAria} title={t.diagnosis.shareXAria}>
                 <IconX />
               </button>
-              <button className="icon-button line" type="button" onClick={shareToLine} aria-label="LINEでシェア" title="LINEでシェア">
+              <button className="icon-button line" type="button" onClick={shareToLine} aria-label={t.diagnosis.shareLineAria} title={t.diagnosis.shareLineAria}>
                 <IconLine />
               </button>
-              <button className="icon-button copy" type="button" onClick={copyShareText} aria-label="結果文をコピー" title="結果文をコピー">
+              <button className="icon-button copy" type="button" onClick={copyShareText} aria-label={t.diagnosis.copyAria} title={t.diagnosis.copyAria}>
                 <IconCopy />
               </button>
             </div>
+
+            <AdBanner />
 
             <div className="result-nav-actions">
               <button
@@ -1259,9 +1480,9 @@ function App() {
                   window.scrollTo({ top: 0, behavior: 'smooth' })
                 }}
               >
-                他の診断も見る
+                {t.diagnosis.otherDiagnosesButton}
               </button>
-              <button className="primary" onClick={() => startDiagnosis(diagnosis.id)}>もう一度診断する</button>
+              <button className="primary" onClick={() => startDiagnosis(diagnosis.id)}>{t.diagnosis.retryButton}</button>
             </div>
           </section>
         )}
@@ -1272,70 +1493,54 @@ function App() {
   return (
     <main className={`app top-app top-${gateTheme}`}>
       <section className="hero top-hero">
+        <LanguageSwitcher language={language} setLanguage={setLanguage} />
         <div className="top-hero-copy">
-          <h1>診断村</h1>
-          <p>あなたにぴったりの診断が見つかる場所</p>
+          <h1>{t.home.heroTitle}</h1>
+          <p>{t.home.heroSubtitle}</p>
           <div className="top-hero-actions">
-            <button className="primary hero-primary" onClick={() => startDiagnosis('menhera-level')}>人気診断をはじめる</button>
+            <button className="primary hero-primary" onClick={() => startDiagnosis('menhera-level')}>{t.home.startPopularButton}</button>
             <button className="share-button" onClick={() => {
               window.history.pushState(null, '', '#guide')
               setShowCharacterGuide(true)
               window.scrollTo({ top: 0, behavior: 'smooth' })
-            }}>村人図鑑を見る</button>
+            }}>{t.home.viewGuideButton}</button>
           </div>
         </div>
         <div className="top-hero-card village-welcome-sign">
           <span>🌿</span>
-          <strong>ようこそ診断村へ</strong>
-          <p>気になる診断を探して、あなたにぴったりのキャラに出会いましょう。</p>
+          <strong>{t.home.welcomeSignTitle}</strong>
+          <p>{t.home.welcomeSignText}</p>
         </div>
       </section>
 
 
       <section className="panel intro top-intro">
-        <h2>あなたはどの村へ行く？</h2>
-        <p>気分・シーン・キャラから診断を選べます。結果はキャラ付きで保存され、あとからInstagram用画像としてシェアできます。</p>
+        <h2>{t.home.introTitle}</h2>
+        <p>{t.home.introText}</p>
       </section>
 
       <section className="top-feature-grid">
-        <button className="top-feature-card" onClick={() => startDiagnosis('love-complicated')}>
-          <span>💗</span>
-          <strong>恋愛診断</strong>
-          <p>恋の傾向をチェック</p>
-        </button>
-        <button className="top-feature-card" onClick={() => startDiagnosis('hidden-personality')}>
-          <span>👻</span>
-          <strong>性格診断</strong>
-          <p>あなたの性格をまるっと診断</p>
-        </button>
-        <button className="top-feature-card" onClick={() => startDiagnosis('dangerous-man')}>
-          <span>⭐</span>
-          <strong>関係性診断</strong>
-          <p>あの人との関係を診断</p>
-        </button>
-        <button className="top-feature-card" onClick={() => startDiagnosis('work-style')}>
-          <span>💼</span>
-          <strong>仕事診断</strong>
-          <p>向いている仕事を見つけよう</p>
-        </button>
-        <button className="top-feature-card" onClick={() => startDiagnosis('sns-approval')}>
-          <span>💬</span>
-          <strong>SNS診断</strong>
-          <p>SNSでのあなたは？</p>
-        </button>
+        <h2 className="top-feature-grid-title">{t.home.situationSearchTitle}</h2>
+        {t.home.featureCards.map((card) => (
+          <button className="top-feature-card" key={card.diagnosisId} onClick={() => startDiagnosis(card.diagnosisId)}>
+            <span>{card.emoji}</span>
+            <strong>{card.title}</strong>
+            <p>{card.text}</p>
+          </button>
+        ))}
       </section>
 
       <section className="popular-ranking-panel">
         <div className="history-head">
           <div>
-            <p className="label">人気キャラランキング</p>
-            <h2>今見られている診断キャラ</h2>
+            <p className="label">{t.home.popularRankingLabel}</p>
+            <h2>{t.home.popularRankingTitle}</h2>
           </div>
           <button className="reset" onClick={() => {
             window.history.pushState(null, '', '#guide')
             setShowCharacterGuide(true)
             window.scrollTo({ top: 0, behavior: 'smooth' })
-          }}>村人図鑑を見る</button>
+          }}>{t.home.viewGuideButton}</button>
         </div>
 
         <div className="popular-character-list">
@@ -1353,7 +1558,7 @@ function App() {
                 <span>
                   <strong>{character.characterName}</strong>
                   <small>{character.diagnosisTitle}</small>
-                  <small>{character.likeCount}いいね</small>
+                  <small>{character.likeCount}{t.home.likeCountSuffix}</small>
                 </span>
               </button>
               <button
@@ -1361,7 +1566,7 @@ function App() {
                 type="button"
                 onClick={() => toggleCharacterLike(character.id)}
               >
-                {character.isLiked ? '♥ 好き' : '♡ 好き'}
+                {character.isLiked ? t.characterGuide.likeOn : t.characterGuide.likeOff}
               </button>
             </article>
           ))}
@@ -1372,16 +1577,27 @@ function App() {
         <section className="history-panel">
           <div className="history-head">
             <div>
-              <p className="label">診断履歴</p>
-              <h2>最近の診断結果</h2>
+              <p className="label">{t.home.historyLabel}</p>
+              <h2>{t.home.historyTitle}</h2>
             </div>
+            {diagnosisHistory.length > 2 && (
+              <button
+                className="reset"
+                type="button"
+                onClick={() => {
+                  window.history.pushState(null, '', '#history-list')
+                  setShowAllHistory(true)
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }}
+              >
+                {t.home.historyMoreButton}
+              </button>
+            )}
           </div>
 
           <div className="history-list">
-            {diagnosisHistory.slice(0, 6).map((item) => {
-              const historyCharacter = getCharacterForResult(item.diagnosisId, item.resultTitle)
-              const historyCharacterImage = getCharacterImagePath(item.diagnosisId, item.resultTitle, item.characterImage)
-              const historyCharacterName = item.characterName || historyCharacter?.characterName || ''
+            {diagnosisHistory.slice(0, 2).map((item) => {
+              const localizedItem = localizeHistoryEntry(item, language, diagnoses, resultDetails)
 
               return (
                 <button
@@ -1389,26 +1605,21 @@ function App() {
                   key={item.id}
                   onClick={() => {
                     window.history.pushState(null, '', `#history=${item.id}`)
-                    setSelectedHistory({
-                      ...item,
-                      characterName: historyCharacterName,
-                      characterImage: historyCharacterImage,
-                      resultDetail: item.resultDetail || resultDetails[item.diagnosisId]?.[item.resultTitle] || null,
-                    })
+                    setSelectedHistory(localizedItem)
                     window.scrollTo({ top: 0, behavior: 'smooth' })
                   }}
                 >
-                  {historyCharacterImage && (
+                  {localizedItem.characterImage && (
                     <img
-                      src={historyCharacterImage}
-                      alt={historyCharacterName || item.resultTitle}
+                      src={localizedItem.characterImage}
+                      alt={localizedItem.characterName || localizedItem.resultTitle}
                     />
                   )}
 
                   <span>
-                    <small>{item.diagnosisTitle}</small>
-                    <strong>{item.resultTitle}</strong>
-                    {historyCharacterName && <em>{historyCharacterName}</em>}
+                    <small>{localizedItem.diagnosisTitle}</small>
+                    <strong>{localizedItem.resultTitle}</strong>
+                    {localizedItem.characterName && <em>{localizedItem.characterName}</em>}
                   </span>
                 </button>
               )
@@ -1419,7 +1630,7 @@ function App() {
 
       <section className="filter-panel">
         <div className="filter-block">
-          <h2>カテゴリーで選ぶ</h2>
+          <h2>{t.home.categoryFilterTitle}</h2>
           <div className="chip-row">
             {categories.map((category) => (
               <button
@@ -1434,7 +1645,7 @@ function App() {
         </div>
 
         <div className="filter-block">
-          <h2>シーンで選ぶ</h2>
+          <h2>{t.home.sceneFilterTitle}</h2>
           <div className="scene-row">
             {scenes.map((scene) => (
               <button
@@ -1463,10 +1674,10 @@ function App() {
 
       <section className="list-heading">
         <div>
-          <p className="label">診断一覧</p>
-          <h2>{filteredDiagnoses.length}個の診断が見つかりました</h2>
+          <p className="label">{t.home.listLabel}</p>
+          <h2>{t.home.listTitle(filteredDiagnoses.length)}</h2>
         </div>
-        <button className="reset" onClick={resetFilters}>絞り込みをリセット</button>
+        <button className="reset" onClick={resetFilters}>{t.home.resetButton}</button>
       </section>
 
       <section className="grid">
@@ -1480,8 +1691,10 @@ function App() {
         ))}
       </section>
 
+      <AdBanner />
+
       <footer className="copyright-footer">
-        <nav className="footer-links" aria-label="フッターリンク">
+        <nav className="footer-links" aria-label={t.legalNav}>
           <button
             type="button"
             onClick={() => {
@@ -1490,7 +1703,7 @@ function App() {
               window.scrollTo({ top: 0, behavior: 'smooth' })
             }}
           >
-            プライバシーポリシー
+            {t.footerLinks.privacy}
           </button>
           <button
             type="button"
@@ -1500,7 +1713,7 @@ function App() {
               window.scrollTo({ top: 0, behavior: 'smooth' })
             }}
           >
-            お問い合わせ
+            {t.footerLinks.contact}
           </button>
           <button
             type="button"
@@ -1510,16 +1723,16 @@ function App() {
               window.scrollTo({ top: 0, behavior: 'smooth' })
             }}
           >
-            運営者情報
+            {t.footerLinks.operator}
           </button>
         </nav>
-        <p>© 2026 Katsuya Ohara / 診断村. All Rights Reserved.</p>
+        <p>{t.footerCopyright}</p>
       </footer>
 
-      <nav className="bottom-nav" aria-label="診断村メニュー">
-        <button type="button" onClick={() => window.history.pushState(null, '', '#home')}><span>🏠</span><strong>ホーム</strong></button>
-        <button type="button" onClick={() => document.querySelector('.filter-panel')?.scrollIntoView({ behavior: 'smooth' })}><span>🔍</span><strong>さがす</strong></button>
-        <button type="button" className="bottom-nav-main" onClick={() => startDiagnosis('menhera-level')}><span>🧩</span><strong>診断する</strong></button>
+      <nav className="bottom-nav" aria-label={t.bottomNav.aria}>
+        <button type="button" onClick={() => window.history.pushState(null, '', '#home')}><span>🏠</span><strong>{t.bottomNav.home}</strong></button>
+        <button type="button" onClick={() => document.querySelector('.filter-panel')?.scrollIntoView({ behavior: 'smooth' })}><span>🔍</span><strong>{t.bottomNav.search}</strong></button>
+        <button type="button" className="bottom-nav-main" onClick={() => startDiagnosis('menhera-level')}><span>🧩</span><strong>{t.bottomNav.diagnose}</strong></button>
         <button
           type="button"
           onClick={() => {
@@ -1528,9 +1741,9 @@ function App() {
             window.scrollTo({ top: 0, behavior: 'smooth' })
           }}
         >
-          <span>👤</span><strong>図鑑</strong>
+          <span>👤</span><strong>{t.bottomNav.guide}</strong>
         </button>
-        <button type="button" onClick={() => document.querySelector('.grid')?.scrollIntoView({ behavior: 'smooth' })}><span>☰</span><strong>メニュー</strong></button>
+        <button type="button" onClick={() => document.querySelector('.grid')?.scrollIntoView({ behavior: 'smooth' })}><span>☰</span><strong>{t.bottomNav.menu}</strong></button>
       </nav>
     </main>
   )

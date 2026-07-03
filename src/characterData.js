@@ -105,7 +105,7 @@ export const loveComplicatedCharacters = {
     imageKey: 'airy-villager',
   },
   '平和な距離感タイプ': {
-    characterName: '距離感の守り人',
+    characterName: 'イワシ',
     role: '近すぎず遠すぎずを守る境界線キャラ',
     visualConcept: '淡いベージュの服、透明な境界線の輪を持つ守り人。やさしい雰囲気だけど、自分のペースは崩さない。',
     imageKey: 'distance-guardian',
