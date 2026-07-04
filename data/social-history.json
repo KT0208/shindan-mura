@@ -12,5 +12,12 @@
     "text": "🧭コーヒーメーカー精霊\n場の空気を温めるムードメーカーキャラ\n仕事向き診断で出会えるキャラです。\n診断村でチェック👇\nhttps://shindanmura.com/",
     "imagePath": "public/characters/workStyleCharacters/work-coffee-maker-spirit.webp",
     "tweetId": "2072975127692591181"
+  },
+  {
+    "postedAt": "2026-07-04T06:17:01.742Z",
+    "type": "diagnosisInvite",
+    "text": "気になるあの人との相性、自分の本音、まだ言葉にできてないモヤモヤ。\n裏人格診断で覗いてみませんか?\nhttps://shindanmura.com/",
+    "imagePath": "public/characters/hidden-personality/harmless-observer-spirit.webp",
+    "tweetId": "2073289961978077423"
   }
 ]
