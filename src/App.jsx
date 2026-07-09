@@ -395,7 +395,8 @@ function getShareUrl() {
 // このページは scripts/generate-share-pages.mjs がビルド時に生成する。
 // キャラ情報が取れない場合はトップURLにフォールバック。
 // 表示用の縮小キャラ画像パス(scripts/optimize-images.mjs が生成する /characters-small/ を参照)。
-// 元画像(/characters/)はOGP画像・ストーリー共有画像の生成用に高解像度のまま残している。
+// 元画像(/characters/)はビルド時のOGP画像生成(scripts)用にローカルに残しているだけで、
+// 本番では配信されない。ブラウザ実行時(表示・共有画像)は必ず /characters-small/ を使う。
 function toDisplayImage(path) {
   return typeof path === 'string' ? path.replace('/characters/', '/characters-small/') : path
 }
@@ -506,7 +507,9 @@ async function createResultStoryBlob({
 
   if (characterImagePath) {
     try {
-      const image = await loadImageAsync(characterImagePath)
+      // フルサイズ /characters/ は本番で配信されない(404)ため、
+      // 実際に配信されている表示用の縮小画像(/characters-small/)を読み込む。
+      const image = await loadImageAsync(toDisplayImage(characterImagePath))
       drawImageContain(ctx, image, 140, 520, 800, 800)
     } catch {
       ctx.fillStyle = '#8f4ed8'
