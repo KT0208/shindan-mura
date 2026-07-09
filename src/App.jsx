@@ -401,6 +401,55 @@ function toDisplayImage(path) {
   return typeof path === 'string' ? path.replace('/characters/', '/characters-small/') : path
 }
 
+// 更新情報(トピックス)の日付表示ヘルパー。'2026-07-09' → '7/9'。
+function formatTopicDate(dateStr) {
+  const d = new Date(dateStr)
+  if (Number.isNaN(d.getTime())) return ''
+  return `${d.getMonth() + 1}/${d.getDate()}`
+}
+
+// 直近(既定7日以内)の更新かどうか。NEWバッジの表示判定に使う。
+function isRecentTopic(dateStr, days = 7) {
+  const d = new Date(dateStr)
+  if (Number.isNaN(d.getTime())) return false
+  return Date.now() - d.getTime() < days * 24 * 60 * 60 * 1000
+}
+
+// SNSアカウントのリンク(自動取得しないものはアイコンリンクのみ)。
+const SNS_LINKS = [
+  { id: 'x', label: 'X', url: 'https://x.com/shindanmura' },
+  { id: 'instagram', label: 'Instagram', url: 'https://www.instagram.com/shindanmura/?hl=ja' },
+  { id: 'threads', label: 'Threads', url: 'https://www.threads.com/@shindanmura' },
+  { id: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61591359254588' },
+  { id: 'note', label: 'note', url: 'https://note.com/shindanmura' },
+]
+
+// SNSアイコン(ブランドロゴのSVG)。noteだけは文字ロゴなので別扱い。
+function SnsIcon({ id }) {
+  const common = { width: 20, height: 20, viewBox: '0 0 24 24', fill: 'currentColor', 'aria-hidden': true }
+  if (id === 'x') {
+    return (
+      <svg {...common}><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817-5.966 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
+    )
+  }
+  if (id === 'instagram') {
+    return (
+      <svg {...common} fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5.5" /><circle cx="12" cy="12" r="4.2" /><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none" /></svg>
+    )
+  }
+  if (id === 'threads') {
+    return (
+      <svg {...common}><path d="M12.19 21.5c-2.94-.02-5.2-1-6.71-2.9C4.14 16.9 3.5 14.66 3.5 12s.64-4.9 1.98-6.6C6.99 3.5 9.25 2.52 12.19 2.5c2.28.02 4.18.61 5.62 1.75 1.35 1.07 2.29 2.6 2.79 4.53l-1.94.53c-.85-3.09-2.9-4.6-6.47-4.62-2.34.02-4.06.75-5.13 2.16C6.06 8.2 5.55 9.9 5.55 12s.51 3.8 1.51 5.15c1.07 1.41 2.79 2.14 5.13 2.16 2.11-.02 3.5-.5 4.42-1.42.86-.85 1.29-1.94 1.29-3.07 0-.71-.14-1.34-.42-1.86-.44 1.03-1.16 1.82-2.15 2.35-.98.52-2.13.75-3.41.66-1.4-.1-2.53-.55-3.31-1.35-.7-.72-1.05-1.62-1-2.55.06-1.02.56-1.88 1.42-2.44.82-.53 1.9-.79 3.15-.75 1 .03 1.92.19 2.74.47-.05-.79-.31-1.4-.77-1.83-.5-.46-1.24-.7-2.19-.71-1.13 0-2.02.36-2.63 1.08l-1.54-1.24c.99-1.18 2.42-1.78 4.2-1.78 1.5.01 2.71.44 3.58 1.27.85.81 1.34 1.98 1.44 3.47.09.06.18.12.26.19 1.28 1.05 1.95 2.63 1.95 4.6 0 1.65-.65 3.24-1.88 4.45-1.31 1.29-3.24 1.96-5.86 1.98zm.83-9.02c-.94-.03-1.71.14-2.24.49-.4.26-.6.61-.62 1.05-.03.55.24.99.79 1.28.53.28 1.2.42 1.94.35 1.6-.14 2.6-1.1 2.86-2.83-.77-.29-1.66-.36-2.69-.34z" /></svg>
+    )
+  }
+  if (id === 'facebook') {
+    return (
+      <svg {...common}><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.19 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.9 3.78-3.9 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.57v1.87h2.78l-.44 2.9h-2.34V22c4.78-.75 8.44-4.92 8.44-9.94z" /></svg>
+    )
+  }
+  return null
+}
+
 function getResultShareUrl(diagnosisId, imageKey) {
   if (diagnosisId && imageKey) {
     return `${window.location.origin}/r/${diagnosisId}/${imageKey}/`
@@ -600,6 +649,8 @@ function App() {
   const [legalPage, setLegalPage] = useState(null)
   const [activeCategory, setActiveCategory] = useState(categories[0])
   const [activeScene, setActiveScene] = useState('all')
+  // 更新情報(note の新着)。/api/topics.php(サーバー側で note RSS を中継)から取得する。
+  const [topics, setTopics] = useState([])
   const [randomComments, setRandomComments] = useState({})
   const [selectedHistory, setSelectedHistory] = useState(null)
   const [likedCharacterIds, setLikedCharacterIds] = useState(() => {
@@ -839,6 +890,14 @@ function App() {
     })
     .slice(0, 5)
 
+  // 診断リスト(コンパクトカード)用の代表キャラ。各診断の先頭キャラを「表紙」にする。
+  const coverCharacterByDiagnosis = {}
+  for (const character of allCharacterItems) {
+    if (!coverCharacterByDiagnosis[character.diagnosisId]) {
+      coverCharacterByDiagnosis[character.diagnosisId] = character
+    }
+  }
+
   const enterVillage = () => {
     setGateOpening(true)
 
@@ -850,6 +909,22 @@ function App() {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }, 900)
   }
+
+  // 更新情報(note の新着)を取得。取得できなくてもSNSリンクだけは表示する。
+  useEffect(() => {
+    let active = true
+    fetch('/api/topics.php')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (active && data && Array.isArray(data.items)) {
+          setTopics(data.items)
+        }
+      })
+      .catch(() => {})
+    return () => {
+      active = false
+    }
+  }, [])
 
   useEffect(() => {
     const syncRoute = () => {
@@ -1538,6 +1613,47 @@ ${resultShareUrl}`
         </div>
       </section>
 
+      <section className="home-updates">
+        <div className="home-social">
+          <span className="home-social-label">{language === 'en' ? 'Follow 診断村' : 'SNSでも診断村'}</span>
+          <div className="home-social-icons">
+            {SNS_LINKS.map((sns) => (
+              <a
+                key={sns.id}
+                className={sns.id === 'note' ? 'sns-link sns-note' : 'sns-link'}
+                href={sns.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={sns.label}
+              >
+                {sns.id === 'note' ? 'note' : <SnsIcon id={sns.id} />}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {topics.length > 0 && (
+          <div className="home-topics">
+            <div className="home-topics-head">
+              <h2>{language === 'en' ? 'Updates' : '更新情報'}</h2>
+              <span className="home-topics-auto">{language === 'en' ? 'auto from note' : 'note 自動更新'}</span>
+            </div>
+            <ul className="home-topics-list">
+              {topics.map((topic) => (
+                <li key={topic.url}>
+                  <a href={topic.url} target="_blank" rel="noopener noreferrer">
+                    <span className="topic-date">{formatTopicDate(topic.date)}</span>
+                    <span className="topic-source">{topic.source}</span>
+                    <span className="topic-title">{topic.title}</span>
+                    {isRecentTopic(topic.date) && <span className="topic-new">NEW</span>}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </section>
+
 
       <section className="panel intro top-intro">
         <h2>{t.home.introTitle}</h2>
@@ -1713,15 +1829,45 @@ ${resultShareUrl}`
         <button className="reset" onClick={resetFilters}>{t.home.resetButton}</button>
       </section>
 
-      <section className="grid">
-        {filteredDiagnoses.map((item) => (
-          <button className={`card ${item.id}`} key={item.id} onClick={() => startDiagnosis(item.id)}>
-            <span className="emoji">{item.emoji}</span>
-            <span className="label">{item.category}</span>
-            <strong>{item.title}</strong>
-            <p>{item.description}</p>
-          </button>
-        ))}
+      <section className="grid compact-grid">
+        {filteredDiagnoses.map((item) => {
+          const cover = coverCharacterByDiagnosis[item.id]
+          const liked = cover ? likedCharacterIds.includes(cover.id) : false
+          return (
+            <article className={`card ${item.id}`} key={item.id}>
+              <button className="card-main" type="button" onClick={() => startDiagnosis(item.id)}>
+                {cover ? (
+                  <img
+                    className="card-thumb"
+                    src={toDisplayImage(cover.image)}
+                    alt={`${item.title} | ${t.brandName}`}
+                    loading="lazy"
+                    decoding="async"
+                    width="640"
+                    height="427"
+                    onError={(event) => {
+                      event.currentTarget.style.display = 'none'
+                    }}
+                  />
+                ) : (
+                  <span className="emoji">{item.emoji}</span>
+                )}
+                <span className="label">{item.category}</span>
+                <strong>{item.title}</strong>
+              </button>
+              {cover && (
+                <button
+                  className={liked ? 'card-like liked' : 'card-like'}
+                  type="button"
+                  aria-label={liked ? t.characterGuide.likeOn : t.characterGuide.likeOff}
+                  onClick={() => toggleCharacterLike(cover.id)}
+                >
+                  {liked ? '♥' : '♡'}
+                </button>
+              )}
+            </article>
+          )
+        })}
       </section>
 
       {/* SEO用のサイト紹介文(検索エンジン向けの自然なテキスト。デザインは控えめに) */}
