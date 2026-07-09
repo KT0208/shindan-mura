@@ -2725,3 +2725,79 @@ button {
 .top-app .grid.compact-grid .card strong {
   font-size: 13px;
 }
+
+/* ===== 調整: SNS視認性 / 枠の重なり / さらにコンパクト ===== */
+/* SNSアイコンをブランドカラーで塗って見やすく */
+.top-app .sns-link {
+  color: #fff;
+  border: 0;
+  width: 40px;
+  height: 40px;
+  box-shadow: 0 6px 16px rgba(20, 8, 34, 0.18);
+}
+
+.top-app .sns-x {
+  background: #000;
+}
+
+.top-app .sns-instagram {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+}
+
+.top-app .sns-threads {
+  background: #101010;
+}
+
+.top-app .sns-facebook {
+  background: #1877f2;
+}
+
+.top-app .sns-note {
+  width: auto;
+  padding: 0 15px;
+  color: #fff;
+  background: #35b45f;
+}
+
+/* 更新情報パネルが下のシチュエーション検索と重ならないように */
+.top-app .home-updates {
+  position: relative;
+  z-index: 3;
+  margin: 16px 0 0;
+}
+
+.top-app .top-feature-grid {
+  margin-top: 24px;
+}
+
+/* 診断カードをさらにコンパクト(高さを下げ、列数を増やす) */
+.top-app .grid.compact-grid {
+  grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+  gap: 10px;
+}
+
+.top-app .grid.compact-grid .card-main {
+  padding: 8px 8px 11px;
+  gap: 5px;
+}
+
+.top-app .grid.compact-grid .card-thumb {
+  height: 70px;
+}
+
+.top-app .grid.compact-grid .card .label {
+  font-size: 9.5px;
+  padding: 2px 8px;
+}
+
+.top-app .grid.compact-grid .card strong {
+  font-size: 12.5px;
+}
+
+.top-app .grid.compact-grid .card-like {
+  width: 24px;
+  height: 24px;
+  font-size: 13px;
+  top: 6px;
+  right: 6px;
+}

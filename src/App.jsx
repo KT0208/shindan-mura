@@ -1620,7 +1620,7 @@ ${resultShareUrl}`
             {SNS_LINKS.map((sns) => (
               <a
                 key={sns.id}
-                className={sns.id === 'note' ? 'sns-link sns-note' : 'sns-link'}
+                className={`sns-link sns-${sns.id}${sns.id === 'note' ? ' sns-note' : ''}`}
                 href={sns.url}
                 target="_blank"
                 rel="noopener noreferrer"
