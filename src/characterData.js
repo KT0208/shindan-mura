@@ -237,7 +237,7 @@ export const menheraLevelCharacters = {
     characterName: '通知待機クラゲ',
     role: '通知を待ちながら漂うクラゲ',
     visualConcept: 'スマホの光に反応する夜色のクラゲ。',
-    imageKey: 'menhera-watch-jealous-jelly',
+    imageKey: 'menhera-hope-star-jelly',
   },
   '強がり不安タイプ': {
     characterName: '笑顔マスククラゲ',
@@ -1056,4 +1056,428 @@ export const lifeBugResultTypes = [
   ['選択ミス多めタイプ', 'タイミングずれタイプ', '人間関係ラグタイプ', '予定崩壊タイプ'],
   ['人生エラー多発タイプ', 'やらかし常習タイプ', 'フラグ回収タイプ', '混乱イベント発生タイプ'],
   ['バグ覚醒タイプ', 'カオス耐性強めタイプ', '人生チート疑惑タイプ', 'カオスプレイヤータイプ'],
+]
+
+export const oshikatsuCharacters = {
+  'ゆる見守りタイプ': {
+    characterName: 'そっと見守り精霊',
+    role: '遠くから小さく応援するマイペースな精霊',
+    visualConcept: '小さな星の飾りを頭にのせ、毛布のようなケープにくるまった丸い精霊。胸の前で小さなペンライトをそっと振って見守る。',
+    imageKey: 'oshi-gentle-watch-spirit',
+  },
+  'ときどきグッズタイプ': {
+    characterName: '缶バッジ精霊',
+    role: 'お気に入りだけを大事にする少数精鋭コレクター',
+    visualConcept: '体のまわりに缶バッジを飾った丸い精霊。お気に入りのバッジを布でそっと磨いて眺める。',
+    imageKey: 'oshi-badge-spirit',
+  },
+  'たまに語りタイプ': {
+    characterName: '月夜語り精霊',
+    role: '夜にだけ推しを静かに語る考察の卵',
+    visualConcept: '三日月の飾りを頭に浮かべた夜色の精霊。小さなメモ帳を抱え、月夜にぽつぽつ推しを語る。',
+    imageKey: 'oshi-night-talk-spirit',
+  },
+  'さりげなく勧めタイプ': {
+    characterName: 'こっそり布教精霊',
+    role: 'さりげなく推しを勧める控えめ布教員',
+    visualConcept: 'ポシェットにグッズを忍ばせた小さな精霊。自分より大きいCDを「どうぞ」と差し出してウインクする。',
+    imageKey: 'oshi-secret-promo-spirit',
+  },
+  '現場参戦タイプ': {
+    characterName: 'ペンライト妖精',
+    role: '現場の熱気で輝く応援の妖精',
+    visualConcept: 'キラキラの羽とドレスをまとい、両手のペンライトを掲げて舞う小さな妖精。現場の一体感が生きがい。',
+    imageKey: 'oshi-penlight-spirit',
+  },
+  'コレクター街道タイプ': {
+    characterName: 'トレカファイル精霊',
+    role: 'グッズを美しく管理する几帳面コレクター',
+    visualConcept: '大きなカードファイルの姿をした精霊。リボンを結び、トレカを1枚ずつ大切に整理して並べる。',
+    imageKey: 'oshi-tradingcard-spirit',
+  },
+  '考察ノートタイプ': {
+    characterName: '考察メガネ精霊',
+    role: '推しの一挙一動を研究する考察家',
+    visualConcept: '丸メガネをかけ、付箋だらけのノートを抱えた精霊。頭の上に小さな電球が浮かんでいる。',
+    imageKey: 'oshi-theory-spirit',
+  },
+  'プレゼン営業タイプ': {
+    characterName: '布教ボード精霊',
+    role: '手作り資料で魅力を伝える営業精霊',
+    visualConcept: 'ハートのグラフが描かれたプレゼンボードに手足が生えた精霊。指し棒を持って今日も熱弁する。',
+    imageKey: 'oshi-presentation-spirit',
+  },
+  '全通勢タイプ': {
+    characterName: '遠征キャリー精霊',
+    role: '全公演制覇を目指す遠征のプロ',
+    visualConcept: 'キャップをかぶり、ステッカーだらけのキャリーケースを引く精霊。手にチケットを掲げてドヤ顔。',
+    imageKey: 'oshi-tour-spirit',
+  },
+  '祭壇建立タイプ': {
+    characterName: '祭壇づくり精霊',
+    role: 'グッズ祭壇を増築し続ける建築家',
+    visualConcept: 'エプロン姿で、グッズが美しく並んだ小さな祭壇の横に立つ精霊。誇らしげに胸を張る。',
+    imageKey: 'oshi-altar-spirit',
+  },
+  '二次創作職人タイプ': {
+    characterName: '創作ふで精霊',
+    role: '愛を作品に変える創作職人',
+    visualConcept: 'ベレー帽をかぶり、自分より大きい筆を抱えて夢中で描く精霊。頬に絵の具がついている。',
+    imageKey: 'oshi-art-brush-spirit',
+  },
+  '沼への案内人タイプ': {
+    characterName: '沼案内精霊',
+    role: '沼の入口で手招きする案内人',
+    visualConcept: '蓮の葉の上に立ち、小さな旗を持って「こちらへどうぞ」と手招きする精霊。にっこり営業スマイル。',
+    imageKey: 'oshi-swamp-guide-spirit',
+  },
+  '人生捧げタイプ': {
+    characterName: '推し一筋ドラゴン',
+    role: '推しに人生を捧げた一途な守護竜',
+    visualConcept: '推し色の青い炎を両手で大切に掲げる小さな赤いドラゴン。炎を見つめる一途なまなざし。',
+    imageKey: 'oshi-devotion-flame-spirit',
+  },
+  '博物館級タイプ': {
+    characterName: 'コレクション博物館クジラ',
+    role: '体の中が博物館になった究極のコレクター',
+    visualConcept: '体の中が小さな博物館の展示室になっている優しいクジラ。展示品はすべて愛の記録。',
+    imageKey: 'oshi-museum-spirit',
+  },
+  '概念解釈タイプ': {
+    characterName: '概念スピリット',
+    role: '推しを概念として愛する哲学者',
+    visualConcept: '光の粒子でできた半透明のスピリット。推しの存在そのものを概念として解釈する。',
+    imageKey: 'oshi-concept-spirit',
+  },
+  '伝道師タイプ': {
+    characterName: '伝道スピーカー精霊',
+    role: '愛を世界に響かせる伝道師',
+    visualConcept: '大きなスピーカーから愛の音を流す精霊。その音を聞いた人は少しだけ沼に近づく。',
+    imageKey: 'oshi-speaker-spirit',
+  },
+}
+
+export const oshikatsuResultTypes = [
+  ['ゆる見守りタイプ', 'ときどきグッズタイプ', 'たまに語りタイプ', 'さりげなく勧めタイプ'],
+  ['現場参戦タイプ', 'コレクター街道タイプ', '考察ノートタイプ', 'プレゼン営業タイプ'],
+  ['全通勢タイプ', '祭壇建立タイプ', '二次創作職人タイプ', '沼への案内人タイプ'],
+  ['人生捧げタイプ', '博物館級タイプ', '概念解釈タイプ', '伝道師タイプ'],
+]
+
+export const replyTypeCharacters = {
+  '極細明朝体タイプ': {
+    characterName: '極細明朝さん',
+    role: '存在感が細すぎる未読の主',
+    visualConcept: '線の細い明朝体の吹き出しを掲げたフィギュア精霊。気配が薄く、返信も薄い。',
+    imageKey: 'font-gokuboso-mincho',
+  },
+  '角ゴシック体タイプ': {
+    characterName: '角ゴシックさん',
+    role: '要件のみ、装飾なしの省エネ番人',
+    visualConcept: '角ばったゴシック体の吹き出しを持つフィギュア精霊。「了解」の二文字に魂を込める。',
+    imageKey: 'font-kaku-gothic',
+  },
+  '筆記体タイプ': {
+    characterName: '筆記体さん',
+    role: 'おしゃれすぎて解読されない芸術家',
+    visualConcept: '流れるような筆記体の吹き出しを掲げるフィギュア精霊。美しいが、たまにしか現れない。',
+    imageKey: 'font-hikkitai',
+  },
+  'ふんわり丸文字体タイプ': {
+    characterName: 'ふんわり丸文字さん',
+    role: 'リアクションだけそっと置いていく妖精',
+    visualConcept: 'ふんわりした丸文字の吹き出しを持つフィギュア精霊。返事の代わりにハートをそっと置く。',
+    imageKey: 'font-funwari-marumoji',
+  },
+  'やわらか明朝体タイプ': {
+    characterName: 'やわらか明朝さん',
+    role: '便箋の心でLINEを書く文人',
+    visualConcept: 'やわらかな明朝体の吹き出しを掲げるフィギュア精霊。ゆっくり丁寧に言葉を選ぶ。',
+    imageKey: 'font-yawaraka-mincho',
+  },
+  '丸ゴシック体タイプ': {
+    characterName: '丸ゴシックさん',
+    role: 'ゆるくて読みやすい安心の定番',
+    visualConcept: '丸いゴシック体の吹き出しを持つフィギュア精霊。角のない文面で場を和ませる。',
+    imageKey: 'font-maru-gothic',
+  },
+  'クラフト文字体タイプ': {
+    characterName: 'クラフト文字さん',
+    role: '手作り感あふれるあたたかい返信者',
+    visualConcept: 'クラフト風文字の吹き出しを掲げるフィギュア精霊。返信のひとつひとつが工作のよう。',
+    imageKey: 'font-craft-moji',
+  },
+  '丸文字体タイプ': {
+    characterName: '丸文字さん',
+    role: '80年代から愛されるかわいさの使い手',
+    visualConcept: '青い丸文字の吹き出しを持つフィギュア精霊。文面が全体的にまるくてかわいい。',
+    imageKey: 'font-marumoji',
+  },
+  '明朝体タイプ': {
+    characterName: '明朝体さん',
+    role: '急に文面が真剣になる二面性の持ち主',
+    visualConcept: '端正な明朝体の吹き出しを掲げるフィギュア精霊。ノると長文、普段は静か。',
+    imageKey: 'font-mincho',
+  },
+  '太丸ゴシック体タイプ': {
+    characterName: '太丸ゴシックさん',
+    role: 'テンポと勢いで返す元気印',
+    visualConcept: '太い丸ゴシックの吹き出しを持つフィギュア精霊。短いけれど圧倒的に明るい。',
+    imageKey: 'font-futomaru-gothic',
+  },
+  '手書き風フォントタイプ': {
+    characterName: '手書き風さん',
+    role: '感情がそのまま文字になる自由人',
+    visualConcept: '手書き風文字の吹き出しを掲げるフィギュア精霊。気分がそのまま筆跡に出る。',
+    imageKey: 'font-tegaki',
+  },
+  'ポップ体タイプ': {
+    characterName: 'ポップ体さん',
+    role: 'ノリと勢いのムードメーカー',
+    visualConcept: 'ポップ体の吹き出しを持つフィギュア精霊。文面がいつも特売チラシくらい明るい。',
+    imageKey: 'font-pop',
+  },
+  '教科書体タイプ': {
+    characterName: '教科書体さん',
+    role: 'お手本のような返信を秒で返す優等生',
+    visualConcept: '教科書体の吹き出しを掲げるフィギュア精霊。誤字なし、句読点完璧、そして速い。',
+    imageKey: 'font-kyokasho',
+  },
+  '極太ゴシック体タイプ': {
+    characterName: '極太ゴシックさん',
+    role: '圧のある秒レスで会話を制す主',
+    visualConcept: '極太ゴシックの吹き出しを持つフィギュア精霊。返信が速くて太い。',
+    imageKey: 'font-gokubuto-gothic',
+  },
+  '楷書体タイプ': {
+    characterName: '楷書体さん',
+    role: '背筋を伸ばして即返信する武人',
+    visualConcept: '楷書体の吹き出しを掲げるフィギュア精霊。一画一画に誠意がこもる。',
+    imageKey: 'font-kaisho',
+  },
+  'デコ文字体タイプ': {
+    characterName: 'デコ文字さん',
+    role: '速いのに装飾も完璧な万能王',
+    visualConcept: 'ハート付きデコ文字の吹き出しを持つフィギュア精霊。即レスなのにフルデコ。',
+    imageKey: 'font-deco-moji',
+  },
+}
+
+export const replyTypeResultTypes = [
+  ['極細明朝体タイプ', '角ゴシック体タイプ', '筆記体タイプ', 'ふんわり丸文字体タイプ'],
+  ['やわらか明朝体タイプ', '丸ゴシック体タイプ', 'クラフト文字体タイプ', '丸文字体タイプ'],
+  ['明朝体タイプ', '太丸ゴシック体タイプ', '手書き風フォントタイプ', 'ポップ体タイプ'],
+  ['教科書体タイプ', '極太ゴシック体タイプ', '楷書体タイプ', 'デコ文字体タイプ'],
+]
+
+export const crushMisreadCharacters = {
+  '冷静ジャッジタイプ': {
+    characterName: '審判メガネギツネ',
+    role: '恋の証拠を冷静に審査する判定員',
+    visualConcept: '審判メガネをかけ、ジャッジの旗を持つ涼しい顔の白ギツネ。ハートの気配に流されない。',
+    imageKey: 'crush-judge-fox',
+  },
+  '塩リアリストタイプ': {
+    characterName: '塩対応ギツネ',
+    role: '期待より現実を選ぶクールな現実主義者',
+    visualConcept: '涼しい顔で塩むすびを持つ白ギツネ。「それは社交辞令」と心の中で一刀両断する。',
+    imageKey: 'crush-salt-fox',
+  },
+  '社交辞令翻訳者タイプ': {
+    characterName: '辞書持ちギツネ',
+    role: '社交辞令を正しく翻訳できる語学の達人',
+    visualConcept: '大きな「社交辞令辞書」を抱えた白ギツネ。「また今度」の正しい意味を知っている。',
+    imageKey: 'crush-dictionary-fox',
+  },
+  '偶然は偶然タイプ': {
+    characterName: 'サイコロギツネ',
+    role: '偶然を偶然のまま受け止める確率論者',
+    visualConcept: 'サイコロを転がして遊ぶ白ギツネ。運命よりも確率を信じている。',
+    imageKey: 'crush-dice-fox',
+  },
+  'ちょい期待タイプ': {
+    characterName: 'ほんのり桜ギツネ',
+    role: 'ほんの少しだけ期待してしまう恋の初心者',
+    visualConcept: '頬がほんのり桜色に染まったギツネ。頭の上に小さなハートがひとつだけ浮かんでいる。',
+    imageKey: 'crush-sakura-fox',
+  },
+  'いいね気にしタイプ': {
+    characterName: 'ハート虫めがねギツネ',
+    role: 'いいねの意味を調べ始めた恋の研究員',
+    visualConcept: 'ハート型の虫めがねでスマホを覗き込むギツネ。いいねの深読みが始まっている。',
+    imageKey: 'crush-heart-lens-fox',
+  },
+  'また今度期待タイプ': {
+    characterName: 'カレンダーギツネ',
+    role: '「また今度」を予定に数える楽観派',
+    visualConcept: 'カレンダーに印をつけて待つギツネ。「また今度」の日付はまだ空欄のまま。',
+    imageKey: 'crush-calendar-fox',
+  },
+  'プチ運命感タイプ': {
+    characterName: '流れ星メモギツネ',
+    role: '小さな偶然をメモしてしまう夢見がち',
+    visualConcept: '流れ星を見上げながらメモを取るギツネ。「今日も偶然会えた」と記録している。',
+    imageKey: 'crush-star-memo-fox',
+  },
+  '優しさ=好意タイプ': {
+    characterName: 'ハート耳アンテナギツネ',
+    role: '優しさを全部好意に変換する高感度受信機',
+    visualConcept: '耳がハート型のアンテナになったピンクがかったギツネ。優しさを高感度で受信してしまう。',
+    imageKey: 'crush-heart-antenna-fox',
+  },
+  '既読3秒脈ありタイプ': {
+    characterName: 'スマホ抱えギツネ',
+    role: '返信速度で恋を測ってしまう計測員',
+    visualConcept: 'スマホを抱きしめて目を輝かせるギツネ。既読3秒に運命を感じている。',
+    imageKey: 'crush-phone-fox',
+  },
+  '社交辞令直訳タイプ': {
+    characterName: '直訳メガホンギツネ',
+    role: '社交辞令を額面どおり受け取る直球派',
+    visualConcept: 'メガホンを持って喜ぶギツネ。「行けたら行く」を「行く」と訳してしまう。',
+    imageKey: 'crush-megaphone-fox',
+  },
+  '運命こじつけタイプ': {
+    characterName: '赤い糸ぐるぐるギツネ',
+    role: 'あらゆる偶然を運命に変換する編集者',
+    visualConcept: '赤い糸が体にぐるぐる絡まったギツネ。血液型も星座も全部「運命の証拠」になる。',
+    imageKey: 'crush-red-string-fox',
+  },
+  '全部脈ありタイプ': {
+    characterName: '全方位ハートレーダーギツネ',
+    role: '360度すべてを脈ありと検知する希望の天才',
+    visualConcept: '頭上にハートのレーダーを回すピンク色のギツネ。目がすでにハートになっている。',
+    imageKey: 'crush-radar-fox',
+  },
+  'SNS探偵タイプ': {
+    characterName: '足跡ルーペギツネ',
+    role: 'SNSの痕跡から恋を推理する名探偵',
+    visualConcept: '探偵帽をかぶり、ルーペでスマホの足跡を調べるギツネ。いいねの時刻まで分析済み。',
+    imageKey: 'crush-detective-fox',
+  },
+  '「また今度」手帳タイプ': {
+    characterName: '予定びっしり手帳ギツネ',
+    role: '社交辞令で手帳が埋まる純粋な予定管理人',
+    visualConcept: '「また今度」だけで埋まった手帳を抱えるギツネ。全部本気で待っている。',
+    imageKey: 'crush-planner-fox',
+  },
+  '運命の人量産タイプ': {
+    characterName: '赤い糸束ねギツネ',
+    role: '出会う人みんなが運命の人になる愛の量産機',
+    visualConcept: '何本もの赤い糸を花束のように抱えたピンクのギツネ。今日も運命の人が増えた。',
+    imageKey: 'crush-bouquet-fox',
+  },
+}
+
+export const crushMisreadResultTypes = [
+  ['冷静ジャッジタイプ', '塩リアリストタイプ', '社交辞令翻訳者タイプ', '偶然は偶然タイプ'],
+  ['ちょい期待タイプ', 'いいね気にしタイプ', 'また今度期待タイプ', 'プチ運命感タイプ'],
+  ['優しさ=好意タイプ', '既読3秒脈ありタイプ', '社交辞令直訳タイプ', '運命こじつけタイプ'],
+  ['全部脈ありタイプ', 'SNS探偵タイプ', '「また今度」手帳タイプ', '運命の人量産タイプ'],
+]
+
+export const darkDepthCharacters = {
+  '心の声だだ漏れタイプ': {
+    characterName: 'ひなたクリオネ',
+    role: '思ったことが全部顔に出る水面の住人',
+    visualConcept: '日なたの海面をぷかぷか漂う白いクリオネ。天使の羽と光の輪。思ったことが全部顔に出る。',
+    imageKey: 'abyss-sunny-clione',
+  },
+  '3歩で忘れるタイプ': {
+    characterName: 'わすれんぼクリオネ',
+    role: '恨みが3歩で蒸発する平和の使者',
+    visualConcept: '首をかしげて「なんの話だっけ？」という顔の白いクリオネ。頭上の光の輪がぴかぴか光る。',
+    imageKey: 'abyss-forgetful-clione',
+  },
+  '人を信じすぎタイプ': {
+    characterName: 'まっすぐクリオネ',
+    role: '疑うことを知らない純真の天使',
+    visualConcept: 'まっすぐな目で相手を見つめる白いクリオネ。羽を大きく広げて全身で信頼を表している。',
+    imageKey: 'abyss-honest-clione',
+  },
+  '裏表なしタイプ': {
+    characterName: 'ガラスの心クリオネ',
+    role: '心まで透けて見える透明の住人',
+    visualConcept: '体が透きとおったクリオネ。心の位置に小さなハートが透けて見える。隠しごとができない。',
+    imageKey: 'abyss-glass-clione',
+  },
+  '内心ツッコミ職人タイプ': {
+    characterName: '心の声クリオネ',
+    role: '顔は笑顔、内心は実況中継の職人',
+    visualConcept: '薄紫がかったクリオネ。にこにこしながら、頭の横に本音の小さな吹き出しが浮かんでいる。',
+    imageKey: 'abyss-innervoice-clione',
+  },
+  '根に持ちかけタイプ': {
+    characterName: 'メモ持ちクリオネ',
+    role: '小さな恨みを記録し始めた几帳面な係',
+    visualConcept: '薄紫のクリオネが小さなメモ帳に何かを書き込んでいる。表情はまだ穏やか。',
+    imageKey: 'abyss-memo-clione',
+  },
+  'ちょい様子見タイプ': {
+    characterName: '様子見クリオネ',
+    role: '半歩引いて観察する慎重派',
+    visualConcept: '岩陰から半分だけ顔を出す薄紫のクリオネ。目は好奇心と警戒が半々。',
+    imageKey: 'abyss-cautious-clione',
+  },
+  '小さな駆け引きタイプ': {
+    characterName: '駆け引き見習いクリオネ',
+    role: '駆け引きを覚えたての見習い策士',
+    visualConcept: '薄紫のクリオネがトランプのカードを1枚持って、ちょっと得意げに微笑んでいる。',
+    imageKey: 'abyss-tactics-clione',
+  },
+  '毒舌発光タイプ': {
+    characterName: '毒舌発光クリオネ',
+    role: '深海で毒舌が光り出した発光体',
+    visualConcept: '深紫のクリオネ。体がネオンのように発光し、羽の先が少し尖ってきている。ニヤリとした笑み。',
+    imageKey: 'abyss-neon-clione',
+  },
+  '恨み帳保管タイプ': {
+    characterName: '恨み帳クリオネ',
+    role: '分厚い恨み帳を大切に保管する司書',
+    visualConcept: '深紫のクリオネが鎖付きの分厚い帳面を抱えている。静かな微笑みが逆にこわい。',
+    imageKey: 'abyss-grudgebook-clione',
+  },
+  '心の鉄壁タイプ': {
+    characterName: '鉄壁クリオネ',
+    role: '心の扉に鍵をかけた深海の守り',
+    visualConcept: '深紫のクリオネが小さな鎧と盾を身につけている。目は優しいのに心は見せない。',
+    imageKey: 'abyss-fortress-clione',
+  },
+  '静かな策士タイプ': {
+    characterName: '静かな策士クリオネ',
+    role: '深海で静かに盤面を動かす軍師',
+    visualConcept: '深紫のクリオネがチェスの駒をそっと動かしている。羽が黒く染まり始めている。',
+    imageKey: 'abyss-strategist-clione',
+  },
+  '深淵の毒舌王タイプ': {
+    characterName: '深淵の毒舌王クリオネ',
+    role: '海溝に君臨する毒舌の王',
+    visualConcept: '漆黒のクリオネ。黒い羽と小さな角、王冠をかぶり、闇の中で妖しく発光している。',
+    imageKey: 'abyss-king-clione',
+  },
+  '千年根に持つタイプ': {
+    characterName: '千年おぼえクリオネ',
+    role: '千年前の恨みも鮮明な記憶の主',
+    visualConcept: '漆黒のクリオネが古文書のような巻物を広げている。目が赤く光り、記憶は永遠。',
+    imageKey: 'abyss-eternal-clione',
+  },
+  '誰も信じない孤高タイプ': {
+    characterName: '孤高の深淵クリオネ',
+    role: '深淵でひとり輝く孤高の存在',
+    visualConcept: '漆黒のクリオネが暗闇の中でひとり、静かに青白く発光している。孤独だが気高い。',
+    imageKey: 'abyss-solitude-clione',
+  },
+  '海溝の黒幕タイプ': {
+    characterName: '海溝の黒幕クリオネ',
+    role: 'すべての糸を引く海溝の支配者',
+    visualConcept: '漆黒のクリオネが操り人形の糸を優雅に持っている。黒羽根と角、足元に玉座の影。',
+    imageKey: 'abyss-mastermind-clione',
+  },
+}
+
+export const darkDepthResultTypes = [
+  ['心の声だだ漏れタイプ', '3歩で忘れるタイプ', '人を信じすぎタイプ', '裏表なしタイプ'],
+  ['内心ツッコミ職人タイプ', '根に持ちかけタイプ', 'ちょい様子見タイプ', '小さな駆け引きタイプ'],
+  ['毒舌発光タイプ', '恨み帳保管タイプ', '心の鉄壁タイプ', '静かな策士タイプ'],
+  ['深淵の毒舌王タイプ', '千年根に持つタイプ', '誰も信じない孤高タイプ', '海溝の黒幕タイプ'],
 ]

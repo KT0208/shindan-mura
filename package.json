@@ -9,7 +9,13 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "post:x": "node scripts/post-to-x.js",
-    "post:x:test": "node scripts/post-to-x.js --dry-run"
+    "post:x:test": "node scripts/post-to-x.js --dry-run",
+    "generate:share": "node scripts/generate-share-pages.mjs",
+    "generate:ogp": "node scripts/generate-ogp-images.mjs",
+    "prebuild": "npm run generate:share && npm run generate:characters",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "generate:characters": "node scripts/generate-character-pages.mjs",
+    "generate:instagram": "node scripts/generate-instagram.mjs"
   },
   "dependencies": {
     "react": "^19.2.6",
@@ -24,6 +30,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
-    "vite": "^8.0.12"
+    "vite": "^8.0.12",
+    "sharp": "^0.34.4"
   }
 }

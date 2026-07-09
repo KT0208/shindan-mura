@@ -19,36 +19,23 @@ import {
   moneyLuckResultTypes,
   workStyleResultTypes,
   lifeBugResultTypes,
+  oshikatsuCharacters,
+  oshikatsuResultTypes,
+  replyTypeCharacters,
+  replyTypeResultTypes,
+  crushMisreadCharacters,
+  crushMisreadResultTypes,
+  darkDepthCharacters,
+  darkDepthResultTypes,
 } from './characterData'
-import {
-  hiddenPersonalityCharactersEn,
-  loveComplicatedCharactersEn,
-  menheraLevelCharactersEn,
-  snsApprovalCharactersEn,
-  dangerousManCharactersEn,
-  darkFallCharactersEn,
-  popularitySeasonCharactersEn,
-  moneyLuckCharactersEn,
-  workStyleCharactersEn,
-  lifeBugCharactersEn,
-  loveComplicatedResultTypesEn,
-  hiddenPersonalityResultTypesEn,
-  menheraLevelResultTypesEn,
-  snsApprovalResultTypesEn,
-  dangerousManResultTypesEn,
-  darkFallResultTypesEn,
-  popularitySeasonResultTypesEn,
-  moneyLuckResultTypesEn,
-  workStyleResultTypesEn,
-  lifeBugResultTypesEn,
-} from './characterData.en'
 import { resultDetails as resultDetailsJa } from './resultDetails'
-import { resultDetailsEn } from './resultDetails.en'
 import { randomCommentPools as randomCommentPoolsJa } from './randomComments'
-import { randomCommentPoolsEn } from './randomComments.en'
 import { categories as categoriesJa, scenes as scenesJa, sceneSets as sceneSetsJa, diagnoses as diagnosesJa, options as optionsJa } from './diagnosisData'
-import { categoriesEn, scenesEn, sceneSetsEn, diagnosesEn, optionsEn } from './diagnosisData.en'
 import { uiText, legalPagesByLanguage, answerCommentsByLanguage } from './i18n'
+// 英語データは初期バンドルに含めず、言語切替時に loadEnPack() で遅延読み込みする。
+// 読み込み前に en を参照すると undefined になり、各所の `|| ja` フォールバックが効く。
+import { getEnPack, loadEnPack } from './langPacks'
+import { getReplyTypeFontStyle } from './fontStyles'
 import AdBanner from './components/AdBanner'
 import { useEffect, useState } from 'react'
 import './App.css'
@@ -63,14 +50,8 @@ const dataByLanguage = {
     resultDetails: resultDetailsJa,
     randomCommentPools: randomCommentPoolsJa,
   },
-  en: {
-    categories: categoriesEn,
-    scenes: scenesEn,
-    sceneSets: sceneSetsEn,
-    diagnoses: diagnosesEn,
-    options: optionsEn,
-    resultDetails: resultDetailsEn,
-    randomCommentPools: randomCommentPoolsEn,
+  get en() {
+    return getEnPack()?.dataEn
   },
 }
 
@@ -244,6 +225,10 @@ const tendencyIndexResolvers = {
   'money-luck': getBalancedTendencyIndex,
   'work-style': getBalancedTendencyIndex,
   'life-bug': getBalancedTendencyIndex,
+  'oshikatsu-type': getBalancedTendencyIndex,
+  'reply-type': getBalancedTendencyIndex,
+  'crush-misread': getBalancedTendencyIndex,
+  'dark-depth': getBalancedTendencyIndex,
 }
 
 const resultTypesByDiagnosisJa = {
@@ -257,24 +242,17 @@ const resultTypesByDiagnosisJa = {
   'money-luck': moneyLuckResultTypes,
   'work-style': workStyleResultTypes,
   'life-bug': lifeBugResultTypes,
-}
-
-const resultTypesByDiagnosisEn = {
-  'love-complicated': loveComplicatedResultTypesEn,
-  'hidden-personality': hiddenPersonalityResultTypesEn,
-  'menhera-level': menheraLevelResultTypesEn,
-  'sns-approval': snsApprovalResultTypesEn,
-  'dangerous-man': dangerousManResultTypesEn,
-  'dark-fall': darkFallResultTypesEn,
-  'popularity-season': popularitySeasonResultTypesEn,
-  'money-luck': moneyLuckResultTypesEn,
-  'work-style': workStyleResultTypesEn,
-  'life-bug': lifeBugResultTypesEn,
+  'oshikatsu-type': oshikatsuResultTypes,
+  'reply-type': replyTypeResultTypes,
+  'crush-misread': crushMisreadResultTypes,
+  'dark-depth': darkDepthResultTypes,
 }
 
 const resultTypesByDiagnosisByLanguage = {
   ja: resultTypesByDiagnosisJa,
-  en: resultTypesByDiagnosisEn,
+  get en() {
+    return getEnPack()?.resultTypesByDiagnosisEn
+  },
 }
 
 function getResultTitle(diagnosis, answers, score, maxScore, language = 'ja') {
@@ -303,24 +281,17 @@ const characterCollectionsJa = {
   'money-luck': { basePath: 'moneyLuckCharacters', characters: moneyLuckCharacters },
   'work-style': { basePath: 'workStyleCharacters', characters: workStyleCharacters },
   'life-bug': { basePath: 'lifeBugCharacters', characters: lifeBugCharacters },
-}
-
-const characterCollectionsEn = {
-  'love-complicated': { basePath: 'love', characters: loveComplicatedCharactersEn },
-  'hidden-personality': { basePath: 'hidden-personality', characters: hiddenPersonalityCharactersEn },
-  'menhera-level': { basePath: 'menheraLevelCharacters', characters: menheraLevelCharactersEn },
-  'sns-approval': { basePath: 'snsApprovalCharacters', characters: snsApprovalCharactersEn },
-  'dangerous-man': { basePath: 'dangerousManCharacters', characters: dangerousManCharactersEn },
-  'dark-fall': { basePath: 'darkFallCharacters', characters: darkFallCharactersEn },
-  'popularity-season': { basePath: 'popularitySeasonCharacters', characters: popularitySeasonCharactersEn },
-  'money-luck': { basePath: 'moneyLuckCharacters', characters: moneyLuckCharactersEn },
-  'work-style': { basePath: 'workStyleCharacters', characters: workStyleCharactersEn },
-  'life-bug': { basePath: 'lifeBugCharacters', characters: lifeBugCharactersEn },
+  'oshikatsu-type': { basePath: 'oshikatsuCharacters', characters: oshikatsuCharacters },
+  'reply-type': { basePath: 'fontCharacters', characters: replyTypeCharacters },
+  'crush-misread': { basePath: 'crushFoxCharacters', characters: crushMisreadCharacters },
+  'dark-depth': { basePath: 'abyssClioneCharacters', characters: darkDepthCharacters },
 }
 
 const characterCollectionsByLanguage = {
   ja: characterCollectionsJa,
-  en: characterCollectionsEn,
+  get en() {
+    return getEnPack()?.characterCollectionsEn
+  },
 }
 
 function getCharacterCollection(diagnosisId, language = 'ja') {
@@ -420,6 +391,22 @@ function getShareUrl() {
   return `${window.location.origin}${window.location.pathname}`
 }
 
+// 結果ごとのシェアURL(OGタグ付き静的ページ /r/{diagnosisId}/{imageKey}/)を返す。
+// このページは scripts/generate-share-pages.mjs がビルド時に生成する。
+// キャラ情報が取れない場合はトップURLにフォールバック。
+// 表示用の縮小キャラ画像パス(scripts/optimize-images.mjs が生成する /characters-small/ を参照)。
+// 元画像(/characters/)はOGP画像・ストーリー共有画像の生成用に高解像度のまま残している。
+function toDisplayImage(path) {
+  return typeof path === 'string' ? path.replace('/characters/', '/characters-small/') : path
+}
+
+function getResultShareUrl(diagnosisId, imageKey) {
+  if (diagnosisId && imageKey) {
+    return `${window.location.origin}/r/${diagnosisId}/${imageKey}/`
+  }
+  return getShareUrl()
+}
+
 // 画像Blobを、対応端末ではOSの共有シート経由でInstagramストーリーズ等に直接シェアし、
 // 非対応の場合(主にPCブラウザ)は従来通りダウンロードにフォールバックする。
 async function shareOrDownloadImageBlob(blob, filename) {
@@ -484,6 +471,7 @@ async function createResultStoryBlob({
   brandName = '診断村',
   hashtag = '#診断村',
   storyText = { qrCaption: '診断村へ', shareCaption: '診断結果をストーリーでシェアしてね', qrFallback: '診断村で検索' },
+  shareUrl = '',
 }) {
   const canvas = document.createElement('canvas')
   canvas.width = 1080
@@ -544,7 +532,7 @@ async function createResultStoryBlob({
   ctx.fillText(storyText.shareCaption, 540, 1558)
 
   try {
-    const qrImage = await loadImageAsync(getQrCodeImageUrl(getShareUrl()))
+    const qrImage = await loadImageAsync(getQrCodeImageUrl(shareUrl || getShareUrl()))
     drawStoryQrCode(ctx, qrImage, storyText, 540, 1590, 130)
   } catch {
     ctx.fillStyle = '#8f4ed8'
@@ -586,6 +574,15 @@ function safeSetItem(key, value) {
 
 function App() {
   const [language, setLanguage] = useState(() => safeGetItem('shindanMuraLanguage') || 'ja')
+
+  // 英語データの遅延読み込み。読み込み完了時に再レンダリングして英語表示へ切り替える。
+  // (読み込みが終わるまでは各所の `|| ja` フォールバックにより日本語のまま表示される)
+  const [, setEnPackVersion] = useState(0)
+  useEffect(() => {
+    if (language === 'en' && !getEnPack()) {
+      loadEnPack().then(() => setEnPackVersion((version) => version + 1))
+    }
+  }, [language])
   const { categories, scenes, sceneSets, diagnoses, options, resultDetails, randomCommentPools } = dataByLanguage[language] || dataByLanguage.ja
   const t = uiText[language] || uiText.ja
   const currentLegalPages = legalPagesByLanguage[language] || legalPagesByLanguage.ja
@@ -625,6 +622,7 @@ function App() {
   })
   const diagnosis = diagnoses.find((item) => item.id === selectedId)
   const filteredDiagnoses = diagnoses.filter((item) => {
+    if (item.hidden) return false
     const categoryMatched = activeCategory === categories[0] || item.category === activeCategory
     const sceneMatched = activeScene === 'all' || item.scenes.includes(activeScene)
     return categoryMatched && sceneMatched
@@ -634,14 +632,19 @@ function App() {
   const scoreBand = Math.min(3, Math.floor((score / maxScore) * 4))
   const resultTitle = getResultTitle(diagnosis, answers, score, maxScore, language)
 
-  // 言語を切り替えた時は、カテゴリー/シーンの絞り込みも新しい言語のラベルに合わせてリセットする。
-  // (レンダー中にstateを調整する公式パターン。effect内でsetStateすると
-  //  cascading renderの警告が出るため、prevLanguageとの比較で行う)
-  const [prevLanguage, setPrevLanguage] = useState(language)
-  if (language !== prevLanguage) {
-    setPrevLanguage(language)
-    setActiveCategory(categories[0])
-    setActiveScene('all')
+  // カテゴリー/シーンの絞り込みは、カテゴリー一覧そのものが変わった時にリセットする。
+  // 「言語切替時」だけでなく「英語データパックの遅延読み込み完了時」もここで拾える。
+  // (英語で起動した場合、読み込み完了までは日本語カテゴリーで初期化されており、
+  //  そのままだと英語カテゴリーと一致せず診断が0件表示になるため)
+  // レンダー中にstateを調整する公式パターン。effect内でsetStateすると
+  // cascading renderの警告が出るため、前回値との比較で行う。
+  const [prevCategories, setPrevCategories] = useState(categories)
+  if (categories !== prevCategories) {
+    setPrevCategories(categories)
+    if (!categories.includes(activeCategory)) {
+      setActiveCategory(categories[0])
+      setActiveScene('all')
+    }
   }
 
   useEffect(() => {
@@ -670,8 +673,8 @@ function App() {
   // ここでタイトルを都度変えることで、GA4のレポートで診断ごとの閲覧数を追えるようにする。
   useEffect(() => {
     const baseTitle = language === 'en'
-      ? 'Shindan Mura | Free Character Quizzes for Love, Personality, Career & Money'
-      : '診断村 | 恋愛・性格・仕事・お金の無料キャラ診断'
+      ? 'Shindan Mura | Free Love Quizzes, Personality Tests & Fun Quizzes'
+      : '診断村｜無料で遊べる恋愛診断・性格診断・心理テスト'
     let nextTitle = baseTitle
 
     if (legalPage && currentLegalPages[legalPage]) {
@@ -798,6 +801,7 @@ function App() {
   const gateTheme = getGateTheme()
 
   const allCharacterItems = diagnoses.flatMap((diagnosisItem) => {
+    if (diagnosisItem.hidden) return []
     const characterCollection = getCharacterCollection(diagnosisItem.id, language)
 
     if (!characterCollection) {
@@ -1050,9 +1054,13 @@ function App() {
             <article className="character-guide-card" key={character.id}>
               <div className="character-guide-image-wrap">
                 <img
-                  src={character.image}
-                  alt={character.characterName}
+                  src={toDisplayImage(character.image)}
+                  alt={`${character.characterName} - ${character.diagnosisTitle} | ${t.brandName}`}
                   className="character-guide-image"
+                  loading="lazy"
+                  decoding="async"
+                  width="640"
+                  height="427"
                   onError={(event) => {
                     event.currentTarget.style.display = 'none'
                   }}
@@ -1124,8 +1132,12 @@ function App() {
                   >
                     {localizedItem.characterImage && (
                       <img
-                        src={localizedItem.characterImage}
+                        src={toDisplayImage(localizedItem.characterImage)}
                         alt={localizedItem.characterName || localizedItem.resultTitle}
+                        loading="lazy"
+                        decoding="async"
+                        width="640"
+                        height="427"
                       />
                     )}
 
@@ -1156,6 +1168,7 @@ function App() {
     )
     const historyCharacterName = selectedHistory.characterName || historyCharacter?.characterName || ''
     const historyResultDetail = selectedHistory.resultDetail || resultDetails[selectedHistory.diagnosisId]?.[selectedHistory.resultTitle] || null
+    const historyShareUrl = getResultShareUrl(selectedHistory.diagnosisId, historyCharacter?.imageKey)
 
     const createHistoryStoryImage = () => createResultStoryBlob({
       headingLabel: t.history.label,
@@ -1168,6 +1181,7 @@ function App() {
       brandName: t.brandName,
       hashtag: t.hashtag,
       storyText: t.storyImage,
+      shareUrl: historyShareUrl,
     })
 
     const shareHistoryStoryImage = async () => {
@@ -1207,9 +1221,12 @@ function App() {
             <div className="character-card">
               <div className="character-portrait">
                 <img
-                  src={historyCharacterImage}
+                  src={toDisplayImage(historyCharacterImage)}
                   alt={historyCharacterName || selectedHistory.resultTitle}
                   className="character-image"
+                  decoding="async"
+                  width="640"
+                  height="427"
                 />
               </div>
               <div className="character-copy">
@@ -1247,7 +1264,7 @@ function App() {
               aria-label={t.diagnosis.copyAria}
               title={t.diagnosis.copyAria}
               onClick={async () => {
-                const text = `${t.history.resultSentence(selectedHistory.diagnosisTitle, selectedHistory.resultTitle)}\n${historyResultDetail?.description || ''}\n${t.hashtag}\n${getShareUrl()}`
+                const text = `${t.history.resultSentence(selectedHistory.diagnosisTitle, selectedHistory.resultTitle)}\n${historyResultDetail?.description || ''}\n${t.hashtag}\n${historyShareUrl}`
                 await navigator.clipboard.writeText(text)
                 alert(t.history.copyAlert)
               }}
@@ -1279,7 +1296,8 @@ function App() {
     const currentResultDetail = resultDetails[diagnosis.id]?.[resultTitle] || resultDetails[diagnosis.id]?.[diagnosis.results[scoreBand]]
     const currentCharacterCollection = getCharacterCollection(diagnosis.id, language)
     const currentCharacter = currentCharacterCollection?.characters[resultTitle] || null
-    const shareText = `${t.diagnosis.resultSentence(diagnosis.title, resultTitle)}\n${currentCharacter ? `${t.diagnosis.characterLinePrefix}${currentCharacter.characterName}\n` : ''}${currentResultDetail?.description || ''}\n${t.hashtag}\n${getShareUrl()}`
+    const resultShareUrl = getResultShareUrl(diagnosis.id, currentCharacter?.imageKey)
+    const shareText = `${t.diagnosis.resultSentence(diagnosis.title, resultTitle)}\n${currentCharacter ? `${t.diagnosis.characterLinePrefix}${currentCharacter.characterName}\n` : ''}${currentResultDetail?.description || ''}\n${t.hashtag}\n${resultShareUrl}`
 
     const copyShareText = async () => {
       await navigator.clipboard.writeText(shareText)
@@ -1293,7 +1311,7 @@ function App() {
       const xShareText = `${t.diagnosis.resultSentence(diagnosis.title, resultTitle)}
 ${currentCharacter ? `${t.diagnosis.characterLinePrefix}${currentCharacter.characterName}
 ` : ''}${t.hashtag}
-${getShareUrl()}`
+${resultShareUrl}`
       const text = encodeURIComponent(xShareText)
       window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank')
     }
@@ -1320,6 +1338,7 @@ ${getShareUrl()}`
       brandName: t.brandName,
       hashtag: t.hashtag,
       storyText: t.storyImage,
+      shareUrl: resultShareUrl,
     })
 
     const shareStoryImage = async () => {
@@ -1411,16 +1430,19 @@ ${getShareUrl()}`
         ) : (
           <section className="result">
             <p className="label">{t.diagnosis.scoreLabel(score, maxScore)}</p>
-            <h2>{resultTitle}</h2>
+            <h2 style={currentCharacter ? getReplyTypeFontStyle(currentCharacter.imageKey) : undefined}>{resultTitle}</h2>
             <p>{t.diagnosis.resultLine(diagnosis.title, resultTitle)}</p>
 
             {currentCharacter && (
               <div className="character-card">
                 <div className={`character-portrait ${currentCharacter.imageKey}`}>
                   <img
-                    src={`/characters/${currentCharacterCollection.basePath}/${currentCharacter.imageKey}.webp`}
-                    alt={currentCharacter.characterName}
+                    src={toDisplayImage(`/characters/${currentCharacterCollection.basePath}/${currentCharacter.imageKey}.webp`)}
+                    alt={`${currentCharacter.characterName} - ${diagnosis.title} | ${t.brandName}`}
                     className="character-image"
+                    decoding="async"
+                    width="640"
+                    height="427"
                     onError={(event) => {
                       event.currentTarget.style.display = 'none'
                     }}
@@ -1549,8 +1571,12 @@ ${getShareUrl()}`
               <button className="popular-character-main" type="button" onClick={() => startDiagnosis(character.diagnosisId)}>
                 <em>{index + 1}</em>
                 <img
-                  src={character.image}
-                  alt={character.characterName}
+                  src={toDisplayImage(character.image)}
+                  alt={`${character.characterName} - ${character.diagnosisTitle} | ${t.brandName}`}
+                  loading="lazy"
+                  decoding="async"
+                  width="640"
+                  height="427"
                   onError={(event) => {
                     event.currentTarget.style.display = 'none'
                   }}
@@ -1611,8 +1637,12 @@ ${getShareUrl()}`
                 >
                   {localizedItem.characterImage && (
                     <img
-                      src={localizedItem.characterImage}
+                      src={toDisplayImage(localizedItem.characterImage)}
                       alt={localizedItem.characterName || localizedItem.resultTitle}
+                      loading="lazy"
+                      decoding="async"
+                      width="640"
+                      height="427"
                     />
                   )}
 
@@ -1689,6 +1719,16 @@ ${getShareUrl()}`
             <p>{item.description}</p>
           </button>
         ))}
+      </section>
+
+      {/* SEO用のサイト紹介文(検索エンジン向けの自然なテキスト。デザインは控えめに) */}
+      <section className="about-site">
+        <h2>{language === 'en' ? 'About Shindan Mura' : '診断村について'}</h2>
+        <p>
+          {language === 'en'
+            ? 'Shindan Mura is a free quiz and personality-test site. Enjoy love quizzes, personality quizzes, and more with cute original characters — just answer a few simple questions to discover your type.'
+            : '診断村は、無料で遊べる診断・心理テストのサイトです。恋愛診断、性格診断、こじらせ診断、裏人格診断など、さまざまな診断をかわいいオリジナルキャラクターと一緒に楽しめます。かんたんな質問に答えるだけで、あなたの性格タイプや恋愛傾向をチェックできます。'}
+        </p>
       </section>
 
       <AdBanner />

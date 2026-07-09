@@ -25,3 +25,12 @@ dist-ssr
 
 # サーバーの実DB接続情報(実パスワードを含むため公開リポジトリに含めない)
 server/api/config.php
+
+# ローカル作業用ディレクトリ/ファイル(リポジトリには含めない)
+/.agents/
+/agent/
+/new-characters/
+/sns-materials/
+/videos/
+/data/skills/
+/skills-lock.json
