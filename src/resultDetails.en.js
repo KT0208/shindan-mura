@@ -819,4 +819,332 @@ export const resultDetailsEn = {
       advice: "Watch out: being able to ride out chaos so well means you can easily lose track of when to rest. Build up your ability to protect peace as much as your ability to enjoy chaos.",
     },
   },
+  "oshikatsu-type": {
+    "Casual Watcher Type": {
+      description: "You keep a very healthy distance from your oshi. You support them at your own pace without wearing yourself out — the endurance type who can keep going for years.",
+      match: "Best fandom friends: fellow casual fans, people who never force promotion on you, stream-over-venue types",
+      advice: "Watch out: you may sometimes feel pressured to spend more, but your own pace is what lasts longest.",
+    },
+    "Occasional Goods Type": {
+      description: "You buy just one favorite item and treasure it deeply. Your collection is small, but the density of love per item is unbeatable.",
+      match: "Best fandom friends: people who show you their collections, share limited-edition news, and keep their spending sane",
+      advice: "Watch out: missing that one limited item can haunt you. When you truly want something, don't hesitate.",
+    },
+    "Quiet Talker Type": {
+      description: "Usually quiet, but once the switch flips you talk about your oshi with surprising depth. Low frequency, hardcore content.",
+      match: "Best fandom friends: good listeners, late-night call companions, people who enjoy your theories",
+      advice: "Watch out: feelings pile up without someone to talk to. Try posting your thoughts — your people will find you.",
+    },
+    "Subtle Recommender Type": {
+      description: "You recommend your oshi naturally in conversation, never pushing. Your low-key promotion rarely triggers resistance — and quietly works.",
+      match: "Best fandom friends: open-minded people who actually try what you suggest and report back",
+      advice: "Watch out: sometimes you're so subtle nobody notices the promotion. It's okay to show real enthusiasm at key moments.",
+    },
+    "Event-Goer Type": {
+      description: "Live venues over streams, real air over recordings. Nothing beats the unity of the crowd — you shine 30% brighter at events.",
+      match: "Best fandom friends: event buddies, people with matching travel schedules, post-show debrief partners",
+      advice: "Watch out: tickets and travel costs add up. Master the art of prioritizing events and you'll be unstoppable.",
+    },
+    "Collector Road Type": {
+      description: "Collecting is only half the joy — organizing and displaying beautifully is the other half. Your shelf is already a small gallery.",
+      match: "Best fandom friends: honest traders, storage-goods informants, people who praise your collection",
+      advice: "Watch out: storage space is finite. Decide your display quota and both your room and wallet will thank you.",
+    },
+    "Theory Notebook Type": {
+      description: "You read deep meaning in every word and gesture. Your theories raise the whole fandom's resolution — a walking encyclopedia of the community.",
+      match: "Best fandom friends: theory readers, alternative-perspective givers, archive divers",
+      advice: "Watch out: you may end up knowing more than your oshi does. Sometimes just watch them and think about nothing.",
+    },
+    "Sales-Pitch Type": {
+      description: "You promote your oshi with logic and passion — recommended songs, intro videos, ideal viewing order. Your presentations are almost too polished.",
+      match: "Best fandom friends: people who listen to the end, fall obligingly into the swamp, and celebrate your wins",
+      advice: "Watch out: leaving your audience behind backfires. Show them the entrance, then wait for them to fall in.",
+    },
+    "Full-Attendance Type": {
+      description: "You plan around attending every single show. Your transport, lodging, and vacation coordination skills rival a travel agency.",
+      match: "Best fandom friends: travel companions, local-info providers, schedule-management pros",
+      advice: "Watch out: check your stamina and savings meters regularly. Fandom is a marathon — plan a sustainable full run.",
+    },
+    "Altar Builder Type": {
+      description: "You fill your space with beautifully arranged merch. One corner of your room is already a sacred site.",
+      match: "Best fandom friends: altar-photo admirers, display-idea givers, lighting enthusiasts",
+      advice: "Watch out: altar expansion never stops once it starts. Plan your sun-fade and dust countermeasures early.",
+    },
+    "Fan-Creator Type": {
+      description: "Your love overflows into art and writing. Your works have become someone else's precious supply line.",
+      match: "Best fandom friends: people who leave comments, respect your creations, and leave you alone before deadlines",
+      advice: "Watch out: the deeper the love, the harsher the self-critique. Remember there are people saved by your work.",
+    },
+    "Swamp Guide Type": {
+      description: "People around you keep falling into the fandom, and somehow you're always involved. Your promotion is natural, precise, and hits later.",
+      match: "Best fandom friends: people you converted, promotion-baton receivers, fellow newcomer-welcomers",
+      advice: "Watch out: guiding someone into the swamp comes with aftercare — keep sharing the supply. Promote responsibly.",
+    },
+    "Life-Devotion Type": {
+      description: "Your oshi is the axis of your life. Work, savings, daily rhythm — everything is optimized around them. Honestly, it's a talent.",
+      match: "Best fandom friends: same-oshi fans with matching passion, people who never mock your intensity but care about your real life too",
+      advice: "Watch out: your oshi enriches your life. Please treasure your own health and daily life — for their sake too.",
+    },
+    "Museum-Class Type": {
+      description: "Your collection's scale and curation have reached museum level. Your archive is practically the fandom's historical record.",
+      match: "Best fandom friends: people who understand your collection's value, play museum with you, and share storage hacks",
+      advice: "Watch out: never calculate the total value of your collection — peace of mind matters. Aim for the perfect display someday.",
+    },
+    "Concept Interpreter Type": {
+      description: "You've reached the stage of loving your oshi as a concept or phenomenon. 'My oshi is light,' 'my oshi is oxygen' — you nod deeply.",
+      match: "Best fandom friends: people who understand concept-talk, never laugh at your vocabulary collapse, and enjoy philosophical fan discussion",
+      advice: "Watch out: becoming too conceptual makes it hard to explain to newcomers. Occasionally verbalize the concrete good points too.",
+    },
+    "Evangelist Type": {
+      description: "Spreading your oshi's greatness to the world has become your mission. Your posts reach beyond the fandom and create new fans.",
+      match: "Best fandom friends: people who help you amplify, cheer your posts, and plan projects with you",
+      advice: "Watch out: promotion is sowing seeds. Even if nothing sprouts today, your passion is reaching someone somewhere.",
+    },
+  },
+  "reply-type": {
+    "Ultra-Thin Mincho Type": {
+      description: "Your replies are so faint they barely exist. Unread messages pile up, but in your heart you have read and considered everything. No malice — the act of replying is just heavy.",
+      match: "Best matches: people who never rush replies, never get angry at unread marks, and talk in person",
+      advice: "Watch out: kindness invisible to others isn't kindness yet. Send one sticker as proof of life sometimes.",
+    },
+    "Square Gothic Type": {
+      description: "A master of energy-saving who completes conversations with 'ok.' Not cold — it's the aesthetics of trimming all excess. That decisiveness is actually trustworthy.",
+      match: "Best matches: people who lead with conclusions, treat read-marks as replies, and never demand long texts",
+      advice: "Watch out: one occasional '!' or emoji softens your image by 30%. Save decoration for the moments that matter.",
+    },
+    "Cursive Type": {
+      description: "You rarely reply, but when you do, the message is strangely stylish. Your unique phrasing takes time to decode, but this style has real fans.",
+      match: "Best matches: people who respect your pace, read between the lines, and enjoy your artistic side",
+      advice: "Watch out: even a stylish message loses its magic three days late. Ship while it's fresh.",
+    },
+    "Fluffy Round Type": {
+      description: "Instead of replying, you quietly leave a heart reaction. You say nothing, yet you see everything and mean well. A fairy-like reply style.",
+      match: "Best matches: people who count reactions as replies, are quick to sense things, and enjoy small responses",
+      advice: "Watch out: reactions can't answer questions. Reply with words there, and you'll be promoted from fairy to human.",
+    },
+    "Soft Mincho Type": {
+      description: "You type messages with the heart of someone writing letters on stationery. Slow, but every message has warmth. More people are healed by your texts than you know.",
+      match: "Best matches: people who love slow conversations, savor sentences, and never demand instant replies",
+      advice: "Watch out: politeness raises the reply hurdle. A one-line 'casual letter' is fine sometimes.",
+    },
+    "Round Gothic Type": {
+      description: "Readable, cornerless, reassuring — the beloved standard. Not too fast or slow, long or short. The peace of the group chat is mostly maintained by you.",
+      match: "Best matches: everyone — you're especially valued as a buffer between extreme reply types",
+      advice: "Watch out: stability can be forgettable. An occasional all-out silly message makes a great gap.",
+    },
+    "Craft Letter Type": {
+      description: "Each reply carries a handmade warmth. You never paste templates; you rebuild words as your own. That extra step truly reaches people.",
+      match: "Best matches: people who notice word choices, never send lazy replies, and love making things",
+      advice: "Watch out: perfectionism delays replies. Sending at 80% completion is also part of craftsmanship.",
+    },
+    "Round Letter Type": {
+      description: "Your entire message is round and cute. Even your 'ok' somehow feels nice. That innate charm of writing is a genuine talent of the reply world.",
+      match: "Best matches: people fluent in cute culture, matching emoji temperature, and good vibes",
+      advice: "Watch out: cute texts can be taken lightly. Straighten your font a little for serious talks.",
+    },
+    "Mincho Type": {
+      description: "Usually quiet, but when the switch flips, a long, perfectly punctuated message arrives. The contrast startles people at first, but the content is always sincere.",
+      match: "Best matches: people who read to the end, take serious talk seriously, and stay calm at tone shifts",
+      advice: "Watch out: mincho-mode long texts can read as 'are you angry?' One emoji at the start prevents it.",
+    },
+    "Bold Round Gothic Type": {
+      description: "Short messages that somehow radiate energy. Your tempo and positivity keep conversations rolling, and your read-speed is impressive. The group's igniter.",
+      match: "Best matches: people with matching vibes, fast conversational tempo, and momentum",
+      advice: "Watch out: you notice typos right after hitting send. Give it 0.5 seconds of review first.",
+    },
+    "Handwriting Type": {
+      description: "Your day's emotions appear directly in your text. Letters bounce on happy days; punctuation vanishes on tired ones. People read your mood like a weather forecast.",
+      match: "Best matches: people who embrace emotional expression, enjoy variety, and read your signals",
+      advice: "Watch out: negative-day messages are more contagious than you think. It's okay to rest instead of replying.",
+    },
+    "Pop Type": {
+      description: "Your texts are as bright as a supermarket sale flyer. With exclamation marks and momentum, you can single-handedly revive a sunken group chat.",
+      match: "Best matches: people who love bright energy, match your tension, and need cheering up",
+      advice: "Watch out: replying to serious talk in pop style can seem flippant. Switch fonts by situation.",
+    },
+    "Textbook Type": {
+      description: "No typos, perfect punctuation, precise content — delivered in seconds. A model-answer replier. Someone may be screenshotting your texts as reference.",
+      match: "Best matches: people who value proper communication, work contacts, and trust",
+      advice: "Watch out: perfection can feel distant. Mix in small talk and detours with close friends.",
+    },
+    "Heavy Gothic Type": {
+      description: "Fast replies. Thick replies. 'Got it.' 'Leave it to me.' 'Let's go.' — short, powerful messages land in seconds and give unquestionable reassurance.",
+      match: "Best matches: fast deciders, people seeking reliability, and those who like keeping things moving",
+      advice: "Watch out: thick text can become pressure. For delicate topics, switch to a thinner font, kindly.",
+    },
+    "Kaisho Type": {
+      description: "Replies with sincerity in every stroke, returned instantly with a straight back. Courteous, punctual, true to promises — a warrior of the reply world.",
+      match: "Best matches: people who honor courtesy, return sincerity with sincerity, and keep things proper",
+      advice: "Watch out: correctness can look stiff. Allow yourself casual strokes with close friends.",
+    },
+    "Deco Letter Type": {
+      description: "Instant replies with perfect emoji, stickers, and decoration — an exceptional combination. Speed and splendor together is a rare gift. The all-round monarch of replying.",
+      match: "Best matches: people who love lively exchanges, respond to your decoration energy, and celebrate often",
+      advice: "Watch out: full-deco replies can dazzle energy-savers. Adjust your brightness to the other person's.",
+    },
+  },
+  "crush-misread": {
+    "Cool Judge Type": {
+      description: "You can calmly tell kindness from affection, so misread-accidents almost never happen. The only catch: your cool head sometimes puts genuine signals 'on hold' too.",
+      match: "Best matches: people who put their feelings into words, play no games, and stay sincere",
+      advice: "Watch out: if you review everything, even real affection expires. Sometimes let your heart move without sufficient evidence.",
+    },
+    "Salt Realist Type": {
+      description: "A cool realist who instantly rules 'that was just politeness.' You never expect, so you never get hurt — a master of safe driving in love. Your one weakness: you stay salty even when the signal is real.",
+      match: "Best matches: persistent people who approach again and again and don't wilt at a cool response",
+      advice: "Watch out: your saltiness reads as 'not interested.' Add a pinch of sugar for the one person who matters.",
+    },
+    "Literal Translator Type": {
+      description: "You translate 'sometime' as 'probably never' with perfect accuracy — top-class social fluency. But occasionally you translate a genuine invitation into a pleasantry too.",
+      match: "Best matches: people who invite you with concrete dates and show feelings through actions",
+      advice: "Watch out: 'Are you free this Saturday?' is not a pleasantry. When a date appears, it's real.",
+    },
+    "Coincidence Is Coincidence Type": {
+      description: "Chance reunions and adjacent seats all fall within probability for you. That stability is charming, but you might be brushing off staged 'coincidences' too.",
+      match: "Best matches: logical conversationalists and realistic planners",
+      advice: "Watch out: the probability that someone is engineering those coincidences to see you is not zero.",
+    },
+    "Tiny Hope Type": {
+      description: "You think 'wait, maybe...' and then immediately brake with 'no, no way' — a healthy balance and excellent driving in love.",
+      match: "Best matches: people who close distance slowly and show affection clearly",
+      advice: "Watch out: don't brake away real signals too. Three times in a row means you're allowed to hope.",
+    },
+    "Like-Watcher Type": {
+      description: "A researcher who has just noticed the streak of likes. The overreading is still early-stage and harmless — until you start deriving their daily rhythm from like timestamps.",
+      match: "Best matches: people who prefer real conversation over social media and reply steadily",
+      advice: "Watch out: likes alone are weak evidence. Wait for the full set — like, comment, and DM — before advancing the research.",
+    },
+    "Sometime Believer Type": {
+      description: "When you hear 'let's hang out sometime,' a tentative entry appears in your mental calendar. That positivity is a strength, but blank tentative plans eat up your memory.",
+      match: "Best matches: people who keep their word and turn 'sometime' into an actual date",
+      advice: "Watch out: a 'sometime' with no date after two weeks may be quietly erased. Free the slot for new plans.",
+    },
+    "Small Destiny Type": {
+      description: "You feel a small 'oh!' of destiny at little coincidences but modestly keep it to yourself. That sensitivity turns daily life into a gentle drama — perfectly healthy, as long as the memo count stays low.",
+      match: "Best matches: romantics who plan little surprises and treasure anniversaries",
+      advice: "Watch out: past five coincidence memos, it may just mean you've learned their routes.",
+    },
+    "Kindness Equals Love Type": {
+      description: "Your high-sensitivity antenna auto-converts kindness into affection. Seeing the world full of warmth is a gift — though you also receive the shop clerk's business smile.",
+      match: "Best matches: awkward people who are only kind when they truly care, and people who say it in words",
+      advice: "Watch out: first check whether they're kind to everyone. Universal kindness is like weather — lovely, but not personal.",
+    },
+    "Three-Second Read Type": {
+      description: "Read speed, reply care, emoji count — you detect love from communication data. Real observational talent, but your model omits one variable: they might just live on their phone.",
+      match: "Best matches: people with steady reply rhythms who value face-to-face over data",
+      advice: "Watch out: a three-second read is 90% 'happened to be looking at the phone.' Verify with in-person reactions.",
+    },
+    "Literal Reader Type": {
+      description: "You translate 'maybe I'll come' as 'I'll come' — a pure straight-ball heart that brightens everyone around you. Just beware of expectation inflation from literal readings.",
+      match: "Best matches: people who take responsibility for their words and speak without pleasantries",
+      advice: "Watch out: 'sometime,' 'maybe,' and 'if I can' are breaking balls. Ask Dictionary Fox for a translation.",
+    },
+    "Destiny Editor Type": {
+      description: "Birthdays, zodiac compatibility, the same train station — you can edit any data into evidence of fate. That storytelling power is real. Seriously, it's publishable.",
+      match: "Best matches: people who enjoy the romance with you and play along with 'it's destiny!'",
+      advice: "Watch out: evidence of destiny multiplies the more you collect (you're the editor). Occasionally view them with zero evidence.",
+    },
+    "Everything Is A Sign Type": {
+      description: "Greetings, work messages, even circulars — everything looks like a sign. The world looks kind to you because your heart is kind. That brightness is genuinely a talent.",
+      match: "Best matches: people who say 'I like you' in plain words, leaving no room for misreading",
+      advice: "Watch out: when everything looks like a sign, probably nothing is. But that hopefulness is the strongest engine in life.",
+    },
+    "SNS Detective Type": {
+      description: "Like timestamps, story view order, follow timing — a master detective of social media traces, analyzing at professional-marketer level. Just remember: 90% of it is circumstantial.",
+      match: "Best matches: people who barely use social media (outside your jurisdiction, so you can face them honestly)",
+      advice: "Watch out: view-order algorithms don't run on love. Keep the detective work light — direct interviews (conversation) are the shortest route.",
+    },
+    "Sometime Planner Type": {
+      description: "You sincerely wait for every 'sometime' — a heart of 100% purity with a planner full of tentative plans. That earnestness is precious, but watch when the waiting starts to crowd your life.",
+      match: "Best matches: people who always keep promises and never say 'sometime'",
+      advice: "Watch out: the law of love says they text the moment you stop waiting. Reset the tentative pages monthly and propose a date yourself.",
+    },
+    "Destiny Factory Type": {
+      description: "Everyone you meet becomes the destined one — a love factory. Falling easily is your source of energy, and your world is vivid because of all that love. Officially though, the red string is supposed to be singular.",
+      match: "Best matches: devoted people who face you earnestly and laugh warmly at how easily you fall",
+      advice: "Watch out: three destined people in one month isn't destiny — it's just your abundant heart. Take your time narrowing to one string.",
+    },
+  },
+  "dark-depth": {
+    "Leaky Inner Voice Type": {
+      description: "Your darkness: 0m deep. You're floating on the surface. Every thought escapes through your face and mouth, leaving no room to store any darkness. To the deep-sea dwellers, your transparency is blinding.",
+      match: "Best matches: people who need no reading between lines, fellow leakers, lovers of honesty",
+      advice: "Watch out: one cushion before speaking would bring world peace. But that honesty is the village's treasure.",
+    },
+    "Forgets In Three Steps Type": {
+      description: "Your darkness: 0.3m — ankle deep. Annoyance evaporates within three steps; the grudge-storage feature simply never shipped. The air around you is light because of it.",
+      match: "Best matches: worriers (your forgetfulness saves them) and quick mind-switchers",
+      advice: "Watch out: don't let promises evaporate in three steps too. Forget grudges, memo the plans.",
+    },
+    "Trusts Too Much Type": {
+      description: "Your darkness: 0m — if anything, you're ascending. Never doubting people's goodwill is angelic, though the deep-sea strategists watch your defenselessness with mild concern.",
+      match: "Best matches: sincere people, guardians of your purity, people incapable of lying",
+      advice: "Watch out: apprentice tacticians exist. For offers that sound too good, sleep on it once.",
+    },
+    "Nothing To Hide Type": {
+      description: "Your darkness: 1m. Your heart is visible like glass — secrets are physically impossible, which puts your trust balance at the top of all sixteen types. Transparency is also strength.",
+      match: "Best matches: equally open people and honest souls who never exploit your transparency",
+      advice: "Watch out: since everything shows, try the freedom of not showing sometimes. Mystery is a free accessory.",
+    },
+    "Inner Commentator Type": {
+      description: "Your darkness: 50m. Smile outside, sharp live commentary inside. This dual-broadcast system is a survival skill and a talent — your inner punchlines outclass most comedians.",
+      match: "Best matches: people who give you a stage to voice the commentary, fellow channel-holders",
+      advice: "Watch out: the broadcast leaks to your face sometimes. Monthly poker-face maintenance recommended.",
+    },
+    "Budding Grudge Type": {
+      description: "Your darkness: 80m. Small records have begun in your mental notebook. Still 'memo' stage, not 'archive' — healthy, though the page count is quietly growing.",
+      match: "Best matches: tactful people, sincere apologizers, those who notice before being recorded",
+      advice: "Watch out: review the memos at month-end and discard the expired ones. Mental storage is finite.",
+    },
+    "Cautious Observer Type": {
+      description: "Your darkness: 120m. You keep half a step between yourself and full honesty. Excellent worldly wisdom — you observe before you can be hurt, and the view from behind the rock is wide.",
+      match: "Best matches: people who close distance slowly and don't fear silence",
+      advice: "Watch out: observe too long and life proceeds without you. Once someone proves trustworthy, take the half step.",
+    },
+    "Small Tactician Type": {
+      description: "Your darkness: 150m. An apprentice who just learned the cards of gain and loss. The plays are still adorable, but the deep-sea seniors are watching your learning speed.",
+      match: "Best matches: people who enjoy tactics as a game and honest ones who prevent mutual probing",
+      advice: "Watch out: small plays accumulate and eventually withdraw from the trust account. Save the cards for decisive moments.",
+    },
+    "Glowing Sharp Tongue Type": {
+      description: "Your darkness: 800m. In the deep sea, your sharp tongue has begun to glow — artistry that makes people laugh. But glowing means being noticed.",
+      match: "Best matches: people who laugh off your wit, the thick-skinned, fellow sharp tongues at the same depth",
+      advice: "Watch out: sharp wit becomes art with the three-piece set — choose the person, choose the moment, follow up after. Without the set, it's just an attack.",
+    },
+    "Grudge Ledger Type": {
+      description: "Your darkness: 1500m. A librarian quietly curating a thick ledger of grudges. You forgive on the surface while dates and contexts are recorded with precision. That accuracy is professionally useful.",
+      match: "Best matches: people sincere from the start (no entries needed) and quick apologizers",
+      advice: "Watch out: writing entries is therapeutic — allowed. Re-reading, however, is recommended at most once a month.",
+    },
+    "Iron Heart Type": {
+      description: "Your darkness: 2000m. A deep-sea guardian with a locked heart. That defense is wisdom against being hurt, though with too many locks, even you forget how to open them.",
+      match: "Best matches: people who never pry and those who build trust over the long game",
+      advice: "Watch out: you needn't show everything, but showing 10% dramatically improves relationship fuel-efficiency.",
+    },
+    "Silent Strategist Type": {
+      description: "Your darkness: 3000m. A general quietly moving the board in the deep. Groundwork, foresight, situation design — things mysteriously go smoothly when you move. Nobody notices, but that's your doing.",
+      match: "Best matches: fellow strategists to share plans with, and people who notice and thank your invisible work",
+      advice: "Watch out: invisible work earns invisible credit. Occasionally disclose: 'that was me, actually.'",
+    },
+    "Abyss Tongue King Type": {
+      description: "Your darkness: 8000m. The reigning monarch of wit in the trench. Your words were sharpened in the abyss and can command a room in one line. At this point it's not personality — it's an ability.",
+      match: "Best matches: the strong who rise again after the royal wit, and rivals who can return the cut",
+      advice: "Watch out: one royal remark shapes a subject's whole week. Choosing when to use the power is true royal dignity.",
+    },
+    "Thousand-Year Grudge Type": {
+      description: "Your darkness: 9000m. A keeper who replays thousand-year-old grudges like yesterday. That's not obsession — it's archival capability. One could call it a talent for writing history.",
+      match: "Best matches: people who absolutely keep promises and stay sincere before anything gets archived",
+      advice: "Watch out: an archive's job is storage; playback is optional. Fewer presses of the replay button make today lighter.",
+    },
+    "Solitary Abyss Type": {
+      description: "Your darkness: 9500m. Shining pale and alone in the abyss. The strength of leaning on no one is real — but you already know that light is also a signal that says 'find me.'",
+      match: "Best matches: people who simply stay beside you without prying, and those who can dive to your depth",
+      advice: "Watch out: trusting no one is a technique against betrayal, but a single exception lets light into the deep. When a candidate appears, limit the tests to three.",
+    },
+    "Trench Mastermind Type": {
+      description: "Your darkness: 10911m. The deepest point of the Mariana Trench — the ruler who pulls every string. Reading the dynamics of relationships and quietly designing the whole is not darkness; it's strategic intelligence. The only question is how you use it.",
+      match: "Best matches: another mastermind who can see through your designs, and the person who stays after knowing everything",
+      advice: "Watch out: in an evil organization you'd make executive rank — but applied to running projects, you'd be the village's greatest contributor. We recommend deployment on the side of light.",
+    },
+  },
 }

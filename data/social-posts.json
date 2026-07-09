@@ -7,7 +7,8 @@
       "村人紹介📖\n{characterName}({diagnosisTitle})\n{role}\nどのタイプか気になったら診断村へ👇\n{url}",
       "{emoji}{characterName}\n{role}\n{diagnosisTitle}で出会えるキャラです。\n診断村でチェック👇\n{url}",
       "診断村の住人ファイル。\n名前:{characterName}\n{role}\n{diagnosisTitle}であなたも診断してみて👇\n{url}"
-    ]
+    ],
+    "linkTo": "character"
   },
   "diagnosisRelatable": {
     "label": "診断あるある",
@@ -27,7 +28,8 @@
       "まだ{diagnosisTitle}やってない人、集合。\n診断村で今すぐチェックできます👇\n{url}",
       "気になるあの人との相性、自分の本音、まだ言葉にできてないモヤモヤ。\n{diagnosisTitle}で覗いてみませんか?\n{url}",
       "{diagnosisTitle}、結果をシェアするとちょっと会話のネタになります。\n診断はこちら👇\n{url}"
-    ]
+    ],
+    "linkTo": "diagnosis"
   },
   "todaysVillager": {
     "label": "今日の村人",
@@ -37,6 +39,7 @@
       "本日の診断村ピックアップ🏡\n{characterName}\n{role}\n{diagnosisTitle}で診断できます。\n{url}",
       "今日はこの村人の日。\n{characterName}――{role}\nあなたはどのタイプ?\n診断村でチェック👇\n{url}",
       "今日ふらっと立ち寄ったのは{characterName}。\n{role}\n{diagnosisTitle}で会えます👇\n{url}"
-    ]
+    ],
+    "linkTo": "character"
   }
 }

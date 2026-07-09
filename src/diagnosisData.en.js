@@ -1,4 +1,4 @@
-export const categoriesEn = ["All", "Love", "Personality", "Mind & Love", "Charm & Vibe", "Love Luck", "Social Media", "Dark Side", "Money", "Career", "Life & Fun"]
+export const categoriesEn = ["All", "Love", "Personality", "Mind & Love", "Charm & Vibe", "Love Luck", "Social Media", "Dark Side", "Money", "Career", "Life & Fun", "Oshi & Fandom"]
 
 export const scenesEn = [
   { id: "all", label: "All", emoji: "🌀", description: "See every quiz" },
@@ -205,6 +205,48 @@ export const diagnosesEn = [
       "Somehow, one way or another, I always come out okay",
     ],
     results: ["Normal Playthrough Type", "Frequent Wrong Choices Type", "Multiple Life Errors Type", "Full Glitch Awakening Type"],
+  },
+  {
+    id: "oshikatsu-type",
+    title: "Oshi Fan-Style Quiz",
+    category: "Oshi & Fandom",
+    emoji: "🌟",
+    scenes: ["friends", "solo", "share"],
+    description: "Event-goer? Collector? Theorist? Find out your fan style and how deep in the fandom you really are.",
+    questions: ["I want to attend my oshi's events whenever possible", "I have bought multiple copies of merch: one to use, one to keep", "I think deeply about the meaning behind my oshi's words and actions", "Once I start talking about my oshi, I can't stop", "I want to celebrate my oshi's birthday and anniversaries properly", "I have run out of space to store my oshi's merch", "I feel the urge to express my love for my oshi in writing or art", "I have pulled (or almost pulled) a friend into my fandom"],
+    results: ["Casual Watcher Type", "Event-Goer Type", "Full-Attendance Type", "Life-Devotion Type"],
+  },
+  {
+    id: "reply-type",
+    title: "Reply Style Quiz",
+    category: "Social Media",
+    emoji: "💬",
+    scenes: ["friends", "drinking", "share"],
+    description: "Instant replier? Lord of unread messages? Find out your texting style, expressed as a font.",
+    questions: ["My replies tend to get long", "I often reply with short words like 'ok' or 'kk'", "I express feelings with stickers more than words", "Text feels lonely without emojis or kaomoji", "I want to respond to everything in their message", "Getting the point across is enough", "I collect favorite stickers", "The amount of emoji changes with my mood"],
+    results: ["Ultra-Thin Mincho Type", "Round Gothic Type", "Pop Type", "Heavy Gothic Type"],
+  },
+  {
+    id: "crush-misread",
+    hidden: true,
+    title: "Crush Signal Misread Quiz",
+    category: "Love",
+    emoji: "💌",
+    scenes: ["friends", "drinking", "share"],
+    description: "Was that kindness a sign, or just politeness? A free love quiz that measures how often you misread the signals.",
+    questions: ["When someone is kind to me, I think 'wait, maybe...'", "A streak of likes feels like a sign of interest", "I take 'let's hang out sometime' as an actual plan", "Running into someone by chance feels like destiny", "Just sitting next to someone makes me a little conscious of them", "I measure affection by reply speed", "I take 'you can always talk to me' as special treatment", "I end up checking birthday or zodiac compatibility"],
+    results: ["Cool Judge Type", "Like-Watcher Type", "Literal Translator Type", "Destiny Factory Type"],
+  },
+  {
+    id: "dark-depth",
+    hidden: true,
+    title: "Darkness Depth Quiz",
+    category: "Dark Side",
+    emoji: "🌊",
+    scenes: ["drinking", "friends", "solo", "share"],
+    description: "How many meters deep is the darkness in your heart? A free personality test that measures your inner depths on a deep-sea scale.",
+    questions: ["The commentary in my head never stops", "I remember old grudges vividly", "I doubt people's good intentions first", "I sometimes weigh gains and losses before acting", "I say my real thoughts disguised as jokes", "I said 'I forgive you' but I haven't forgotten", "I never show anyone my full true feelings", "I'm good at laying groundwork in advance"],
+    results: ["Leaky Inner Voice Type", "Budding Grudge Type", "Iron Heart Type", "Trench Mastermind Type"],
   },
 ]
 

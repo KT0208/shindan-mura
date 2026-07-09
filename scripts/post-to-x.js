@@ -30,6 +30,10 @@ import {
   moneyLuckCharacters,
   workStyleCharacters,
   lifeBugCharacters,
+  oshikatsuCharacters,
+  replyTypeCharacters,
+  crushMisreadCharacters,
+  darkDepthCharacters,
 } from '../src/characterData.js'
 import { diagnoses } from '../src/diagnosisData.js'
 
@@ -58,6 +62,10 @@ const CHARACTER_COLLECTIONS = {
   'money-luck': { basePath: 'moneyLuckCharacters', characters: moneyLuckCharacters },
   'work-style': { basePath: 'workStyleCharacters', characters: workStyleCharacters },
   'life-bug': { basePath: 'lifeBugCharacters', characters: lifeBugCharacters },
+  'oshikatsu-type': { basePath: 'oshikatsuCharacters', characters: oshikatsuCharacters },
+  'reply-type': { basePath: 'fontCharacters', characters: replyTypeCharacters },
+  'crush-misread': { basePath: 'crushFoxCharacters', characters: crushMisreadCharacters },
+  'dark-depth': { basePath: 'abyssClioneCharacters', characters: darkDepthCharacters },
 }
 
 // キャラクターを使わない投稿タイプ(診断あるある等)で使う、村の雰囲気画像。
@@ -121,7 +129,8 @@ function isWideCodePoint(codePoint) {
 }
 
 function calcWeightedLength(text) {
-  const withUrlPlaceholder = text.split(SITE_URL).join('#'.repeat(23))
+  // どのURLもXではt.coに短縮され一律23文字換算になる
+  const withUrlPlaceholder = text.replace(/https?:\/\/\S+/g, '#'.repeat(23))
   let total = 0
   for (const character of withUrlPlaceholder) {
     const codePoint = character.codePointAt(0)
@@ -144,10 +153,14 @@ function buildCharacterPool() {
   const pool = []
 
   for (const diagnosisItem of diagnoses) {
+    if (diagnosisItem.hidden) continue
     const collection = CHARACTER_COLLECTIONS[diagnosisItem.id]
     if (!collection) continue
 
     for (const [resultTitle, character] of Object.entries(collection.characters)) {
+      // 画像が未生成のキャラは投稿対象から除外する(新診断追加直後の事故防止)
+      const candidateImagePath = path.join(PUBLIC_DIR, 'characters', collection.basePath, `${character.imageKey}.webp`)
+      if (!fs.existsSync(candidateImagePath) || fs.statSync(candidateImagePath).size === 0) continue
       pool.push({
         diagnosisId: diagnosisItem.id,
         diagnosisTitle: diagnosisItem.title,
@@ -157,12 +170,27 @@ function buildCharacterPool() {
         characterName: character.characterName,
         role: character.role,
         visualConcept: character.visualConcept,
+        imageKey: character.imageKey,
         imagePath: path.join(PUBLIC_DIR, 'characters', collection.basePath, `${character.imageKey}.webp`),
       })
     }
   }
 
   return pool
+}
+
+// 投稿タイプの linkTo 設定に応じてリンク先URLを返す。
+//   "character" ... キャラ個別ページ(/c/{imageKey}/)。OGPカードにキャラが表示される
+//   "diagnosis" ... 該当診断の直リンク(タップですぐ診断開始)
+//   それ以外     ... サイトトップ
+function resolveLinkUrl(config, { imageKey, diagnosisId } = {}) {
+  if (config.linkTo === 'character' && imageKey) {
+    return `${SITE_URL}c/${imageKey}/`
+  }
+  if (config.linkTo === 'diagnosis' && diagnosisId) {
+    return `${SITE_URL}#diagnosis=${diagnosisId}`
+  }
+  return SITE_URL
 }
 
 function generateRandomPost(socialPosts, characterPool) {
@@ -184,11 +212,11 @@ function generateRandomPost(socialPosts, characterPool) {
       diagnosisCategory: character.diagnosisCategory,
       resultTitle: character.resultTitle,
       emoji: character.emoji,
-      url: SITE_URL,
+      url: resolveLinkUrl(config, { imageKey: character.imageKey, diagnosisId: character.diagnosisId }),
     }
     imagePath = character.imagePath
   } else {
-    const diagnosisItem = pickRandom(diagnoses)
+    const diagnosisItem = pickRandom(diagnoses.filter((item) => !item.hidden))
     context = {
       characterName: '',
       role: '',
@@ -197,7 +225,7 @@ function generateRandomPost(socialPosts, characterPool) {
       diagnosisCategory: diagnosisItem.category,
       resultTitle: '',
       emoji: diagnosisItem.emoji || '',
-      url: SITE_URL,
+      url: resolveLinkUrl(config, { diagnosisId: diagnosisItem.id }),
     }
     imagePath = path.join(PUBLIC_DIR, pickRandom(GENERIC_IMAGES))
   }

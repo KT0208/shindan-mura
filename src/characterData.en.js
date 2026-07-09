@@ -251,7 +251,7 @@ export const menheraLevelCharactersEn = {
     characterName: "Notification-Waiting Jelly",
     role: "A jelly that drifts along while waiting for notifications",
     visualConcept: "A night-colored jelly that reacts to the glow of a phone screen.",
-    imageKey: "menhera-watch-jealous-jelly",
+    imageKey: "menhera-hope-star-jelly",
   },
   "Tough-Acting Anxious Type": {
     characterName: "Smiling Mask Jelly",
@@ -1056,4 +1056,428 @@ export const lifeBugResultTypesEn = [
   ["Frequent Wrong Choices Type", "Bad-Timing Type", "Relationship-Lag Type", "Schedule-Collapse Type"],
   ["Multiple Life Errors Type", "Habitual-Blunderer Type", "Flag-Collector Type", "Chaos-Event Type"],
   ["Full Glitch Awakening Type", "High-Chaos-Tolerance Type", "Suspiciously-Cheat-Coded Life Type", "Chaos Player Type"],
+]
+
+export const oshikatsuCharactersEn = {
+  "Casual Watcher Type": {
+    characterName: "Gentle Watcher Spirit",
+    role: "A laid-back spirit who cheers quietly from afar",
+    visualConcept: "A round spirit wrapped in a blanket-like cape with a tiny star on its head, softly waving a small penlight.",
+    imageKey: "oshi-gentle-watch-spirit",
+  },
+  "Occasional Goods Type": {
+    characterName: "Badge Spirit",
+    role: "A small-scale collector who treasures only the favorites",
+    visualConcept: "A round spirit decorated with badges, gently polishing its favorite one with a cloth.",
+    imageKey: "oshi-badge-spirit",
+  },
+  "Quiet Talker Type": {
+    characterName: "Moonlit Talker Spirit",
+    role: "A budding theorist who only talks about their oshi at night",
+    visualConcept: "A night-colored spirit with a crescent moon ornament, hugging a small notebook and murmuring about their oshi.",
+    imageKey: "oshi-night-talk-spirit",
+  },
+  "Subtle Recommender Type": {
+    characterName: "Secret Promoter Spirit",
+    role: "A modest missionary who recommends their oshi casually",
+    visualConcept: "A small spirit with goods hidden in its pouch, offering a CD bigger than itself with a wink.",
+    imageKey: "oshi-secret-promo-spirit",
+  },
+  "Event-Goer Type": {
+    characterName: "Penlight Fairy",
+    role: "A cheering fairy who glows with the heat of live events",
+    visualConcept: "A little fairy with sparkling wings and a dress, dancing with penlights raised in both hands.",
+    imageKey: "oshi-penlight-spirit",
+  },
+  "Collector Road Type": {
+    characterName: "Card Binder Spirit",
+    role: "A meticulous collector who keeps merch beautifully organized",
+    visualConcept: "A spirit shaped like a big card binder with a ribbon, lovingly sorting trading cards one by one.",
+    imageKey: "oshi-tradingcard-spirit",
+  },
+  "Theory Notebook Type": {
+    characterName: "Theory Glasses Spirit",
+    role: "A researcher who studies every move their oshi makes",
+    visualConcept: "A spirit in round glasses hugging a sticky-note-covered notebook, with a little lightbulb floating overhead.",
+    imageKey: "oshi-theory-spirit",
+  },
+  "Sales-Pitch Type": {
+    characterName: "Presentation Board Spirit",
+    role: "A sales spirit who spreads the love with handmade materials",
+    visualConcept: "A presentation board with little arms and legs, holding a pointer and pitching passionately with a heart graph on its face.",
+    imageKey: "oshi-presentation-spirit",
+  },
+  "Full-Attendance Type": {
+    characterName: "Tour Spirit",
+    role: "A travel pro aiming to attend every single show",
+    visualConcept: "A spirit in a cap pulling a sticker-covered carry-on, proudly holding up a ticket.",
+    imageKey: "oshi-tour-spirit",
+  },
+  "Altar Builder Type": {
+    characterName: "Altar-Builder Spirit",
+    role: "An architect who keeps expanding the merch altar",
+    visualConcept: "A spirit in an apron standing proudly beside a small, beautifully arranged merch altar.",
+    imageKey: "oshi-altar-spirit",
+  },
+  "Fan-Creator Type": {
+    characterName: "Creative Brush Spirit",
+    role: "An artisan who turns love into works of art",
+    visualConcept: "A spirit in a beret hugging a brush bigger than itself, painting with paint smudged on its cheek.",
+    imageKey: "oshi-art-brush-spirit",
+  },
+  "Swamp Guide Type": {
+    characterName: "Swamp Guide Spirit",
+    role: "A guide beckoning at the entrance of the fandom swamp",
+    visualConcept: "A spirit standing on a lotus leaf with a little flag, beckoning 'right this way' with a friendly smile.",
+    imageKey: "oshi-swamp-guide-spirit",
+  },
+  "Life-Devotion Type": {
+    characterName: "Devotion Dragon",
+    role: "A devoted guardian dragon who dedicated its life to its oshi",
+    visualConcept: "A small red dragon carefully holding up a blue flame in its oshi's color, gazing at it earnestly.",
+    imageKey: "oshi-devotion-flame-spirit",
+  },
+  "Museum-Class Type": {
+    characterName: "Museum Whale",
+    role: "The ultimate collector whose body became a museum",
+    visualConcept: "A gentle whale whose body holds a tiny museum gallery. Every exhibit is a record of love.",
+    imageKey: "oshi-museum-spirit",
+  },
+  "Concept Interpreter Type": {
+    characterName: "Concept Spirit",
+    role: "A philosopher who loves their oshi as a concept",
+    visualConcept: "A translucent spirit made of light particles, interpreting their oshi's very existence as a concept.",
+    imageKey: "oshi-concept-spirit",
+  },
+  "Evangelist Type": {
+    characterName: "Speaker Spirit",
+    role: "An evangelist who broadcasts love to the world",
+    visualConcept: "A spirit playing the sound of love from a big speaker. Anyone who hears it drifts a little closer to the swamp.",
+    imageKey: "oshi-speaker-spirit",
+  },
+}
+
+export const oshikatsuResultTypesEn = [
+  ["Casual Watcher Type", "Occasional Goods Type", "Quiet Talker Type", "Subtle Recommender Type"],
+  ["Event-Goer Type", "Collector Road Type", "Theory Notebook Type", "Sales-Pitch Type"],
+  ["Full-Attendance Type", "Altar Builder Type", "Fan-Creator Type", "Swamp Guide Type"],
+  ["Life-Devotion Type", "Museum-Class Type", "Concept Interpreter Type", "Evangelist Type"],
+]
+
+export const replyTypeCharactersEn = {
+  "Ultra-Thin Mincho Type": {
+    characterName: "Ultra-Thin Mincho-san",
+    role: "The lord of unread messages, almost too faint to see",
+    visualConcept: "A figurine spirit holding a speech bubble in hairline mincho. Faint presence, fainter replies.",
+    imageKey: "font-gokuboso-mincho",
+  },
+  "Square Gothic Type": {
+    characterName: "Square Gothic-san",
+    role: "An energy-saving gatekeeper of pure essentials",
+    visualConcept: "A figurine spirit with an angular gothic bubble. Puts its whole soul into the word 'ok.'",
+    imageKey: "font-kaku-gothic",
+  },
+  "Cursive Type": {
+    characterName: "Cursive-san",
+    role: "An artist too stylish to be deciphered",
+    visualConcept: "A figurine spirit raising a flowing cursive bubble. Beautiful, but rarely appears.",
+    imageKey: "font-hikkitai",
+  },
+  "Fluffy Round Type": {
+    characterName: "Fluffy Round-san",
+    role: "A fairy who quietly leaves only reactions",
+    visualConcept: "A figurine spirit with a fluffy round-letter bubble, leaving a heart instead of a reply.",
+    imageKey: "font-funwari-marumoji",
+  },
+  "Soft Mincho Type": {
+    characterName: "Soft Mincho-san",
+    role: "A writer who texts with the heart of stationery",
+    visualConcept: "A figurine spirit with a gentle mincho bubble, choosing words slowly and carefully.",
+    imageKey: "font-yawaraka-mincho",
+  },
+  "Round Gothic Type": {
+    characterName: "Round Gothic-san",
+    role: "The relaxed, readable, reassuring standard",
+    visualConcept: "A figurine spirit with a rounded gothic bubble. Texts with no sharp corners.",
+    imageKey: "font-maru-gothic",
+  },
+  "Craft Letter Type": {
+    characterName: "Craft Letter-san",
+    role: "A warm replier with a handmade touch",
+    visualConcept: "A figurine spirit with a craft-style lettered bubble. Every reply feels handcrafted.",
+    imageKey: "font-craft-moji",
+  },
+  "Round Letter Type": {
+    characterName: "Round Letter-san",
+    role: "A master of cuteness beloved since the 80s",
+    visualConcept: "A figurine spirit with a blue round-letter bubble. The whole message is round and cute.",
+    imageKey: "font-marumoji",
+  },
+  "Mincho Type": {
+    characterName: "Mincho-san",
+    role: "A dual nature whose texts suddenly turn serious",
+    visualConcept: "A figurine spirit with an elegant mincho bubble. Long texts when inspired, quiet otherwise.",
+    imageKey: "font-mincho",
+  },
+  "Bold Round Gothic Type": {
+    characterName: "Bold Round Gothic-san",
+    role: "A cheerful soul who replies with tempo and momentum",
+    visualConcept: "A figurine spirit with a bold round gothic bubble. Short but overwhelmingly bright.",
+    imageKey: "font-futomaru-gothic",
+  },
+  "Handwriting Type": {
+    characterName: "Handwriting-san",
+    role: "A free spirit whose feelings become letters",
+    visualConcept: "A figurine spirit with a handwritten-style bubble. Mood shows directly in the strokes.",
+    imageKey: "font-tegaki",
+  },
+  "Pop Type": {
+    characterName: "Pop-san",
+    role: "The mood-maker of vibes and momentum",
+    visualConcept: "A figurine spirit with a pop-style bubble. Texts as bright as a supermarket sale flyer.",
+    imageKey: "font-pop",
+  },
+  "Textbook Type": {
+    characterName: "Textbook-san",
+    role: "An honor student who returns model replies in seconds",
+    visualConcept: "A figurine spirit with a textbook-font bubble. No typos, perfect punctuation, and fast.",
+    imageKey: "font-kyokasho",
+  },
+  "Heavy Gothic Type": {
+    characterName: "Heavy Gothic-san",
+    role: "A ruler of conversations with weighty instant replies",
+    visualConcept: "A figurine spirit with an extra-bold gothic bubble. Replies fast and thick.",
+    imageKey: "font-gokubuto-gothic",
+  },
+  "Kaisho Type": {
+    characterName: "Kaisho-san",
+    role: "A warrior who replies instantly with a straight back",
+    visualConcept: "A figurine spirit with a brush-script kaisho bubble. Sincerity in every stroke.",
+    imageKey: "font-kaisho",
+  },
+  "Deco Letter Type": {
+    characterName: "Deco Letter-san",
+    role: "The all-round monarch: fast, yet perfectly decorated",
+    visualConcept: "A figurine spirit with a heart-decorated bubble. Instant replies in full decoration.",
+    imageKey: "font-deco-moji",
+  },
+}
+
+export const replyTypeResultTypesEn = [
+  ["Ultra-Thin Mincho Type", "Square Gothic Type", "Cursive Type", "Fluffy Round Type"],
+  ["Soft Mincho Type", "Round Gothic Type", "Craft Letter Type", "Round Letter Type"],
+  ["Mincho Type", "Bold Round Gothic Type", "Handwriting Type", "Pop Type"],
+  ["Textbook Type", "Heavy Gothic Type", "Kaisho Type", "Deco Letter Type"],
+]
+
+export const crushMisreadCharactersEn = {
+  "Cool Judge Type": {
+    characterName: "Judge Glasses Fox",
+    role: "A calm referee who reviews the evidence of love",
+    visualConcept: "A cool white fox wearing judge glasses and holding a referee flag. Never swayed by stray hearts.",
+    imageKey: "crush-judge-fox",
+  },
+  "Salt Realist Type": {
+    characterName: "Salty Fox",
+    role: "A cool realist who chooses facts over hopes",
+    visualConcept: "A white fox calmly holding a salt rice ball, mentally ruling 'that was just politeness.'",
+    imageKey: "crush-salt-fox",
+  },
+  "Literal Translator Type": {
+    characterName: "Dictionary Fox",
+    role: "A language master who translates social pleasantries correctly",
+    visualConcept: "A white fox hugging a big 'Dictionary of Pleasantries.' Knows what 'sometime' really means.",
+    imageKey: "crush-dictionary-fox",
+  },
+  "Coincidence Is Coincidence Type": {
+    characterName: "Dice Fox",
+    role: "A probability believer who takes chance as chance",
+    visualConcept: "A white fox playing with dice. Trusts probability over destiny.",
+    imageKey: "crush-dice-fox",
+  },
+  "Tiny Hope Type": {
+    characterName: "Blushing Sakura Fox",
+    role: "A love beginner who lets themselves hope just a little",
+    visualConcept: "A fox with faintly sakura-pink cheeks and a single small heart floating overhead.",
+    imageKey: "crush-sakura-fox",
+  },
+  "Like-Watcher Type": {
+    characterName: "Heart Lens Fox",
+    role: "A researcher who has started studying the meaning of likes",
+    visualConcept: "A fox peering at a phone through a heart-shaped magnifying glass. The overreading has begun.",
+    imageKey: "crush-heart-lens-fox",
+  },
+  "Sometime Believer Type": {
+    characterName: "Calendar Fox",
+    role: "An optimist who counts 'sometime' as a real plan",
+    visualConcept: "A fox marking a calendar and waiting. The date for 'sometime' is still blank.",
+    imageKey: "crush-calendar-fox",
+  },
+  "Small Destiny Type": {
+    characterName: "Shooting Star Memo Fox",
+    role: "A dreamer who writes down every small coincidence",
+    visualConcept: "A fox taking notes while watching shooting stars. Today's entry: 'we met by chance again.'",
+    imageKey: "crush-star-memo-fox",
+  },
+  "Kindness Equals Love Type": {
+    characterName: "Heart Antenna Fox",
+    role: "A high-sensitivity receiver that converts all kindness into affection",
+    visualConcept: "A pinkish fox whose ears have become heart-shaped antennas, receiving kindness at full sensitivity.",
+    imageKey: "crush-heart-antenna-fox",
+  },
+  "Three-Second Read Type": {
+    characterName: "Phone Hugging Fox",
+    role: "A surveyor who measures love by reply speed",
+    visualConcept: "A fox hugging a phone with sparkling eyes, sensing destiny in a three-second read receipt.",
+    imageKey: "crush-phone-fox",
+  },
+  "Literal Reader Type": {
+    characterName: "Megaphone Fox",
+    role: "A straight shooter who takes pleasantries at face value",
+    visualConcept: "A delighted fox with a megaphone, translating 'maybe I'll come' as 'I'll come.'",
+    imageKey: "crush-megaphone-fox",
+  },
+  "Destiny Editor Type": {
+    characterName: "Red String Fox",
+    role: "An editor who converts every coincidence into destiny",
+    visualConcept: "A fox tangled in red string. Blood types and zodiac signs are all 'evidence of fate.'",
+    imageKey: "crush-red-string-fox",
+  },
+  "Everything Is A Sign Type": {
+    characterName: "Heart Radar Fox",
+    role: "A genius of hope who detects signs in all directions",
+    visualConcept: "A pink fox with a heart radar spinning overhead. The eyes are already heart-shaped.",
+    imageKey: "crush-radar-fox",
+  },
+  "SNS Detective Type": {
+    characterName: "Footprint Loupe Fox",
+    role: "A master detective who deduces love from social media traces",
+    visualConcept: "A fox in a detective hat examining story views with a loupe. Like timestamps: fully analyzed.",
+    imageKey: "crush-detective-fox",
+  },
+  "Sometime Planner Type": {
+    characterName: "Full Planner Fox",
+    role: "A pure-hearted scheduler whose planner is filled with pleasantries",
+    visualConcept: "A fox hugging a planner filled entirely with 'sometime.' Sincerely waiting for every one.",
+    imageKey: "crush-planner-fox",
+  },
+  "Destiny Factory Type": {
+    characterName: "Red String Bouquet Fox",
+    role: "A love factory where everyone becomes the destined one",
+    visualConcept: "A pink fox holding a bouquet of red strings. Another destined person was added today.",
+    imageKey: "crush-bouquet-fox",
+  },
+}
+
+export const crushMisreadResultTypesEn = [
+  ["Cool Judge Type", "Salt Realist Type", "Literal Translator Type", "Coincidence Is Coincidence Type"],
+  ["Tiny Hope Type", "Like-Watcher Type", "Sometime Believer Type", "Small Destiny Type"],
+  ["Kindness Equals Love Type", "Three-Second Read Type", "Literal Reader Type", "Destiny Editor Type"],
+  ["Everything Is A Sign Type", "SNS Detective Type", "Sometime Planner Type", "Destiny Factory Type"],
+]
+
+export const darkDepthCharactersEn = {
+  "Leaky Inner Voice Type": {
+    characterName: "Sunny Clione",
+    role: "A surface dweller whose every thought shows on their face",
+    visualConcept: "A white sea angel drifting on the sunlit surface, with angel wings and a halo. Every thought shows.",
+    imageKey: "abyss-sunny-clione",
+  },
+  "Forgets In Three Steps Type": {
+    characterName: "Forgetful Clione",
+    role: "A peace envoy whose grudges evaporate in three steps",
+    visualConcept: "A white clione tilting its head — 'wait, what were we talking about?' Its halo sparkles.",
+    imageKey: "abyss-forgetful-clione",
+  },
+  "Trusts Too Much Type": {
+    characterName: "Straight-Eyed Clione",
+    role: "A pure angel who never learned to doubt",
+    visualConcept: "A white clione gazing straight ahead, wings spread wide in full-body trust.",
+    imageKey: "abyss-honest-clione",
+  },
+  "Nothing To Hide Type": {
+    characterName: "Glass Heart Clione",
+    role: "A transparent dweller whose heart is visible",
+    visualConcept: "A see-through clione with a small heart visible in its chest. Physically incapable of secrets.",
+    imageKey: "abyss-glass-clione",
+  },
+  "Inner Commentator Type": {
+    characterName: "Inner Voice Clione",
+    role: "Smiling outside, live-commentating inside",
+    visualConcept: "A pale purple clione smiling sweetly, with a tiny speech bubble of true thoughts floating beside it.",
+    imageKey: "abyss-innervoice-clione",
+  },
+  "Budding Grudge Type": {
+    characterName: "Memo Clione",
+    role: "A meticulous clerk who has started recording small grudges",
+    visualConcept: "A pale purple clione jotting something in a tiny notebook. The expression is still calm.",
+    imageKey: "abyss-memo-clione",
+  },
+  "Cautious Observer Type": {
+    characterName: "Watchful Clione",
+    role: "A careful soul observing from half a step back",
+    visualConcept: "A pale purple clione peeking halfway out from behind a rock, eyes half curiosity, half caution.",
+    imageKey: "abyss-cautious-clione",
+  },
+  "Small Tactician Type": {
+    characterName: "Apprentice Tactician Clione",
+    role: "An apprentice strategist who just learned to play",
+    visualConcept: "A pale purple clione holding a single playing card with a slightly smug smile.",
+    imageKey: "abyss-tactics-clione",
+  },
+  "Glowing Sharp Tongue Type": {
+    characterName: "Neon Tongue Clione",
+    role: "A luminous being whose wit began to glow in the deep",
+    visualConcept: "A deep purple clione glowing like neon, wing tips starting to sharpen. A knowing grin.",
+    imageKey: "abyss-neon-clione",
+  },
+  "Grudge Ledger Type": {
+    characterName: "Grudge Ledger Clione",
+    role: "A librarian who curates a thick ledger of grudges",
+    visualConcept: "A deep purple clione hugging a thick chained ledger. The quiet smile is the scary part.",
+    imageKey: "abyss-grudgebook-clione",
+  },
+  "Iron Heart Type": {
+    characterName: "Fortress Clione",
+    role: "A deep-sea guardian whose heart is under lock and key",
+    visualConcept: "A deep purple clione in tiny armor with a shield. Kind eyes, closed heart.",
+    imageKey: "abyss-fortress-clione",
+  },
+  "Silent Strategist Type": {
+    characterName: "Silent Strategist Clione",
+    role: "A general quietly moving the board in the deep",
+    visualConcept: "A deep purple clione gently moving a chess piece. Its wings are starting to darken.",
+    imageKey: "abyss-strategist-clione",
+  },
+  "Abyss Tongue King Type": {
+    characterName: "Abyss King Clione",
+    role: "The reigning monarch of wit in the trench",
+    visualConcept: "A jet-black clione with dark wings, small horns, and a crown, glowing eerily in the dark.",
+    imageKey: "abyss-king-clione",
+  },
+  "Thousand-Year Grudge Type": {
+    characterName: "Millennial Memory Clione",
+    role: "A keeper whose thousand-year-old grudges stay vivid",
+    visualConcept: "A jet-black clione unrolling an ancient scroll. Its eyes glow red; its memory is eternal.",
+    imageKey: "abyss-eternal-clione",
+  },
+  "Solitary Abyss Type": {
+    characterName: "Solitary Abyss Clione",
+    role: "A noble soul shining alone in the abyss",
+    visualConcept: "A jet-black clione glowing pale blue, alone in the darkness. Lonely, but dignified.",
+    imageKey: "abyss-solitude-clione",
+  },
+  "Trench Mastermind Type": {
+    characterName: "Trench Mastermind Clione",
+    role: "The ruler of the trench who pulls every string",
+    visualConcept: "A jet-black clione elegantly holding marionette strings. Dark wings, horns, and the shadow of a throne.",
+    imageKey: "abyss-mastermind-clione",
+  },
+}
+
+export const darkDepthResultTypesEn = [
+  ["Leaky Inner Voice Type", "Forgets In Three Steps Type", "Trusts Too Much Type", "Nothing To Hide Type"],
+  ["Inner Commentator Type", "Budding Grudge Type", "Cautious Observer Type", "Small Tactician Type"],
+  ["Glowing Sharp Tongue Type", "Grudge Ledger Type", "Iron Heart Type", "Silent Strategist Type"],
+  ["Abyss Tongue King Type", "Thousand-Year Grudge Type", "Solitary Abyss Type", "Trench Mastermind Type"],
 ]
