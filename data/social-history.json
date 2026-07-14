@@ -96,5 +96,12 @@
     "text": "診断村の住人ファイル。\n名前:ストップウォッチ隊長\n時間とタスクを前に進める進行管理キャラ\n仕事向き診断であなたも診断してみて👇\nhttps://shindanmura.com/c/work-stopwatch-captain/",
     "imagePath": "public/characters/workStyleCharacters/work-stopwatch-captain.webp",
     "tweetId": "2076183577474040001"
+  },
+  {
+    "postedAt": "2026-07-14T05:27:03.749Z",
+    "type": "diagnosisInvite",
+    "text": "気になるあの人との相性、自分の本音、まだ言葉にできてないモヤモヤ。\n危ない男診断で覗いてみませんか?\nhttps://shindanmura.com/#diagnosis=dangerous-man",
+    "imagePath": "public/characters/dangerousManCharacters/danger-shadow-lantern.webp",
+    "tweetId": "2076901266484031894"
   }
 ]
