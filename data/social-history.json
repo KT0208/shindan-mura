@@ -131,5 +131,12 @@
     "text": "まだ返信タイプ診断やってない人、集合。\n診断村で今すぐチェックできます👇\nhttps://shindanmura.com/#diagnosis=reply-type",
     "imagePath": "public/characters/fontCharacters/font-kaisho.webp",
     "tweetId": "2077263930389627265"
+  },
+  {
+    "postedAt": "2026-07-15T12:20:13.090Z",
+    "type": "characterIntro",
+    "text": "診断村の住人ファイル。\n名前:書類ファイルもぐら\n裏側で書類や作業を支える処理能力キャラ\n仕事向き診断であなたも診断してみて👇\nhttps://shindanmura.com/c/work-file-mole/",
+    "imagePath": "public/characters/workStyleCharacters/work-file-mole.webp",
+    "tweetId": "2077367628281049125"
   }
 ]
