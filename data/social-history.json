@@ -110,5 +110,12 @@
     "text": "金運タイプ診断、結果をシェアするとちょっと会話のネタになります。\n診断はこちら👇\nhttps://shindanmura.com/#diagnosis=money-luck",
     "imagePath": "public/characters/moneyLuckCharacters/money-maneki-ore-cat.webp",
     "tweetId": "2077005020524876261"
+  },
+  {
+    "postedAt": "2026-07-15T04:40:23.666Z",
+    "type": "characterIntro",
+    "text": "🌟トレカファイル精霊\nグッズを美しく管理する几帳面コレクター\n推し活タイプ診断で出会えるキャラです。\n診断村でチェック👇\nhttps://shindanmura.com/c/oshi-tradingcard-spirit/",
+    "imagePath": "public/characters/oshikatsuCharacters/oshi-tradingcard-spirit.webp",
+    "tweetId": "2077251910072258984"
   }
 ]
