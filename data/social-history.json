@@ -173,5 +173,12 @@
     "text": "🎮ぽかぽか晴れすぎバグ\n良いことが起きすぎる晴れ天候キャラ\n人生バグり度診断で出会えるキャラです。\n診断村でチェック👇\nhttps://shindanmura.com/c/life-bug-too-sunny/",
     "imagePath": "public/characters/lifeBugCharacters/life-bug-too-sunny.webp",
     "tweetId": "2078718849000657257"
+  },
+  {
+    "postedAt": "2026-07-20T06:15:31.894Z",
+    "type": "diagnosisInvite",
+    "text": "気になるあの人との相性、自分の本音、まだ言葉にできてないモヤモヤ。\n危ない男診断で覗いてみませんか?\nhttps://shindanmura.com/#diagnosis=dangerous-man",
+    "imagePath": "public/characters/dangerousManCharacters/danger-safe-watcher.webp",
+    "tweetId": "2079087791078568161"
   }
 ]
