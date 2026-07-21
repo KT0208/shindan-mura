@@ -187,5 +187,12 @@
     "text": "村人紹介📖\n既読ウォッチャー(SNS承認欲求診断)\n閲覧者リストをじっと見つめる監視キャラ\nどのタイプか気になったら診断村へ👇\nhttps://shindanmura.com/c/sns-viewer-watcher/",
     "imagePath": "public/characters/snsApprovalCharacters/sns-viewer-watcher.webp",
     "tweetId": "2079414084970103154"
+  },
+  {
+    "postedAt": "2026-07-21T03:53:17.198Z",
+    "type": "diagnosisInvite",
+    "text": "気になるあの人との相性、自分の本音、まだ言葉にできてないモヤモヤ。\nSNS承認欲求診断で覗いてみませんか?\nhttps://shindanmura.com/#diagnosis=sns-approval",
+    "imagePath": "public/characters/snsApprovalCharacters/sns-offline-kobito.webp",
+    "tweetId": "2079414382141079793"
   }
 ]
