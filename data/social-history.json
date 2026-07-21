@@ -194,5 +194,12 @@
     "text": "気になるあの人との相性、自分の本音、まだ言葉にできてないモヤモヤ。\nSNS承認欲求診断で覗いてみませんか?\nhttps://shindanmura.com/#diagnosis=sns-approval",
     "imagePath": "public/characters/snsApprovalCharacters/sns-offline-kobito.webp",
     "tweetId": "2079414382141079793"
+  },
+  {
+    "postedAt": "2026-07-21T05:48:10.821Z",
+    "type": "diagnosisInvite",
+    "text": "気になるあの人との相性、自分の本音、まだ言葉にできてないモヤモヤ。\nメンヘラ度診断で覗いてみませんか?\nhttps://shindanmura.com/#diagnosis=menhera-level",
+    "imagePath": "public/characters/menheraLevelCharacters/menhera-ending-queen-jelly.webp",
+    "tweetId": "2079443295923564695"
   }
 ]
