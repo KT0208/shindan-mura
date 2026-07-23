@@ -222,5 +222,12 @@
     "text": "本日の診断村ピックアップ🏡\n通知待ちの番人\nスマホの光に心を預ける待機キャラ\n恋愛こじらせ診断で診断できます。\nhttps://shindanmura.com/c/notification-watcher/",
     "imagePath": "public/characters/love/notification-watcher.webp",
     "tweetId": "2079910238652920260"
+  },
+  {
+    "postedAt": "2026-07-23T05:50:43.937Z",
+    "type": "diagnosisInvite",
+    "text": "返信タイプ診断、結果をシェアするとちょっと会話のネタになります。\n診断はこちら👇\nhttps://shindanmura.com/#diagnosis=reply-type",
+    "imagePath": "public/characters/fontCharacters/font-marumoji.webp",
+    "tweetId": "2080168714021097544"
   }
 ]
