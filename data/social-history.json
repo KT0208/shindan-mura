@@ -257,5 +257,12 @@
     "text": "まだ仕事向き診断やってない人、集合。\n診断村で今すぐチェックできます👇\nhttps://shindanmura.com/#diagnosis=work-style",
     "imagePath": "public/characters/workStyleCharacters/work-clipboard-strategist.webp",
     "tweetId": "2081257844184064002"
+  },
+  {
+    "postedAt": "2026-07-27T06:26:59.838Z",
+    "type": "diagnosisInvite",
+    "text": "気になるあの人との相性、自分の本音、まだ言葉にできてないモヤモヤ。\n恋愛こじらせ診断で覗いてみませんか?\nhttps://shindanmura.com/#diagnosis=love-complicated",
+    "imagePath": "public/characters/love/natural-wanderer.webp",
+    "tweetId": "2081627391500382635"
   }
 ]
