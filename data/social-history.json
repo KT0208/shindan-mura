@@ -369,5 +369,12 @@
     "text": "危ない男診断、結果をシェアするとちょっと会話のネタになります。\n診断はこちら👇\nhttps://shindanmura.com/#diagnosis=dangerous-man",
     "imagePath": "public/characters/dangerousManCharacters/danger-shadow-lantern.webp",
     "tweetId": "2085241051296715182"
+  },
+  {
+    "postedAt": "2026-08-06T13:00:03.001Z",
+    "type": "diagnosisInvite",
+    "text": "人生バグり度診断、結果をシェアするとちょっと会話のネタになります。\n診断はこちら👇\nhttps://shindanmura.com/#diagnosis=life-bug",
+    "imagePath": "public/characters/lifeBugCharacters/life-bug-rainbow-overflow.webp",
+    "tweetId": "2085350185400668214"
   }
 ]
