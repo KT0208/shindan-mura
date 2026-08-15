@@ -453,5 +453,12 @@
     "text": "今日はこの村人の日。\n天気予報ぜんぶバラバラバグ――情報が多すぎて判断できない天気予報キャラ\nあなたはどのタイプ?\n診断村でチェック👇\nhttps://shindanmura.com/c/life-bug-weather-forecast-error/",
     "imagePath": "public/characters/lifeBugCharacters/life-bug-weather-forecast-error.webp",
     "tweetId": "2088125029875605599"
+  },
+  {
+    "postedAt": "2026-08-15T03:35:42.854Z",
+    "type": "characterIntro",
+    "text": "💬楷書体さん\n背筋を伸ばして即返信する武人\n返信タイプ診断で出会えるキャラです。\n診断村でチェック👇\nhttps://shindanmura.com/c/font-kaisho/",
+    "imagePath": "public/characters/fontCharacters/font-kaisho.webp",
+    "tweetId": "2088469656424313328"
   }
 ]
