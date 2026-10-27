@@ -34,3 +34,26 @@ server/api/config.php
 /videos/
 /data/skills/
 /skills-lock.json
+
+# YouTube/X APIの鍵(絶対にコミットしない)
+data/youtube-client-secret.json
+data/youtube-token.json
+data/x-credentials.json
+
+# Bluesky認証(アプリパスワード・コミットしない)
+data/bluesky-credentials.json
+data/bluesky-history.json
+
+# LINEスタンプの作業用画像(サイトには配信しない)
+/line-stamps-source/
+
+# メンヘラ動画ツールの生成物(リポジトリには含めない)
+/tools/menhera-video/renders/
+/tools/menhera-video/.hyperframes/
+/tools/menhera-video/.media/
+/tools/menhera-video/node_modules/
+/tools/menhera-video/index.html
+/tools/menhera-video/out/
+data/tiktok-credentials.json
+data/tiktok-token.json
+/tools/menhera-video/.lastmeta.json
