@@ -5,39 +5,7 @@
 // 割り当てが無い診断は、AdBanner の「汎用バナー(デフォルト)」が出る。
 
 export const adCreatives = {
-  // マッチングアプリのプロフィール写真撮影サービス【オトフィー】/ 株式会社オトフィー
-  'otofy-photo': {
-    banner: {
-      href: 'https://px.a8.net/svt/ejp?a8mat=4BCMO2+604DDE+515E+5ZMCH',
-      img: 'https://www26.a8.net/svt/bgt?aid=260929730363&wid=001&eno=01&mid=s00000023477001006000&mc=1',
-      pixel: 'https://www12.a8.net/0.gif?a8mat=4BCMO2+604DDE+515E+5ZMCH',
-      width: 300,
-      height: 250,
-      alt: 'マッチングアプリのプロフィール写真撮影サービス【オトフィー】',
-    },
-    text: {
-      href: 'https://px.a8.net/svt/ejp?a8mat=4BCMO2+604DDE+515E+60H7M',
-      label: 'マッチングアプリで“いいね”がもらえるプロフィール写真【オトフィー】',
-      pixel: 'https://www19.a8.net/0.gif?a8mat=4BCMO2+604DDE+515E+60H7M',
-    },
-  },
-
-  // マッチングアプリ【Pappy】最短当日出会える(月額3,400円〜)
-  pappy: {
-    banner: {
-      href: 'https://px.a8.net/svt/ejp?a8mat=4BCMO2+786G4Y+22QA+NUES1',
-      img: 'https://www25.a8.net/svt/bgt?aid=260929730437&wid=001&eno=01&mid=s00000009685004005000&mc=1',
-      pixel: 'https://www18.a8.net/0.gif?a8mat=4BCMO2+786G4Y+22QA+NUES1',
-      width: 300,
-      height: 250,
-      alt: 'マッチングアプリ【Pappy】最短当日出会える',
-    },
-    text: {
-      href: 'https://px.a8.net/svt/ejp?a8mat=4BCMO2+786G4Y+22QA+NTRMQ',
-      label: '【Pappy】最短当日出会えるマッチングアプリ(月額3,400円〜)',
-      pixel: 'https://www12.a8.net/0.gif?a8mat=4BCMO2+786G4Y+22QA+NTRMQ',
-    },
-  },
+  // ※出会い系/マッチング広告(otofy-photo / pappy)はブランド安全性・AdSense審査のため完全撤去
 
   // グッズ・ノベルティ制作【オリジナルファクトリー】1個から / 高品質
   'oshi-goods': {
