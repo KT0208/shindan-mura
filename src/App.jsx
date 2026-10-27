@@ -57,6 +57,8 @@ import {
   zeniTailResultTypes,
   scaredyYokaiCharacters,
   scaredyYokaiResultTypes,
+  dreamTypeCharacters,
+  dreamTypeResultTypes,
 } from './characterData'
 import { loadJaPack, jaResultDetails, jaRandomCommentPools } from './jaPacks'
 import { categories as categoriesJa, scenes as scenesJa, sceneSets as sceneSetsJa, diagnoses as diagnosesJa, options as optionsJa } from './diagnosisData'
@@ -277,6 +279,7 @@ const tendencyIndexResolvers = {
   'shyness': getBalancedTendencyIndex,
   'spending-type': getBalancedTendencyIndex,
   'scaredy-level': getBalancedTendencyIndex,
+  'dream-type': getBalancedTendencyIndex,
 }
 
 const resultTypesByDiagnosisJa = {
@@ -309,6 +312,7 @@ const resultTypesByDiagnosisJa = {
   'shyness': shynessResultTypes,
   'spending-type': zeniTailResultTypes,
   'scaredy-level': scaredyYokaiResultTypes,
+  'dream-type': dreamTypeResultTypes,
 }
 
 const resultTypesByDiagnosisByLanguage = {
@@ -363,6 +367,7 @@ const characterCollectionsJa = {
   'shyness': { basePath: 'shynessHermitCharacters', characters: shynessCharacters },
   'spending-type': { basePath: 'zeniTailCharacters', characters: zeniTailCharacters },
   'scaredy-level': { basePath: 'scaredyYokaiCharacters', characters: scaredyYokaiCharacters },
+  'dream-type': { basePath: 'dreamTypeCharacters', characters: dreamTypeCharacters },
 }
 
 const characterCollectionsByLanguage = {

@@ -31,6 +31,22 @@ import {
   replyTypeCharacters,
   crushMisreadCharacters,
   darkDepthCharacters,
+  holidayCapybaraCharacters,
+  emoNostalgiaCharacters,
+  sleepSheepCharacters,
+  bindRibbonCharacters,
+  myPaceCharacters,
+  isekaiPositionCharacters,
+  procrastinationCharacters,
+  pastLifeCharacters,
+  selfEsteemCharacters,
+  stressLevelCharacters,
+  animalTypeCharacters,
+  angerStyleCharacters,
+  shynessCharacters,
+  zeniTailCharacters,
+  scaredyYokaiCharacters,
+  dreamTypeCharacters,
 } from '../src/characterData.js'
 import { diagnoses } from '../src/diagnosisData.js'
 import { resultDetails } from '../src/resultDetails.js'
@@ -57,6 +73,22 @@ export const characterCollections = {
   'reply-type': { basePath: 'fontCharacters', characters: replyTypeCharacters },
   'crush-misread': { basePath: 'crushFoxCharacters', characters: crushMisreadCharacters },
   'dark-depth': { basePath: 'abyssClioneCharacters', characters: darkDepthCharacters },
+  'holiday-style': { basePath: 'holidayCapybaraCharacters', characters: holidayCapybaraCharacters },
+  'emo-nostalgia': { basePath: 'emoNostalgiaCharacters', characters: emoNostalgiaCharacters },
+  'sleep-type': { basePath: 'sleepSheepCharacters', characters: sleepSheepCharacters },
+  'bind-level': { basePath: 'bindRibbonCharacters', characters: bindRibbonCharacters },
+  'my-pace': { basePath: 'myPaceCatCharacters', characters: myPaceCharacters },
+  'isekai-position': { basePath: 'isekaiPuniCharacters', characters: isekaiPositionCharacters },
+  'procrastination': { basePath: 'laterSlothCharacters', characters: procrastinationCharacters },
+  'past-life': { basePath: 'pastlifeChickCharacters', characters: pastLifeCharacters },
+  'self-esteem': { basePath: 'esteemPlantCharacters', characters: selfEsteemCharacters },
+  'stress-level': { basePath: 'stressBalloonCharacters', characters: stressLevelCharacters },
+  'animal-type': { basePath: 'animalTypeCharacters', characters: animalTypeCharacters },
+  'anger-style': { basePath: 'angerChiliCharacters', characters: angerStyleCharacters },
+  'shyness': { basePath: 'shynessHermitCharacters', characters: shynessCharacters },
+  'spending-type': { basePath: 'zeniTailCharacters', characters: zeniTailCharacters },
+  'scaredy-level': { basePath: 'scaredyYokaiCharacters', characters: scaredyYokaiCharacters },
+  'dream-type': { basePath: 'dreamTypeCharacters', characters: dreamTypeCharacters },
 }
 
 const escapeHtml = (s) =>
@@ -79,6 +111,7 @@ function buildPage({ diagnosis, resultTitle, character, detail }) {
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, follow" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <title>${escapeHtml(title)}</title>
 <meta name="description" content="${escapeHtml(description)}" />
@@ -142,7 +175,28 @@ function buildPage({ diagnosis, resultTitle, character, detail }) {
 }
 
 async function main() {
-  const urls = [`${SITE_ORIGIN}/`]
+  const urls = [`${SITE_ORIGIN}/`, `${SITE_ORIGIN}/column/`]
+  // コラム記事もsitemapに載せる
+  try {
+    const { loadColumns } = await import('./generate-columns.mjs')
+    for (const article of await loadColumns()) {
+      urls.push(`${SITE_ORIGIN}/column/${article.meta.slug}/`)
+    }
+  } catch {
+    // コラムがまだ無い場合はスキップ
+  }
+  // 診断の静的ページ(/diagnosis/ ハブ + 各診断)をsitemapに載せる。
+  // これらは generate-diagnosis-pages.mjs が生成する「有用性のある」インデックス対象ページ。
+  urls.push(`${SITE_ORIGIN}/diagnosis/`)
+  for (const diagnosis of diagnoses) {
+    if (diagnosis.hidden) continue
+    if (!characterCollections[diagnosis.id]) continue
+    urls.push(`${SITE_ORIGIN}/diagnosis/${diagnosis.id}/`)
+  }
+  // 村人図鑑(generate-diagnosis-pages.mjs が生成)
+  urls.push(`${SITE_ORIGIN}/zukan/`)
+  // 法務・運営情報ページ(generate-legal-pages.mjs が生成)
+  urls.push(`${SITE_ORIGIN}/privacy/`, `${SITE_ORIGIN}/about/`, `${SITE_ORIGIN}/contact/`)
   let count = 0
 
   for (const diagnosis of diagnoses) {
@@ -158,9 +212,10 @@ async function main() {
       const dir = path.join(publicDir, 'r', diagnosis.id, character.imageKey)
       await mkdir(dir, { recursive: true })
       await writeFile(path.join(dir, 'index.html'), html)
-      // sitemapにはSEO評価を集約するキャラ個別ページ(/c/)の方を載せる
-      // (シェアページはcanonicalで/c/を指しているためsitemapには含めない)
-      urls.push(`${SITE_ORIGIN}/c/${character.imageKey}/`)
+      // /c/ ページ(400枚)はsitemapに含めない。
+      // 理由: 1ページあたりのユニークテキストが少なく、AdSenseの「有用性の低いコンテンツ」判定を招く。
+      // 内部リンクからGooglebotが自然にたどれる状態は維持しているので、
+      // 個別ページのSEO評価は失わないまま、sitemap上の「薄いページ」比率だけ下げる。
       count++
     }
   }

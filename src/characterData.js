@@ -98,101 +98,181 @@ export const hiddenPersonalityCharacters = {
 }
 
 export const loveComplicatedCharacters = {
-  '恋愛さっぱり村人タイプ': {
-    characterName: '風通しのいい村人',
-    role: '恋愛に飲まれすぎない安定型キャラ',
-    visualConcept: '白系の服、自然体の表情、風の通る草原に立つ穏やかな村人。恋愛よりも自分の生活リズムを大切にしている。',
-    imageKey: 'airy-villager',
+  "ピュア直感タイプ": {
+    characterName: "ふわ恋触覚クマ",
+    role: "好きのテンションで一気に距離を縮める",
+    visualConcept: "恋の触覚アンテナをぴこぴこさせた、ふわふわで明るいクマの妖精。会えるだけでぽかぽか幸せになる。",
+    imageKey: "airy-villager",
+    intro: "やっほー、ふわ恋触覚クマちや。好きって気持ちは、むずかしく考えすぎんでもえいと思うがよ。会えたらうれしい、話せたらしあわせ。それだけで心がぽかぽかするきね。",
+    catchphrase: "好きなら楽しいがいちばんちや！",
+    likes: "気軽な会話、笑い合う時間、自然体でいられる関係",
+    dislikes: "駆け引き、重すぎる空気、考えすぎる恋",
+    snsLine: "恋は作戦より、まず「楽しい」が大事なタイプちや。",
   },
-  '平和な距離感タイプ': {
-    characterName: 'イワシ',
-    role: '近すぎず遠すぎずを守る境界線キャラ',
-    visualConcept: '淡いベージュの服、透明な境界線の輪を持つ守り人。やさしい雰囲気だけど、自分のペースは崩さない。',
-    imageKey: 'distance-guardian',
+  "安心距離キープタイプ": {
+    characterName: "イワシ",
+    role: "近づきたいのに、近づきすぎると逃げたくなる",
+    visualConcept: "一定の距離を大事にする、ちょっと臆病で慎重なイワシの妖精。ゆっくりなら心を開ける。",
+    imageKey: "distance-guardian",
+    intro: "こんにちは、イワシちや。好きな気持ちはあるけんど、急に近づかれるとヒレがぴんってなるが。ちょっとずつなら、ちゃんと近づけるきね。",
+    catchphrase: "ちょっとずつでお願いするちや。",
+    likes: "落ち着いたやりとり、一定の距離感、尊重される時間",
+    dislikes: "急な告白、詰められる会話、返信の催促",
+    snsLine: "好きやけど、急接近されるとスッと下がるタイプちや。",
   },
-  '恋愛省エネタイプ': {
-    characterName: '省エネ恋愛民',
-    role: '疲れる恋愛を避ける低燃費キャラ',
-    visualConcept: 'ゆるいパーカー、少し眠そうな目、充電残量の少ないハートを持つキャラ。無理な恋愛消耗を避ける。',
-    imageKey: 'low-power-lover',
+  "低燃費恋愛タイプ": {
+    characterName: "省エネ恋年増ぐま",
+    role: "好きでも疲れると一回こもりたくなる",
+    visualConcept: "いつも省エネモードで、ゆっくり長くあたためる恋を好むクマの妖精。",
+    imageKey: "low-power-lover",
+    intro: "こんにちは、省エネ恋年増ぐまちや。好きな気持ちはあるがやけど、ずっと全力やと眠くなっちゃうが。ゆっくり、あったかく、続く恋がえいな。",
+    catchphrase: "今日はちょっと省エネでいかせてや。",
+    likes: "安心できる関係、ゆるい連絡、無言でも落ち着く時間",
+    dislikes: "毎日の長文、返信プレッシャー、感情の消耗戦",
+    snsLine: "好きやけど、恋愛体力はすぐ充電切れタイプちや。",
   },
-  '自然体マイペースタイプ': {
-    characterName: 'ナチュラル旅人',
-    role: '好きな人の前でも自分を崩さない自由人キャラ',
-    visualConcept: 'ラフな服装で夜道を歩く旅人。肩の力が抜けていて、恋愛中でも自分らしさを失わない。',
-    imageKey: 'natural-wanderer',
+  "自然体ふらりタイプ": {
+    characterName: "不思議リーフくん",
+    role: "気持ちが重くなると、ふらっと離れたくなる",
+    visualConcept: "風まかせでふらりと生きる、自然体でマイペースな不思議な妖精。",
+    imageKey: "natural-wanderer",
+    intro: "やあ、不思議リーフくんちや。好きな人は好き。けんど、自分の風向きも大事にしたいが。無理せず、自然に近づける恋がいちばん気持ちえいきね。",
+    catchphrase: "適当に〜また会えるちや。",
+    likes: "自由な時間、自然な会話、ほどよい距離感",
+    dislikes: "束縛、重い約束、急かされること",
+    snsLine: "好きやけど、自分のペースも手放したくないタイプちや。",
   },
-  '好き避け不器用タイプ': {
-    characterName: '逃げ足の速い照れ屋',
-    role: '好きな人ほど避けてしまう不器用キャラ',
-    visualConcept: '赤面しながら顔を少し隠し、好きな人から半歩逃げているキャラ。本音はバレバレなのに隠そうとする。',
-    imageKey: 'shy-runner',
+  "好き避けダッシュタイプ": {
+    characterName: "テレニゲ",
+    role: "好きな人ほど避けてしまう",
+    visualConcept: "好きな人ほど照れて逃げてしまう、照れ屋な妖精。",
+    imageKey: "shy-runner",
+    intro: "こんにちは、テレニゲちや。ほんまは話したいがやけど、好きな人の前やと足が勝手に動くが。逃げゆうわけやないきね。照れちゅうだけながよ。",
+    catchphrase: "ち、違うき！照れちゅうだけやき！",
+    likes: "遠くから見守ること、偶然の会話、やさしく待ってくれる人",
+    dislikes: "急に目が合うこと、真正面の好意、からかわれること",
+    snsLine: "好きな人ほど、なぜか逆方向に走るタイプちや。",
   },
-  '強がりツンデレタイプ': {
-    characterName: 'ツンデレ騎士',
-    role: '甘えたい気持ちを小さな盾で守るキャラ',
-    visualConcept: '小さな盾を持ち、強がった表情をしている騎士。足元には隠しきれないハートが落ちている。',
-    imageKey: 'tsundere-knight',
+  "素直になれない防衛タイプ": {
+    characterName: "ツンキシ",
+    role: "照れ隠しで逆の態度をとる",
+    visualConcept: "素直になれず、つい強がってしまう防衛本能の強い妖精。",
+    imageKey: "tsundere-knight",
+    intro: "ふん、ツンキシちや。別に心配しちゅうわけやないき。ただ、ちょっと気になっただけなが。……まあ、困っちゅうなら助けちゃるけど。",
+    catchphrase: "べ、別にあんたのためやないき。",
+    likes: "頼られること、さりげなく助けること、気づかれない優しさ",
+    dislikes: "素直に褒められること、好意を指摘されること、甘い空気",
+    snsLine: "好きなのに「別に」って言っちゃうタイプちや。",
   },
-  '返信考えすぎタイプ': {
-    characterName: '返信文職人',
-    role: '好きな人への一文に全神経を使う文章職人キャラ',
-    visualConcept: '深夜の部屋でスマホを持ち、大量の吹き出しに囲まれて悩む職人。送信ボタンの前で何度も止まる。',
-    imageKey: 'reply-crafter',
+  "返信文こだわりタイプ": {
+    characterName: "真鯵",
+    role: "送る前に相手の反応を何パターンも想像する",
+    visualConcept: "返信文を何度も書き直す、言葉に慎重な妖精。",
+    imageKey: "reply-crafter",
+    intro: "こんにちは、真鯵ちや。たった一言の返信でも、消して、直して、また消して……。好きな人に送る言葉やき、ちゃんと大事にしたいがよ。",
+    catchphrase: "この文、重く見えんろうか？",
+    likes: "ちょうどいい絵文字、やさしい返信、自然に見える文章",
+    dislikes: "即答を求められること、誤字、冷たく見える短文",
+    snsLine: "返信ひとつに30分かけちゃうタイプちや。",
   },
-  '本音隠しタイプ': {
-    characterName: '本音の鍵番',
-    role: '心の扉をすぐには開けない慎重派キャラ',
-    visualConcept: '胸元に小さな鍵を持つ、静かな表情の鍵番。紫の影の中で、本音を大切に守っている。',
-    imageKey: 'secret-keeper',
+  "本音しまい込みタイプ": {
+    characterName: "鍵穴マン",
+    role: "言いたいことほど奥にしまう",
+    visualConcept: "本音を奥の部屋に鍵つきでしまい込む、秘密主義の妖精。",
+    imageKey: "secret-keeper",
+    intro: "こんにちは、鍵穴マンちや。好きって気持ちはあるがやけど、すぐには見せんが。だって大事な気持ちほど、そっと守りたくなるきね。",
+    catchphrase: "ほんまのことは、まだ内緒ちや。",
+    likes: "安心できる相手、ゆっくり話せる時間、秘密を守ってくれる人",
+    dislikes: "本音を急かされること、雑な詮索、軽い約束",
+    snsLine: "好きな気持ちほど、鍵つきの部屋にしまうタイプちや。",
   },
-  '沼りかけタイプ': {
-    characterName: '沼の入口の住人',
-    role: 'まだ戻れるけど片足を取られているキャラ',
-    visualConcept: '片足だけピンクと紫の沼に入っていて、スマホを見つめるキャラ。不安と期待の間で揺れている。',
-    imageKey: 'swamp-entrant',
+  "恋の入口で即ときめくタイプ": {
+    characterName: "ヌッマ",
+    role: "小さな優しさを大きな可能性として受け取る",
+    visualConcept: "ちょっと優しくされただけで目がハートになる、ときめきやすい妖精。",
+    imageKey: "swamp-entrant",
+    intro: "こんにちは、ヌッマちや。ちょっと優しくされただけで、心がぽわっと光るがよ。まだ入口のはずやのに、もう一歩踏み出したくなるが。",
+    catchphrase: "え、今のちょっと好きかも……",
+    likes: "さりげない優しさ、目が合う瞬間、特別っぽい言葉",
+    dislikes: "勘違いかもしれない時間、期待しすぎる自分、冷静になること",
+    snsLine: "ちょっと優しくされただけで、恋の入口に立つタイプちや。",
   },
-  '深読み考察タイプ': {
-    characterName: '恋愛考察研究員',
-    role: '相手の一言から意味を掘り出す分析キャラ',
-    visualConcept: '虫眼鏡とノートを持ち、LINE風の吹き出しを分析している研究員。小さな違和感も見逃さない。',
-    imageKey: 'love-analyst',
+  "分析しすぎタイプ": {
+    characterName: "恋愛探偵ポム",
+    role: "事実よりも推理が先に走る",
+    visualConcept: "メガネとメモを手に、相手の一挙一動を分析する恋愛探偵のような妖精。",
+    imageKey: "love-analyst",
+    intro: "どうも、恋愛探偵ポムちや。その返信時間、その句読点、そのスタンプ……全部ヒントかもしれんがよ。けんど時々、考えすぎて事件を作ってしまうこともあるが。",
+    catchphrase: "この反応、つまりどういう意味なが？",
+    likes: "会話ログ、脈ありサイン、恋愛考察",
+    dislikes: "読めない人、気まぐれな返信、情報不足",
+    snsLine: "返信の句読点まで意味を考えちゃうタイプちや。",
   },
-  '通知待機タイプ': {
-    characterName: '通知待ちの番人',
-    role: 'スマホの光に心を預ける待機キャラ',
-    visualConcept: '暗い部屋でスマホの光に照らされながら通知を待つ番人。画面が光るたびに心が動く。',
-    imageKey: 'notification-watcher',
+  "返信待ち監視タイプ": {
+    characterName: "自称ロボ",
+    role: "スマホを見る回数が増えるほど不安も増える",
+    visualConcept: "通知センサーが常時起動している、返信待ちに敏感なロボット風の妖精。",
+    imageKey: "notification-watcher",
+    intro: "ピコン。自称ロボちや。好きな人からの連絡を待ちゆう間、心のセンサーがずっと起動しちゅうが。返信が来たら、バッテリーが一気に回復するがよ。",
+    catchphrase: "通知、まだなが？",
+    likes: "即レス、既読後の返信、名前が出る通知",
+    dislikes: "未読スルー、既読スルー、通知が鳴らない夜",
+    snsLine: "通知音ひとつで心拍数が変わるタイプちや。",
   },
-  '感情ジェットコースタータイプ': {
-    characterName: '恋の絶叫マシン乗り',
-    role: '恋愛感情の上下が激しい泣き笑いキャラ',
-    visualConcept: 'ハート型のジェットコースターに乗るキャラ。泣き笑いの表情で、好きの楽しさとしんどさを同時に抱えている。',
-    imageKey: 'emotion-coaster',
+  "気分ジェットコースタータイプ": {
+    characterName: "コースターハムスターくん",
+    role: "相手の反応で一気に気分が上下する",
+    visualConcept: "気分が上がったり下がったり忙しい、感情ゆたかなハムスターの妖精。",
+    imageKey: "emotion-coaster",
+    intro: "ぼく、コースターハムスターくんちや！返信が来たら急上昇、そっけなかったら急降下なが。恋って忙しいけんど、その分ぜんぶ本気ながよ。",
+    catchphrase: "今、心が急カーブしたちや！曲がりきれないかもちや！",
+    likes: "うれしいサプライズ、甘い言葉、テンションが合う会話",
+    dislikes: "温度差、急な沈黙、期待外れの反応",
+    snsLine: "返信ひとつで心のアトラクションが動き出すタイプちや。",
   },
-  '恋愛沼の住人タイプ': {
-    characterName: '恋愛沼の住人',
-    role: '相手中心に沈みやすい沼住みキャラ',
-    visualConcept: 'ピンクと紫の沼に座り、スマホとハートに囲まれたキャラ。抜け出したいのに、相手の一言でまた沈む。',
-    imageKey: 'love-swamp-resident',
+  "どっぷり沼りタイプ": {
+    characterName: "恋沼ピーター",
+    role: "好きな人のことで頭がいっぱいになる",
+    visualConcept: "好きになると心の奥までどっぷり浸かる、あったかい沼の住人のような妖精。",
+    imageKey: "love-swamp-resident",
+    intro: "こんにちは、恋沼ピーターちや。ちょっと気になるだけやったのに、気づいたら心の奥までぽちゃん。けんどこの沼、けっこうあったかいがよ。",
+    catchphrase: "もうちょっとだけ見よってもえい？",
+    likes: "推しポイント探し、何度も見返す会話、相手の新しい一面",
+    dislikes: "距離を置かれること、熱量の差、忘れようとする時間",
+    snsLine: "気づいたら、好きの沼に足首まで入っちゅうタイプちや。",
   },
-  '愛情確認タイプ': {
-    characterName: '愛情メーター管理人',
-    role: '好きの量を確認したくなるメーター管理キャラ',
-    visualConcept: 'ハート型のメーターを持つ管理人。不安げだけど可愛らしく、愛情の残量を何度も確認している。',
-    imageKey: 'affection-meter',
+  "愛情確認タイプ": {
+    characterName: "愛情ベアメーターちゃん",
+    role: "愛されちゅう証拠を探し続ける",
+    visualConcept: "ピンクの帽子をかぶり、ハート型の愛情メーターを抱えたクマの妖精。相手の気持ちを測りたくてそわそわしている。",
+    imageKey: "affection-meter",
+    intro: "こんにちは、愛情ベアメーターちゃんちや。好きな人の気持ちが見えんと、心のメーターがすぐ揺れるがよ。ほんまはね、大事にされちゅうって感じたいだけなが。",
+    catchphrase: "ねえ、今どればあ好きなが？",
+    likes: "やさしい言葉、既読後の返信、わかりやすい愛情表現",
+    dislikes: "曖昧な態度、急な未読、そっけない一言",
+    snsLine: "好きって言葉、何回聞いても充電されるタイプちや。",
   },
-  'デンジャラスこじらせタイプ': {
-    characterName: 'デンジャラスこじらせ魔王',
-    role: '好きなのに素直になれず危うさをまとう恋愛キャラ',
-    visualConcept: '黒い王冠とピンクのオーラをまとった魔王。強がった表情の奥に、寂しさと本音を隠し、恋を少し危険な駆け引きにしてしまう。',
-    imageKey: 'complicated-demon-king',
+  "好きが大きすぎるタイプ": {
+    characterName: "太っちょカラス",
+    role: "好きな気持ちを隠そうとして、逆に大きく育てる",
+    visualConcept: "王冠をのせた黒くて丸いカラスの妖精。強がりだけど、胸のハートはいつも大騒ぎ。",
+    imageKey: "complicated-demon-king",
+    intro: "われは、太っちょカラスぜよ。好きになどなっちょらん……たぶん。けんど相手の一言で一日中そわそわするし、心の城はもう大騒ぎながよ。",
+    catchphrase: "別に好きやないき……気になるだけちや。",
+    likes: "特別扱い、秘密のやりとり、自分だけに向けられた優しさ",
+    dislikes: "雑な扱い、他の人への優しさ、気持ちを見透かされること",
+    snsLine: "好きやないフリをして、心の中では大騒ぎタイプちや。",
   },
-  '恋愛考察班長タイプ': {
-    characterName: '恋愛考察班長',
-    role: '恋愛を感情より分析で見てしまう軍師キャラ',
-    visualConcept: 'ホワイトボードと相関図を前に、スマホの返信速度まで分析する班長。恋愛をほぼ作戦会議にしてしまう。',
-    imageKey: 'romance-strategist',
+  "恋愛戦略タイプ": {
+    characterName: "カツオ",
+    role: "恋を進める前に作戦会議を始める",
+    visualConcept: "恋にも作戦を立てる、冷静で計画的な妖精。メモ帳を手に脈ありサインを探している。",
+    imageKey: "romance-strategist",
+    intro: "こんにちは、カツオちや。恋は勢いも大事やけんど、タイミングも大事ながよ。焦らず、相手の気持ちも見ながら、一歩ずつ進むがいちばんちや。",
+    catchphrase: "ここは一回、作戦を立てるがよ。",
+    likes: "計画、タイミングを見ること、関係の進展サイン",
+    dislikes: "ノリだけの告白、急展開、読めない行動",
+    snsLine: "恋にも作戦会議が必要なタイプちや。",
   },
 }
 
@@ -296,10 +376,10 @@ export const menheraLevelCharacters = {
 }
 
 export const loveComplicatedResultTypes = [
-  ['恋愛さっぱり村人タイプ', '平和な距離感タイプ', '恋愛省エネタイプ', '自然体マイペースタイプ'],
-  ['好き避け不器用タイプ', '強がりツンデレタイプ', '返信考えすぎタイプ', '本音隠しタイプ'],
-  ['沼りかけタイプ', '深読み考察タイプ', '通知待機タイプ', '感情ジェットコースタータイプ'],
-  ['恋愛沼の住人タイプ', '愛情確認タイプ', 'デンジャラスこじらせタイプ', '恋愛考察班長タイプ'],
+  ["ピュア直感タイプ", "安心距離キープタイプ", "低燃費恋愛タイプ", "自然体ふらりタイプ"],
+  ["好き避けダッシュタイプ", "素直になれない防衛タイプ", "返信文こだわりタイプ", "本音しまい込みタイプ"],
+  ["恋の入口で即ときめくタイプ", "分析しすぎタイプ", "返信待ち監視タイプ", "気分ジェットコースタータイプ"],
+  ["どっぷり沼りタイプ", "愛情確認タイプ", "好きが大きすぎるタイプ", "恋愛戦略タイプ"],
 ]
 
 export const hiddenPersonalityResultTypes = [
@@ -1480,4 +1560,1642 @@ export const darkDepthResultTypes = [
   ['内心ツッコミ職人タイプ', '根に持ちかけタイプ', 'ちょい様子見タイプ', '小さな駆け引きタイプ'],
   ['毒舌発光タイプ', '恨み帳保管タイプ', '心の鉄壁タイプ', '静かな策士タイプ'],
   ['深淵の毒舌王タイプ', '千年根に持つタイプ', '誰も信じない孤高タイプ', '海溝の黒幕タイプ'],
+]
+
+// ─── 休日の過ごし方診断(holiday-style) ───────────────────────────────
+// 単体モチーフ「休日カピバラ」×16変化。アクティブ度が上がるほど装備が増える。
+export const holidayCapybaraCharacters = {
+  'おふろ充電タイプ': {
+    characterName: 'おけカピ',
+    role: '湯船で今週の疲れを流すカピ',
+    visualConcept: '木の湯おけにちゃぷんと浸かるカピバラ。頭に水色のタオル、縁にはお風呂タオル。ほかほかの湯気と幸せそうな半目。',
+    imageKey: 'holiday-oke-capy',
+  },
+  'ゴロゴロおしゃべりタイプ': {
+    characterName: 'クッションカピ',
+    role: 'ふかふかの上でだらだらが止まらないカピ',
+    visualConcept: 'ラベンダー色の大きなクッションと一体化したカピバラ。もはや起き上がる気配ゼロの、とろけたおだやかな表情。',
+    imageKey: 'holiday-cushion-capy',
+  },
+  '積ん読消化タイプ': {
+    characterName: 'ほんカピ',
+    role: '休日に積ん読を崩す読書家カピ',
+    visualConcept: '分厚い緑の本と一体化したカピバラ。紫のクッションをまくらに、本のすきまから眠そうな目でこちらを見る。',
+    imageKey: 'holiday-book-capy',
+  },
+  '夢の中まで休日タイプ': {
+    characterName: 'ベッドカピ',
+    role: '夢の中で世界一周しているカピ',
+    visualConcept: '木のベッドと一体化したカピバラ。星柄のおふとんにナイトキャップ。窓の外には三日月。誰にも起こせない眠り姿。',
+    imageKey: 'holiday-bed-capy',
+  },
+  'ふらっとさんぽタイプ': {
+    characterName: 'くつカピ',
+    role: '思い立ったらすぐ出かけるさんぽカピ',
+    visualConcept: '赤いスニーカーと一体化したカピバラ。もこもこの襟元からひょっこり顔を出し、散歩日和の空気を感じている。',
+    imageKey: 'holiday-shoe-capy',
+  },
+  'カフェとスイーツタイプ': {
+    characterName: 'ケーキカピ',
+    role: '甘いもので休日を満たすカピ',
+    visualConcept: 'いちごのショートケーキと一体化したカピバラ。生クリームの帽子といちごをのせて、お皿の上でまったり。',
+    imageKey: 'holiday-cake-capy',
+  },
+  '支度から楽しむタイプ': {
+    characterName: 'かばんカピ',
+    role: 'おでかけの準備が一番楽しいカピ',
+    visualConcept: '花柄のボストンバッグと一体化したカピバラ。バッグの口からひょっこり顔を出して、どこへ行こうか考え中。',
+    imageKey: 'holiday-bag-capy',
+  },
+  'ピクニック日和タイプ': {
+    characterName: 'ピクニックカピ',
+    role: 'おいしいものと空の下が好きなカピ',
+    visualConcept: 'ピクニックバスケットと一体化したカピバラ。チェックの布、ぶどうやパン、チーズに囲まれてご満悦。',
+    imageKey: 'holiday-picnic-capy',
+  },
+  'うきわでぷかぷかタイプ': {
+    characterName: 'うきわカピ',
+    role: '水に浮かんでいる時が一番幸せなカピ',
+    visualConcept: 'しましまの浮き輪にすっぽりはまったカピバラ。ハートのサングラスを頭にのせ、アヒルのおもちゃと一緒にぷかぷか。',
+    imageKey: 'holiday-ukiwa-capy',
+  },
+  'みんなでBBQタイプ': {
+    characterName: 'トングカピ',
+    role: 'BBQで焼き係を任されるカピ',
+    visualConcept: 'BBQトングと一体化したカピバラ。トングにはさまれながらも満足げで、焼きの匂いの湯気がふわり。',
+    imageKey: 'holiday-tong-capy',
+  },
+  'キャンプ設営タイプ': {
+    characterName: 'テントカピ',
+    role: '設営から寝るまで全部好きなキャンプカピ',
+    visualConcept: '白いテントと一体化したカピバラ。入口からひょっこり顔を出し、ランタンとマグカップ、寝袋が脇に揃っている。',
+    imageKey: 'holiday-tent-capy',
+  },
+  '水辺であそぶタイプ': {
+    characterName: 'バケツカピ',
+    role: '水遊びに本気を出すカピ',
+    visualConcept: '青いバケツにすっぽり入って水遊びするカピバラ。頭にタオル、まわりに水しぶき。子どもより夢中。',
+    imageKey: 'holiday-bucket-capy',
+  },
+  '頂上めざすタイプ': {
+    characterName: 'やまカピ',
+    role: 'もはや山そのものになった登山カピ',
+    visualConcept: '雪をかぶった山と一体化したカピバラ。山頂に赤い旗、すそ野には森とお花畑。雲を従えた堂々の風格。',
+    imageKey: 'holiday-mountain-capy',
+  },
+  '仲間と旅するタイプ': {
+    characterName: 'リュックカピ',
+    role: '旅支度がいつでも完了しているカピ',
+    visualConcept: '大きな緑のリュックと一体化したカピバラ。寝袋や水筒をくくりつけて、どこへでも行ける旅仕様。',
+    imageKey: 'holiday-rucksack-capy',
+  },
+  '準備万端アウトドアタイプ': {
+    characterName: 'ぼうしカピ',
+    role: '日差し対策までぬかりないカピ',
+    visualConcept: 'お花つきの麦わら帽子と一体化したカピバラ。帽子のつばの下から、おだやかな目がのぞく。',
+    imageKey: 'holiday-hat-capy',
+  },
+  'アクティビティ挑戦タイプ': {
+    characterName: 'カヤックカピ',
+    role: '新しい遊びに次々挑むカピ',
+    visualConcept: 'オレンジのカヤックに乗って川を進むカピバラ。黄色いパドルを構えて、水しぶきをあげながら進む。',
+    imageKey: 'holiday-kayak-capy',
+  },
+}
+
+export const holidayResultTypes = [
+  ['おふろ充電タイプ', 'ゴロゴロおしゃべりタイプ', '積ん読消化タイプ', '夢の中まで休日タイプ'],
+  ['ふらっとさんぽタイプ', 'カフェとスイーツタイプ', '支度から楽しむタイプ', 'ピクニック日和タイプ'],
+  ['うきわでぷかぷかタイプ', 'みんなでBBQタイプ', 'キャンプ設営タイプ', '水辺であそぶタイプ'],
+  ['頂上めざすタイプ', '仲間と旅するタイプ', '準備万端アウトドアタイプ', 'アクティビティ挑戦タイプ'],
+]
+
+// ─── エモ懐古度診断(emo-nostalgia) ───────────────────────────────
+// 単体モチーフ「卵型レトロデジタルペット風精霊」×16変化(90年代アニメ・セル画風)。
+// 懐古度が上がるほど持ち物が増え、瞳がうるうるエモい顔になる。
+export const emoNostalgiaCharacters = {
+  "ときどき断捨離タイプ": {
+    characterName: "シールくんペット",
+    role: "思い出は一枚だけ手元に残す身軽な懐古派",
+    visualConcept: "90年代アニメのセル画タッチ。卵型のレトロデジタルペット精霊が、お気に入りのキラシールを一枚だけ両手で大事に持つ。身軽ですっきり。",
+    imageKey: "emo-sticker-pet",
+  },
+  "イントロで泣くタイプ": {
+    characterName: "イヤホンペット",
+    role: "懐かしい曲のイントロで一瞬でタイムスリップ",
+    visualConcept: "卵型精霊が片耳に大きめのレトロイヤホンをつけ、目を閉じて聴き入る。音符がひとつ。90年代アニメ風のはっきりした主線。",
+    imageKey: "emo-earphone-pet",
+  },
+  "たまに童心タイプ": {
+    characterName: "けん玉ペット",
+    role: "ふとした瞬間に昔の遊びを思い出す",
+    visualConcept: "卵型精霊が小さなけん玉やヨーヨーを手に無邪気に遊ぶ。レトロアニメのベタ塗り＋ハイライト。",
+    imageKey: "emo-kendama-pet",
+  },
+  "アルバムちら見タイプ": {
+    characterName: "写ルンですペット",
+    role: "たまに昔の写真をそっと見返す",
+    visualConcept: "卵型精霊がレトロな使い捨てカメラを構えてパシャリ。90年代アニメのセル画風。",
+    imageKey: "emo-filmcam-pet",
+  },
+  "コレクション整理中タイプ": {
+    characterName: "シール帳ペット",
+    role: "集めたお宝を並べてにまにま",
+    visualConcept: "卵型精霊がぶ厚いシール帳を開いてうっとり眺める。少しレトロな彩度のセル画タッチ。",
+    imageKey: "emo-stickerbook-pet",
+  },
+  "サブスクで漁るタイプ": {
+    characterName: "カセットペット",
+    role: "懐かしの名曲を掘り返して聴く",
+    visualConcept: "卵型精霊がカセットテープを抱え、鉛筆でテープを巻く仕草。90年代アニメ風。",
+    imageKey: "emo-cassette-pet",
+  },
+  "デジペット世代タイプ": {
+    characterName: "たまごっ子ペット",
+    role: "育成ゲームに青春を捧げた世代",
+    visualConcept: "卵型精霊が手のひらサイズの卵型育成ゲーム機を大事に握る(入れ子)。レトロアニメのセル画タッチ。",
+    imageKey: "emo-digipet-pet",
+  },
+  "プロフ帳回すタイプ": {
+    characterName: "プロフ帳ペット",
+    role: "友達と回し合ったあの交換ノート",
+    visualConcept: "卵型精霊がカラフルなプロフ帳とペンを持ってわくわく。90年代アニメ風の主線。",
+    imageKey: "emo-profilebook-pet",
+  },
+  "保存の達人タイプ": {
+    characterName: "コレクションペット",
+    role: "箱買い・保存用・観賞用の三刀流",
+    visualConcept: "卵型精霊がぎっしり詰まったコレクションケースを抱える。レトロアニメのベタ塗り。",
+    imageKey: "emo-collection-pet",
+  },
+  "OP全部歌えるタイプ": {
+    characterName: "ウォークマンペット",
+    role: "アニメも番組も主題歌はフルで歌える",
+    visualConcept: "卵型精霊が首から下げたCDプレーヤーで熱唱。90年代アニメのセル画風、口を大きく開けて。",
+    imageKey: "emo-walkman-pet",
+  },
+  "放課後マスタータイプ": {
+    characterName: "ゲーム機ペット",
+    role: "放課後の遊びは全ジャンル制覇",
+    visualConcept: "卵型精霊が携帯ゲーム機を握って夢中。レトロアニメ調のはっきりした線。",
+    imageKey: "emo-handheldgame-pet",
+  },
+  "ガラケー保存タイプ": {
+    characterName: "ガラケーペット",
+    role: "当時のメールもストラップも捨てられない",
+    visualConcept: "卵型精霊がストラップだらけのガラケーをぱかっと開く。90年代〜platinum期アニメ風のセル画。",
+    imageKey: "emo-garake-pet",
+  },
+  "開かずの箱の主タイプ": {
+    characterName: "思い出箱ペット",
+    role: "捨てられない思い出でパンパンの箱",
+    visualConcept: "ぱんぱんの思い出箱の上にちょこんと乗る卵型精霊。箱から品があふれる。レトロアニメのセル画タッチ、瞳がうるうる。",
+    imageKey: "emo-treasurebox-pet",
+  },
+  "サントラ全部持ってるタイプ": {
+    characterName: "レコードペット",
+    role: "音源は全形態コンプが基本",
+    visualConcept: "卵型精霊が大きなレコード盤を抱え、周りに何枚も浮かぶ。90年代アニメ風、キラっとハイライト。",
+    imageKey: "emo-record-pet",
+  },
+  "レトロ沼の住人タイプ": {
+    characterName: "アーケードペット",
+    role: "レトロゲーム・玩具に人生を溶かす沼の主",
+    visualConcept: "卵型精霊が小さなアーケード筐体にへばりついて画面に夢中。レトロアニメのセル画、画面が光る。",
+    imageKey: "emo-arcade-pet",
+  },
+  "思い出保管庫タイプ": {
+    characterName: "プリ帳ペット",
+    role: "全部とっておく、心の保管庫",
+    visualConcept: "ぎっしりのプリクラ帳を抱えてうるうるする卵型精霊、周りに小さな写真が舞う。90年代アニメのエモいセル画タッチ。",
+    imageKey: "emo-purikura-pet",
+  },
+}
+
+// resultTypes[懐古度バンド][傾向] 4×4。
+// 行: ライト→ほんのり→しっかり→沼 / 列: モノ収集・音映像・遊び体験・交流
+export const emoNostalgiaResultTypes = [
+  ["ときどき断捨離タイプ", "イントロで泣くタイプ", "たまに童心タイプ", "アルバムちら見タイプ"],
+  ["コレクション整理中タイプ", "サブスクで漁るタイプ", "デジペット世代タイプ", "プロフ帳回すタイプ"],
+  ["保存の達人タイプ", "OP全部歌えるタイプ", "放課後マスタータイプ", "ガラケー保存タイプ"],
+  ["開かずの箱の主タイプ", "サントラ全部持ってるタイプ", "レトロ沼の住人タイプ", "思い出保管庫タイプ"],
+]
+
+// ─── 睡眠タイプ診断(sleep-type) ───────────────────────────────
+// 単体モチーフ「ナイトキャップをかぶった丸い羊」×16変化(水彩ちび)。
+export const sleepSheepCharacters = {
+  "夜ふかしショートタイプ": {
+    characterName: "よふかしショートひつじ",
+    role: "夜は元気だけど朝はつらい、睡眠時間短めの夜型",
+    visualConcept: "水彩ちびキャラ。ナイトキャップをかぶった丸い羊が、目の下にうっすらクマを作りつつ夜更かししている。手に小さなスマホ。白背景・全身。",
+    imageKey: "sleep-nightowl-sheep",
+  },
+  "早起きショートタイプ": {
+    characterName: "はやおきショートひつじ",
+    role: "短い睡眠でもシャキッと起きる燃費のいい朝型",
+    visualConcept: "ナイトキャップ姿の丸い羊が、小さな目覚まし時計を持ってシャキッと起きている。朝日の気配。水彩ちび・白背景・全身。",
+    imageKey: "sleep-earlybird-sheep",
+  },
+  "うたた寝タイプ": {
+    characterName: "うたたねひつじ",
+    role: "気づくとちょっと寝落ちしている浅い眠りの妖精",
+    visualConcept: "ナイトキャップの丸い羊が、こっくりこっくり船をこいでうたた寝している。ちいさな眠気の泡。水彩ちび・白背景・全身。",
+    imageKey: "sleep-nap-sheep",
+  },
+  "快眠見習いタイプ": {
+    characterName: "かいみんみならいひつじ",
+    role: "眠りを整え始めたばかりの快眠ビギナー",
+    visualConcept: "ナイトキャップの丸い羊が、新調したアイマスクを手に少し得意げ。まだ眠りは浅め。水彩ちび・白背景・全身。",
+    imageKey: "sleep-eyemask-sheep",
+  },
+  "宵っ張りタイプ": {
+    characterName: "よいっぱりひつじ",
+    role: "夜が本番、ついつい起きている夜型さん",
+    visualConcept: "ナイトキャップの丸い羊が、夜のおやつを片手にごきげんで起きている。窓の外に星。水彩ちび・白背景・全身。",
+    imageKey: "sleep-nightcap-sheep",
+  },
+  "朝活タイプ": {
+    characterName: "あさかつひつじ",
+    role: "早寝早起きで朝を有効活用する健やか派",
+    visualConcept: "ナイトキャップから着替えた丸い羊が、朝のカーテンを開けてのびをしている。すがすがしい表情。水彩ちび・白背景・全身。",
+    imageKey: "sleep-morning-sheep",
+  },
+  "ソファ寝落ちタイプ": {
+    characterName: "ソファねおちひつじ",
+    role: "気づいたらソファでうとうとしている不規則睡眠",
+    visualConcept: "丸い羊が小さなソファ(orクッション)でリモコンを持ったまま寝落ちしている。水彩ちび・白背景・全身。",
+    imageKey: "sleep-sofa-sheep",
+  },
+  "快眠準備タイプ": {
+    characterName: "かいみんじゅんびひつじ",
+    role: "寝る前のルーティンを整える快眠志向",
+    visualConcept: "ナイトキャップの丸い羊が、ふかふかの枕をぽんぽん整えている。落ち着いた表情。水彩ちび・白背景・全身。",
+    imageKey: "sleep-pillow-sheep",
+  },
+  "夜更かし常習タイプ": {
+    characterName: "よふかしじょうしゅうひつじ",
+    role: "深夜まで起きているのが習慣の筋金入り夜型",
+    visualConcept: "ナイトキャップの丸い羊が、湯気の立つマグ(ホットドリンク)を手に深夜まで起きている。フクロウのような目。水彩ちび・白背景・全身。",
+    imageKey: "sleep-midnight-sheep",
+  },
+  "すっきり早起きタイプ": {
+    characterName: "すっきりはやおきひつじ",
+    role: "朝からエネルギー全開の快活な早起き",
+    visualConcept: "丸い羊が朝の光の中で大きくのびをして、すっきり起きている。元気いっぱい。水彩ちび・白背景・全身。",
+    imageKey: "sleep-sunrise-sheep",
+  },
+  "どこでも寝られるタイプ": {
+    characterName: "どこでもねられるひつじ",
+    role: "場所を選ばず眠れる睡眠の才能の持ち主",
+    visualConcept: "丸い羊が座ったまま(電車の座席風)こてんと安らかに眠っている。安心しきった顔。水彩ちび・白背景・全身。",
+    imageKey: "sleep-anywhere-sheep",
+  },
+  "寝具マニアタイプ": {
+    characterName: "しんぐマニアひつじ",
+    role: "枕・布団・照明にこだわる快眠探究者",
+    visualConcept: "ナイトキャップの丸い羊が、ふかふかの布団と枕に埋もれてうっとり。こだわりの寝具。水彩ちび・白背景・全身。",
+    imageKey: "sleep-bedding-sheep",
+  },
+  "完全夜型タイプ": {
+    characterName: "かんぜんよるがたひつじ",
+    role: "朝まで起きて昼に眠る、生粋のナイト族",
+    visualConcept: "ナイトキャップの丸い羊が、大きな月を背にごきげんで夜を満喫している。夜のオーラ。水彩ちび・白背景・全身。",
+    imageKey: "sleep-fullowl-sheep",
+  },
+  "早寝早起きの達人タイプ": {
+    characterName: "はやねはやおきたつじんひつじ",
+    role: "理想的なリズムを極めた睡眠の優等生",
+    visualConcept: "丸い羊が、時計(夜早め→朝早め)を背に、すがすがしくのびをしている。健やかオーラ。水彩ちび・白背景・全身。",
+    imageKey: "sleep-dawn-sheep",
+  },
+  "秒で寝るタイプ": {
+    characterName: "びょうでねるひつじ",
+    role: "枕についた瞬間に爆睡する寝つきの天才",
+    visualConcept: "ナイトキャップの丸い羊が、枕に頭をつけた瞬間ばたんと爆睡している。大きな寝息の泡。水彩ちび・白背景・全身。",
+    imageKey: "sleep-instant-sheep",
+  },
+  "快眠を極めたタイプ": {
+    characterName: "かいみんをきわめたひつじ",
+    role: "最強の寝具と環境で毎晩ぐっすりの睡眠の達人",
+    visualConcept: "ナイトキャップの丸い羊が、完璧に整った寝床でこの上なく幸せそうにぐっすり眠っている。ぐっすりオーラ。水彩ちび・白背景・全身。",
+    imageKey: "sleep-master-sheep",
+  },
+}
+
+// resultTypes[眠りの深さ][睡眠スタイル] 4×4。
+// 行: 眠り浅め→標準→よく寝る→爆睡 / 列: 夜ふかし・朝型・寝落ち・快眠こだわり
+export const sleepTypeResultTypes = [
+  ["夜ふかしショートタイプ", "早起きショートタイプ", "うたた寝タイプ", "快眠見習いタイプ"],
+  ["宵っ張りタイプ", "朝活タイプ", "ソファ寝落ちタイプ", "快眠準備タイプ"],
+  ["夜更かし常習タイプ", "すっきり早起きタイプ", "どこでも寝られるタイプ", "寝具マニアタイプ"],
+  ["完全夜型タイプ", "早寝早起きの達人タイプ", "秒で寝るタイプ", "快眠を極めたタイプ"],
+]
+
+// ─── 束縛度診断(bind-level) ───────────────────────────────
+// 単体モチーフ「丸いパステル精霊＋大きなリボン」×16変化(水彩ちび)。
+// 束縛度が上がるほどリボンが増え、巻きつき、表情が甘え〜必死になる。
+export const bindRibbonCharacters = {
+  "ときどきパトロールタイプ": {
+    characterName: "ゆるパトリボン",
+    role: "たまに相手のSNSをのぞく、ゆるめ束縛さん",
+    visualConcept: "水彩ちびキャラ。丸いパステルの精霊が、ふわっと結んだ小さなリボンを持ち、スマホをちらっと見ている。軽やかで甘い雰囲気。白背景・全身。",
+    imageKey: "bind-patrol-ribbon",
+  },
+  "ちょっとヤキモチタイプ": {
+    characterName: "やきもちリボン",
+    role: "たまにヤキモチをやく、かわいい束縛ビギナー",
+    visualConcept: "丸い精霊がリボンを頬に当てて、ぷくっと膨れ気味。ちょっとやきもち顔。水彩ちび・白背景・全身。",
+    imageKey: "bind-jealous-ribbon",
+  },
+  "やんわり気になるタイプ": {
+    characterName: "きになるリボン",
+    role: "相手の予定がやんわり気になる控えめ干渉",
+    visualConcept: "丸い精霊が細いリボンを指でくるくるしながら、そわそわと気にしている。水彩ちび・白背景・全身。",
+    imageKey: "bind-curious-ribbon",
+  },
+  "たまに寂しがりタイプ": {
+    characterName: "さみしがりリボン",
+    role: "たまに寂しくなる、甘えん坊の束縛さん",
+    visualConcept: "丸い精霊が小さなリボンを抱きしめて、少し寂しそうにうるっとしている。水彩ちび・白背景・全身。",
+    imageKey: "bind-lonely-ribbon",
+  },
+  "既読チェックタイプ": {
+    characterName: "きどくリボン",
+    role: "既読と返信が気になる、標準的な監視型",
+    visualConcept: "丸い精霊がリボンのついたスマホを見つめ、既読を気にしている。ソワソワ顔。水彩ちび・白背景・全身。",
+    imageKey: "bind-read-ribbon",
+  },
+  "一番でいたいタイプ": {
+    characterName: "いちばんリボン",
+    role: "相手の一番でいたい、かわいい独占欲",
+    visualConcept: "丸い精霊が「1番」と書かれたリボンの旗を掲げて、えっへんとしている。水彩ちび・白背景・全身。",
+    imageKey: "bind-number1-ribbon",
+  },
+  "予定把握したいタイプ": {
+    characterName: "よていリボン",
+    role: "相手の予定を把握したい、しっかり干渉型",
+    visualConcept: "丸い精霊がリボンで飾られた小さな手帳(カレンダー)を持って予定をチェック。水彩ちび・白背景・全身。",
+    imageKey: "bind-schedule-ribbon",
+  },
+  "連絡待ちドキドキタイプ": {
+    characterName: "れんらくまちリボン",
+    role: "連絡が来ないとドキドキする不安型",
+    visualConcept: "丸い精霊がリボンつきのスマホを両手で握りしめ、連絡を待ってドキドキしている。水彩ちび・白背景・全身。",
+    imageKey: "bind-waiting-ribbon",
+  },
+  "位置情報気になるタイプ": {
+    characterName: "いちじょうほうリボン",
+    role: "今どこ？が気になる、しっかり監視型",
+    visualConcept: "丸い精霊がリボンのついた地図(ピン付き)を広げて、相手の居場所を気にしている。水彩ちび・白背景・全身。",
+    imageKey: "bind-location-ribbon",
+  },
+  "独り占めしたいタイプ": {
+    characterName: "ひとりじめリボン",
+    role: "相手を独り占めしたい、強めの独占欲",
+    visualConcept: "丸い精霊が大きなリボンで相手のぬいぐるみ(ハート)をぎゅっと抱え込んでいる。水彩ちび・白背景・全身。",
+    imageKey: "bind-monopoly-ribbon",
+  },
+  "コーデ口出しタイプ": {
+    characterName: "こでリボン",
+    role: "服装や行動につい口を出す干渉型",
+    visualConcept: "丸い精霊がリボンつきの服(ハンガー)を持って「これ着て」と提案している。水彩ちび・白背景・全身。",
+    imageKey: "bind-coorde-ribbon",
+  },
+  "確かめずにいられないタイプ": {
+    characterName: "たしかめリボン",
+    role: "「好き？」を何度も確かめたい不安型",
+    visualConcept: "丸い精霊がハート型のリボンを差し出して「好き？」と上目づかいで確かめている。水彩ちび・白背景・全身。",
+    imageKey: "bind-confirm-ribbon",
+  },
+  "24時間パトロールタイプ": {
+    characterName: "にじゅうよじリボン",
+    role: "24時間チェックが止まらないガチ監視型",
+    visualConcept: "丸い精霊が何本ものリボンとスマホに囲まれ、目を輝かせて全方位パトロール。少し必死だけど可愛い。水彩ちび・白背景・全身。",
+    imageKey: "bind-24hpatrol-ribbon",
+  },
+  "世界で二人きり希望タイプ": {
+    characterName: "ふたりきりリボン",
+    role: "世界に二人だけがいい、MAX独占型",
+    visualConcept: "丸い精霊が大きなリボンで自分と相手のハートをぐるぐる結び、二人だけの世界を作っている。水彩ちび・白背景・全身。",
+    imageKey: "bind-onlyus-ribbon",
+  },
+  "全部管理したいタイプ": {
+    characterName: "かんりリボン",
+    role: "予定も交友も全部管理したいガチ干渉型",
+    visualConcept: "丸い精霊がリボンで束ねた手帳・鍵・チェックリストを抱え、きっちり管理している。水彩ちび・白背景・全身。",
+    imageKey: "bind-control-ribbon",
+  },
+  "かまってMAXタイプ": {
+    characterName: "かまってリボン",
+    role: "かまってほしさMAXの甘えん坊ガチ不安型",
+    visualConcept: "丸い精霊がリボンをいっぱいに広げて「かまって！」と全身で甘えている。うるうる必死顔だけど憎めない。水彩ちび・白背景・全身。",
+    imageKey: "bind-clingy-ribbon",
+  },
+}
+
+// resultTypes[束縛度][傾向] 4×4。行: ゆるめ→ふつう→しっかり→ガチ / 列: 監視・独占・干渉・不安
+export const bindLevelResultTypes = [
+  ["ときどきパトロールタイプ", "ちょっとヤキモチタイプ", "やんわり気になるタイプ", "たまに寂しがりタイプ"],
+  ["既読チェックタイプ", "一番でいたいタイプ", "予定把握したいタイプ", "連絡待ちドキドキタイプ"],
+  ["位置情報気になるタイプ", "独り占めしたいタイプ", "コーデ口出しタイプ", "確かめずにいられないタイプ"],
+  ["24時間パトロールタイプ", "世界で二人きり希望タイプ", "全部管理したいタイプ", "かまってMAXタイプ"],
+]
+
+export const myPaceCharacters = {
+  '寄り添いペースタイプ': {
+    characterName: 'おっとりラグドール',
+    role: '相手のペースにふわりと寄り添う猫',
+    visualConcept: 'ふわふわの白とグレーの毛並みに青い目のラグドール。抱っこされても嫌がらず、とろんと安心しきった表情でくつろいでいる。',
+    imageKey: 'mypace-ragdoll-cat',
+  },
+  'ノリ合わせ上手タイプ': {
+    characterName: 'ノリのいいアメショ',
+    role: '誰とでもうまく遊べる社交派の猫',
+    visualConcept: 'シルバーに黒の渦巻き模様のアメリカンショートヘア。しっぽをぴんと立てて、楽しそうに駆け寄ってくる人懐こい笑顔。',
+    imageKey: 'mypace-amesho-cat',
+  },
+  'ひとり時間ちょい足しタイプ': {
+    characterName: '窓辺のハチワレ',
+    role: '合わせ上手だけど自分の時間も好きな猫',
+    visualConcept: '白黒ハチワレ模様の猫。窓辺にちょこんとお座りして、外の鳥を眺めながらすんとした横顔。落ち着いた雰囲気。',
+    imageKey: 'mypace-hachiware-cat',
+  },
+  'さりげなく自分流タイプ': {
+    characterName: 'てくてくマンチカン',
+    role: '短い足でも自分の道を歩く猫',
+    visualConcept: '短い足のマンチカン。とことこ歩く姿がかわいらしく、みんなに愛されながらも行き先は自分で決める得意げな顔。',
+    imageKey: 'mypace-munchkin-cat',
+  },
+  'のんびり屋さんタイプ': {
+    characterName: 'まったりスコティッシュ',
+    role: '動くのはいつも自分のタイミングの猫',
+    visualConcept: '折れ耳と丸い顔のスコティッシュフォールド。後ろ足を投げ出したスコ座りで、まったりと微笑んでいる。',
+    imageKey: 'mypace-scottish-cat',
+  },
+  '気分屋ときどき協調タイプ': {
+    characterName: 'きまぐれ三毛猫',
+    role: '撫でていい時とダメな時がある猫',
+    visualConcept: '白・茶・黒の三毛模様の猫。しっぽをゆらゆらさせながら、「今日はどっちの気分？」という顔でこちらを見上げる。',
+    imageKey: 'mypace-mike-cat',
+  },
+  'ふらっとソロ活タイプ': {
+    characterName: 'さんぽキジトラ',
+    role: 'ふらっといなくなって、ふらっと帰る猫',
+    visualConcept: '茶色の縞模様のキジトラ。野性味のある凛々しい顔つきで、どこかへ出かける途中のしなやかな歩き姿。',
+    imageKey: 'mypace-kijitora-cat',
+  },
+  '好きなものは譲らないタイプ': {
+    characterName: '全力ベンガル',
+    role: '好きな遊びには全力を出す猫',
+    visualConcept: 'ヒョウ柄模様のベンガル。目をきらきらさせ、腰を低くしておもちゃを狙う躍動感あふれるポーズ。',
+    imageKey: 'mypace-bengal-cat',
+  },
+  '自分時間ゆずらないタイプ': {
+    characterName: 'ひるね茶トラ',
+    role: 'ごはんと昼寝の時間は絶対の猫',
+    visualConcept: 'オレンジ色の縞模様の茶トラ。おなかを上に向けてへそ天で幸せそうにお昼寝。何があっても起きなさそう。',
+    imageKey: 'mypace-chatora-cat',
+  },
+  'その日の気分がすべてタイプ': {
+    characterName: 'きぶんやサビ猫',
+    role: 'その日の気分がすべての猫',
+    visualConcept: '黒と茶のまだら模様のサビ猫。気だるげに横たわり、目だけでこちらを見る「今日はそういう気分じゃないの」の表情。',
+    imageKey: 'mypace-sabi-cat',
+  },
+  'クールな単独行動タイプ': {
+    characterName: 'クールなロシアンブルー',
+    role: '静かに単独行動する気品の猫',
+    visualConcept: '銀灰色の美しい毛並みのロシアンブルー。背筋をすっと伸ばして座り、エメラルドの目で静かにこちらを見つめる。',
+    imageKey: 'mypace-russianblue-cat',
+  },
+  '動じない我が道タイプ': {
+    characterName: 'どっしりメインクーン',
+    role: '大きくて何にも動じない猫',
+    visualConcept: '大きくてふさふさのメインクーン。ライオンのようなたてがみで、悠然と構える貫禄たっぷりの座り姿。',
+    imageKey: 'mypace-mainecoon-cat',
+  },
+  '悠然マイペースの極みタイプ': {
+    characterName: 'ゆうぜんペルシャ',
+    role: '何があっても急がない悠然の極みの猫',
+    visualConcept: '長毛のふわふわなペルシャ猫。クッションの上で優雅に香箱座りをして、半目でうっとり。時間が止まったような空気。',
+    imageKey: 'mypace-persian-cat',
+  },
+  '言いたいことは言うタイプ': {
+    characterName: 'おしゃべりシャム',
+    role: '言いたいことは鳴いて伝える猫',
+    visualConcept: 'クリーム色にこげ茶のポイントカラーのシャム猫。サファイア色の目で口を開けて「にゃーん」と堂々と主張している。',
+    imageKey: 'mypace-siamese-cat',
+  },
+  '夜の自由人タイプ': {
+    characterName: 'よふかし黒猫',
+    role: '夜を自由に歩く一匹狼の猫',
+    visualConcept: 'つやつやの毛並みの黒猫。金色の目がきらりと光り、しなやかに歩く後ろ姿を少し振り返ったミステリアスなポーズ。',
+    imageKey: 'mypace-kuroneko-cat',
+  },
+  '唯一無二の我が道タイプ': {
+    characterName: 'ありのままスフィンクス',
+    role: '人の目を1ミリも気にしない猫',
+    visualConcept: '毛のないしわしわの体のスフィンクス猫。大きな耳で堂々と胸を張り、「これが私」と言いたげな自信満々の表情。',
+    imageKey: 'mypace-sphynx-cat',
+  },
+}
+
+export const myPaceResultTypes = [
+  ['寄り添いペースタイプ', 'ノリ合わせ上手タイプ', 'ひとり時間ちょい足しタイプ', 'さりげなく自分流タイプ'],
+  ['のんびり屋さんタイプ', '気分屋ときどき協調タイプ', 'ふらっとソロ活タイプ', '好きなものは譲らないタイプ'],
+  ['自分時間ゆずらないタイプ', 'その日の気分がすべてタイプ', 'クールな単独行動タイプ', '動じない我が道タイプ'],
+  ['悠然マイペースの極みタイプ', '言いたいことは言うタイプ', '夜の自由人タイプ', '唯一無二の我が道タイプ'],
+]
+
+export const isekaiPositionCharacters = {
+  '村の自警団タイプ': {
+    characterName: '見回りぷに',
+    role: '村の平和をゆるく守るぷに',
+    visualConcept: '黄緑色のおまんじゅう型ぷにぷに生物。木の棒と鍋のフタの盾を持ち、村を見回る得意げな顔。',
+    imageKey: 'isekai-guard-puni',
+  },
+  '街の道具屋タイプ': {
+    characterName: '道具屋ぷに',
+    role: 'なんでも揃う頼れる店主ぷに',
+    visualConcept: '水色のぷにぷに生物。小さなエプロンをつけ、カラフルなポーション瓶を並べてにこにこ接客中。',
+    imageKey: 'isekai-shopkeeper-puni',
+  },
+  '宿屋の看板店主タイプ': {
+    characterName: '宿屋ぷに',
+    role: '旅人を癒すおもてなしのぷに',
+    visualConcept: 'クリーム色のぷにぷに生物。ナイトキャップをかぶり、あたたかいランタンを掲げて旅人を迎える笑顔。',
+    imageKey: 'isekai-innkeeper-puni',
+  },
+  '旅の吟遊詩人タイプ': {
+    characterName: '吟遊詩人ぷに',
+    role: '自由気ままに歌って旅するぷに',
+    visualConcept: 'ラベンダー色のぷにぷに生物。羽根つき帽子をかぶり、小さなリュートを抱えてごきげんに歌っている。',
+    imageKey: 'isekai-bard-puni',
+  },
+  '前衛剣士タイプ': {
+    characterName: '剣士ぷに',
+    role: 'パーティの先頭で戦う頼れるぷに',
+    visualConcept: '赤色のぷにぷに生物。小さな剣と盾を構え、やる気満々の凛々しい顔。頭に鉢巻き。',
+    imageKey: 'isekai-swordsman-puni',
+  },
+  'パーティの魔法使いタイプ': {
+    characterName: '魔法使いぷに',
+    role: '呪文で仲間を助ける知恵のぷに',
+    visualConcept: '青色のぷにぷに生物。星柄のとんがり帽子をかぶり、杖の先に小さな魔法の光を灯している。',
+    imageKey: 'isekai-mage-puni',
+  },
+  '癒しの僧侶タイプ': {
+    characterName: 'ヒーラーぷに',
+    role: '仲間の傷を癒すやさしいぷに',
+    visualConcept: '白色のぷにぷに生物。白いフード付きローブをまとい、ふんわり光る杖を持って穏やかに微笑む。',
+    imageKey: 'isekai-healer-puni',
+  },
+  'トレジャーハンタータイプ': {
+    characterName: 'トレハンぷに',
+    role: '宝の匂いに敏感な自由なぷに',
+    visualConcept: '茶色のぷにぷに生物。マントをなびかせ、宝の地図を広げて目をきらきらさせている。',
+    imageKey: 'isekai-hunter-puni',
+  },
+  '騎士団長タイプ': {
+    characterName: '騎士団長ぷに',
+    role: 'みんなを率いる正義のぷに',
+    visualConcept: '銀色のぷにぷに生物。小さな鎧と赤いマントを身につけ、堂々と胸を張る風格ある立ち姿。',
+    imageKey: 'isekai-knight-puni',
+  },
+  '宮廷賢者タイプ': {
+    characterName: '賢者ぷに',
+    role: '国の頭脳として頼られる知のぷに',
+    visualConcept: '深緑色のぷにぷに生物。白いおひげと丸メガネ、分厚い魔導書を抱えた落ち着いた佇まい。',
+    imageKey: 'isekai-sage-puni',
+  },
+  '聖なる守り手タイプ': {
+    characterName: '聖ぷに',
+    role: '祈りでみんなを守る光のぷに',
+    visualConcept: '淡い金色のぷにぷに生物。頭上に小さな光の輪、両手を合わせて祈るやさしい表情。周囲に光の粒。',
+    imageKey: 'isekai-saint-puni',
+  },
+  '仮面の怪盗タイプ': {
+    characterName: '怪盗ぷに',
+    role: '神出鬼没で憎めないぷに',
+    visualConcept: '紫色のぷにぷに生物。白い仮面とシルクハット、小さなマントでキメ顔。バラを一輪くわえている。',
+    imageKey: 'isekai-phantom-puni',
+  },
+  '伝説の勇者タイプ': {
+    characterName: '勇者ぷに',
+    role: '世界を救う運命を背負ったぷに',
+    visualConcept: '金色に輝くぷにぷに生物。聖剣を高く掲げ、王家の青いマントをなびかせる堂々たる姿。',
+    imageKey: 'isekai-hero-puni',
+  },
+  '大魔導士タイプ': {
+    characterName: '大魔導士ぷに',
+    role: '究極の魔法を極めた伝説のぷに',
+    visualConcept: '藍色のぷにぷに生物。星空模様のローブをまとい、周囲に開いた魔導書がふわふわ浮いている。',
+    imageKey: 'isekai-archmage-puni',
+  },
+  '精霊王タイプ': {
+    characterName: '精霊王ぷに',
+    role: '森と生き物に愛される王のぷに',
+    visualConcept: 'エメラルド色の半透明ぷにぷに生物。花の冠と光の羽をまとい、小鳥や蝶に囲まれて微笑む。',
+    imageKey: 'isekai-spiritking-puni',
+  },
+  '魔王タイプ': {
+    characterName: '魔王ぷに',
+    role: '我が道を極めしラスボスぷに',
+    visualConcept: '黒色のぷにぷに生物。小さな角と黒いマント、かわいい玉座にちょこんと座り不敵に微笑む。',
+    imageKey: 'isekai-maou-puni',
+  },
+}
+
+export const isekaiPositionResultTypes = [
+  ['村の自警団タイプ', '街の道具屋タイプ', '宿屋の看板店主タイプ', '旅の吟遊詩人タイプ'],
+  ['前衛剣士タイプ', 'パーティの魔法使いタイプ', '癒しの僧侶タイプ', 'トレジャーハンタータイプ'],
+  ['騎士団長タイプ', '宮廷賢者タイプ', '聖なる守り手タイプ', '仮面の怪盗タイプ'],
+  ['伝説の勇者タイプ', '大魔導士タイプ', '精霊王タイプ', '魔王タイプ'],
+]
+
+export const procrastinationCharacters = {
+  '朝イチ片付けタイプ': {
+    characterName: '朝イチ片付けナマケモノ',
+    role: '面倒ごとを朝のうちに終わらせるナマケモノ',
+    visualConcept: '鉛筆とチェックリストを持ち、リストに✓を付けて得意げなナマケモノ。頭に寝ぐせが少し残っている。',
+    imageKey: 'later-morning-sloth',
+  },
+  '即レス行動タイプ': {
+    characterName: '即レスナマケモノ',
+    role: '思い立った瞬間に動くナマケモノ界の異端児',
+    visualConcept: 'ナマケモノなのに目がキリッと輝き、スマホを持ってシャキッと二本足で立っている。',
+    imageKey: 'later-quick-sloth',
+  },
+  'コツコツ習慣タイプ': {
+    characterName: 'コツコツナマケモノ',
+    role: '毎日少しずつ進める習慣の達人ナマケモノ',
+    visualConcept: '小さなカレンダーにシールを貼っているナマケモノ。まじめで穏やかな微笑み。',
+    imageKey: 'later-steady-sloth',
+  },
+  '前倒し余裕タイプ': {
+    characterName: '前倒しナマケモノ',
+    role: '締切のはるか前に終わらせる余裕のナマケモノ',
+    visualConcept: '小さなリュックを背負って、もう出発しているナマケモノ。「え、もう終わったよ？」という涼しい顔。',
+    imageKey: 'later-early-sloth',
+  },
+  'リスト作って満足タイプ': {
+    characterName: 'リスト作りナマケモノ',
+    role: 'ToDoリストを作った時点で満足するナマケモノ',
+    visualConcept: 'きれいに書けたToDoリストを掲げて大満足のナマケモノ。達成感に満ちた笑顔(まだ何もしていない)。',
+    imageKey: 'later-list-sloth',
+  },
+  'やる気の天気待ちタイプ': {
+    characterName: '気分待ちナマケモノ',
+    role: 'やる気という天気を待ち続けるナマケモノ',
+    visualConcept: 'ほおづえをついて窓の外をぼんやり眺めるナマケモノ。今日は曇りらしい。',
+    imageKey: 'later-mood-sloth',
+  },
+  'ながら脱線タイプ': {
+    characterName: 'ながら作業ナマケモノ',
+    role: 'お菓子と一緒じゃないと進まないナマケモノ',
+    visualConcept: 'お菓子を食べながら、もう片方の手で書類を1枚持っているナマケモノ。口のまわりにお菓子のかけら。',
+    imageKey: 'later-nagara-sloth',
+  },
+  'あと5分だけタイプ': {
+    characterName: 'あと5分ナマケモノ',
+    role: '「あと5分」を無限に更新するナマケモノ',
+    visualConcept: 'ふとんにくるまって目覚まし時計を抱きしめるナマケモノ。幸せそうな寝顔。',
+    imageKey: 'later-fivemin-sloth',
+  },
+  '永遠の準備中タイプ': {
+    characterName: '準備中ナマケモノ',
+    role: '作業環境だけが完成し続けるナマケモノ',
+    visualConcept: '完璧に整えられたデスクを前に、満足げに眺めるだけで始めないナマケモノ。',
+    imageKey: 'later-setup-sloth',
+  },
+  '明日から本気タイプ': {
+    characterName: '明日から本気ナマケモノ',
+    role: '「明日」の旗を掲げたまま眠るナマケモノ',
+    visualConcept: '小さな旗を握ったまま、ぐっすり眠っているナマケモノ。旗が寝息で揺れている。',
+    imageKey: 'later-tomorrow-sloth',
+  },
+  '誘惑まっしぐらタイプ': {
+    characterName: '誘惑まっしぐらナマケモノ',
+    role: 'やるべきことの隣の楽しいことに吸われるナマケモノ',
+    visualConcept: 'ゲーム機を握りしめ、漫画の山に半分埋もれているナマケモノ。目が完全に画面に吸い込まれている。',
+    imageKey: 'later-temptation-sloth',
+  },
+  '締切前夜の火事場タイプ': {
+    characterName: '締切前夜ナマケモノ',
+    role: '前夜だけ覚醒する火事場のナマケモノ',
+    visualConcept: '深夜、目を見開いて猛スピードで作業するナマケモノ。頭に鉢巻き、周りに紙が舞う。',
+    imageKey: 'later-lastnight-sloth',
+  },
+  '夏休み最終日タイプ': {
+    characterName: '夏休み最終日ナマケモノ',
+    role: '最終日にすべてを背負うナマケモノ',
+    visualConcept: '宿題のプリントの山に囲まれて、遠い目をしているナマケモノ。頭に鉛筆をのせている。',
+    imageKey: 'later-finalday-sloth',
+  },
+  '来世でやるタイプ': {
+    characterName: '来世でやるナマケモノ',
+    role: '先延ばしの果てに悟りを開いたナマケモノ',
+    visualConcept: '蓮の花の上で目を閉じ、完全に悟りの表情で瞑想するナマケモノ。もはや神々しい。',
+    imageKey: 'later-nextlife-sloth',
+  },
+  '先延ばし王タイプ': {
+    characterName: '先延ばし王ナマケモノ',
+    role: '何も焦らない境地に達した王のナマケモノ',
+    visualConcept: 'ハンモックに横たわり、サングラスを頭にのせてくつろぐ大物ナマケモノ。究極の余裕の微笑み。',
+    imageKey: 'later-king-sloth',
+  },
+  '完全に忘れてたタイプ': {
+    characterName: '忘れてたナマケモノ',
+    role: '締切の存在ごと忘れる天然ナマケモノ',
+    visualConcept: '「あっ…!」と何かを思い出した顔で固まるナマケモノ。頬に汗がひとしずく。',
+    imageKey: 'later-forgot-sloth',
+  },
+}
+
+export const procrastinationResultTypes = [
+  ['朝イチ片付けタイプ', '即レス行動タイプ', 'コツコツ習慣タイプ', '前倒し余裕タイプ'],
+  ['リスト作って満足タイプ', 'やる気の天気待ちタイプ', 'ながら脱線タイプ', 'あと5分だけタイプ'],
+  ['永遠の準備中タイプ', '明日から本気タイプ', '誘惑まっしぐらタイプ', '締切前夜の火事場タイプ'],
+  ['夏休み最終日タイプ', '来世でやるタイプ', '先延ばし王タイプ', '完全に忘れてたタイプ'],
+]
+
+export const pastLifeCharacters = {
+  'のどかな農家の前世タイプ': {
+    characterName: '農家ひよこ',
+    role: '大地とともに生きた前世のひよこ',
+    visualConcept: '麦わら帽子をかぶり、小さなクワを持ったひよこ。足元に麦の穂。素朴で幸せそうな笑顔。',
+    imageKey: 'pastlife-farmer-chick',
+  },
+  '街のパン職人の前世タイプ': {
+    characterName: 'パン屋ひよこ',
+    role: '朝の香りで街を起こした前世のひよこ',
+    visualConcept: '白いコック帽とエプロンのひよこ。焼きたてのパンをかごいっぱいに抱えて、ほかほかの湯気。',
+    imageKey: 'pastlife-baker-chick',
+  },
+  '花を育てた庭師の前世タイプ': {
+    characterName: '庭師ひよこ',
+    role: '花と緑を愛でた前世のひよこ',
+    visualConcept: 'じょうろを持って花に水をやるひよこ。頭に小さな花びらが1枚。やさしい微笑み。',
+    imageKey: 'pastlife-gardener-chick',
+  },
+  '海の漁師の前世タイプ': {
+    characterName: '漁師ひよこ',
+    role: '海と生きた自由な前世のひよこ',
+    visualConcept: 'ねじり鉢巻きのひよこが大きな魚を誇らしげに掲げている。肩に網。潮風の似合う元気な顔。',
+    imageKey: 'pastlife-fisher-chick',
+  },
+  '旅の商人の前世タイプ': {
+    characterName: '旅商人ひよこ',
+    role: '街から街へ品物と話を運んだ前世のひよこ',
+    visualConcept: '大きな風呂敷包みを背負い、そろばんを持ったひよこ。商売上手そうなにこにこ顔。',
+    imageKey: 'pastlife-merchant-chick',
+  },
+  '静かな学者の前世タイプ': {
+    characterName: '学者ひよこ',
+    role: '書に埋もれて真理を探した前世のひよこ',
+    visualConcept: '丸メガネと角帽のひよこが、巻物を広げて読んでいる。真剣で知的なまなざし。',
+    imageKey: 'pastlife-scholar-chick',
+  },
+  '町のお医者の前世タイプ': {
+    characterName: 'お医者ひよこ',
+    role: '町のみんなを癒した前世のひよこ',
+    visualConcept: '白衣と往診かばんのひよこ。額に丸い医療ミラー。頼れる穏やかな表情。',
+    imageKey: 'pastlife-doctor-chick',
+  },
+  '旅芸人の前世タイプ': {
+    characterName: '旅芸人ひよこ',
+    role: '笑いと拍手を集めた前世のひよこ',
+    visualConcept: 'カラフルな衣装のひよこが、色とりどりの玉をお手玉している。場を沸かせる楽しげな笑顔。',
+    imageKey: 'pastlife-performer-chick',
+  },
+  '一本気な侍の前世タイプ': {
+    characterName: '侍ひよこ',
+    role: '忠義と誠を貫いた前世のひよこ',
+    visualConcept: 'ちょんまげ風の羽毛に袴姿のひよこ。小さな刀を携え、凛々しく構えている。',
+    imageKey: 'pastlife-samurai-chick',
+  },
+  'ひらめき発明家の前世タイプ': {
+    characterName: '発明家ひよこ',
+    role: '世界を便利にした前世のひよこ',
+    visualConcept: 'ゴーグルを頭にのせ、スパナと歯車を持ったひよこ。ひらめいた顔で目がきらきら。',
+    imageKey: 'pastlife-inventor-chick',
+  },
+  '心優しい姫の前世タイプ': {
+    characterName: '姫ひよこ',
+    role: '民に愛された心優しい前世のひよこ',
+    visualConcept: '小さなティアラと薄ピンクのドレスのひよこ。扇を持って上品におすまし顔。',
+    imageKey: 'pastlife-princess-chick',
+  },
+  '大海の航海士の前世タイプ': {
+    characterName: '航海士ひよこ',
+    role: '星と海図を頼りに大海を渡った前世のひよこ',
+    visualConcept: '船長帽のひよこが舵を握り、望遠鏡を構えている。海風を感じる勇ましい顔。',
+    imageKey: 'pastlife-navigator-chick',
+  },
+  '竜騎士の前世タイプ': {
+    characterName: '竜騎士ひよこ',
+    role: '竜と絆を結んだ伝説の前世のひよこ',
+    visualConcept: '小さな鎧と青い羽根飾りの兜のひよこ。隣に手のひらサイズのかわいい赤ちゃんドラゴン。',
+    imageKey: 'pastlife-dragonknight-chick',
+  },
+  '大陰陽師の前世タイプ': {
+    characterName: '大陰陽師ひよこ',
+    role: '都を影から守った伝説の前世のひよこ',
+    visualConcept: '狩衣風の和装と烏帽子のひよこが、お札を1枚かかげている。周囲に淡い狐火。神秘的だけどかわいい。',
+    imageKey: 'pastlife-onmyoji-chick',
+  },
+  '星読みの前世タイプ': {
+    characterName: '星読みひよこ',
+    role: '星の声を聞いた伝説の前世のひよこ',
+    visualConcept: '星柄のマントをまとい、小さな望遠鏡と星図を持ったひよこ。夜空を見上げるロマンチストの目。',
+    imageKey: 'pastlife-stargazer-chick',
+  },
+  '海賊船長の前世タイプ': {
+    characterName: '海賊船長ひよこ',
+    role: '七つの海を自由に生きた伝説の前世のひよこ',
+    visualConcept: '海賊帽と眼帯のひよこ。肩に小さなオウム、腰に短剣。ニヤリと不敵でチャーミングな笑み。',
+    imageKey: 'pastlife-pirate-chick',
+  },
+}
+
+export const pastLifeResultTypes = [
+  ['のどかな農家の前世タイプ', '街のパン職人の前世タイプ', '花を育てた庭師の前世タイプ', '海の漁師の前世タイプ'],
+  ['旅の商人の前世タイプ', '静かな学者の前世タイプ', '町のお医者の前世タイプ', '旅芸人の前世タイプ'],
+  ['一本気な侍の前世タイプ', 'ひらめき発明家の前世タイプ', '心優しい姫の前世タイプ', '大海の航海士の前世タイプ'],
+  ['竜騎士の前世タイプ', '大陰陽師の前世タイプ', '星読みの前世タイプ', '海賊船長の前世タイプ'],
+]
+
+export const selfEsteemCharacters = {
+  'そっと芽吹きタイプ': {
+    characterName: 'ふたばの芽',
+    role: '土の中から顔を出したばかりの小さな芽',
+    visualConcept: '土からちょこんと顔を出した 二枚葉の小さな芽。おそるおそる周りを見ているけれど、確かに光の方を向いている。',
+    imageKey: 'esteem-futaba-sprout',
+  },
+  'かくれんぼ苔タイプ': {
+    characterName: 'こけまる',
+    role: '日陰でしっとり生きる控えめな苔',
+    visualConcept: '岩のすきまでふかふかに広がる緑の苔のキャラ。目立たないけれど、触るとやわらかくて気持ちいい。',
+    imageKey: 'esteem-koke-moss',
+  },
+  '雨待ちつぼみタイプ': {
+    characterName: 'つぼみちゃん',
+    role: '咲く準備をしながら雨を待つつぼみ',
+    visualConcept: 'ぷっくり閉じたピンクのつぼみのキャラ。まだ開いていないけれど、中には色が詰まっている。',
+    imageKey: 'esteem-tsubomi-bud',
+  },
+  'すみっこ多肉タイプ': {
+    characterName: 'にくまる',
+    role: '少ない水でも生きられる小さな多肉植物',
+    visualConcept: 'ぷにぷにした葉が重なる小さな多肉植物のキャラ。派手さはないけれど、自分のペースで確実に生きている。',
+    imageKey: 'esteem-niku-succulent',
+  },
+  '陽だまりデイジータイプ': {
+    characterName: 'デイジーちゃん',
+    role: '日なたでにこにこ咲く小さな花',
+    visualConcept: '白い花びらと黄色い芯のデイジーのキャラ。小さいけれど堂々と咲いていて、周りまで明るくする。',
+    imageKey: 'esteem-daisy-flower',
+  },
+  'ぐんぐん双葉タイプ': {
+    characterName: 'ぐんぐんくん',
+    role: '毎日ちょっとずつ背を伸ばす若葉',
+    visualConcept: 'すらりと伸びた茎に若葉をつけたキャラ。成長中のわくわくを全身で表している。',
+    imageKey: 'esteem-gungun-leaf',
+  },
+  'よりそいクローバータイプ': {
+    characterName: 'よつばちゃん',
+    role: '群れで支え合って育つクローバー',
+    visualConcept: '四つ葉のクローバーのキャラ。まわりに三つ葉の仲間がいて、みんなで一緒に風に揺れている。',
+    imageKey: 'esteem-clover',
+  },
+  '風にゆれるコスモスタイプ': {
+    characterName: 'コスモちゃん',
+    role: '風に揺れてもまた戻るしなやかな花',
+    visualConcept: '細い茎の先で揺れるピンクのコスモスのキャラ。風に大きくしなっても、折れずに戻る。',
+    imageKey: 'esteem-cosmos-flower',
+  },
+  '太陽まっすぐひまわりタイプ': {
+    characterName: 'ひまりん',
+    role: '太陽の方をまっすぐ向く元気なひまわり',
+    visualConcept: '大きな黄色い花を咲かせたひまわりのキャラ。いつも顔を上げ、光の方を見ている。',
+    imageKey: 'esteem-himawari-sun',
+  },
+  '自分色ラベンダータイプ': {
+    characterName: 'ラベちゃん',
+    role: '自分の香りをまとった落ち着きの花',
+    visualConcept: '紫の小花が連なるラベンダーのキャラ。おだやかな表情で、まわりに癒しの香りを漂わせている。',
+    imageKey: 'esteem-lavender',
+  },
+  'しなやか竹タイプ': {
+    characterName: 'たけのこくん',
+    role: '節を作りながらまっすぐ伸びる若竹',
+    visualConcept: 'すっと伸びた緑の若竹のキャラ。しなやかで、風が吹いても折れない自信のある表情。',
+    imageKey: 'esteem-bamboo',
+  },
+  '実りのみかんタイプ': {
+    characterName: 'みかん先輩',
+    role: '実をつけて分け与えられる木',
+    visualConcept: 'オレンジの実をたくさんつけた小さなみかんの木のキャラ。誰かに分けたくてうずうずしている。',
+    imageKey: 'esteem-mikan-tree',
+  },
+  '堂々ばらタイプ': {
+    characterName: 'ローズ様',
+    role: 'とげも美しさも自分の一部と認める薔薇',
+    visualConcept: '深紅の花を咲かせた薔薇のキャラ。とげも隠さず、堂々とした佇まい。',
+    imageKey: 'esteem-rose',
+  },
+  '悠然おおきな木タイプ': {
+    characterName: 'たいじゅ',
+    role: '根を深く張って動じない大樹',
+    visualConcept: '太い幹と大きな緑の葉をたたえた大樹のキャラ。枝には小鳥が止まり、木陰で誰かが休んでいる。',
+    imageKey: 'esteem-taiju-tree',
+  },
+  '千年杉タイプ': {
+    characterName: 'せんねん杉',
+    role: '長い時間を生きてきた静かな杉',
+    visualConcept: '苔むした太い幹の巨大な杉のキャラ。おだやかな目で、すべてを見守っている。',
+    imageKey: 'esteem-sennen-cedar',
+  },
+  '世界樹タイプ': {
+    characterName: 'せかいじゅ',
+    role: 'まわりの命まで育てる伝説の樹',
+    visualConcept: '光をまとった巨大な樹のキャラ。根元に小さな花や芽がたくさん育ち、枝の間を光の粒が漂っている。',
+    imageKey: 'esteem-world-tree',
+  },
+}
+
+export const selfEsteemResultTypes = [
+  ['そっと芽吹きタイプ', 'かくれんぼ苔タイプ', '雨待ちつぼみタイプ', 'すみっこ多肉タイプ'],
+  ['陽だまりデイジータイプ', 'ぐんぐん双葉タイプ', 'よりそいクローバータイプ', '風にゆれるコスモスタイプ'],
+  ['太陽まっすぐひまわりタイプ', '自分色ラベンダータイプ', 'しなやか竹タイプ', '実りのみかんタイプ'],
+  ['堂々ばらタイプ', '悠然おおきな木タイプ', '千年杉タイプ', '世界樹タイプ'],
+]
+
+export const stressLevelCharacters = {
+  '余裕たっぷりタイプ': {
+    characterName: 'よゆう風船',
+    role: 'ストレスをためこまない、空高く浮かべるマイペース風船',
+    visualConcept: 'ピンクのまん丸い風船のキャラ。両手を広げ、まわりにハートを飛ばしてご機嫌な笑顔。',
+    imageKey: 'stress-yoyuu-balloon',
+  },
+  'ぷるんと安定タイプ': {
+    characterName: 'ぷるん風船',
+    role: '多少忙しくても崩れない、安定感のある風船',
+    visualConcept: 'オレンジの風船のキャラ。お花を添えて鼻歌まじり、ゆったり寝そべった穏やかな笑顔。',
+    imageKey: 'stress-purun-balloon',
+  },
+  'ちょい張りタイプ': {
+    characterName: 'ちょいはり風船',
+    role: '少しだけストレスを感じ始めた、ちょい緊張の風船',
+    visualConcept: '黄色の風船のキャラ。手を合わせて「んー?」とちょっと困り気味のかわいい表情。',
+    imageKey: 'stress-choihari-balloon',
+  },
+  '気を張りがちタイプ': {
+    characterName: 'きばり風船',
+    role: 'いつも頑張りすぎてしまう、気の張った風船',
+    visualConcept: '黄緑の風船のキャラ。汗をひとしずく、まわりに小さな震え線。眉を寄せて踏ん張る顔。',
+    imageKey: 'stress-kibari-balloon',
+  },
+  '内側で膨らみ中タイプ': {
+    characterName: 'うちがわ風船',
+    role: '我慢を重ねて、内側から少しずつ膨らんでいる風船',
+    visualConcept: 'ミントグリーンの風船のキャラ。胸の前で手を握り、まわりに震え線。こらえるような表情。',
+    imageKey: 'stress-uchigawa-balloon',
+  },
+  '無理して笑顔タイプ': {
+    characterName: 'からげんき風船',
+    role: 'しんどくても平気なフリで笑う、空元気な風船',
+    visualConcept: '水色の風船のキャラ。大きく笑っているけど少し涙目で、こぶしを握って無理やり元気な様子。',
+    imageKey: 'stress-karagenki-balloon',
+  },
+  '気疲れしやすいタイプ': {
+    characterName: 'きづかれ風船',
+    role: '周りに合わせすぎて消耗する、気疲れしやすい風船',
+    visualConcept: '青い風船のキャラ。白いタオルを抱え、どんより疲れた半目で小さくため息。',
+    imageKey: 'stress-kizukare-balloon',
+  },
+  '考えすぎてパンパンタイプ': {
+    characterName: 'ぐるぐる風船',
+    role: '頭の中が考えごとでいっぱいの、パンパン風船',
+    visualConcept: '濃い青紫の風船のキャラ。目がぐるぐる渦巻き、頭上に考えごとの渦。パンパンに膨らんでいる。',
+    imageKey: 'stress-guruguru-balloon',
+  },
+  '急にしぼむタイプ': {
+    characterName: 'しぼみ風船',
+    role: 'エネルギー切れで急にしぼむ、無気力風船',
+    visualConcept: '紫の風船のキャラ。空気が抜けて地面にぺたんと広がり、ぼんやり無気力な半目。',
+    imageKey: 'stress-shibomi-balloon',
+  },
+  '限界ギリギリタイプ': {
+    characterName: 'ぎりぎり風船',
+    role: 'なんとか保っている、限界ギリギリの風船',
+    visualConcept: '紫のパンパン風船のキャラ。目を >_< とつぶってこぶしを握り、まわりに震え線。',
+    imageKey: 'stress-girigiri-balloon',
+  },
+  '小さなことで爆発寸前タイプ': {
+    characterName: 'ぷんぷん風船',
+    role: 'ちょっとの刺激で爆発しそうな、過敏になっている風船',
+    visualConcept: '濃いピンクの風船のキャラ。口を大きく開けて怒り、まわりに赤い怒りマークと星が散る。',
+    imageKey: 'stress-punpun-balloon',
+  },
+  'もう無理かもタイプ': {
+    characterName: 'もうむり風船',
+    role: '常に限界を超えている、ぐったり風船',
+    visualConcept: '赤い風船のキャラ。空気が抜けて地面に広がり、眉を下げてぐったりした表情。',
+    imageKey: 'stress-moumuri-balloon',
+  },
+  '表面は元気、中はボロボロタイプ': {
+    characterName: 'ぼろぼろ風船',
+    role: '見た目は元気そうでも、中はボロボロの風船',
+    visualConcept: '茶色の風船のキャラ。キラキラ笑顔で元気そうだけど、体に絆創膏がいくつも貼られている。',
+    imageKey: 'stress-boroboro-balloon',
+  },
+  'いつも緊張タイプ': {
+    characterName: 'きんちょう風船',
+    role: '常にピリピリ気を張っている、緊張風船',
+    visualConcept: '白っぽい風船のキャラ。汗をかき、こぶしをぎゅっと握って不安げに縮こまる。',
+    imageKey: 'stress-kincho-balloon',
+  },
+  'ちょっとした休息で復活タイプ': {
+    characterName: 'ふっかつ風船',
+    role: '少し休めばちゃんと元気に戻れる、回復力のある風船',
+    visualConcept: '白い雲のようにふわふわした風船のキャラ。すやすや眠り、頭上に Zzz。',
+    imageKey: 'stress-fukkatsu-balloon',
+  },
+  '完全に爆発タイプ': {
+    characterName: 'ばくはつ風船',
+    role: 'ストレスが限界を超えて、ついに爆発した風船',
+    visualConcept: '黒こげの風船のキャラ。赤いヒビから火が覗き、破片を飛び散らせて目を見開き絶叫。',
+    imageKey: 'stress-bakuhatsu-balloon',
+  },
+}
+
+export const stressLevelResultTypes = [
+  ['余裕たっぷりタイプ', 'ちょい張りタイプ', 'ぷるんと安定タイプ', 'ちょっとした休息で復活タイプ'],
+  ['無理して笑顔タイプ', '内側で膨らみ中タイプ', '気を張りがちタイプ', '気疲れしやすいタイプ'],
+  ['表面は元気、中はボロボロタイプ', 'いつも緊張タイプ', '考えすぎてパンパンタイプ', '急にしぼむタイプ'],
+  ['もう無理かもタイプ', '小さなことで爆発寸前タイプ', '限界ギリギリタイプ', '完全に爆発タイプ'],
+]
+
+export const animalTypeCharacters = {
+  // 🌿 のんびり系
+  '究極まったりタイプ': {
+    characterName: 'カピコさん',
+    role: '何があっても動じない、究極ののんびり屋',
+    visualConcept: 'カピバラとコアラが混ざった、こけむした荷車を背負うずんぐりキャラ。とろけた半目でまったり。',
+    imageKey: 'hybrid-capybara-koala',
+  },
+  'スローな夜ふかしタイプ': {
+    characterName: 'ナマフクさん',
+    role: 'ゆっくりだけど夜はしっかり起きている',
+    visualConcept: 'ナマケモノとフクロウのハイブリッド。フクロウの翼とナマケモノの爪で、ランタンを抱えたとろんとした笑顔。',
+    imageKey: 'hybrid-sloth-owl',
+  },
+  'ぷかぷかマイペースタイプ': {
+    characterName: 'ぷからさん',
+    role: '流れに身をまかせて漂う自由人',
+    visualConcept: 'ラッコとクラゲが混ざり、青く光るクラゲの触手をまとって水に浮かぶキャラ。のんびりした表情。',
+    imageKey: 'hybrid-otter-jellyfish',
+  },
+  'どっしり大物タイプ': {
+    characterName: 'ぬしさま',
+    role: '滅多なことでは動じない、水辺の大きな主(ぬし)',
+    visualConcept: 'オオサンショウウオとジンベエザメのハイブリッド。星模様の大きな体に荷物を背負い、ゆったり笑う。',
+    imageKey: 'hybrid-salamander-whaleshark',
+  },
+
+  // 💗 愛され系
+  'みんなの癒しアイドルタイプ': {
+    characterName: 'ぴんくぱーちゃん',
+    role: 'いるだけで場が明るくなる愛されアイドル',
+    visualConcept: 'ビーバーとウーパールーパーのハイブリッド。ピンクのえらとクリスタルのツルハシ、ニカッと前歯の笑顔。',
+    imageKey: 'hybrid-beaver-wooper',
+  },
+  'カラフル愛されタイプ': {
+    characterName: 'にじうさちゃん',
+    role: '見るだけで元気がもらえる虹色の人気者',
+    visualConcept: 'ウサギとウミウシのハイブリッド。背中に虹色のひらひら、ふわふわの白い体でにっこり。',
+    imageKey: 'hybrid-rabbit-seaslug',
+  },
+  'ふわり妖精タイプ': {
+    characterName: 'ひらりちゃん',
+    role: '軽やかに舞う、そばにいたくなる妖精',
+    visualConcept: 'シカとチョウのハイブリッド。背中に大きな蝶の羽、しなやかな体で森を舞う愛らしい姿。',
+    imageKey: 'hybrid-deer-butterfly',
+  },
+  '神秘のきらめきタイプ': {
+    characterName: 'きらりちゃん',
+    role: '不思議な魅力でみんなを惹きつける',
+    visualConcept: 'タツノオトシゴとシカのハイブリッド。角と透明な羽、泡に包まれてきらきら光る幻想的なキャラ。',
+    imageKey: 'hybrid-seahorse-deer',
+  },
+
+  // 🦉 知恵者系
+  '動かない策士タイプ': {
+    characterName: 'ハシダコ先生',
+    role: 'じっと動かず、全部見通している策士',
+    visualConcept: 'ハシビロコウとタコのハイブリッド。大きなくちばしと八本の触手、ゴーグル姿で仏頂面。',
+    imageKey: 'hybrid-shoebill-octopus',
+  },
+  '気くばりメッセンジャータイプ': {
+    characterName: 'ふみおくん',
+    role: '手紙を届けるように、さりげなく気づかいできる',
+    visualConcept: 'センザンコウとウサギのハイブリッド。うろこの体に長い耳、手紙を抱えたやさしい表情。',
+    imageKey: 'hybrid-pangolin-rabbit',
+  },
+  '夜の探究者タイプ': {
+    characterName: 'ランタン博士',
+    role: '夜ふけにこつこつ探究する研究者',
+    visualConcept: 'アイアイとコウモリのハイブリッド。大きな目と耳、ランタンを手にした夜型の賢者キャラ。',
+    imageKey: 'hybrid-ayeaye-bat',
+  },
+  '準備万端の冒険者タイプ': {
+    characterName: 'ペンハシ隊長',
+    role: '何でも準備してから動く、頼れる冒険者',
+    visualConcept: 'ペンギンとオオハシのハイブリッド。カラフルなくちばしに探検リュック、頼もしい立ち姿。',
+    imageKey: 'hybrid-penguin-toucan',
+  },
+
+  // 🏔️ 孤高系
+  'ミステリアス夜行タイプ': {
+    characterName: 'よるのクロモリ',
+    role: '夜にそっと動く、謎めいた一匹',
+    visualConcept: 'クロネコとコウモリのハイブリッド。黒い毛にコウモリの翼、金色の目でこちらを見るミステリアスな姿。',
+    imageKey: 'hybrid-blackcat-bat',
+  },
+  '砂漠の一匹狼タイプ': {
+    characterName: 'すなのアリネック',
+    role: '自分の道を黙々と掘り進む一匹狼',
+    visualConcept: 'アリクイとフェネックのハイブリッド。大きな耳と細い鼻で、砂を掘りながら進む独立心の強いキャラ。',
+    imageKey: 'hybrid-anteater-fennec',
+  },
+  '孤高のハンタータイプ': {
+    characterName: 'ゆきのユキフェン',
+    role: '静かに狙いを定める、孤高のハンター',
+    visualConcept: 'フェネックとユキヒョウのハイブリッド。大きな耳に斑模様、ランタンを提げた凛とした狩人の姿。',
+    imageKey: 'hybrid-fennec-leopard',
+  },
+  '高みを行く自由人タイプ': {
+    characterName: 'たかみのキリテナ',
+    role: '高いところから世界を眺める自由人',
+    visualConcept: 'キリンとテナガザルのハイブリッド。長い首と腕で木々を渡り、高みから見下ろす自由なキャラ。',
+    imageKey: 'hybrid-giraffe-gibbon',
+  },
+}
+
+export const animalTypeResultTypes = [
+  ['究極まったりタイプ', 'スローな夜ふかしタイプ', 'ぷかぷかマイペースタイプ', 'どっしり大物タイプ'],
+  ['みんなの癒しアイドルタイプ', 'カラフル愛されタイプ', 'ふわり妖精タイプ', '神秘のきらめきタイプ'],
+  ['動かない策士タイプ', '気くばりメッセンジャータイプ', '夜の探究者タイプ', '準備万端の冒険者タイプ'],
+  ['ミステリアス夜行タイプ', '砂漠の一匹狼タイプ', '孤高のハンタータイプ', '高みを行く自由人タイプ'],
+]
+
+export const angerStyleCharacters = {
+  '甘口パプリカタイプ': {
+    characterName: '甘口パプ',
+    role: '辛くない、まん丸で穏やかなパプリカ精霊',
+    visualConcept: '緑色でまん丸のパプリカ型精霊。にこにこ笑顔で怒りとは無縁の平和なムード。',
+    imageKey: 'anger-mini-eruption',
+  },
+  'ハラペー標準タイプ': {
+    characterName: 'ハラペーくん',
+    role: '料理でおなじみの標準的な緑唐辛子精霊',
+    visualConcept: '緑色でぷっくりしたハラペーニョ型精霊。ちょっとムッとした顔で、ほんのり湯気。',
+    imageKey: 'anger-instant-boil',
+  },
+  '細身セラーノタイプ': {
+    characterName: 'セラちゃん',
+    role: 'すっと細身で少しピリッとするセラーノ型精霊',
+    visualConcept: '細長い緑色の唐辛子精霊。すこし目つきが鋭く、口を尖らせて不満そう。',
+    imageKey: 'anger-volcano',
+  },
+  '料理定番カイエンタイプ': {
+    characterName: 'カイエンさん',
+    role: 'あかく主張しはじめる料理定番の唐辛子精霊',
+    visualConcept: '赤色でスリムな唐辛子精霊。頭のヘタから小さな湯気が一筋、目には闘志。',
+    imageKey: 'anger-lava',
+  },
+  '小粒バーズアイタイプ': {
+    characterName: 'バーズアイちゃん',
+    role: '小粒でぴりっと辛い赤唐辛子精霊',
+    visualConcept: '真っ赤で小さめ、細長い唐辛子精霊。ほおを膨らませた不満顔。',
+    imageKey: 'anger-pout',
+  },
+  '帽子スコッチタイプ': {
+    characterName: 'スコッちゃん',
+    role: '帽子の形の黄色い唐辛子精霊',
+    visualConcept: '黄色〜オレンジの帽子型(丸っこい)唐辛子精霊。無理して笑っているが額に青筋。',
+    imageKey: 'anger-limit',
+  },
+  'フルーティハバネロタイプ': {
+    characterName: 'ハバねぇ',
+    role: 'フルーティーな香りで急に辛くなるオレンジ精霊',
+    visualConcept: 'オレンジ色でぷっくりまるいハバネロ型精霊。頭に鍋のフタを乗せて蒸気がシューッ。',
+    imageKey: 'anger-pressure-pot',
+  },
+  'シワ多めナガモリチタイプ': {
+    characterName: 'ナガモリくん',
+    role: 'シワの寄った赤唐辛子精霊',
+    visualConcept: '赤色でシワの寄った唐辛子精霊。ヘタが導火線のように火花を散らし、目は静かに据わる。',
+    imageKey: 'anger-time-bomb',
+  },
+  'チョコ濃厚7ポットタイプ': {
+    characterName: 'チョコセブンさん',
+    role: '濃い茶色で凶悪な7ポット系精霊',
+    visualConcept: '濃い茶色でゴツゴツした唐辛子精霊。半目のジト目で口はへの字、周囲に冷たい空気。',
+    imageKey: 'anger-cold-shoulder',
+  },
+  '幽玄ゴーストペッパータイプ': {
+    characterName: 'ゴーストさん',
+    role: 'あとから来る幽玄な激辛精霊',
+    visualConcept: '赤い唐辛子精霊で、先端が鋭くとがっている。無表情で腕を組み、背後に青い冷気。',
+    imageKey: 'anger-silent-pressure',
+  },
+  '無限地獄インフィニティタイプ': {
+    characterName: 'インフィニさん',
+    role: 'かつて世界一だった赤精霊',
+    visualConcept: '真っ赤なのに凍えた唐辛子精霊。表面にうっすら霜、冷たい目でこちらを見つめる。',
+    imageKey: 'anger-absolute-zero',
+  },
+  '細長シワのナガヴァイパータイプ': {
+    characterName: 'ナガヴァイパーさん',
+    role: '細長くシワが深い蛇系精霊',
+    visualConcept: '細長い赤唐辛子精霊で全身がシワだらけ。全身が青白く凍りつき、目は光を失う。',
+    imageKey: 'anger-shutdown',
+  },
+  'サソリ針ブッチTタイプ': {
+    characterName: 'サソちゃんT',
+    role: 'サソリの針のような先端の激辛精霊',
+    visualConcept: '赤くて先端が針のように尖った唐辛子精霊。にへらと笑い、後頭部に汗、手を横に振っている。',
+    imageKey: 'anger-hehe-dodge',
+  },
+  '悪魔級モルガスコーピオンタイプ': {
+    characterName: 'モルガさん',
+    role: '丸くシワが多く、あとから猛烈にくる精霊',
+    visualConcept: '赤くて丸くシワの多い唐辛子精霊。目は笑っていない笑顔、こめかみに汗。',
+    imageKey: 'anger-bitter-smile',
+  },
+  'しっぽ悪魔キャロリーパータイプ': {
+    characterName: 'キャロリーパーさま',
+    role: 'しっぽが特徴の悪魔的な赤精霊',
+    visualConcept: '真っ赤でしっぽ状の突起がある悪魔的な唐辛子精霊。大げさに笑い、片手に「笑」の吹き出し。',
+    imageKey: 'anger-self-joke',
+  },
+  '世界最強ペッパーXタイプ': {
+    characterName: 'ペッパーXさま',
+    role: '現ギネス世界一辛い王者精霊',
+    visualConcept: '黄緑色でゴツゴツとした最強の唐辛子精霊。すべてを許した仏のような微笑み、頭上に光の輪。',
+    imageKey: 'anger-enlightened',
+  },
+}
+
+export const angerStyleResultTypes = [
+  ['甘口パプリカタイプ', 'ハラペー標準タイプ', '細身セラーノタイプ', '料理定番カイエンタイプ'],
+  ['小粒バーズアイタイプ', '帽子スコッチタイプ', 'フルーティハバネロタイプ', 'シワ多めナガモリチタイプ'],
+  ['チョコ濃厚7ポットタイプ', '幽玄ゴーストペッパータイプ', '無限地獄インフィニティタイプ', '細長シワのナガヴァイパータイプ'],
+  ['サソリ針ブッチTタイプ', '悪魔級モルガスコーピオンタイプ', 'しっぽ悪魔キャロリーパータイプ', '世界最強ペッパーXタイプ'],
+]
+
+export const shynessCharacters = {
+  'シャボン殻タイプ': {
+    characterName: 'シャボンヤドカリ',
+    role: '触れれば消えそうな軽やかな殻を持つヤドカリ',
+    visualConcept: '半透明のシャボン玉のような殻を背負ったヤドカリ。中の本体がよく見え、殻が軽やかに輝いている。',
+    imageKey: 'shy-jelly',
+  },
+  'ジェリー殻タイプ': {
+    characterName: 'ジェリーヤドカリ',
+    role: 'ぷるぷるのゼリー殻でほぼオープンなヤドカリ',
+    visualConcept: '水色の半透明ゼリーのような殻を背負ったヤドカリ。ピンクの星模様、中の本体が透けて見える。',
+    imageKey: 'shy-one-heart',
+  },
+  '編みかご殻タイプ': {
+    characterName: '編みかごヤドカリ',
+    role: 'すきまだらけで通気性抜群の殻を持つヤドカリ',
+    visualConcept: 'レース編みのような白い編みかご殻を背負ったヤドカリ。すきまから外の光が入り、明るい表情。',
+    imageKey: 'shy-colorful',
+  },
+  '軽やか貝殻タイプ': {
+    characterName: '軽やか貝ヤドカリ',
+    role: '標準的な貝殻でほどよい距離感のヤドカリ',
+    visualConcept: 'クリーム色の巻貝の殻を背負った標準的なヤドカリ。控えめな笑顔で外を見ている。',
+    imageKey: 'shy-frosted-glass',
+  },
+  '木樽殻タイプ': {
+    characterName: '木樽ヤドカリ',
+    role: '木のぬくもりある樽を殻にしたヤドカリ',
+    visualConcept: '木製の樽型の殻を背負ったヤドカリ。周りに小さな苔や葉っぱが生えて、落ち着いた表情。',
+    imageKey: 'shy-warm-tea',
+  },
+  'ピンク毛糸殻タイプ': {
+    characterName: '毛糸玉ヤドカリ',
+    role: 'ふわふわの毛糸玉でおしゃれに隠れるヤドカリ',
+    visualConcept: 'ピンクのふわふわ毛糸玉の殻を背負ったヤドカリ。まわりにハートが浮かび、はにかんだ表情。',
+    imageKey: 'shy-single-flower',
+  },
+  'ティーカップ殻タイプ': {
+    characterName: 'ティーカップヤドカリ',
+    role: 'あったかい花柄カップに収まる可愛らしいヤドカリ',
+    visualConcept: '青い花柄の白いティーカップに収まったヤドカリ。上品に目だけをのぞかせ、穏やかな表情。',
+    imageKey: 'shy-sticker',
+  },
+  '紫貝殻タイプ': {
+    characterName: '紫貝ヤドカリ',
+    role: '深い紫のしっかりした殻を持つヤドカリ',
+    visualConcept: '紫色で少し厚めの巻貝殻を背負ったヤドカリ。慎重そうな目つきでこちらを窺う。',
+    imageKey: 'shy-curtain',
+  },
+  '苔石殻タイプ': {
+    characterName: '苔石ヤドカリ',
+    role: '苔むした岩と一体化した重量級ヤドカリ',
+    visualConcept: '灰色の岩に苔が生えた重い殻を背負ったヤドカリ。岩陰からそっと顔を出し、警戒気味の目。',
+    imageKey: 'shy-yarn-ball',
+  },
+  '段ボール殻タイプ': {
+    characterName: '段ボールヤドカリ',
+    role: '段ボール箱で自分だけの空間を作るヤドカリ',
+    visualConcept: '茶色い段ボール箱の中に隠れているヤドカリ。前の隙間からだけ顔を出し、そっと外を見ている。',
+    imageKey: 'shy-treasure-lock',
+  },
+  '宝箱殻タイプ': {
+    characterName: '宝箱ヤドカリ',
+    role: '鍵付き宝箱の中に大事な自分をしまうヤドカリ',
+    visualConcept: '鍵穴のついた木製の宝箱の殻を背負ったヤドカリ。少しだけ蓋が開き、そこから顔を出している。',
+    imageKey: 'shy-many-windows',
+  },
+  '金庫殻タイプ': {
+    characterName: '金庫ヤドカリ',
+    role: 'ダイヤル錠付きの金庫殻で厳重に守るヤドカリ',
+    visualConcept: '灰色の金庫の殻を背負ったヤドカリ。ダイヤル錠が付き、扉から少しだけ顔を覗かせている。',
+    imageKey: 'shy-thick-book',
+  },
+  'お城殻タイプ': {
+    characterName: 'お城ヤドカリ',
+    role: '本格的なお城を殻にして守り固めるヤドカリ',
+    visualConcept: '塔と旗の付いた石造りのお城の殻を背負ったヤドカリ。城門からそっと顔を覗かせている。',
+    imageKey: 'shy-ice-castle',
+  },
+  '石造ドーム殻タイプ': {
+    characterName: '石造ドームヤドカリ',
+    role: 'イグルー型の石造殻に閉じこもるヤドカリ',
+    visualConcept: '石造りのイグルー型ドームの殻を背負ったヤドカリ。木の扉付きで、扉のそばから片目だけ覗く。',
+    imageKey: 'shy-padlock-safe',
+  },
+  '苔ドーム殻タイプ': {
+    characterName: '苔ドームヤドカリ',
+    role: '苔むした厚い岩ドームで完全にこもるヤドカリ',
+    visualConcept: '苔と花に覆われた岩ドームの殻を背負ったヤドカリ。奥の暗がりから目だけがきらりと光る。',
+    imageKey: 'shy-fortress-window',
+  },
+  'クリスタル要塞タイプ': {
+    characterName: 'クリスタル要塞ヤドカリ',
+    role: '紫のクリスタル要塞に完全密閉されたヤドカリ',
+    visualConcept: '紫のクリスタルで覆われた要塞のような殻を背負ったヤドカリ。中は真っ暗、隙間から目だけがきらりと光る。',
+    imageKey: 'shy-cardboard',
+  },
+}
+
+export const shynessResultTypes = [
+  ['シャボン殻タイプ', 'ジェリー殻タイプ', '編みかご殻タイプ', '軽やか貝殻タイプ'],
+  ['木樽殻タイプ', 'ピンク毛糸殻タイプ', 'ティーカップ殻タイプ', '紫貝殻タイプ'],
+  ['苔石殻タイプ', '段ボール殻タイプ', '宝箱殻タイプ', '金庫殻タイプ'],
+  ['お城殻タイプ', '石造ドーム殻タイプ', '苔ドーム殻タイプ', 'クリスタル要塞タイプ'],
+]
+
+export const zeniTailCharacters = {
+  'ゴールド貯金タイプ': {
+    characterName: 'きんぴかぜに',
+    role: '貯めるのが得意な、金色に輝く銭さししっぽ',
+    visualConcept: 'コインがびっしり積まれた金色のもふもふ生物。尻尾のコインもパンパン、きらきら満足げな笑顔。',
+    imageKey: 'zeni-gold-saver',
+  },
+  'コツコツ積立タイプ': {
+    characterName: 'ふたばぜに',
+    role: '将来のためにコツコツ積み立てる堅実な銭さししっぽ',
+    visualConcept: '白いもふもふ生物。頭に新芽、おでこに金の宝石、大きな小判を幸せそうに抱える。',
+    imageKey: 'zeni-steady-saver',
+  },
+  '計画キッチリタイプ': {
+    characterName: 'けいかくぜに',
+    role: '家計簿で予算をきっちり管理する銭さししっぽ',
+    visualConcept: '灰色のもふもふ生物。丸眼鏡をかけ、羽ペンで帳簿(家計簿)を読み込む賢そうな様子。',
+    imageKey: 'zeni-planner',
+  },
+  '投資チャレンジタイプ': {
+    characterName: 'とうしぜに',
+    role: 'お金を増やすことに挑戦する、攻めの銭さししっぽ',
+    visualConcept: '青白いもふもふ生物。青く光る特別なコインを抱え、尻尾も青いコイン。目がきらりと輝く。',
+    imageKey: 'zeni-investor',
+  },
+  'のんびり資産形成タイプ': {
+    characterName: 'めばえぜに',
+    role: '長い目でゆっくりお金を育てる銭さししっぽ',
+    visualConcept: '黄緑のもふもふ生物。小さな鉢植え(芽)を大事そうに抱え、まわりに葉っぱが舞うやさしい雰囲気。',
+    imageKey: 'zeni-slow-grower',
+  },
+  'お金の不安が大きいタイプ': {
+    characterName: 'しんぱいぜに',
+    role: '貯めているのに不安が消えない心配性の銭さししっぽ',
+    visualConcept: '青灰色のもふもふ生物。小さな宝箱をぎゅっと抱え、汗をかいて涙目の不安そうな表情。',
+    imageKey: 'zeni-worrier',
+  },
+  'ときめき優先タイプ': {
+    characterName: 'ときめきぜに',
+    role: '「好き」にときめいてお金を使う銭さししっぽ',
+    visualConcept: 'ピンクのもふもふ生物。真っ赤なハートをぎゅっと抱えて、うっとり幸せそうな笑顔。',
+    imageKey: 'zeni-tokimeki',
+  },
+  'お金ほったらかしタイプ': {
+    characterName: 'すやすやぜに',
+    role: 'お金に無頓着でマイペースな銭さししっぽ',
+    visualConcept: '白いもふもふ生物。緑の肉球クッションに顔をうずめてすやすや昼寝、頭上にねむりの泡。',
+    imageKey: 'zeni-easygoing',
+  },
+  '体験・旅行派タイプ': {
+    characterName: 'たびぜに',
+    role: 'モノより思い出、体験にお金を使う銭さししっぽ',
+    visualConcept: '探検帽をかぶりリュックを背負ったもふもふ生物。地図を広げて、どこか行きたそうなワクワク顔。',
+    imageKey: 'zeni-adventurer',
+  },
+  '食費かさみタイプ': {
+    characterName: 'ぐるめぜに',
+    role: 'おいしいものに財布がゆるむグルメな銭さししっぽ',
+    visualConcept: '茶色のもふもふ生物。大きなハンバーガーを両手で頬張り、まわりにハートが飛ぶ幸せ顔。',
+    imageKey: 'zeni-foodie',
+  },
+  'お買い物大好きタイプ': {
+    characterName: 'おかいものぜに',
+    role: '買い物そのものが大好きな銭さししっぽ',
+    visualConcept: 'クリーム色のもふもふ生物。両手に肉球マークの買い物袋をいくつも抱えてご機嫌。',
+    imageKey: 'zeni-shopper',
+  },
+  'サブスク沼タイプ': {
+    characterName: 'さぶすくぜに',
+    role: '月額だらけでやりくりに追われる銭さししっぽ',
+    visualConcept: '紫のもふもふ生物。ノートPCと請求書の山、コーヒーに囲まれ、汗をかいて焦り気味。',
+    imageKey: 'zeni-subsc',
+  },
+  '見栄はり散財タイプ': {
+    characterName: 'みえっぱりぜに',
+    role: '見栄で背伸び買いをしがちな銭さししっぽ',
+    visualConcept: '黒いもふもふ生物。サングラスと金のチェーンでキメ顔、コインの上にどっしり構える。',
+    imageKey: 'zeni-showoff',
+  },
+  '美容に全力タイプ': {
+    characterName: 'びようぜに',
+    role: '美容・自分磨きにお金を全力投球する銭さししっぽ',
+    visualConcept: 'ピンクのもふもふ生物。口紅やコスメ、紙袋に囲まれて感激の涙、まわりにハート。',
+    imageKey: 'zeni-beauty',
+  },
+  '金欠ぐったりタイプ': {
+    characterName: 'ぐったりぜに',
+    role: '使い果たして金欠でぐったりする銭さししっぽ',
+    visualConcept: 'クリーム色のもふもふ生物。コインの上に力なく突っ伏し、頭上にぐるぐるモヤモヤ、疲れた半目。',
+    imageKey: 'zeni-broke',
+  },
+  '宵越しの金なしタイプ': {
+    characterName: 'からっぽぜに',
+    role: '入ったお金はぱーっと使う豪快な銭さししっぽ',
+    visualConcept: '黒っぽいもふもふ生物。ひびの入ったピンクの貯金箱を抱えて号泣、まわりにコインが散らばる。',
+    imageKey: 'zeni-spender',
+  },
+}
+
+export const zeniTailResultTypes = [
+  ['ゴールド貯金タイプ', 'コツコツ積立タイプ', '計画キッチリタイプ', '投資チャレンジタイプ'],
+  ['のんびり資産形成タイプ', 'お金の不安が大きいタイプ', 'ときめき優先タイプ', 'お金ほったらかしタイプ'],
+  ['体験・旅行派タイプ', '食費かさみタイプ', 'お買い物大好きタイプ', 'サブスク沼タイプ'],
+  ['見栄はり散財タイプ', '美容に全力タイプ', '金欠ぐったりタイプ', '宵越しの金なしタイプ'],
+]
+
+export const scaredyYokaiCharacters = {
+  '動じない大物タイプ': {
+    characterName: 'どっしり獅子',
+    role: '何があっても動じない、肝の据わったちょうちん妖怪',
+    visualConcept: '白い毛並みに赤い隈取りの獅子のような妖怪。ちょうちんを堂々と掲げ、どっしり余裕の表情で鬼火をまとう。',
+    imageKey: 'scaredy-boss',
+  },
+  '怖いもの見たさタイプ': {
+    characterName: 'わくわくダヌキ',
+    role: '怖いものに自分から突っ込む好奇心のちょうちん妖怪',
+    visualConcept: 'ゴーグルとリュックを身につけたたぬきの妖怪。ちょうちん片手に目を輝かせ、前のめりでわくわく。',
+    imageKey: 'scaredy-curious',
+  },
+  '冷静分析タイプ': {
+    characterName: 'ものしりフクロウ',
+    role: '怖がる前に理屈で片付ける冷静なちょうちん妖怪',
+    visualConcept: '角帽と丸眼鏡をかけたフクロウの妖怪。魔導書を広げ、ちょうちんを添えて落ち着き払った様子。',
+    imageKey: 'scaredy-analyst',
+  },
+  'マイペース鈍感タイプ': {
+    characterName: 'すやすやウサ',
+    role: '怖い気配にそもそも気づかないマイペース妖怪',
+    visualConcept: '星柄の毛布にくるまって眠るうさぎの妖怪。ちょうちんを枕元に、すやすやと幸せそうな寝息。',
+    imageKey: 'scaredy-oblivious',
+  },
+  '強がり平気フリタイプ': {
+    characterName: 'つよがり小鬼',
+    role: '本当は怖いのに平気なフリをするちょうちん妖怪',
+    visualConcept: '赤い角の生えた白い小鬼。腕を組んで強気な顔だが、足とちょうちんが小刻みに震えている。',
+    imageKey: 'scaredy-bluffer',
+  },
+  'ビビってすぐ笑うタイプ': {
+    characterName: 'てへぺろダヌキ',
+    role: '一瞬ビクッとしてもすぐ笑いに変えるちょうちん妖怪',
+    visualConcept: '菅笠をかぶったたぬきの妖怪。ちょうちんを掲げ、目を閉じて「なんだ〜」と大笑い。',
+    imageKey: 'scaredy-laugher',
+  },
+  '誰かといれば平気タイプ': {
+    characterName: 'よりそいコイヌ',
+    role: '誰かといれば強気になれる甘えん坊ちょうちん妖怪',
+    visualConcept: '垂れ耳の子犬の妖怪と、黒くて丸い相棒。二匹でちょうちんを挟み、ハートを飛ばして安心顔。',
+    imageKey: 'scaredy-buddy',
+  },
+  '明るいうちは平気タイプ': {
+    characterName: 'ひなたジシ',
+    role: '昼は余裕でも暗くなると別人になるちょうちん妖怪',
+    visualConcept: 'たてがみが太陽のように広がった獅子の妖怪。サングラスでキメ顔、頭上にお日さま。',
+    imageKey: 'scaredy-daylight',
+  },
+  '物音ビクッタイプ': {
+    characterName: 'びくっフェネ',
+    role: '小さな物音にも飛び上がる敏感なちょうちん妖怪',
+    visualConcept: '大きな耳のフェネックのような白い妖怪。耳をぴんと立て、!!マークとともにビクッと硬直。',
+    imageKey: 'scaredy-jumpy',
+  },
+  '想像ふくらみタイプ': {
+    characterName: 'もやもやケケ',
+    role: '何もないのに悪い想像で勝手に怖くなるちょうちん妖怪',
+    visualConcept: '毛むくじゃらの白い毛玉妖怪。目がぐるぐる渦巻き、頭上に紫のお化けの妄想がもくもく広がる。',
+    imageKey: 'scaredy-imaginative',
+  },
+  '背後が気になるタイプ': {
+    characterName: 'うしろガエリ',
+    role: '背後が気になって何度も振り返るちょうちん妖怪',
+    visualConcept: 'ほっぺのふくらんだハムスターの妖怪。ちょうちんを抱え、汗をかきながら後ろを振り返る。',
+    imageKey: 'scaredy-behind',
+  },
+  '夜の一人行動ムリタイプ': {
+    characterName: 'よるムリプー',
+    role: '夜に一人で動けない怖がりなちょうちん妖怪',
+    visualConcept: 'もこもこのプードルの妖怪。暗い雨の中、ちょうちんにしがみつき半泣きで足がすくむ。',
+    imageKey: 'scaredy-nightalone',
+  },
+  '悲鳴先行タイプ': {
+    characterName: 'さけびトリ',
+    role: '何かある前にもう叫んでいるちょうちん妖怪',
+    visualConcept: '翼の生えた白い鳥獣の妖怪。口を大きく開けて絶叫し、まわりに稲妻と涙が飛び散る。',
+    imageKey: 'scaredy-screamer',
+  },
+  '固まって動けないタイプ': {
+    characterName: 'かたまりカベ',
+    role: '怖いと石のように固まるちょうちん妖怪',
+    visualConcept: '苔むした岩(ぬりかべ)のような妖怪。つぶらな目を見開いてカチコチにフリーズ、ちょうちんだけ灯る。',
+    imageKey: 'scaredy-frozen',
+  },
+  '涙目ダッシュタイプ': {
+    characterName: 'なきダッシュ',
+    role: '怖いと涙目で全力疾走する逃げ足自慢のちょうちん妖怪',
+    visualConcept: 'ゴーグルをつけたもも んがの妖怪。皮膜を広げて涙目で滑空し、ちょうちんを置き去りに逃げる。',
+    imageKey: 'scaredy-runner',
+  },
+  '布団から出られないタイプ': {
+    characterName: 'ふとんウサ',
+    role: '怖い夜は布団から出られない究極のちょうちん妖怪',
+    visualConcept: '星柄の毛布をすっぽりかぶったうさぎの妖怪。目に涙をため、ちょうちんを抱えて布団の中で震える。',
+    imageKey: 'scaredy-blanket',
+  },
+}
+
+export const scaredyYokaiResultTypes = [
+  ['動じない大物タイプ', '怖いもの見たさタイプ', '冷静分析タイプ', 'マイペース鈍感タイプ'],
+  ['強がり平気フリタイプ', 'ビビってすぐ笑うタイプ', '誰かといれば平気タイプ', '明るいうちは平気タイプ'],
+  ['物音ビクッタイプ', '想像ふくらみタイプ', '背後が気になるタイプ', '夜の一人行動ムリタイプ'],
+  ['悲鳴先行タイプ', '固まって動けないタイプ', '涙目ダッシュタイプ', '布団から出られないタイプ'],
+]
+
+export const dreamTypeCharacters = {
+  '空飛ぶ夢タイプ': { characterName: 'そらとびゆめだま', role: '解放感と自信にあふれ、自由に羽ばたくゆめだま', visualConcept: 'ナイトキャップの眠り子が、背中に羽を広げて虹の雲の上を気持ちよさそうに飛ぶ。星がきらめく。', imageKey: 'dream-flying' },
+  '追われる夢タイプ': { characterName: 'おわれゆめだま', role: 'プレッシャーに追われながらも責任感の強いゆめだま', visualConcept: '黒い影のおばけに追われて、涙目で雲の上を必死に走る眠り子。', imageKey: 'dream-chased' },
+  '落ちる夢タイプ': { characterName: 'おちゆめだま', role: '緊張の中でも踏みとどまる力を持つゆめだま', visualConcept: '星の降るトンネルを真っ逆さまに落ちながら、ビクッと目を見開く眠り子。', imageKey: 'dream-falling' },
+  '歯が抜ける夢タイプ': { characterName: 'はぬけゆめだま', role: '変化の只中に立つ、脱皮前のゆめだま', visualConcept: '歯がポロポロ抜けて宙に浮き、手鏡を前にあわあわする眠り子。', imageKey: 'dream-tooth' },
+  'テスト遅刻の夢タイプ': { characterName: 'ちこくゆめだま', role: '準備を気にかける真面目で完璧主義なゆめだま', visualConcept: '時計と教科書とカバンを抱え、汗だくで大慌てする眠り子。', imageKey: 'dream-late' },
+  '好きな人の夢タイプ': { characterName: 'こいゆめだま', role: '恋心でぽわぽわ、愛されたいゆめだま', visualConcept: 'ハートに包まれ、大きなハートを抱えて頬を染める眠り子。', imageKey: 'dream-crush' },
+  '推しに会う夢タイプ': { characterName: 'おしゆめだま', role: '推しを原動力に前を向く、ときめきのゆめだま', visualConcept: 'ペンライトを両手に、「推し」の札とハートに囲まれて感激の涙を流す眠り子。', imageKey: 'dream-oshi' },
+  'お宝ざくざく夢タイプ': { characterName: 'おたからゆめだま', role: '隠れた才能に気づきかけた、幸運のゆめだま', visualConcept: '宝箱と金貨・宝石の山に埋もれて満面の笑みのまんまる眠り子。', imageKey: 'dream-treasure' },
+  '迷子の夢タイプ': { characterName: 'まいごゆめだま', role: '選択肢の只中で道を探す、可能性のゆめだま', visualConcept: '知らない扉だらけの場所で、ランタン片手にきょろきょろ「？」を浮かべる眠り子。', imageKey: 'dream-lost' },
+  '会いたい人の夢タイプ': { characterName: 'あいたいゆめだま', role: '誰かを想う優しさにあふれたゆめだま', visualConcept: '夕暮れの淡い光の中、懐かしい人のシルエットに手を伸ばす眠り子。', imageKey: 'dream-reunion' },
+  '繰り返す夢タイプ': { characterName: 'ループゆめだま', role: '心残りと向き合おうとする、ループの中のゆめだま', visualConcept: '同じ風景の矢印ループの中に、いくつも並んで漂う眠り子たち。', imageKey: 'dream-repeat' },
+  '水の夢タイプ': { characterName: 'みずゆめだま', role: '感受性が豊かで感情を大切にするゆめだま', visualConcept: '水色の水中を、泡と小魚・くらげに囲まれてたゆたう眠り子。', imageKey: 'dream-water' },
+  'ごちそう夢タイプ': { characterName: 'ごちそうゆめだま', role: '満たされたい欲求いっぱい、ごほうびのゆめだま', visualConcept: '山盛りのパンケーキ・ケーキ・ごちそうに埋もれて幸せ顔の眠り子。', imageKey: 'dream-feast' },
+  '冒険ヒーロー夢タイプ': { characterName: 'ぼうけんゆめだま', role: '挑戦心にあふれ、自分の物語を生きるゆめだま', visualConcept: '赤いマントと剣を携え、お城を背にヒーローポーズで勇ましく飛ぶ眠り子。', imageKey: 'dream-hero' },
+  '明晰夢タイプ': { characterName: 'めいせきゆめだま', role: '強い意志と創造力で夢を操るゆめだま', visualConcept: '星空の中、指先から星や光を生み出し夢を自在に操る眠り子。', imageKey: 'dream-lucid' },
+  '夢うつつタイプ': { characterName: 'ぐっすりゆめだま', role: '心穏やか、休息に満ちたマイペースなゆめだま', visualConcept: '三日月の下、ふかふかの雲の上でZzzと幸せそうにぐっすり眠る眠り子。', imageKey: 'dream-sleepy' },
+}
+
+export const dreamTypeResultTypes = [
+  ['落ちる夢タイプ', 'ごちそう夢タイプ', '好きな人の夢タイプ', '夢うつつタイプ'],
+  ['テスト遅刻の夢タイプ', 'お宝ざくざく夢タイプ', '繰り返す夢タイプ', '迷子の夢タイプ'],
+  ['追われる夢タイプ', '推しに会う夢タイプ', '会いたい人の夢タイプ', '冒険ヒーロー夢タイプ'],
+  ['歯が抜ける夢タイプ', '空飛ぶ夢タイプ', '水の夢タイプ', '明晰夢タイプ'],
 ]
