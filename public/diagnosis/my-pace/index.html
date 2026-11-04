@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>マイペース度診断｜無料で遊べる心理テスト | 診断村</title>
+<meta name="description" content="あなたのマイペース度を16匹の猫キャラで診断。周りに合わせ上手？それとも猫界の自由人？無料1分で遊べる性格診断・心理テストです。" />
+<link rel="canonical" href="https://shindanmura.com/diagnosis/my-pace/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="診断村" />
+<meta property="og:title" content="マイペース度診断｜無料で遊べる心理テスト | 診断村" />
+<meta property="og:description" content="あなたのマイペース度を16匹の猫キャラで診断。周りに合わせ上手？それとも猫界の自由人？無料1分で遊べる性格診断・心理テストです。" />
+<meta property="og:url" content="https://shindanmura.com/diagnosis/my-pace/" />
+<meta property="og:image" content="https://shindanmura.com/og-image.jpg" />
+<meta property="og:locale" content="ja_JP" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="マイペース度診断｜無料で遊べる心理テスト | 診断村" />
+<meta name="twitter:description" content="あなたのマイペース度を16匹の猫キャラで診断。周りに合わせ上手？それとも猫界の自由人？無料1分で遊べる性格診断・心理テストです。" />
+<meta name="twitter:image" content="https://shindanmura.com/og-image.jpg" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"マイペース度診断","description":"あなたのマイペース度を16匹の猫キャラで診断。周りに合わせ上手？それとも猫界の自由人？無料1分で遊べる性格診断・心理テストです。","url":"https://shindanmura.com/diagnosis/my-pace/","inLanguage":"ja","isPartOf":{"@type":"WebSite","name":"診断村","url":"https://shindanmura.com"},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"診断村","item":"https://shindanmura.com/"},{"@type":"ListItem","position":2,"name":"診断一覧","item":"https://shindanmura.com/diagnosis/"},{"@type":"ListItem","position":3,"name":"マイペース度診断","item":"https://shindanmura.com/diagnosis/my-pace/"}]}}</script>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', sans-serif;
+    background: linear-gradient(160deg, #fff8fd 0%, #ffe6f8 55%, #ece2fb 100%);
+    color: #241436; min-height: 100vh; padding: 24px 16px 56px;
+    display: flex; justify-content: center; line-height: 1.9;
+  }
+  .page { max-width: 760px; width: 100%; }
+  .brand { font-size: 14px; letter-spacing: 0.06em; text-align: center; margin-bottom: 16px; }
+  .brand a { color: #8e5fc6; font-weight: 700; text-decoration: none; }
+  .card, article {
+    background: rgba(255, 255, 255, 0.94); border-radius: 24px;
+    padding: 30px 24px; box-shadow: 0 12px 40px rgba(97, 72, 127, 0.16);
+  }
+  .category { display: inline-block; font-size: 12px; color: #8f4ed8; background: #f6ecff; padding: 4px 12px; border-radius: 999px; }
+  h1 { font-size: 25px; line-height: 1.5; margin: 12px 0 8px; color: #2c1a44; }
+  .lead { margin-top: 10px; color: #4a3763; font-size: 15.5px; }
+  h2 { font-size: 19px; margin: 30px 0 12px; color: #61487f; border-left: 5px solid #ff8fd0; padding-left: 12px; }
+  .how p { font-size: 15px; color: #33234a; margin: 10px 0; }
+  .how ul { margin: 10px 0 0 20px; }
+  .how li { font-size: 15px; color: #33234a; margin: 6px 0; }
+  .type-list { display: grid; gap: 16px; margin-top: 8px; }
+  .type-card {
+    display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: start;
+    background: #fff; border: 1px solid #f0e4fb; border-radius: 18px; padding: 16px;
+  }
+  .type-card img { width: 96px; height: 64px; object-fit: contain; border-radius: 12px; background: #faf4ff; }
+  .type-name { font-weight: 700; font-size: 16px; color: #2c1a44; }
+  .type-title { font-size: 12.5px; color: #8f4ed8; margin: 2px 0 6px; }
+  .type-role { font-size: 13px; color: #61487f; margin-bottom: 6px; }
+  .type-desc { font-size: 14px; color: #33234a; margin-bottom: 6px; }
+  .type-meta { font-size: 12.5px; color: #6b5685; margin-top: 3px; }
+  .cta {
+    display: block; margin-top: 28px; padding: 16px; border-radius: 999px; text-decoration: none;
+    background: linear-gradient(135deg, #ff67ad, #8f4ed8); color: #fff; font-weight: 700;
+    font-size: 16px; text-align: center;
+  }
+  .diagnosis-list { display: grid; gap: 14px; margin-top: 20px; }
+  .diagnosis-item {
+    display: block; background: rgba(255,255,255,0.94); border-radius: 18px;
+    padding: 18px 20px; text-decoration: none; color: #241436;
+    box-shadow: 0 8px 26px rgba(97, 72, 127, 0.12);
+  }
+  .diagnosis-item strong { display: block; font-size: 17px; margin: 6px 0 4px; }
+  .diagnosis-item p { font-size: 13.5px; color: #5b476f; }
+  .sub-links { margin-top: 22px; font-size: 13px; text-align: center; }
+  .sub-links a { color: #8e5fc6; margin: 0 8px; white-space: nowrap; }
+  .zukan-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .zukan-nav a { font-size: 12.5px; color: #8f4ed8; background: #f6ecff; padding: 5px 11px; border-radius: 999px; text-decoration: none; }
+  .zukan-section { margin-top: 30px; }
+  .zukan-section h2 { margin-bottom: 4px; }
+  .zukan-section h2 a { color: #61487f; text-decoration: none; }
+  .zukan-lead { font-size: 13px; color: #5b476f; margin: 0 0 12px; }
+  .zukan-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .zukan-char { display: block; text-decoration: none; color: #241436; background: #fff; border: 1px solid #f0e4fb; border-radius: 14px; padding: 8px; text-align: center; }
+  .zukan-char img { width: 100%; height: 72px; object-fit: contain; background: #faf4ff; border-radius: 10px; }
+  .zukan-char .cname { display: block; font-size: 12px; font-weight: 700; margin-top: 6px; line-height: 1.4; color: #2c1a44; }
+  .zukan-char .ctype { display: block; font-size: 10.5px; color: #8f7ba6; line-height: 1.3; }
+  @media (max-width: 520px) { .zukan-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="brand"><a href="/">診断村</a> ／ <a href="/diagnosis/">診断一覧</a></div>
+  <article>
+    <span class="category">性格</span>
+    <h1>🐱 マイペース度診断</h1>
+    <p class="lead">あなたのマイペース度を16匹の猫キャラで診断。周りに合わせ上手？それとも猫界の自由人？無料1分で遊べる性格診断・心理テストです。</p>
+
+    <h2>遊び方</h2>
+    <div class="how">
+      <p>かんたんな8問の質問に、直感で「違う〜完全に自分」の4段階から答えるだけ。所要時間は1分ほどで、16タイプの中からあなたに近いキャラクターが結果として出ます。登録不要・完全無料で、結果はそのままSNSでシェアできます。</p>
+    </div>
+
+    <h2>マイペース度診断の全16タイプ</h2>
+    <div class="type-list">
+      <div class="type-card">
+        <img src="/characters-small/myPaceCatCharacters/mypace-ragdoll-cat.webp" alt="おっとりラグドール" loading="lazy" width="96" height="64" />
+        <div>
+          <div class="type-name">おっとりラグドール</div>
+          <div class="type-title">寄り添いペースタイプ</div>
+          <div class="type-role">相手のペースにふわりと寄り添う猫</div>
+          <p class="type-desc">周りの人のリズムに自然と寄り添える、やわらかいペースの持ち主です。「一緒にいて疲れない」と言われることが多く、その場の空気をふんわり整えます。</p>
+          <p class="type-meta">相性がいい人：おだやかな人・急かさない人・一緒にのんびりできる人</p>
+          <p class="type-meta">注意ポイント：合わせすぎて自分の希望を後回しにしがちです。「本当はこうしたい」を月に一度は口に出してみましょう。</p>
+        </div>
+      </div>
+      <div class="type-card">
+        <img src="/characters-small/myPaceCatCharacters/mypace-amesho-cat.webp" alt="ノリのいいアメショ" loading="lazy" width="96" height="64" />
+        <div>
+          <div class="type-name">ノリのいいアメショ</div>
+          <div class="type-title">ノリ合わせ上手タイプ</div>
+          <div class="type-role">誰とでもうまく遊べる社交派の猫</div>
+          <p class="type-desc">その場のノリに合わせるのが上手で、どんなグループでも楽しくやれるタイプです。誘われたら基本行く、のフットワークの軽さが魅力です。</p>
+          <p class="type-meta">相性がいい人：誘い上手な人・ワイワイ系の人・ノリのいい人</p>
+          <p class="type-meta">注意ポイント：付き合いのよさで予定が埋まりがちです。たまには「今日は帰る」と言える日を作りましょう。</p>
+        </div>
+      </div>
+      <div class="type-card">
+        <img src="/characters-small/myPaceCatCharacters/mypace-hachiware-cat.webp" alt="窓辺のハチワレ" loading="lazy" width="96" height="64" />
+        <div>
+          <div class="type-name">窓辺のハチワレ</div>
+          <div class="type-title">ひとり時間ちょい足しタイプ</div>
+          <div class="type-role">合わせ上手だけど自分の時間も好きな猫</div>
+          <p class="type-desc">基本は周りに合わせられるけれど、こっそり自分の時間も確保しているバランス型です。窓辺で外を眺める猫のように、静かな充電時間を大切にしています。</p>
+          <p class="type-meta">相性がいい人：一人の時間を尊重してくれる人・静かに隣にいられる人</p>
+          <p class="type-meta">注意ポイント：ひとり時間が足りないとじわじわ不機嫌になります。忙しい週こそ、意識して自分の時間を予定に入れましょう。</p>
+        </div>
+      </div>
+      <div class="type-card">
+        <img src="/characters-small/myPaceCatCharacters/mypace-munchkin-cat.webp" alt="てくてくマンチカン" loading="lazy" width="96" height="64" />
+        <div>
+          <div class="type-name">てくてくマンチカン</div>
+          <div class="type-title">さりげなく自分流タイプ</div>
+          <div class="type-role">短い足でも自分の道を歩く猫</div>
+          <p class="type-desc">協調的に見えて、実はしっかり自分のやり方を持っているタイプです。歩幅は小さくても方向は自分で決める、かわいい頑固さがあります。</p>
+          <p class="type-meta">相性がいい人：やり方に口を出さない人・結果を見てくれる人</p>
+          <p class="type-meta">注意ポイント：こだわりが伝わらず誤解されることも。「ここだけは自分流でやりたい」と先に伝えるとスムーズです。</p>
+        </div>
+      </div>
+      <div class="type-card">
+        <img src="/characters-small/myPaceCatCharacters/mypace-scottish-cat.webp" alt="まったりスコティッシュ" loading="lazy" width="96" height="64" />
+        <div>
+          <div class="type-name">まったりスコティッシュ</div>
+          <div class="type-title">のんびり屋さんタイプ</div>
+          <div class="type-role">動くのはいつも自分のタイミングの猫</div>
+          <p class="type-desc">急かされてもあわてない、自分のテンポを持ったのんびり屋さんです。周りがバタバタしていても、あなたの周りだけ時間がゆっくり流れています。</p>
+          <p class="type-meta">相性がいい人：せっかちじゃない人・のんびりを一緒に楽しめる人</p>
+          <p class="type-meta">注意ポイント：締切ギリギリ癖には注意。「早めに終わらせるとのんびり時間が増える」と考えると動きやすくなります。</p>
+        </div>
+      </div>
+      <div class="type-card">
+        <img src="/characters-small/myPaceCatCharacters/mypace-mike-cat.webp" alt="きまぐれ三毛猫" loading="lazy" width="96" height="64" />
+        <div>
+          <div class="type-name">きまぐれ三毛猫</div>
+          <div class="type-title">気分屋ときどき協調タイプ</div>
+          <div class="type-role">撫でていい時とダメな時がある猫</div>
+          <p class="type-desc">気分が乗れば最高のパフォーマンス、乗らなければ省エネモード。三毛猫のような気まぐれさが、あなたの魅力でもあります。</p>
+          <p class="type-meta">相性がいい人：気分の波を面白がってくれる人・距離感の上手な人</p>
+          <p class="type-meta">注意ポイント：気分のムラが「やる気がない」と誤解されることも。乗らない日は正直に「今日は充電日」と宣言しましょう。</p>
+        </div>
+      </div>
+      <div class="type-card">
+        <img src="/characters-small/myPaceCatCharacters/mypace-kijitora-cat.webp" alt="さんぽキジトラ" loading="lazy" width="96" height="64" />
+        <div>
+          <div class="type-name">さんぽキジトラ</div>
+          <div class="type-title">ふらっとソロ活タイプ</div>
+          <div class="type-role">ふらっといなくなって、ふらっと帰る猫</div>
+          <p class="type-desc">思い立ったらひとりでどこへでも行けるタイプです。ソロ活のハードルが低く、自分だけの楽しみをたくさん持っています。</p>
+          <p class="type-meta">相性がいい人：束縛しない人・自分の世界を持っている人・お互い自由でいられる人</p>
+          <p class="type-meta">注意ポイント：自由すぎて「何を考えているかわからない」と言われがち。帰ってきたら土産話をひとつ共有すると距離が縮まります。</p>
+        </div>
+      </div>
+      <div class="type-card">
+        <img src="/characters-small/myPaceCatCharacters/mypace-bengal-cat.webp" alt="全力ベンガル" loading="lazy" width="96" height="64" />
+        <div>
+          <div class="type-name">全力ベンガル</div>
+          <div class="type-title">好きなものは譲らないタイプ</div>
+          <div class="type-role">好きな遊びには全力を出す猫</div>
+          <p class="type-desc">普段は合わせられるのに、好きなことになると誰にも譲らない情熱の持ち主です。オンオフの切り替えの激しさはベンガル級です。</p>
+          <p class="type-meta">相性がいい人：好きなものを尊重してくれる人・一緒に熱中できる人</p>
+          <p class="type-meta">注意ポイント：熱中すると周りが見えなくなります。大事な予定だけはリマインダーをセットしておきましょう。</p>
+        </div>
+      </div>
+      <div class="type-card">
+        <img src="/characters-small/myPaceCatCharacters/mypace-chatora-cat.webp" alt="ひるね茶トラ" loading="lazy" width="96" height="64" />
+        <div>
+          <div class="type-name">ひるね茶トラ</div>
+          <div class="type-title">自分時間ゆずらないタイプ</div>
+          <div class="type-role">ごはんと昼寝の時間は絶対の猫</div>
+          <p class="type-desc">ごはん・睡眠・趣味の時間など、自分の生活リズムをしっかり守るタイプです。生活の土台が安定しているので、機嫌も安定しています。</p>
+          <p class="type-meta">相性がいい人：生活リズムが近い人・ルーティンを笑わない人</p>
+          <p class="type-meta">注意ポイント：リズムを乱されると不機嫌が顔に出ます。譲れない時間帯は、先に周りへ共有しておくのが平和のコツです。</p>
+        </div>
+      </div>
+      <div class="type-card">
+        <img src="/characters-small/myPaceCatCharacters/mypace-sabi-cat.webp" alt="きぶんやサビ猫" loading="lazy" width="96" height="64" />
+        <div>
+          <div class="type-name">きぶんやサビ猫</div>
+          <div class="type-title">その日の気分がすべてタイプ</div>
+          <div class="type-role">その日の気分がすべての猫</div>
+          <p class="type-desc">今日やるかどうかは、今日の自分が決める。気分を最優先にできる正直さは、実はストレスを溜めない才能でもあります。</p>
+          <p class="type-meta">相性がいい人：予定変更に強い人・「そういう日もあるよね」と言える人</p>
+          <p class="type-meta">注意ポイント：気分待ちで大事なことを逃さないように。「気分が乗らなくても5分だけやる」ルールが効きます。</p>
+        </div>
+      </div>
+      <div class="type-card">
+        <img src="/characters-small/myPaceCatCharacters/mypace-russianblue-cat.webp" alt="クールなロシアンブルー" loading="lazy" width="96" height="64" />
+        <div>
+          <div class="type-name">クールなロシアンブルー</div>
+          <div class="type-title">クールな単独行動タイプ</div>
+          <div class="type-role">静かに単独行動する気品の猫</div>
+          <p class="type-desc">群れず、騒がず、自分の道を静かに進むタイプです。一見クールですが、心を許した相手にはとことん誠実です。</p>
+          <p class="type-meta">相性がいい人：適度な距離を保てる人・信頼を積み重ねてくれる人</p>
+          <p class="type-meta">注意ポイント：素っ気なく見られて損をすることも。たまの一言「ありがとう」で印象は大きく変わります。</p>
+        </div>
+      </div>
+      <div class="type-card">
+        <img src="/characters-small/myPaceCatCharacters/mypace-mainecoon-cat.webp" alt="どっしりメインクーン" loading="lazy" width="96" height="64" />
+        <div>
+          <div class="type-name">どっしりメインクーン</div>
+          <div class="type-title">動じない我が道タイプ</div>
+          <div class="type-role">大きくて何にも動じない猫</div>
+          <p class="type-desc">周りが騒いでもどっしり構えて動じない、大物感のあるタイプです。その安定感は、周りの人の安心材料になっています。</p>
+          <p class="type-meta">相性がいい人：頼ってくる人・あなたのペースに安心する人</p>
+          <p class="type-meta">注意ポイント：動じなさすぎて「聞いてる？」と言われがち。リアクションは少し大きめを心がけると誤解が減ります。</p>
+        </div>
+      </div>
+      <div class="type-card">
+        <img src="/characters-small/myPaceCatCharacters/mypace-persian-cat.webp" alt="ゆうぜんペルシャ" loading="lazy" width="96" height="64" />
+        <div>
+          <div class="type-name">ゆうぜんペルシャ</div>
+          <div class="type-title">悠然マイペースの極みタイプ</div>
+          <div class="type-role">何があっても急がない悠然の極みの猫</div>
+          <p class="type-desc">何があっても急がない、悠然の極みです。あなたのゆったりした佇まいは、せわしない世の中への静かな抵抗であり、癒しでもあります。</p>
+          <p class="type-meta">相性がいい人：待てる人・ゆったりした時間を愛せる人</p>
+          <p class="type-meta">注意ポイント：世の中には締切というものが存在します。信頼できる人に「そろそろだよ」と声かけを頼んでおきましょう。</p>
+        </div>
+      </div>
+      <div class="type-card">
+        <img src="/characters-small/myPaceCatCharacters/mypace-siamese-cat.webp" alt="おしゃべりシャム" loading="lazy" width="96" height="64" />
+        <div>
+          <div class="type-name">おしゃべりシャム</div>
+          <div class="type-title">言いたいことは言うタイプ</div>
+          <div class="type-role">言いたいことは鳴いて伝える猫</div>
+          <p class="type-desc">思ったことは口に出す、裏表のないタイプです。従うかどうかは別として、意見はちゃんと言う。その正直さが信頼を集めます。</p>
+          <p class="type-meta">相性がいい人：はっきりした物言いを気持ちいいと感じる人・議論を楽しめる人</p>
+          <p class="type-meta">注意ポイント：正直さが強く響きすぎる日もあります。言う内容はそのまま、言い方だけ2割やわらかくすると無敵です。</p>
+        </div>
+      </div>
+      <div class="type-card">
+        <img src="/characters-small/myPaceCatCharacters/mypace-kuroneko-cat.webp" alt="よふかし黒猫" loading="lazy" width="96" height="64" />
+        <div>
+          <div class="type-name">よふかし黒猫</div>
+          <div class="type-title">夜の自由人タイプ</div>
+          <div class="type-role">夜を自由に歩く一匹狼の猫</div>
+          <p class="type-desc">自分の時間は夜に流れているタイプです。みんなが寝静まった時間にこそ、あなたの世界は輝き出します。ひとりの夜更かしは至福の時間です。</p>
+          <p class="type-meta">相性がいい人：生活リズムに口を出さない人・夜型を理解してくれる人</p>
+          <p class="type-meta">注意ポイント：自由な夜と引き換えに朝がつらくなりがち。大事な予定の前日だけは、黒猫も早めに巣に戻りましょう。</p>
+        </div>
+      </div>
+      <div class="type-card">
+        <img src="/characters-small/myPaceCatCharacters/mypace-sphynx-cat.webp" alt="ありのままスフィンクス" loading="lazy" width="96" height="64" />
+        <div>
+          <div class="type-name">ありのままスフィンクス</div>
+          <div class="type-title">唯一無二の我が道タイプ</div>
+          <div class="type-role">人の目を1ミリも気にしない猫</div>
+          <p class="type-desc">人の目を1ミリも気にせず、自分の生き方を貫くタイプです。「変わってるね」は、あなたにとって最高のほめ言葉。その唯一無二さが人を惹きつけます。</p>
+          <p class="type-meta">相性がいい人：個性をまるごと面白がってくれる人・同じくらい我が道な人</p>
+          <p class="type-meta">注意ポイント：我が道すぎて孤高になりすぎないように。理解者は少数で十分ですが、ゼロにはしないでおきましょう。</p>
+        </div>
+      </div>
+    </div>
+
+    <a class="cta" href="/#diagnosis=my-pace">マイペース度診断をやってみる(無料)</a>
+    <div class="sub-links">
+      <a href="/diagnosis/">診断一覧</a>
+      <a href="/zukan/">村人図鑑</a>
+      <a href="/column/">コラム</a>
+      <a href="/">トップ</a>
+      <a href="/about/">運営者情報</a>
+      <a href="/privacy/">プライバシー</a>
+      <a href="/contact/">お問い合わせ</a>
+    </div>
+  </article>
+</div>
+</body>
+</html>

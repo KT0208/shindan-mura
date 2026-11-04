@@ -309,8 +309,6 @@ export const diagnoses = [
   },
   {
     id: 'scaredy-level',
-    // 非公開ストック: ハロウィン前に公開予定。公開時に hidden を外す(ja/en両方)
-    hidden: true,
     title: 'ビビり度診断',
     category: '性格',
     emoji: '👻',

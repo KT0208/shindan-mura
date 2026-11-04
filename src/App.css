@@ -805,6 +805,32 @@ button {
   }
 }
 
+/* 診断ごとの専用広告(結果画面) */
+.ad-banner.ad-matched {
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ad-pr-label {
+  align-self: center;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.ad-matched-text {
+  max-width: 320px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #ff8ac0;
+  text-decoration: none;
+}
+
+.ad-matched-text:hover {
+  text-decoration: underline;
+}
+
 .character-card {
   display: grid;
   grid-template-columns: minmax(320px, 520px) 1fr;
@@ -890,6 +916,68 @@ button {
   gap: 18px;
   margin: 24px 0;
 }
+
+/* 図鑑トップ: 診断ごとのカード一覧 */
+.guide-index-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin: 24px 0;
+}
+
+.guide-index-card {
+  display: grid;
+  grid-template-rows: 200px auto auto;
+  gap: 8px;
+  overflow: hidden;
+  padding: 0 0 18px;
+  border-radius: 26px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  font: inherit;
+  background:
+    radial-gradient(circle at top right, rgba(255, 78, 205, 0.2), transparent 34%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.045));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.guide-index-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.3);
+}
+
+.guide-index-image-wrap {
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.16), transparent 55%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025));
+}
+
+.guide-index-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 24px rgba(20, 8, 34, 0.26));
+}
+
+.guide-index-card h3 {
+  margin: 0;
+  padding: 0 14px;
+  font-size: 19px;
+  letter-spacing: -0.03em;
+}
+
+.guide-index-count {
+  margin: 0;
+  font-size: 13px;
+  color: #ffd9fb;
+}
+
 
 .character-guide-card {
   display: grid;
@@ -1141,6 +1229,7 @@ button {
   .scene-row,
   .scene-sets,
   .character-guide-grid,
+  .guide-index-grid,
   .top-feature-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1186,6 +1275,18 @@ button {
   .top-feature-grid,
   .popular-character-list {
     grid-template-columns: 1fr;
+  }
+
+  .guide-index-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .guide-index-card {
+    grid-template-rows: 140px auto auto;
+  }
+
+  .guide-index-card h3 {
+    font-size: 15px;
   }
 
   .answers {
@@ -2752,6 +2853,14 @@ button {
   background: #1877f2;
 }
 
+.top-app .sns-tiktok {
+  background: #010101;
+}
+
+.top-app .sns-youtube {
+  background: #ff0000;
+}
+
 .top-app .sns-note {
   width: auto;
   padding: 0 15px;
@@ -2800,4 +2909,546 @@ button {
   font-size: 13px;
   top: 6px;
   right: 6px;
+}
+
+/* =========================================================================
+   私の診断村 (My Shindan Village)
+   - 村背景の上に、診断ごとの定位置(%座標)で最新キャラを配置する。
+   - キャラは自由移動せず、その場で控えめにふわふわ+タップでぽよん。
+   - スマホ最優先。背景コンテナは aspect-ratio 固定、キャラは%配置。
+   ========================================================================= */
+.myvillage-hero .myvillage-progress {
+  margin-top: 8px;
+  font-weight: 700;
+  color: #6b5b8a;
+}
+.myvillage-hero .myvillage-hint {
+  margin-top: 2px;
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+.myvillage-stage {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto 24px;
+  padding: 0 12px;
+}
+
+.myvillage-map {
+  position: relative;
+  width: 100%;
+  /* aspect-ratio は JSX 側からインラインで背景画像の縦横比を指定する。 */
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(80, 70, 120, 0.18);
+  /* 背景画像がまだ無いときのプレースホルダー(空・草原のイメージ)。 */
+  background:
+    radial-gradient(120% 80% at 50% 12%, #bfe3ff 0%, #a9d5f5 42%, #cde7c9 72%, #b7e0a8 100%);
+}
+
+/* 実際の村背景画像。読み込めた時だけ上に重なる(404時は JSX で display:none)。 */
+.myvillage-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* 各診断の定位置。left/top は% で JSX から指定。中心そろえで transform 配置。 */
+.myvillage-plot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  /* キャラの横幅(=当たり判定)。画面幅に応じて可変。重なりすぎ防止。 */
+  width: clamp(52px, 9vw, 104px);
+}
+
+.myvillage-label {
+  max-width: 128px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #5b4b7a;
+  font-size: clamp(9px, 1.6vw, 12px);
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: 0 2px 6px rgba(80, 70, 120, 0.22);
+  pointer-events: none;
+}
+
+/* キャラ本体。常時はふわふわ(上下)+わずかな揺れ。 */
+.myvillage-char {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 6px rgba(60, 50, 90, 0.28));
+  animation: myvillageFloat var(--float-dur, 3.8s) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+  transform-origin: center bottom;
+  will-change: transform;
+}
+
+/* 未診断枠のシルエット(未解放表示)。 */
+.myvillage-silhouette {
+  display: block;
+  border-radius: 50% 50% 46% 46%;
+  background: rgba(70, 60, 95, 0.42);
+  box-shadow: inset 0 -6px 12px rgba(0, 0, 0, 0.12);
+}
+.myvillage-plot.is-locked .myvillage-char {
+  opacity: 0.9;
+  animation-duration: calc(var(--float-dur, 3.8s) * 1.25);
+}
+.myvillage-plot.is-locked .myvillage-label {
+  opacity: 0.72;
+}
+
+/* タップ時のぽよん反応(1回)。JSX が is-bounce を付け外しして再生する。 */
+.myvillage-char.is-bounce {
+  animation: myvillageBounce 0.5s ease;
+}
+
+@keyframes myvillageFloat {
+  0%   { transform: translateY(0) rotate(0deg); }
+  50%  { transform: translateY(-7%) rotate(-1.5deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes myvillageBounce {
+  0%   { transform: translateY(0) scale(1, 1); }
+  30%  { transform: translateY(-18%) scale(0.92, 1.1); }
+  55%  { transform: translateY(0) scale(1.08, 0.9); }
+  75%  { transform: translateY(-6%) scale(0.98, 1.02); }
+  100% { transform: translateY(0) scale(1, 1); }
+}
+
+/* タップ詳細シート(診断名・キャラ名・一言説明)。 */
+.myvillage-sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(40, 32, 60, 0.5);
+  backdrop-filter: blur(2px);
+  animation: myvillageFade 0.18s ease;
+}
+.myvillage-sheet {
+  position: relative;
+  width: min(360px, 92vw);
+  max-height: 86vh;
+  overflow-y: auto;
+  padding: 22px 20px 20px;
+  border-radius: 20px;
+  background: #fff;
+  text-align: center;
+  box-shadow: 0 18px 50px rgba(40, 30, 70, 0.35);
+  animation: myvillagePopIn 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+.myvillage-sheet .label {
+  margin-top: 8px;
+  color: #8a7aa8;
+}
+.myvillage-sheet h3 {
+  margin: 4px 0 2px;
+  font-size: 20px;
+}
+.myvillage-sheet strong {
+  display: block;
+  color: #6b5b8a;
+  font-size: 14px;
+}
+.myvillage-sheet-desc {
+  margin: 10px 0 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #574b6b;
+}
+.myvillage-sheet-img {
+  width: 132px;
+  height: 132px;
+  margin: 0 auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 10px rgba(60, 50, 90, 0.28));
+}
+span.myvillage-sheet-img.myvillage-silhouette {
+  display: block;
+}
+.myvillage-sheet .share-button {
+  width: 100%;
+}
+.myvillage-sheet-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.06);
+  font-size: 20px;
+  line-height: 1;
+  color: #574b6b;
+  cursor: pointer;
+}
+
+@keyframes myvillageFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes myvillagePopIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* 村人図鑑(既存)のタップ時アニメ。常時は動かさず、タップしたカードだけ1回。 */
+.character-guide-image-wrap {
+  cursor: pointer;
+}
+.character-guide-image-wrap.is-popping .character-guide-image {
+  animation: myvillageBounce 0.5s ease;
+}
+
+/* スマホ表示の微調整(狭幅ではラベルとキャラを少し小さく)。 */
+@media (max-width: 620px) {
+  .myvillage-stage {
+    padding: 0 6px;
+  }
+  .myvillage-plot {
+    width: clamp(46px, 15vw, 78px);
+  }
+  .myvillage-label {
+    max-width: 92px;
+  }
+}
+
+/* アクセシビリティ: 動きを減らす設定では常時アニメを止め、反応も最小限に。 */
+@media (prefers-reduced-motion: reduce) {
+  .myvillage-char,
+  .myvillage-plot.is-locked .myvillage-char {
+    animation: none !important;
+  }
+  .myvillage-char.is-bounce,
+  .character-guide-image-wrap.is-popping .character-guide-image {
+    animation: none !important;
+  }
+  .myvillage-sheet,
+  .myvillage-sheet-backdrop {
+    animation: none !important;
+  }
+}
+
+/* 診断結果ページ → 私の診断村への導線カード。
+   「この子が村に加わった」＋収集進捗を見せて再訪・追加診断を促す。 */
+.myvillage-result-cta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin: 14px 0 4px;
+  padding: 14px 16px;
+  border: 0;
+  border-radius: 16px;
+  cursor: pointer;
+  text-align: left;
+  color: #4a3f66;
+  background: linear-gradient(135deg, #fdf0ff 0%, #eaf3ff 55%, #e6fbf0 100%);
+  box-shadow: 0 6px 18px rgba(120, 90, 160, 0.18);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.myvillage-result-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(120, 90, 160, 0.24);
+}
+.myvillage-result-cta:active {
+  transform: translateY(0) scale(0.99);
+}
+.myvillage-result-cta-emoji {
+  font-size: 30px;
+  line-height: 1;
+  flex: 0 0 auto;
+}
+.myvillage-result-cta-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.myvillage-result-cta-text strong {
+  font-size: 15px;
+  font-weight: 700;
+}
+.myvillage-result-cta-text small {
+  font-size: 12.5px;
+  color: #6b5b8a;
+  font-weight: 600;
+}
+.myvillage-result-cta-go {
+  flex: 0 0 auto;
+  font-size: 26px;
+  color: #a88ac8;
+  font-weight: 700;
+}
+@media (prefers-reduced-motion: reduce) {
+  .myvillage-result-cta { transition: none; }
+}
+
+/* ===== 私の診断村 v2: 進捗・コンプ・称号 ===== */
+.myvillage-progress-wrap { margin: 12px auto 2px; max-width: 420px; text-align: left; }
+.myvillage-progress-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
+.myvillage-rank { font-weight: 800; color: #8a5bb0; font-size: 14px; }
+.myvillage-progress-count { font-weight: 700; color: #6b5b8a; font-size: 13px; }
+.myvillage-progressbar { height: 10px; border-radius: 999px; background: rgba(120, 90, 160, 0.18); overflow: hidden; }
+.myvillage-progressbar > span { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, #b98cff, #7bd0ff); transition: width 0.5s ease; }
+.myvillage-complete {
+  margin: 10px auto 0; max-width: 420px; font-weight: 800; color: #d6489b; text-align: center;
+  background: linear-gradient(90deg, #fff0f7, #eef4ff); border-radius: 12px; padding: 8px 12px;
+  box-shadow: 0 4px 12px rgba(200, 90, 160, 0.2); animation: myvillageShine 2.2s ease-in-out infinite;
+}
+@keyframes myvillageShine { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.09); } }
+
+/* ===== 編集モード(ドラッグ配置)のコントロール ===== */
+.myvillage-editbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; margin-top: 12px; }
+.myvillage-edit-hint { font-size: 12px; color: #6b5b8a; width: 100%; text-align: center; }
+.myvillage-editbar .share-button, .myvillage-editbar .primary, .myvillage-editbar .reset { padding: 8px 14px; font-size: 13px; }
+.myvillage-map.is-editing { outline: 2px dashed rgba(150, 110, 200, 0.65); outline-offset: -4px; }
+.myvillage-map.is-editing .myvillage-plot { cursor: grab; touch-action: none; }
+.myvillage-map.is-editing .myvillage-plot:active { cursor: grabbing; }
+.myvillage-map.is-editing .myvillage-char { animation: none; }
+
+/* ===== 時間帯オーバーレイ(朝/夕/夜) ===== */
+.myvillage-overlay { position: absolute; inset: 0; pointer-events: none; transition: background 0.6s ease; }
+.myvillage-overlay.tod-morning { background: linear-gradient(180deg, rgba(255, 247, 224, 0.16), rgba(255, 255, 255, 0) 45%); }
+.myvillage-overlay.tod-evening { background: linear-gradient(180deg, rgba(255, 168, 112, 0.30), rgba(180, 120, 200, 0.16) 55%, rgba(96, 64, 150, 0.24)); }
+.myvillage-overlay.tod-night { background: linear-gradient(180deg, rgba(28, 30, 92, 0.44), rgba(18, 20, 60, 0.56)); }
+
+/* ===== ふきだし(生きてる演出) ===== */
+.myvillage-bubble {
+  position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 2px;
+  background: #fff; color: #5b4b7a; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px;
+  white-space: nowrap; box-shadow: 0 2px 6px rgba(80, 70, 120, 0.25); pointer-events: none; z-index: 3;
+  animation: myvillageBubble 0.3s ease;
+}
+.myvillage-bubble::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: #fff; }
+@keyframes myvillageBubble { from { opacity: 0; transform: translateX(-50%) translateY(4px) scale(0.9); } to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); } }
+
+/* ===== ホームの目立つ入口カード ===== */
+.myvillage-home-card {
+  position: relative; display: flex; align-items: center; gap: 12px;
+  width: min(760px, calc(100% - 24px)); margin: 4px auto 14px; padding: 16px; border: 0; border-radius: 18px;
+  cursor: pointer; overflow: hidden; text-align: left; color: #fff;
+  background-size: cover; background-position: center 30%; box-shadow: 0 8px 22px rgba(90, 70, 140, 0.28);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.myvillage-home-card:hover { transform: translateY(-1px); box-shadow: 0 12px 28px rgba(90, 70, 140, 0.34); }
+.myvillage-home-card:active { transform: translateY(0) scale(0.995); }
+.myvillage-home-card-scrim { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(58, 40, 108, 0.74), rgba(58, 40, 108, 0.34)); z-index: 0; }
+.myvillage-home-card > *:not(.myvillage-home-card-scrim) { position: relative; z-index: 1; }
+.myvillage-home-card-emoji { font-size: 30px; flex: 0 0 auto; }
+.myvillage-home-card-text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.myvillage-home-card-text strong { font-size: 16px; font-weight: 800; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35); }
+.myvillage-home-card-text small { font-size: 12.5px; opacity: 0.95; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35); }
+.myvillage-home-card-go { font-size: 26px; font-weight: 800; flex: 0 0 auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  .myvillage-complete, .myvillage-bubble, .myvillage-progressbar > span,
+  .myvillage-home-card, .myvillage-overlay { animation: none !important; transition: none !important; }
+}
+
+/* 私の診断村 v3: ランダム表示のシャッフルボタン・空状態 */
+.myvillage-shuffle { padding: 8px 16px; font-size: 13px; }
+.myvillage-empty {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  width: min(88%, 360px); padding: 20px; border-radius: 16px; text-align: center;
+  background: rgba(255, 255, 255, 0.92); box-shadow: 0 8px 24px rgba(80, 70, 120, 0.25); z-index: 5;
+}
+.myvillage-empty p { margin: 0; font-weight: 700; color: #5b4b7a; font-size: 14px; line-height: 1.6; }
+.myvillage-empty .primary { padding: 10px 20px; }
+
+/* 更新情報「過去の記事をすべて見る」ボタン + 全件アーカイブページ */
+.home-topics-more {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+.home-topics-more:hover {
+  background: rgba(255, 255, 255, 0.11);
+}
+.home-topics-archive {
+  margin-top: 4px;
+}
+
+/* マイ村: キャラの口ぐせセリフ */
+.myvillage-sheet-line {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #b3568f;
+  font-style: italic;
+}
+
+/* ホームからコラム(静的ページ)への導線 */
+.column-entry {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  text-decoration: none;
+  color: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.column-entry-emoji { font-size: 22px; }
+
+.column-entry-text {
+  flex: 1;
+  display: grid;
+  gap: 3px;
+}
+
+.column-entry-text strong { font-size: 15px; color: #61487f; }
+.column-entry-text small { font-size: 12.5px; color: #6b5a80; line-height: 1.6; }
+.column-entry-go { color: #a487c6; font-size: 20px; }
+
+.footer-links a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ===== 結果画面: 関連診断「次はこれも診断してみる?」 ===== */
+.result-related {
+  margin: 26px 0 8px;
+}
+
+.result-related-title {
+  margin: 0 0 12px;
+  font-size: 16px;
+  text-align: center;
+  color: #f3eefb;
+}
+
+.result-related-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.result-related-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  text-align: left;
+  cursor: pointer;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.result-related-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.result-related-emoji {
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.result-related-name {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* ===== LINEスタンプ導線 ===== */
+/* 結果画面(裏人格診断)のスタンプCTA — ダークテーマ・LINE緑アクセント */
+.stamp-cta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0 6px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(135deg, rgba(6, 199, 85, 0.22), rgba(6, 199, 85, 0.08));
+  border: 1px solid rgba(6, 199, 85, 0.5);
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.stamp-cta:hover {
+  transform: translateY(-2px);
+  border-color: rgba(6, 199, 85, 0.85);
+}
+
+.stamp-cta-emoji {
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.stamp-cta-text {
+  display: grid;
+  gap: 2px;
+  flex: 1;
+}
+
+.stamp-cta-text strong {
+  font-size: 15px;
+}
+
+.stamp-cta-text small {
+  font-size: 12px;
+  color: #8ee6b0;
+}
+
+.stamp-cta-go {
+  font-size: 22px;
+  color: #4bd07f;
+  flex-shrink: 0;
+}
+
+/* 更新情報のLINEスタンプ固定トピック */
+.topic-source-line {
+  background: #06c755;
+  color: #fff;
+}
+
+.top-app .home-topics-list a.topic-pinned {
+  background: linear-gradient(90deg, rgba(6, 199, 85, 0.12), #ffffff);
+  border: 1px solid rgba(6, 199, 85, 0.4);
 }

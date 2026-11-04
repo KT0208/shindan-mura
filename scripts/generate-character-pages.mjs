@@ -80,6 +80,7 @@ function buildPage({ diagnosis, resultTitle, character, detail, related }) {
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, follow" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <title>${escapeHtml(title)}</title>
 <meta name="description" content="${escapeHtml(description)}" />
@@ -119,6 +120,8 @@ function buildPage({ diagnosis, resultTitle, character, detail, related }) {
   h1 { font-size: 26px; margin: 4px 0 2px; }
   .result-type { color: #8f4ed8; font-weight: 700; font-size: 16px; margin-bottom: 10px; }
   .role { color: #61487f; font-size: 14px; margin-bottom: 14px; }
+  .catchphrase { color: #d1489a; font-size: 15px; font-weight: 700; margin: 2px 0 12px; }
+  .likes-dislikes p { line-height: 2; }
   .section { text-align: left; margin-top: 14px; }
   .section h2 { font-size: 14px; color: #8e5fc6; margin-bottom: 6px; }
   .section p { font-size: 14px; line-height: 1.8; color: #3c2b52; }
@@ -149,11 +152,20 @@ function buildPage({ diagnosis, resultTitle, character, detail, related }) {
     <h1${fontStyleAttr(character.imageKey)}>${escapeHtml(character.characterName)}</h1>
     <div class="result-type">${escapeHtml(resultTitle)}</div>
     <div class="role">${escapeHtml(character.role)}</div>
-    <div class="section">
+${character.catchphrase ? `    <p class="catchphrase">「${escapeHtml(character.catchphrase)}」</p>
+` : ''}    <div class="section">
       <h2>どんなキャラ？</h2>
       <p>${escapeHtml(character.visualConcept)}</p>
     </div>
-${detail?.description ? `    <div class="section">
+${character.intro ? `    <div class="section">
+      <h2>じこしょうかい</h2>
+      <p>${escapeHtml(character.intro)}</p>
+    </div>
+` : ''}${character.likes ? `    <div class="section likes-dislikes">
+      <h2>好きなこと・苦手なこと</h2>
+      <p>好きなこと：${escapeHtml(character.likes)}<br />苦手なこと：${escapeHtml(character.dislikes || '')}</p>
+    </div>
+` : ''}${detail?.description ? `    <div class="section">
       <h2>このタイプの特徴</h2>
       <p>${escapeHtml(detail.description)}</p>
     </div>

@@ -12,10 +12,14 @@
     "post:x:test": "node scripts/post-to-x.js --dry-run",
     "generate:share": "node scripts/generate-share-pages.mjs",
     "generate:ogp": "node scripts/generate-ogp-images.mjs",
-    "prebuild": "npm run generate:share && npm run generate:characters",
+    "prebuild": "npm run generate:columns && npm run generate:diagnosis && npm run generate:legal && npm run generate:share && npm run generate:characters",
     "optimize:images": "node scripts/optimize-images.mjs",
     "generate:characters": "node scripts/generate-character-pages.mjs",
-    "generate:instagram": "node scripts/generate-instagram.mjs"
+    "generate:diagnosis": "node scripts/generate-diagnosis-pages.mjs",
+    "generate:legal": "node scripts/generate-legal-pages.mjs",
+    "generate:instagram": "node scripts/generate-instagram.mjs",
+    "generate:columns": "node scripts/generate-columns.mjs",
+    "postbuild": "node scripts/inject-seo-content.mjs"
   },
   "dependencies": {
     "react": "^19.2.6",

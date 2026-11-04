@@ -1,12 +1,14 @@
 name: X Auto Post
 
+# --- 停止中 (2026-08-25 KT+Claude) ---
+# X API v2 が 402 credits depleted で投稿を拒否するようになったため、cron を停止。
+# X Basic プラン ($200/月) にアップグレードすれば再稼働可能。
+# 手動投稿は Actions タブの "Run workflow" ボタンから随時実行可能(workflow_dispatch を残してある)。
+
 on:
-  schedule:
-    # 毎日 12:00 JST (03:00 UTC) に1投稿
-    - cron: '0 3 * * *'
-    # 火・水・木の 20:00 JST (11:00 UTC) に追加でもう1投稿
-    - cron: '0 11 * * 2,3,4'
-  # 手動実行やテストのためのトリガー(Actionsタブから実行可能)
+  # schedule 停止中(再開する場合は以下のコメントを外す)
+  # - cron: '0 3 * * *'         # 毎日 12:00 JST
+  # - cron: '0 11 * * 2,3,4'    # 火水木 20:00 JST
   workflow_dispatch: {}
 
 permissions:

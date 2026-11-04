@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>診断はどうやって作られるのか｜診断村の16タイプ設計の裏側 | 診断村コラム</title>
+<meta name="description" content="8つの質問から16タイプが決まる仕組み、キャラクターが生まれるまでの流れ、そして没になったアイデアまで。診断村の制作過程を公開します。" />
+<link rel="canonical" href="https://shindanmura.com/column/how-diagnosis-is-made/" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="診断村" />
+<meta property="og:title" content="診断はどうやって作られるのか｜診断村の16タイプ設計の裏側 | 診断村コラム" />
+<meta property="og:description" content="8つの質問から16タイプが決まる仕組み、キャラクターが生まれるまでの流れ、そして没になったアイデアまで。診断村の制作過程を公開します。" />
+<meta property="og:url" content="https://shindanmura.com/column/how-diagnosis-is-made/" />
+<meta property="og:image" content="https://shindanmura.com/og-image.jpg" />
+<meta property="og:locale" content="ja_JP" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="診断はどうやって作られるのか｜診断村の16タイプ設計の裏側 | 診断村コラム" />
+<meta name="twitter:description" content="8つの質問から16タイプが決まる仕組み、キャラクターが生まれるまでの流れ、そして没になったアイデアまで。診断村の制作過程を公開します。" />
+<meta name="twitter:image" content="https://shindanmura.com/og-image.jpg" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"診断はどうやって作られるのか｜診断村の16タイプ設計の裏側","description":"8つの質問から16タイプが決まる仕組み、キャラクターが生まれるまでの流れ、そして没になったアイデアまで。診断村の制作過程を公開します。","datePublished":"2026-07-20","dateModified":"2026-07-20","url":"https://shindanmura.com/column/how-diagnosis-is-made/","author":{"@type":"Organization","name":"診断村"},"publisher":{"@type":"Organization","name":"診断村","url":"https://shindanmura.com"},"mainEntityOfPage":"https://shindanmura.com/column/how-diagnosis-is-made/"}</script>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', sans-serif;
+    background: linear-gradient(160deg, #fff8fd 0%, #ffe6f8 55%, #ece2fb 100%);
+    color: #241436; min-height: 100vh; padding: 24px 16px 48px;
+    display: flex; justify-content: center; line-height: 1.9;
+  }
+  .page { max-width: 720px; width: 100%; }
+  .brand { font-size: 14px; letter-spacing: 0.08em; text-align: center; margin-bottom: 16px; }
+  .brand a { color: #8e5fc6; font-weight: 700; text-decoration: none; }
+  article, .card {
+    background: rgba(255, 255, 255, 0.94); border-radius: 24px;
+    padding: 32px 24px; box-shadow: 0 12px 40px rgba(97, 72, 127, 0.16);
+  }
+  .category { display: inline-block; font-size: 12px; color: #8f4ed8; background: #f6ecff; padding: 4px 12px; border-radius: 999px; }
+  h1 { font-size: 24px; line-height: 1.5; margin: 12px 0 8px; color: #2c1a44; }
+  time { font-size: 13px; color: #8f7ba6; }
+  .lead { margin-top: 14px; color: #4a3763; font-size: 15px; }
+  article h2 { font-size: 19px; margin: 32px 0 10px; color: #61487f; border-left: 5px solid #ff8fd0; padding-left: 12px; }
+  article h3 { font-size: 16px; margin: 22px 0 6px; color: #61487f; }
+  article p { margin: 12px 0; font-size: 15.5px; color: #33234a; }
+  article ul { margin: 12px 0 12px 20px; }
+  article li { margin: 6px 0; font-size: 15px; color: #33234a; }
+  article blockquote {
+    margin: 16px 0; padding: 12px 16px; border-left: 4px solid #c9a6ef;
+    background: #faf4ff; color: #4a3763; font-size: 15px; border-radius: 0 12px 12px 0;
+  }
+  article a { color: #c2358f; }
+  .cta {
+    display: block; margin-top: 32px; padding: 15px; border-radius: 999px; text-decoration: none;
+    background: linear-gradient(135deg, #ff67ad, #8f4ed8); color: #fff; font-weight: 700;
+    font-size: 16px; text-align: center;
+  }
+  .sub-links { margin-top: 18px; font-size: 13px; text-align: center; }
+  .sub-links a { color: #8e5fc6; margin: 0 8px; }
+  .column-list { display: grid; gap: 14px; margin-top: 20px; }
+  .column-item {
+    display: block; background: rgba(255,255,255,0.94); border-radius: 18px;
+    padding: 20px; text-decoration: none; color: #241436;
+    box-shadow: 0 8px 26px rgba(97, 72, 127, 0.12);
+  }
+  .column-item strong { display: block; font-size: 17px; margin: 8px 0 6px; line-height: 1.5; }
+  .column-item p { font-size: 14px; color: #5b476f; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="brand"><a href="/">診断村</a> ／ <a href="/column/">コラム</a></div>
+  <article>
+    <span class="category">制作の裏側</span>
+    <h1>診断はどうやって作られるのか｜診断村の16タイプ設計の裏側</h1>
+    <time datetime="2026-07-20">2026-07-20</time>
+    <p class="lead">8つの質問から16タイプが決まる仕組み、キャラクターが生まれるまでの流れ、そして没になったアイデアまで。診断村の制作過程を公開します。</p>
+<h2>8問でどうやって16タイプに分かれるのか</h2>
+<p>診断村の診断は、どれも8問です。それなのに結果は16タイプあります。「8問で16通り？」と思われるかもしれないので、仕組みを説明します。</p>
+<p>まず、8つの質問すべてに0〜3点で答えてもらいます。この<strong>合計点で「度合い」が4段階</strong>に分かれます。メンヘラ度診断なら「安定〜かなり高め」、闇深度診断なら「水面〜海溝」といった具合です。</p>
+<p>ただ、これだけだと4タイプにしかなりません。そこで、もうひとつの軸を作ります。8つの質問を<strong>2問ずつのペアに分け</strong>、どのペアの点数が高いかで「方向性」を判定します。たとえばメンヘラ度診断なら、「連絡が気になる方向」「相手の行動が気になる方向」「不安を伝える方向」「自分の時間を守れない方向」の4つです。</p>
+<p><strong>度合い4段階 × 方向4種類 = 16タイプ</strong>。これが診断村の基本構造です。</p>
+<p>この設計にしている理由は、「同じ点数でも人によって中身が違う」からです。同じ「メンヘラ度高め」でも、深読みして一人で抱える人と、その場で相手に伝える人では、まったく違う性質です。16タイプに分けると、その違いまで表現できます。</p>
+<h2>質問文を作るときに気をつけていること</h2>
+<p>質問は、<strong>「はい/いいえ」で割り切れないもの</strong>を選びます。「あなたは嫉妬深いですか？」と直接聞くと、多くの人は「そうでもない」と答えます。人は自分を平均的だと思いたい生き物だからです。</p>
+<p>なので、こう聞きます。「恋人が他の異性と仲良くしているとモヤっとする」。これなら、多くの人が正直に「まあ、ちょっとは」と答えられます。抽象的な性格ではなく、<strong>具体的な場面</strong>を聞くのがコツです。</p>
+<p>もうひとつ大事なのは、<strong>どの答えも否定されない</strong>ように書くことです。「モヤっとする」と答えても、それは愛情の証として扱う。「まったく気にならない」と答えても、それは信頼の形として扱う。診断を受けたあとに嫌な気持ちになる設計は、していません。</p>
+<h2>キャラクターが先か、診断が先か</h2>
+<p>順番はケースバイケースです。</p>
+<p><strong>診断が先の例</strong>は「性格の闇深度診断」。「人の腹黒さを測る診断を作りたい」というテーマが先にあり、それを表現するモチーフを探しました。最初は「鬼」や「妖怪」の案が出ましたが、複数の妖怪を混ぜると世界観が散らかるため却下。最終的に「深海に潜っていくほど闇が深い」という比喩を思いつき、水面から海溝まで移動できる生き物としてクリオネに決まりました。白い天使のようなクリオネが、深く潜るほど黒く染まっていく——テーマと完全に一致しました。</p>
+<p><strong>キャラクターが先の例</strong>は「マイペース度診断」。「猫でやりたい」という思いが先にあり、あとから診断内容を組み立てました。しかもこのとき決めたルールが「猫は猫でいい」。王冠をかぶせたり杖を持たせたりせず、<strong>猫種の違い(ラグドール、三毛猫、ロシアンブルー…)だけで16タイプを表現</strong>することにしました。ギミックを足さないほうが、猫としての魅力が立つからです。</p>
+<h2>没になったアイデアもあります</h2>
+<p>作る過程で消えていったものも、それなりにあります。</p>
+<ul>
+<li><strong>1診断に複数の動物を混ぜる案</strong> — 初期の診断はこの形でしたが、シリーズとしての印象が弱く、途中でルールを変えました</li>
+<li><strong>フォント名をそのままキャラ名にする案</strong> — 「返信タイプ診断」で実在のフォント名を使おうとしましたが、商標の問題があるため、すべて一般名称に置き換えました</li>
+<li><strong>背景を描き込んだシーン絵</strong> — 「休日の過ごし方診断」の初期版はカピバラが温泉やキャンプ場にいるシーン絵でしたが、キャラクター単体としての強さが出ないため、<strong>「モノとカピバラが融合する」</strong>という形に全面的に描き直しました。ベッドと一体化した「ベッドカピ」、山そのものになった「やまカピ」など、こちらのほうが圧倒的にキャラクターとして立ちました</li>
+</ul>
+<h2>結果の文章は「1行目」で決まる</h2>
+<p>結果ページの説明文を書くとき、いちばん時間をかけるのは<strong>最初の1行</strong>です。</p>
+<p>ここで「当たってる」と思ってもらえないと、その後の文章は読まれません。逆に1行目が刺されば、そのあとのアドバイスまで届きます。だから最初の一文には、そのタイプの人が<strong>「言われたことはあるけど、言語化されたことはない」</strong>という表現を入れるようにしています。</p>
+<p>たとえば「休日の過ごし方診断」の、寝て過ごすタイプへの1行目はこうです。</p>
+<blockquote>休日の主戦場はベッドの上、というより夢の中です。</blockquote>
+<p>「寝るのが好き」ではなく「夢の中が主戦場」。同じことを言っていますが、後者のほうが自分事として刺さります。こうした表現を、16タイプ×17診断分、ひとつずつ書いています。</p>
+<h2>これからも増やしていきます</h2>
+<p>診断村は50本の診断を目指しています。現在17本なので、まだ道半ばです。</p>
+<p>次に何を作るかは、「SNSで話題にしやすいもの」と「検索で探されているもの」のバランスを見て決めています。前者は瞬間的に広がり、後者は長く読まれる。どちらも必要です。</p>
+<p>新しい診断が公開されたら、また新しい村人が16人増えます。気長にお付き合いください。</p>
+<p><a href="/">診断村のトップページへ</a></p>
+    <a class="cta" href="/">診断村で診断してみる</a>
+    <div class="sub-links">
+      <a href="/column/">コラム一覧</a>
+      <a href="/#guide">キャラ図鑑</a>
+      <a href="/">トップ</a>
+    </div>
+  </article>
+</div>
+</body>
+</html>

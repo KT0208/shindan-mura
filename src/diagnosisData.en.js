@@ -395,7 +395,6 @@ export const optionsEn = [
   },
   {
     id: "scaredy-level",
-    hidden: true,
     title: "Scaredy-Cat Diagnosis",
     category: "Personality",
     emoji: "\u{1F47B}",

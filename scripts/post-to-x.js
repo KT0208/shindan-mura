@@ -34,6 +34,19 @@ import {
   replyTypeCharacters,
   crushMisreadCharacters,
   darkDepthCharacters,
+  holidayCapybaraCharacters,
+  emoNostalgiaCharacters,
+  sleepSheepCharacters,
+  bindRibbonCharacters,
+  myPaceCharacters,
+  isekaiPositionCharacters,
+  procrastinationCharacters,
+  pastLifeCharacters,
+  selfEsteemCharacters,
+  stressLevelCharacters,
+  animalTypeCharacters,
+  angerStyleCharacters,
+  shynessCharacters,
 } from '../src/characterData.js'
 import { diagnoses } from '../src/diagnosisData.js'
 
@@ -66,6 +79,19 @@ const CHARACTER_COLLECTIONS = {
   'reply-type': { basePath: 'fontCharacters', characters: replyTypeCharacters },
   'crush-misread': { basePath: 'crushFoxCharacters', characters: crushMisreadCharacters },
   'dark-depth': { basePath: 'abyssClioneCharacters', characters: darkDepthCharacters },
+  'holiday-style': { basePath: 'holidayCapybaraCharacters', characters: holidayCapybaraCharacters },
+  'emo-nostalgia': { basePath: 'emoNostalgiaCharacters', characters: emoNostalgiaCharacters },
+  'sleep-type': { basePath: 'sleepSheepCharacters', characters: sleepSheepCharacters },
+  'bind-level': { basePath: 'bindRibbonCharacters', characters: bindRibbonCharacters },
+  'my-pace': { basePath: 'myPaceCatCharacters', characters: myPaceCharacters },
+  'isekai-position': { basePath: 'isekaiPuniCharacters', characters: isekaiPositionCharacters },
+  'procrastination': { basePath: 'laterSlothCharacters', characters: procrastinationCharacters },
+  'past-life': { basePath: 'pastlifeChickCharacters', characters: pastLifeCharacters },
+  'self-esteem': { basePath: 'esteemPlantCharacters', characters: selfEsteemCharacters },
+  'stress-level': { basePath: 'stressBalloonCharacters', characters: stressLevelCharacters },
+  'animal-type': { basePath: 'animalTypeCharacters', characters: animalTypeCharacters },
+  'anger-style': { basePath: 'angerChiliCharacters', characters: angerStyleCharacters },
+  'shyness': { basePath: 'shynessHermitCharacters', characters: shynessCharacters },
 }
 
 // キャラクターを使わない投稿タイプ(診断あるある等)で使う、村の雰囲気画像。
@@ -193,9 +219,21 @@ function resolveLinkUrl(config, { imageKey, diagnosisId } = {}) {
   return SITE_URL
 }
 
+// 投稿タイプを weight で重み付き抽選する。
+// リンクなしの共感・問いかけ投稿を高ウェイトにして、Xでのリーチを広げる狙い。
+function pickWeightedType(socialPosts) {
+  const entries = Object.entries(socialPosts)
+  const total = entries.reduce((sum, [, cfg]) => sum + (cfg.weight || 1), 0)
+  let r = Math.random() * total
+  for (const [type, cfg] of entries) {
+    r -= (cfg.weight || 1)
+    if (r <= 0) return type
+  }
+  return entries[entries.length - 1][0]
+}
+
 function generateRandomPost(socialPosts, characterPool) {
-  const types = Object.keys(socialPosts)
-  const type = pickRandom(types)
+  const type = pickWeightedType(socialPosts)
   const config = socialPosts[type]
   const template = pickRandom(config.templates)
 
@@ -441,10 +479,16 @@ async function main() {
   })
 }
 
-main().catch((error) => {
-  console.error('[post-to-x] エラーが発生しました:', error.message)
-  if (error.stack) {
-    console.error(error.stack)
-  }
-  process.exitCode = 1
-})
+// 直接実行された時だけmain()を動かす(他スクリプトからのimport時は動かさない)
+if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {
+  main().catch((error) => {
+    console.error('[post-to-x] エラーが発生しました:', error.message)
+    if (error.stack) {
+      console.error(error.stack)
+    }
+    process.exitCode = 1
+  })
+}
+
+export { uploadMedia, postTweet, loadCredentials, calcWeightedLength, MAX_TWEET_WEIGHTED_LENGTH }
+export { buildCharacterPool, pickNextPost, loadHistory, POSTS_PATH, readJson }

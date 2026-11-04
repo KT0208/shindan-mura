@@ -68,7 +68,6 @@ import { uiText, legalPagesByLanguage, answerCommentsByLanguage } from './i18n'
 import { getEnPack, loadEnPack } from './langPacks'
 import { getReplyTypeFontStyle } from './fontStyles'
 import AdBanner from './components/AdBanner'
-import { getRecommendPick } from './adsConfig'
 import { trackEvent } from './analytics'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import './App.css'
@@ -133,38 +132,9 @@ function IconCopy() {
   )
 }
 
-// アフィリエイト(A8.net ちょびリッチ)の広告枠。
-// 景品表示法のステマ規制対応として「PR」表記を必ず視認性の高い位置に出す。
-const RECOMMEND_PICK_URL = 'https://px.a8.net/svt/ejp?a8mat=4B7SGX+FHV6LU+389A+67RK1'
-// A8.net推奨の効果測定用トラッキングピクセル(1x1、非表示)。クリックの成果計測には必須ではないが、
-// インプレッション計測の精度を上げるためバナー掲載時と同様に埋め込んでおく。
-const RECOMMEND_PICK_PIXEL = 'https://www11.a8.net/0.gif?a8mat=4B7SGX+FHV6LU+389A+67RK1'
-
 // キャラクターの「いいね」を全訪問者分で集計するためのAPI(Xserver上のPHP+MySQL)。
 // 同一オリジンなので相対パスでOK。public_html直下に /api/likes.php を配置している前提。
 const LIKES_API_URL = '/api/likes.php'
-
-// 「おすすめ」ブロック。診断ごとに安全な一般アフィリをローテ(ちょびリッチ固定をやめた)。日本語のみ。
-function RecommendPick({ diagnosisId }) {
-  const pick = getRecommendPick(diagnosisId)
-  if (!pick || !pick.href) return null
-  return (
-    <div className="recommend-pick">
-      <span className="pr-badge">{pick.badge}</span>
-      <p className="recommend-title">{pick.title}</p>
-      <p className="recommend-text">{pick.description}</p>
-      <a
-        className="recommend-button"
-        href={pick.href}
-        target="_blank"
-        rel="noopener noreferrer sponsored"
-      >
-        {pick.buttonLabel}
-      </a>
-      {pick.pixel && <img src={pick.pixel} alt="" width="1" height="1" style={{ position: 'absolute', width: 1, height: 1 }} />}
-    </div>
-  )
-}
 
 // 言語切り替えボタン。日本語/英語をトグルする。
 // 将来的に中国語・韓国語・タイ語を追加する際は、ここをドロップダウンに拡張する。
@@ -2113,8 +2083,6 @@ function App() {
             </div>
           )}
 
-          {language === 'ja' && <RecommendPick diagnosisId={selectedHistory.diagnosisId} />}
-
           <div className="share">{t.history.resultSentence(selectedHistory.diagnosisTitle, selectedHistory.resultTitle)}{t.hashtag}</div>
 
           <div className="share-primary">
@@ -2357,8 +2325,6 @@ ${resultShareUrl}`
                 <p>{currentResultDetail.advice}</p>
               </div>
             )}
-
-            {language === 'ja' && <RecommendPick diagnosisId={diagnosis.id} />}
 
             <div className="share">{t.diagnosis.resultSentence(diagnosis.title, resultTitle)}{t.hashtag}</div>
 
