@@ -47,7 +47,7 @@ function metaFor(m) {
     }
   }
   if (m.format === '4koma') {
-    const titles = { kidoku: '既読スルーの夜', yakimochi: 'その「いいね」誰？', tameshi: '試しちゃう' }
+    const titles = { 'three-min': '返信3分ルール', 'self-contradict': '既読でいいよ、の嘘', 'heavy-love': 'いってらっしゃいの裏側' }
     const t = titles[m.koma] || 'メンヘラあるある'
     return {
       title: `メンヘラあるある4コマ『${t}』 #shorts`,

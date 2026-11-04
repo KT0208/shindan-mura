@@ -19,35 +19,86 @@ export const jellies = [
 ]
 
 // 4コマ漫画の脚本。panels=[{img, text}] 4つ + punchlineは4コマ目。
+// 病み可愛い・重め路線。主役は1体の「メンヘラちゃん」=表情(expr)だけが変わる。
+// 彼や状況は type:'narr'(状況ナレ)で表現。expr=表情(smile/deadpan/despair/joy/teary/yandere/anxious/suspicious)。
+// mood=コマ背景の演出、type='say'(本人のセリフ)|'narr'(状況)、big=特大セリフ。
 export const fourKoma = [
   {
-    id: 'kidoku',
-    title: '既読スルーの夜',
+    id: 'three-min',
+    title: '返信3分ルール',
     panels: [
-      { img: 'menhera-like-monster-jelly', text: '彼に「おやすみ💤」送信' },
-      { img: 'menhera-hope-star-jelly', text: '既読ついた。…返信は、ない' },
-      { img: 'menhera-labyrinth-jelly', text: '寝た？ブロック？嫌われた…？' },
-      { img: 'menhera-sorry-rabbit-jelly', text: '彼、ただの充電切れでした' },
+      { expr: 'anxious', text: '彼からの返信、3分こない…', mood: 'wait', type: 'say' },
+      { expr: 'despair', text: '嫌われた？ブロック？事故った！？', mood: 'dark', type: 'say' },
+      { expr: 'joy', text: '返信きた♡ 世界が輝いてる!!', mood: 'joy', type: 'say' },
+      { expr: 'anxious', text: '……また3分、こない', mood: 'wait', type: 'say' },
     ],
   },
   {
-    id: 'yakimochi',
-    title: 'その「いいね」誰？',
+    id: 'self-contradict',
+    title: '既読でいいよ、の嘘',
     panels: [
-      { img: 'menhera-watch-jealous-jelly', text: '彼のいいね欄をチェック…' },
-      { img: 'menhera-watch-jealous-jelly', text: '知らない女子に いいね発見' },
-      { img: 'menhera-yami-angel-jelly', text: '情緒、ジェットコースター点火' },
-      { img: 'menhera-dependent-jelly', text: '…元同僚のおばさまでした' },
+      { expr: 'smile', text: '既読でいいよ〜無理しないで😊', mood: 'sweet', type: 'say' },
+      { expr: 'suspicious', text: '彼、0.1秒で既読。返信なし。', mood: 'calm', type: 'narr' },
+      { expr: 'deadpan', text: 'は？', mood: 'shock', type: 'say', big: true },
+      { expr: 'despair', text: '……自分で言ったのに', mood: 'dark', type: 'say' },
     ],
   },
   {
-    id: 'tameshi',
-    title: '試しちゃう',
+    id: 'heavy-love',
+    title: 'いってらっしゃいの裏側',
     panels: [
-      { img: 'menhera-dont-leave-jelly', text: '「もう別れる」と送ってみた' },
-      { img: 'menhera-dont-leave-jelly', text: '引き止めてほしいだけなのに' },
-      { img: 'menhera-heart-meter-jelly', text: '彼「わかった」と即返信' },
-      { img: 'menhera-ending-queen-jelly', text: 'ちがう！そうじゃない！！' },
+      { expr: 'deadpan', text: '彼「今日は友達と飲み会ー」', mood: 'calm', type: 'narr' },
+      { expr: 'smile', text: 'いってらっしゃい😊 楽しんでね♡', mood: 'sweet', type: 'say' },
+      { expr: 'suspicious', text: '5分後、位置情報・SNS・足跡を全監視', mood: 'dark', type: 'narr' },
+      { expr: 'yandere', text: 'どこにいても、わかるよ？', mood: 'smug', type: 'say' },
     ],
   },
+  {
+    id: 'unread-hell',
+    title: '未読地獄',
+    panels: [
+      { expr: 'anxious', text: '送ったLINE、3時間 未読のまま', mood: 'wait', type: 'say' },
+      { expr: 'suspicious', text: '彼のストーリーは さっき更新', mood: 'calm', type: 'narr' },
+      { expr: 'despair', text: '見れるのに、私のは未読…？', mood: 'dark', type: 'say' },
+      { expr: 'yandere', text: 'ねえ、なんで？', mood: 'smug', type: 'say' },
+    ],
+  },
+  {
+    id: 'im-fine',
+    title: '「大丈夫」の嘘',
+    panels: [
+      { expr: 'smile', text: '大丈夫、気にしてないよ😊', mood: 'sweet', type: 'say' },
+      { expr: 'teary', text: '…ほんとは、ちょっと寂しい', mood: 'dark', type: 'say' },
+      { expr: 'deadpan', text: '察してほしかっただけ', mood: 'calm', type: 'say' },
+      { expr: 'yandere', text: '…って言わせないでよ？', mood: 'smug', type: 'say' },
+    ],
+  },
+  {
+    id: 'show-phone',
+    title: 'スマホ見せて？',
+    panels: [
+      { expr: 'smile', text: 'スマホ、ちょっと見せて〜♡', mood: 'sweet', type: 'say' },
+      { expr: 'suspicious', text: '彼、一瞬かたまる', mood: 'calm', type: 'narr' },
+      { expr: 'deadpan', text: '…なんで固まるの？', mood: 'shock', type: 'say' },
+      { expr: 'yandere', text: 'やましいこと、あるんだ？', mood: 'dark', type: 'say' },
+    ],
+  },
+  {
+    id: 'detective',
+    title: '匂わせ探偵',
+    panels: [
+      { expr: 'suspicious', text: '彼のSNSに、知らない手元が', mood: 'calm', type: 'narr' },
+      { expr: 'despair', text: 'このネイル、誰の…！？', mood: 'dark', type: 'say' },
+      { expr: 'deadpan', text: 'よく見たら自分の手だった', mood: 'calm', type: 'narr' },
+      { expr: 'teary', text: '…探偵、卒業します', mood: 'sweet', type: 'say' },
+    ],
+  },
+]
+
+// montage の冒頭フック(テロップ)バリエーション。毎回同じにならないよう複数から選ぶ。
+export const montageHooks = [
+  { sub: 'メンヘラ度診断', title: ['あなたのメンヘラ度', 'どこまで沈む？'], note: '軽い順に、いくよ 🪼' },
+  { sub: '#メンヘラあるある', title: ['好きが重い人、', 'あつまれ〜🪼'], note: '16段階、あなたはどこ？' },
+  { sub: 'メンヘラ度診断', title: ['返信こないだけで', '情緒崩壊する人↓'], note: 'あなたは何クラゲ？' },
+  { sub: '病み可愛い度チェック', title: ['あなたのメンヘラ、', '何クラゲ？'], note: '下にいくほど重い…🪼' },
 ]

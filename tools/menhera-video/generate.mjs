@@ -1,8 +1,8 @@
 // メンヘラクラゲ動画 生成器。 node generate.mjs --format <montage|4koma|aruaru|random> [--jelly N] [--koma id] [--seed N]
-import { writeFileSync } from 'node:fs'
+import { writeFileSync, readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
-import { jellies, fourKoma } from './data.mjs'
+import { jellies, fourKoma, montageHooks } from './data.mjs'
 
 const __dir = dirname(fileURLToPath(import.meta.url))
 const W = 1080, H = 1920
@@ -14,7 +14,36 @@ let format = getArg('--format', 'random')
 const seed = parseInt(getArg('--seed', String(Date.now() % 100000)), 10)
 let rng = seed
 const rand = () => { rng = (rng * 1103515245 + 12345) & 0x7fffffff; return rng / 0x7fffffff }
-if (format === 'random') format = ['montage', '4koma', 'aruaru'][Math.floor(rand() * 3)]
+
+// 手動指定(--hook / --jelly / --koma)
+const PICK = { hook: 0, jelly: null, koma: null }
+const _h = parseInt(getArg('--hook', '-1'), 10); if (_h >= 0) PICK.hook = _h % montageHooks.length
+const _j = parseInt(getArg('--jelly', '-1'), 10); if (_j >= 0) PICK.jelly = _j
+const _k = getArg('--koma', ''); if (_k) PICK.koma = _k
+
+// 完全ランダム: 全バリアント(montageフック×4 / 4コマ全話 / aruaru全クラゲ)のプールから、
+// 履歴(.history.json)の直近と被らないように1つ選ぶ。
+if (format === 'random') {
+  const pool = []
+  montageHooks.forEach((_, i) => pool.push({ format: 'montage', hook: i }))
+  fourKoma.forEach((k) => pool.push({ format: '4koma', koma: k.id }))
+  jellies.forEach((_, j) => pool.push({ format: 'aruaru', jelly: j }))
+  const keyOf = (v) => `${v.format}:${v.koma ?? ''}:${v.jelly ?? ''}:${v.hook ?? ''}`
+  const HIST = join(__dir, '.history.json')
+  let hist = []
+  try { hist = JSON.parse(readFileSync(HIST, 'utf8')) } catch { hist = [] }
+  const avoidN = Math.min(hist.length, Math.floor(pool.length * 0.7))
+  const recent = new Set(hist.slice(-avoidN))
+  let avail = pool.filter((v) => !recent.has(keyOf(v)))
+  if (!avail.length) avail = pool
+  const chosen = avail[Math.floor(Math.random() * avail.length)]
+  format = chosen.format
+  if (chosen.hook != null) PICK.hook = chosen.hook
+  if (chosen.koma != null) PICK.koma = chosen.koma
+  if (chosen.jelly != null) PICK.jelly = chosen.jelly
+  hist.push(keyOf(chosen))
+  try { writeFileSync(HIST, JSON.stringify(hist.slice(-40))) } catch {}
+}
 
 const esc = (s) => String(s).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
 
@@ -61,13 +90,14 @@ function buildMontage() {
   const HOOK = 2.6, JD = 1.4, CTA = 5.0
   const ctaStart = HOOK + jellies.length * JD
   const total = ctaStart + CTA
+  const hk = montageHooks[PICK.hook] || montageHooks[0]
   let body = `
   <section class="clip hook" data-start="0" data-duration="${(HOOK + 0.22).toFixed(2)}">
     <div class="hook-inner">
-      <div class="hook-sub" id="hook-sub">メンヘラ度診断</div>
-      <div class="hook-title" id="hook-title"><div>あなたのメンヘラ度</div><div>どこまで沈む？</div></div>
+      <div class="hook-sub" id="hook-sub">${esc(hk.sub)}</div>
+      <div class="hook-title" id="hook-title"><div>${esc(hk.title[0])}</div><div>${esc(hk.title[1])}</div></div>
       <img class="hook-jelly" id="hook-jelly" src="assets/jelly/menhera-labyrinth-jelly.webp" alt="" />
-      <div class="hook-note" id="hook-note">軽い順に、いくよ 🪼</div>
+      <div class="hook-note" id="hook-note">${esc(hk.note)}</div>
     </div>
   </section>`
   jellies.forEach(([key, name, line], i) => {
@@ -154,8 +184,8 @@ function buildMontage() {
 
 // ===================== ARUARU (約9s, 1体ループ短尺) =====================
 function buildAruaru() {
-  let idx = parseInt(getArg('--jelly', '-1'), 10)
-  if (!(idx >= 0 && idx < jellies.length)) idx = Math.floor(rand() * jellies.length)
+  let idx = PICK.jelly
+  if (!(idx >= 0 && idx < jellies.length)) idx = Math.floor(Math.random() * jellies.length)
   const [key, name, line] = jellies[idx]
   const dur = 9.0
   const body = `
@@ -189,46 +219,72 @@ function buildAruaru() {
 
 // ===================== 4KOMA (約14s, 4コマ漫画) =====================
 function buildFourKoma() {
-  const id = getArg('--koma', '')
-  let koma = fourKoma.find((k) => k.id === id) || fourKoma[Math.floor(rand() * fourKoma.length)]
-  const PANEL_IN = 1.15, HOLD = 3.0, CTA = 2.6
-  const total = 0.4 + koma.panels.length * PANEL_IN + HOLD + CTA
-  const ctaStart = 0.4 + koma.panels.length * PANEL_IN + HOLD
+  const id = PICK.koma || ''
+  let koma = fourKoma.find((k) => k.id === id) || fourKoma[Math.floor(Math.random() * fourKoma.length)]
+  const PANEL_IN = 1.05, HOLD = 3.4, CTA = 2.6
+  const n = koma.panels.length
+  const total = 0.45 + n * PANEL_IN + HOLD + CTA
+  const ctaStart = 0.45 + n * PANEL_IN + HOLD
   let panelsHtml = ''
   koma.panels.forEach((p, i) => {
+    const mood = p.mood || 'calm'
     panelsHtml += `
-    <div class="pnl" id="pnl-${i}">
+    <div class="pnl pnl-${mood}${p.big ? ' pnl-big' : ''}" id="pnl-${i}">
+      <div class="pnl-fx"></div>
       <div class="pnl-no">${i + 1}</div>
-      <img class="pnl-img" src="assets/jelly/${p.img}.webp" alt="" />
-      <div class="pnl-text">${esc(p.text)}</div>
+      <div class="pnl-imgwrap"><img class="pnl-img" src="assets/menhera-chan/${p.expr}.webp" alt="" /></div>
+      <div class="pnl-bubble ${p.type === 'narr' ? 'b-narr' : 'b-say'}"><span>${esc(p.text)}</span></div>
     </div>`
   })
   const body = `
   <section class="clip" data-start="0" data-duration="${total.toFixed(2)}">
-    <div class="k-title" id="k-title">メンヘラあるある4コマ<div class="k-sub">「${esc(koma.title)}」</div></div>
+    <div class="k-title" id="k-title"><div class="k-tag">メンヘラあるある4コマ</div><div class="k-sub">「${esc(koma.title)}」</div></div>
     <div class="k-grid">${panelsHtml}</div>
-    <div class="k-cta" id="k-cta">あなたは何クラゲ？ → 診断村 / shindanmura.com</div>
+    <div class="k-cta" id="k-cta">あなたは何クラゲ？ → 診断村</div>
   </section>`
   let tl = `
-  tl.fromTo('#k-title',{y:-30,opacity:0},{y:0,opacity:1,duration:0.4,ease:'power2.out'},0.05);
+  tl.fromTo('#k-title',{y:-28,opacity:0},{y:0,opacity:1,duration:0.4,ease:'power2.out'},0.05);
 `
   koma.panels.forEach((p, i) => {
+    const st = 0.45 + i * PANEL_IN
     tl += `
-  tl.fromTo('#pnl-${i}',{opacity:0,x:${i % 2 === 0 ? -60 : 60},scale:0.9},{opacity:1,x:0,scale:1,duration:0.5,ease:'back.out(1.5)'},${(0.4 + i * PANEL_IN).toFixed(2)});`
+  tl.fromTo('#pnl-${i}',{opacity:0,x:${i % 2 === 0 ? -70 : 70},scale:0.92},{opacity:1,x:0,scale:1,duration:0.5,ease:'back.out(1.6)'},${st.toFixed(2)});`
+    if (p.big) tl += `
+  tl.fromTo('#pnl-${i} .pnl-bubble span',{scale:0.4},{scale:1,duration:0.45,ease:'back.out(3)'},${(st + 0.2).toFixed(2)});
+  tl.to('#pnl-${i}',{x:-6,duration:0.05,yoyo:true,repeat:5,ease:'none'},${(st + 0.22).toFixed(2)});`
   })
   tl += `
   tl.fromTo('#k-cta',{opacity:0,y:24},{opacity:1,y:0,duration:0.5,ease:'power3.out'},${(ctaStart + 0.2).toFixed(2)});
   tl.to('#k-cta',{scale:1.04,duration:0.7,ease:'sine.inOut',yoyo:true,repeat:2},${(ctaStart + 0.9).toFixed(2)});
 `
   const style = `
-  .k-title { position:absolute; top:70px; left:0; right:0; text-align:center; font-size:58px; font-weight:900; color:#fff; text-shadow:0 4px 20px rgba(120,60,220,.8); }
-  .k-title .k-sub { font-size:46px; color:#ff8fd0; margin-top:8px; }
-  .k-grid { position:absolute; top:260px; left:50px; right:50px; bottom:220px; display:grid; grid-template-rows:repeat(4,1fr); gap:22px; }
-  .pnl { position:relative; display:flex; align-items:center; gap:28px; background:rgba(255,255,255,0.96); border-radius:26px; padding:20px 28px; box-shadow:0 10px 30px rgba(0,0,0,.35); }
-  .pnl-no { position:absolute; top:-14px; left:-14px; width:60px; height:60px; border-radius:50%; background:linear-gradient(90deg,#7a4bff,#ff4e86); color:#fff; font-size:38px; font-weight:900; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 16px rgba(0,0,0,.3); }
-  .pnl-img { width:240px; height:240px; object-fit:contain; flex:none; }
-  .pnl-text { font-size:52px; font-weight:800; color:#2a1740; line-height:1.3; }
-  .k-cta { position:absolute; bottom:120px; left:0; right:0; text-align:center; font-size:46px; font-weight:900; color:#1a0a2e; background:linear-gradient(90deg,#ffe16a,#ff9ed2); margin:0 70px; padding:24px 20px; border-radius:999px; }
+  .k-title { position:absolute; top:66px; left:0; right:0; text-align:center; }
+  .k-tag { display:inline-block; font-size:44px; font-weight:900; color:#1a0a2e; background:linear-gradient(90deg,#ffe16a,#ff9ed2); padding:10px 34px; border-radius:999px; box-shadow:0 6px 18px rgba(0,0,0,.3); }
+  .k-sub { font-size:62px; font-weight:900; color:#fff; margin-top:16px; text-shadow:2px 2px 0 #b060e0, 0 4px 18px rgba(120,60,220,.8); }
+  .k-grid { position:absolute; top:250px; left:46px; right:46px; bottom:200px; display:grid; grid-template-rows:repeat(4,1fr); gap:20px; }
+  .pnl { position:relative; display:flex; align-items:center; gap:16px; border:4px solid #241a38; border-radius:22px; padding:14px 26px 14px 30px; overflow:hidden; box-shadow:0 10px 26px rgba(0,0,0,.4); }
+  .pnl-fx { position:absolute; inset:0; pointer-events:none; }
+  .pnl-no { position:absolute; top:10px; left:10px; z-index:3; width:56px; height:56px; border-radius:50%; background:#241a38; color:#fff; font-size:34px; font-weight:900; display:flex; align-items:center; justify-content:center; border:3px solid #fff; }
+  .pnl-imgwrap { position:relative; z-index:2; flex:none; width:238px; height:238px; display:flex; align-items:center; justify-content:center; }
+  .pnl-img { width:238px; height:238px; object-fit:contain; filter:drop-shadow(0 6px 14px rgba(0,0,0,.4)); }
+  .pnl-bubble { position:relative; z-index:2; flex:1; padding:16px 24px; }
+  .b-say { background:#fff; border:3px solid #241a38; border-radius:18px; }
+  .b-say::before { content:""; position:absolute; left:-22px; top:52px; width:0; height:0; border:14px solid transparent; border-right-color:#241a38; }
+  .b-say::after { content:""; position:absolute; left:-15px; top:54px; width:0; height:0; border:12px solid transparent; border-right-color:#fff; }
+  .b-narr { background:#241a38; border:3px solid #7a5a9a; border-radius:9px; }
+  .pnl-bubble.b-narr span { color:#fff; font-weight:700; }
+  .b-narr::before { content:"状況"; position:absolute; left:16px; top:-22px; background:#7a5a9a; color:#fff; font-size:26px; font-weight:900; padding:3px 16px; border-radius:9px; }
+  .pnl-bubble span { font-size:46px; font-weight:800; color:#241a38; line-height:1.26; }
+  .pnl-big .pnl-bubble span { display:block; text-align:center; font-size:104px; font-weight:900; color:#d61f5a; }
+  /* moods */
+  .pnl-sweet { background:#fff2f8; } .pnl-sweet .pnl-fx { background-image:radial-gradient(circle, rgba(255,120,180,.3) 2px, transparent 2px); background-size:17px 17px; }
+  .pnl-calm { background:#f2f2f8; } .pnl-calm .pnl-fx { background-image:radial-gradient(circle, rgba(120,120,155,.22) 1.6px, transparent 1.6px); background-size:15px 15px; }
+  .pnl-wait { background:#eef3fb; } .pnl-wait .pnl-fx { background-image:radial-gradient(circle, rgba(90,140,220,.25) 1.8px, transparent 1.8px); background-size:16px 16px; }
+  .pnl-joy { background:#fffbe6; } .pnl-joy .pnl-fx { background-image:radial-gradient(circle, rgba(255,200,60,.5) 2.6px, transparent 2.6px); background-size:24px 24px; }
+  .pnl-shock { background:#fafafa; } .pnl-shock .pnl-fx { background:repeating-conic-gradient(from 0deg at 28% 50%, rgba(0,0,0,.16) 0deg 1.3deg, transparent 1.3deg 7deg); }
+  .pnl-dark { background:radial-gradient(circle at 50% 50%, #3a1c5e, #170c2b); border-color:#c84ad8; } .pnl-dark .pnl-fx { background:radial-gradient(circle at 22% 50%, rgba(155,70,235,.55), transparent 55%), radial-gradient(circle at 72% 28%, rgba(95,45,165,.45), transparent 42%); }
+  .pnl-smug { background:linear-gradient(135deg,#2a1442,#50236e); border-color:#e9b84a; } .pnl-smug .pnl-fx { background-image:radial-gradient(circle, rgba(255,205,110,.35) 2px, transparent 2px); background-size:27px 27px; }
+  .k-cta { position:absolute; bottom:104px; left:0; right:0; text-align:center; font-size:48px; font-weight:900; color:#1a0a2e; background:linear-gradient(90deg,#ffe16a,#ff9ed2); margin:0 90px; padding:24px 20px; border-radius:999px; box-shadow:0 10px 30px rgba(255,120,200,.5); }
 `
   return { html: doc({ dur: total, style, body, tl }), meta: { format: '4koma', koma: koma.id, dur: total } }
 }
