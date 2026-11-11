@@ -34,3 +34,6 @@ server/api/config.php
 /videos/
 /data/skills/
 /skills-lock.json
+
+# 鑑定村のアップロード用zip(ビルド成果物なのでリポジトリには含めない)
+/kantei-mura-upload.zip
