@@ -20,7 +20,7 @@ export default defineConfig([
   },
   {
     // Node(GitHub Actions)から実行するスクリプトはブラウザではなくNodeのグローバルで動く。
-    files: ['scripts/**/*.js', 'kantei-mura/tests/**/*.js'],
+    files: ['scripts/**/*.js', 'kantei-mura/tests/**/*.js', 'kantei-mura/scripts/**/*.{js,mjs,cjs}'],
     languageOptions: {
       globals: globals.node,
     },

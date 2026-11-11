@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { omikujiTier, toKanjiNumber } from './fortune'
-import { omikujiItems, omikujiMessages } from './readings'
+import { ja } from './i18n'
+import { useDictionary } from './i18n/context'
 import { playChime, playDrawer, playPop, playRattle, playRustle, playTie, vibrate } from './sound'
 
 // 神社でおみくじを引く流れを再現する。
@@ -54,7 +55,7 @@ function startShakeEffects(soundOn) {
 // 六角形のおみくじ箱(SVGで描画)。棒は箱の上の穴から出てくる。
 function OmikujiBox({ stickOut }) {
   return (
-    <svg className="omikuji-box-svg" viewBox="0 -60 200 320" role="img" aria-label="おみくじの箱">
+    <svg className="omikuji-box-svg" viewBox="0 -60 200 320" aria-hidden="true">
       <defs>
         <linearGradient id="wood-left" x1="0" x2="1">
           <stop offset="0" stopColor="#6b3f1d" />
@@ -116,7 +117,7 @@ function TreeBranch() {
     { x: 245, y: 60, r: 10 },
   ]
   return (
-    <svg className="tree-branch" viewBox="0 0 300 150" role="img" aria-label="おみくじを結んだ木の枝">
+    <svg className="tree-branch" viewBox="0 0 300 150" aria-hidden="true">
       <path d="M0 70 C 60 40, 120 60, 160 45 S 260 40, 300 65" stroke="#5a3418" strokeWidth="9" fill="none" strokeLinecap="round" />
       <path d="M120 55 C 130 30, 150 20, 170 15" stroke="#5a3418" strokeWidth="4" fill="none" strokeLinecap="round" />
       <g fill="#3f7d4a">
@@ -139,6 +140,8 @@ function TreeBranch() {
 }
 
 export default function Omikuji({ fortune, dateLabel, onOpen, onReset }) {
+  const t = useDictionary()
+  const o = t.ui.omikuji
   const [stage, setStage] = useState('idle')
   const [soundOn, setSoundOn] = useState(readSoundSetting)
   const [motionOn, setMotionOn] = useState(() => isTouchDevice() && typeof DeviceMotionEvent !== 'undefined' && !needsMotionPermission())
@@ -247,12 +250,17 @@ export default function Omikuji({ fortune, dateLabel, onOpen, onReset }) {
   // 引き出しは、引いた番号を真ん中にして前後の番号を並べる
   const drawerNumbers = Array.from({ length: 9 }, (_, i) => ((fortune.stickNumber - 1 + (i - 4) + 50) % 50) + 1)
 
+  const [numBefore, numStrong, numAfter] = o.stickNumber(kanjiNumber, fortune.stickNumber)
+  // 紙そのものは、どの言語でも日本語の縦書き(本物のおみくじらしさを残すため)。訳は紙の下に出す。
+  const sheetRank = ja.omikujiRanks[fortune.omikujiIndex]
+  const isKyo = fortune.omikujiIndex === 5
+
   return (
     <div className="omikuji-stage">
       <div className="omikuji-toolbar">
-        <span className="eyebrow">{dateLabel}のおみくじ</span>
+        <span className="eyebrow">{o.dateLabel(dateLabel)}</span>
         <button type="button" className="sound-toggle" onClick={toggleSound} aria-pressed={soundOn}>
-          {soundOn ? '🔊 音あり' : '🔇 音なし'}
+          {soundOn ? o.soundOn : o.soundOff}
         </button>
       </div>
 
@@ -263,20 +271,20 @@ export default function Omikuji({ fortune, dateLabel, onOpen, onReset }) {
           </div>
           {stage === 'idle' && (
             <>
-              <button type="button" className="primary" onClick={shake}>箱を振っておみくじを引く</button>
-              {motionOn && <p className="note">📱 スマホを振っても引けます</p>}
+              <button type="button" className="primary" onClick={shake}>{o.shake}</button>
+              {motionOn && <p className="note">{o.motionHint}</p>}
               {askMotion && !motionOn && (
-                <button type="button" className="secondary" onClick={enableMotion}>📱 スマホを振って引く</button>
+                <button type="button" className="secondary" onClick={enableMotion}>{o.motionButton}</button>
               )}
             </>
           )}
-          {stage === 'shaking' && <p className="stage-caption">カラカラ…</p>}
-          {stage === 'flip' && <p className="stage-caption">棒が出てきました…</p>}
+          {stage === 'shaking' && <p className="stage-caption">{o.shaking}</p>}
+          {stage === 'flip' && <p className="stage-caption">{o.stickOut}</p>}
           {stage === 'stick' && (
             <>
-              <p className="stick-number">第<strong>{kanjiNumber}</strong>番</p>
-              <p className="note">この番号の引き出しから、おみくじを受け取りましょう。</p>
-              <button type="button" className="primary" onClick={openDrawer}>{kanjiNumber}番の引き出しを開ける</button>
+              <p className="stick-number">{numBefore}<strong>{numStrong}</strong>{numAfter}</p>
+              <p className="note">{o.stickNote}</p>
+              <button type="button" className="primary" onClick={openDrawer}>{o.openDrawer(kanjiNumber, fortune.stickNumber)}</button>
             </>
           )}
         </div>
@@ -293,11 +301,14 @@ export default function Omikuji({ fortune, dateLabel, onOpen, onReset }) {
             ))}
           </div>
           {stage === 'folded' ? (
-            <button type="button" className="folded-paper" onClick={openPaper}>
-              <VText text="タップして開く" />
-            </button>
+            <>
+              <button type="button" className="folded-paper" onClick={openPaper} aria-label={o.tapToOpen}>
+                <VText text="御神籤" />
+              </button>
+              <p className="stage-caption">{o.tapToOpen}</p>
+            </>
           ) : (
-            <p className="stage-caption">引き出しを開けています…</p>
+            <p className="stage-caption">{o.drawerOpening}</p>
           )}
         </div>
       )}
@@ -305,10 +316,10 @@ export default function Omikuji({ fortune, dateLabel, onOpen, onReset }) {
       {stage === 'open' && (
         <div className="stage-open">
           <div className="omikuji-sheet-wrap">
-            <div className={`omikuji-sheet rank-${fortune.omikujiIndex}`} role="img" aria-label={`おみくじ 第${kanjiNumber}番 ${fortune.omikuji}`}>
+            <div className={`omikuji-sheet rank-${fortune.omikujiIndex}`} role="img" aria-label={`${t.omikujiRanks[fortune.omikujiIndex]}`}>
               <VText className="sheet-head" text={`おみくじ\u3000第${kanjiNumber}番`} />
-              <VText className="sheet-rank" text={fortune.omikuji} />
-              {omikujiItems.map((item, i) => (
+              <VText className="sheet-rank" text={sheetRank} />
+              {ja.omikujiItems.map((item, i) => (
                 <span key={item.label} className="sheet-item">
                   <VText className="sheet-label" text={item.label} />
                   <VText text={item.tiers[tier][fortune.itemPicks[i]]} />
@@ -316,19 +327,33 @@ export default function Omikuji({ fortune, dateLabel, onOpen, onReset }) {
               ))}
             </div>
           </div>
-          <p className="omikuji-message">{omikujiMessages[fortune.omikuji]}</p>
-          {fortune.omikuji === '凶' && (
-            <button type="button" className="primary" onClick={tie}>木に結んで、悪い運を置いていく</button>
+          {o.translation && (
+            <div className="sheet-translation">
+              <p className="eyebrow">{o.translation}</p>
+              <h4>{sheetRank} — {t.omikujiRanks[fortune.omikujiIndex]}</h4>
+              <dl>
+                {t.omikujiItems.map((item, i) => (
+                  <div key={item.label}>
+                    <dt>{ja.omikujiItems[i].label} · {item.label}</dt>
+                    <dd>{item.tiers[tier][fortune.itemPicks[i]]}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           )}
-          <button type="button" className="link-button" onClick={replay}>もう一度、引く演出を見る</button>
+          <p className="omikuji-message">{t.omikujiMessages[fortune.omikujiIndex]}</p>
+          {isKyo && (
+            <button type="button" className="primary" onClick={tie}>{o.tie}</button>
+          )}
+          <button type="button" className="link-button" onClick={replay}>{o.replay}</button>
         </div>
       )}
 
       {stage === 'tied' && (
         <div className="stage-tied">
           <TreeBranch />
-          <p className="omikuji-message">悪い運は、ここに置いていきましょう。<br />明日はきっと、良い1日になります。</p>
-          <button type="button" className="link-button" onClick={replay}>もう一度、引く演出を見る</button>
+          <p className="omikuji-message">{o.tied[0]}<br />{o.tied[1]}</p>
+          <button type="button" className="link-button" onClick={replay}>{o.replay}</button>
         </div>
       )}
     </div>

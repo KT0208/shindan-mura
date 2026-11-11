@@ -11,9 +11,11 @@ import {
   personalYearNumber,
   reduceNumber,
   soulNumber,
-  zodiacSign,
+  zodiacIndex,
 } from '../src/fortune.js'
-import { numberTypes, yearThemes } from '../src/readings.js'
+import ja from '../src/i18n/ja.js'
+
+const { numberTypes, yearThemes } = ja
 
 test('reduceNumber keeps master numbers', () => {
   assert.equal(reduceNumber(29), 11)
@@ -45,15 +47,17 @@ test('every birthday 1900-2030 maps to a defined type and year theme', () => {
     const birth = { year: d.getUTCFullYear(), month: d.getUTCMonth() + 1, day: d.getUTCDate() }
     assert.ok(numberTypes[lifePathNumber(birth)], JSON.stringify(birth))
     assert.ok(yearThemes[personalYearNumber(birth, 2026)])
-    assert.ok(zodiacSign(birth))
+    assert.ok(ja.zodiac[zodiacIndex(birth)])
   }
 })
 
 test('zodiac boundaries', () => {
-  assert.equal(zodiacSign({ month: 1, day: 10 }).name, 'やぎ座')
-  assert.equal(zodiacSign({ month: 12, day: 25 }).name, 'やぎ座')
-  assert.equal(zodiacSign({ month: 3, day: 21 }).name, 'おひつじ座')
-  assert.equal(zodiacSign({ month: 8, day: 22 }).name, 'しし座')
+  const sign = (month, day) => ja.zodiac[zodiacIndex({ month, day })]
+  assert.equal(sign(1, 10), 'やぎ座')
+  assert.equal(sign(12, 25), 'やぎ座')
+  assert.equal(sign(3, 21), 'おひつじ座')
+  assert.equal(sign(8, 22), 'しし座')
+  assert.equal(sign(12, 21), 'いて座')
 })
 
 test('names: kana/katakana equivalence and valid numbers', () => {
@@ -98,7 +102,7 @@ test('total score follows omikuji rank (never below 2)', () => {
 
 test('omikuji stick number and item picks', async () => {
   const { toKanjiNumber, omikujiTier } = await import('../src/fortune.js')
-  const { omikujiItems } = await import('../src/readings.js')
+  const { omikujiItems } = ja
   assert.equal(toKanjiNumber(1), '一')
   assert.equal(toKanjiNumber(10), '十')
   assert.equal(toKanjiNumber(23), '二十三')
@@ -110,4 +114,33 @@ test('omikuji stick number and item picks', async () => {
     const tier = omikujiTier(f.omikujiIndex)
     omikujiItems.forEach((item, i) => assert.ok(item.tiers[tier][f.itemPicks[i]]))
   }
+})
+
+test('names in other scripts', async () => {
+  const { setStrokeTable, parseStrokeData, strokeCount, containsHan } = await import('../src/fortune.js')
+  const strokes = (await import('../src/strokes-data.js')).default
+  // スペイン語: アクセントとñは元の文字として数える
+  assert.equal(normalizeName('Lucía Muñoz'), 'LuciaMunoz')
+  assert.equal(nameNumber('José'), nameNumber('Jose'))
+  // ハングル: 1文字ずつ数が出て、母音で魂の数が出る
+  assert.ok(numberTypes[nameNumber('김민지')])
+  assert.ok(numberTypes[soulNumber('김민지')])
+  assert.notEqual(charNumber('한'), charNumber('하'))
+  // 漢字: 画数表を読み込むと画数で数える
+  assert.ok(containsHan('王小明'))
+  assert.ok(!containsHan('Wang'))
+  setStrokeTable(parseStrokeData(strokes))
+  assert.equal(strokeCount('王'), 4)
+  assert.equal(strokeCount('張'), 11)
+  assert.equal(strokeCount('张'), 7)
+  // 王(4)+小(3)+明(8)=15 → 6
+  assert.equal(nameNumber('王小明'), 6)
+  // 名(小明)の画数 3+8=11 → マスターナンバー11
+  assert.equal(soulNumber('王小明'), 11)
+  assert.equal(nameNumber('王 小明'), 6)
+  for (const name of ['陳美玲', '李', '佐藤花子', 'Wang Xiaoming', '이서준']) {
+    assert.ok(numberTypes[nameNumber(name)], name)
+    assert.ok(numberTypes[soulNumber(name)], name)
+  }
+  setStrokeTable(null)
 })

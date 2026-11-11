@@ -1,26 +1,29 @@
 import { useEffect, useState } from 'react'
 import {
   compatibility,
+  containsHan,
   dailyFortune,
   formatDate,
   lifePathNumber,
+  loadStrokeTable,
   nameNumber,
   normalizeName,
   parseDate,
   personalYearNumber,
   soulNumber,
-  zodiacSign,
+  zodiacIndex,
+  ZODIAC_EMOJI,
 } from './fortune'
-import { compatComment, numberTypes, relationTexts, yearThemes } from './readings'
+import { loadDictionary, ja } from './i18n'
+import { DictionaryContext, useDictionary } from './i18n/context'
+import { LANGUAGES, LANGUAGE_SUGGESTIONS, languageFromPath, languagePath, preferredLanguage } from './i18n/languages'
 import Omikuji from './Omikuji'
 
-const SITE_NAME = '鑑定村'
-
-const MENUS = [
-  { id: 'birthday', emoji: '🎂', title: '誕生日鑑定', text: '生年月日から運命数と今年のテーマを鑑定' },
-  { id: 'name', emoji: '🖋️', title: '名前鑑定', text: '名前に宿る数から、あなたの本質と内面を読み解く' },
-  { id: 'today', emoji: '⛩️', title: '今日の運勢・おみくじ', text: '毎日変わる運勢とラッキーアイテム' },
-  { id: 'compat', emoji: '💞', title: '2人の相性鑑定', text: '2人の誕生日と名前から相性を％で鑑定' },
+const MENU_IDS = [
+  { id: 'birthday', emoji: '🎂' },
+  { id: 'name', emoji: '🖋️' },
+  { id: 'today', emoji: '⛩️' },
+  { id: 'compat', emoji: '💞' },
 ]
 
 // URLのハッシュ(#/birthday など)でページを切り替える。サーバー設定なしで静的ホスティングできる。
@@ -38,7 +41,7 @@ function useHashRoute() {
   return route
 }
 
-// 生年月日はブラウザ内(localStorage)にだけ保存し、次回の入力を省略する。
+// 生年月日などはブラウザ内(localStorage)にだけ保存し、次回の入力を省略する。
 function useStoredState(key, initial) {
   const [value, setValue] = useState(() => {
     try {
@@ -58,9 +61,29 @@ function useStoredState(key, initial) {
   return [value, update]
 }
 
+// 漢字の名前が入っていたら画数表を読み込む。読み込み中は false。
+function useStrokesReady(...names) {
+  const needed = names.some((n) => containsHan(n))
+  const [loaded, setLoaded] = useState(false)
+  useEffect(() => {
+    if (!needed || loaded) return
+    let alive = true
+    loadStrokeTable().then(() => alive && setLoaded(true))
+    return () => {
+      alive = false
+    }
+  }, [needed, loaded])
+  return !needed || loaded
+}
+
+function formatLongDate(locale, year, month, day) {
+  return new Intl.DateTimeFormat(locale, { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(Date.UTC(year, month - 1, day)))
+}
+
 function Stars({ value }) {
+  const t = useDictionary()
   return (
-    <span className="stars" aria-label={`5段階中${value}`}>
+    <span className="stars" role="img" aria-label={t.ui.stars(value)}>
       {'★'.repeat(value)}
       <span className="stars-off">{'★'.repeat(5 - value)}</span>
     </span>
@@ -68,9 +91,10 @@ function Stars({ value }) {
 }
 
 function ShareButtons({ text }) {
+  const t = useDictionary()
   const [copied, setCopied] = useState(false)
   const url = window.location.href
-  const fullText = `${text}\n#鑑定村`
+  const fullText = `${text}\n${t.ui.share.hashtag}`
   const xUrl = `https://x.com/intent/post?text=${encodeURIComponent(fullText)}&url=${encodeURIComponent(url)}`
   const lineUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(url)}&text=${encodeURIComponent(fullText)}`
   const copy = async () => {
@@ -84,33 +108,36 @@ function ShareButtons({ text }) {
   }
   return (
     <div className="share">
-      <a className="share-btn share-x" href={xUrl} target="_blank" rel="noopener noreferrer">Xでシェア</a>
-      <a className="share-btn share-line" href={lineUrl} target="_blank" rel="noopener noreferrer">LINEで送る</a>
-      <button type="button" className="share-btn share-copy" onClick={copy}>{copied ? 'コピーしました' : '結果をコピー'}</button>
+      <a className="share-btn share-x" href={xUrl} target="_blank" rel="noopener noreferrer">{t.ui.share.x}</a>
+      <a className="share-btn share-line" href={lineUrl} target="_blank" rel="noopener noreferrer">{t.ui.share.line}</a>
+      <button type="button" className="share-btn share-copy" onClick={copy}>{copied ? t.ui.share.copied : t.ui.share.copy}</button>
     </div>
   )
 }
 
-function DateInput({ id, label, value, onChange }) {
+function DateInput({ id, value, onChange }) {
+  const t = useDictionary()
   return (
     <label className="field" htmlFor={id}>
-      <span>{label}</span>
+      <span>{t.ui.birthDate}</span>
       <input id={id} type="date" min="1900-01-01" max={formatDate(new Date())} value={value} onChange={(e) => onChange(e.target.value)} required />
     </label>
   )
 }
 
 function NameInput({ id, label, value, onChange, required = false }) {
+  const t = useDictionary()
   return (
     <label className="field" htmlFor={id}>
       <span>{label}</span>
-      <input id={id} type="text" inputMode="text" maxLength={30} placeholder="例: やまだ はなこ" value={value} onChange={(e) => onChange(e.target.value)} required={required} />
+      <input id={id} type="text" inputMode="text" maxLength={40} placeholder={t.ui.name.placeholder} value={value} onChange={(e) => onChange(e.target.value)} required={required} />
     </label>
   )
 }
 
 function NumberCard({ number, heading }) {
-  const info = numberTypes[number]
+  const t = useDictionary()
+  const info = t.numberTypes[number]
   return (
     <div className="number-card">
       <p className="eyebrow">{heading}</p>
@@ -124,13 +151,15 @@ function NumberCard({ number, heading }) {
 }
 
 function ReadingSections({ number }) {
-  const info = numberTypes[number]
+  const t = useDictionary()
+  const info = t.numberTypes[number]
+  const s = t.ui.sections
   return (
     <div className="sections">
-      <section><h4>🔮 性格・本質</h4><p>{info.nature}</p></section>
-      <section><h4>💗 恋愛</h4><p>{info.love}</p></section>
-      <section><h4>💼 仕事・才能</h4><p>{info.work}</p></section>
-      <section><h4>🍀 開運アドバイス</h4><p>{info.advice}</p></section>
+      <section><h4>{s.nature}</h4><p>{info.nature}</p></section>
+      <section><h4>{s.love}</h4><p>{info.love}</p></section>
+      <section><h4>{s.work}</h4><p>{info.work}</p></section>
+      <section><h4>{s.advice}</h4><p>{info.advice}</p></section>
     </div>
   )
 }
@@ -138,37 +167,37 @@ function ReadingSections({ number }) {
 // ---- 各鑑定ページ ----
 
 function BirthdayPage() {
+  const t = useDictionary()
   const [birthText, setBirthText] = useStoredState('kantei:birth', '')
   const [submitted, setSubmitted] = useState(false)
   const birth = parseDate(birthText)
-  const showResult = submitted && birth
   const thisYear = new Date().getFullYear()
 
   let result = null
-  if (showResult) {
+  if (submitted && birth) {
     const lp = lifePathNumber(birth)
     const py = personalYearNumber(birth, thisYear)
-    const sign = zodiacSign(birth)
+    const z = zodiacIndex(birth)
     result = (
       <div className="result">
-        <NumberCard number={lp} heading="あなたの運命数" />
-        <p className="sub-info">{sign.emoji} {sign.name} / {birth.year}年{birth.month}月{birth.day}日生まれ</p>
+        <NumberCard number={lp} heading={t.ui.birthday.numberHeading} />
+        <p className="sub-info">{ZODIAC_EMOJI[z]} {t.zodiac[z]} / {t.ui.birthday.born(formatLongDate(t.locale, birth.year, birth.month, birth.day))}</p>
         <ReadingSections number={lp} />
         <div className="year-box">
-          <p className="eyebrow">{thisYear}年のあなた(個人年数 {py})</p>
-          <h4>{yearThemes[py].theme}</h4>
-          <p>{yearThemes[py].text}</p>
+          <p className="eyebrow">{t.ui.birthday.yearHeading(thisYear, py)}</p>
+          <h4>{t.yearThemes[py].theme}</h4>
+          <p>{t.yearThemes[py].text}</p>
         </div>
-        <ShareButtons text={`私の運命数は「${lp}・${numberTypes[lp].title}」でした。${thisYear}年は「${yearThemes[py].theme}」🎂`} />
+        <ShareButtons text={t.ui.birthday.share(lp, t.numberTypes[lp].title, thisYear, t.yearThemes[py].theme)} />
       </div>
     )
   }
 
   return (
-    <Page title="誕生日鑑定" emoji="🎂" lead="生年月日のすべての数字を足して導く「運命数」は、あなたが生まれ持った性質と人生のテーマを表します。">
+    <Page id="birthday" lead={t.ui.birthday.lead}>
       <form className="form" onSubmit={(e) => { e.preventDefault(); setSubmitted(true) }}>
-        <DateInput id="birth" label="生年月日" value={birthText} onChange={(v) => { setBirthText(v); setSubmitted(false) }} />
-        <button type="submit" className="primary" disabled={!birth}>鑑定する</button>
+        <DateInput id="birth" value={birthText} onChange={(v) => { setBirthText(v); setSubmitted(false) }} />
+        <button type="submit" className="primary" disabled={!birth}>{t.ui.submit}</button>
       </form>
       {result}
     </Page>
@@ -176,38 +205,40 @@ function BirthdayPage() {
 }
 
 function NamePage() {
+  const t = useDictionary()
   const [name, setName] = useStoredState('kantei:name', '')
   const [submitted, setSubmitted] = useState(false)
+  const strokesReady = useStrokesReady(name)
   const valid = normalizeName(name).length > 0
   let result = null
-  if (submitted && valid) {
+  if (submitted && valid && strokesReady) {
     const n = nameNumber(name)
     const s = soulNumber(name)
+    const parts = t.ui.name.summary(name.trim(), t.numberTypes[n].title, t.numberTypes[s].title)
     result = (
       <div className="result">
         <div className="number-pair">
-          <NumberCard number={n} heading="名前の数(外から見たあなた)" />
-          <NumberCard number={s} heading="魂の数(心の奥のあなた)" />
+          <NumberCard number={n} heading={t.ui.name.outer} />
+          <NumberCard number={s} heading={t.ui.name.inner} />
         </div>
         <p className="sub-info">
-          「{name.trim()}」さんは、周りからは<strong>{numberTypes[n].title}</strong>のように見られ、
-          心の奥には<strong>{numberTypes[s].title}</strong>の願いを秘めています。
+          {parts.map((part, i) => (i % 2 === 1 ? <strong key={i}>{part}</strong> : <span key={i}>{part}</span>))}
         </p>
         <ReadingSections number={n} />
         <div className="year-box">
-          <p className="eyebrow">心の奥の願い</p>
-          <h4>{numberTypes[s].title}</h4>
-          <p>{numberTypes[s].nature}</p>
+          <p className="eyebrow">{t.ui.name.innerHeading}</p>
+          <h4>{t.numberTypes[s].title}</h4>
+          <p>{t.numberTypes[s].nature}</p>
         </div>
-        <ShareButtons text={`名前鑑定の結果、私は「${numberTypes[n].title}」、魂の数は「${numberTypes[s].title}」でした🖋️`} />
+        <ShareButtons text={t.ui.name.share(t.numberTypes[n].title, t.numberTypes[s].title)} />
       </div>
     )
   }
   return (
-    <Page title="名前鑑定" emoji="🖋️" lead="名前の一文字一文字には数が宿っています。ひらがな・カタカナ・ローマ字で入力すると、名前全体の数と、母音から導く「魂の数」を鑑定します。">
+    <Page id="name" lead={t.ui.name.lead}>
       <form className="form" onSubmit={(e) => { e.preventDefault(); setSubmitted(true) }}>
-        <NameInput id="name" label="お名前(ひらがな推奨)" value={name} onChange={(v) => { setName(v); setSubmitted(false) }} required />
-        <button type="submit" className="primary" disabled={!valid}>鑑定する</button>
+        <NameInput id="name" label={t.ui.name.label} value={name} onChange={(v) => { setName(v); setSubmitted(false) }} required />
+        <button type="submit" className="primary" disabled={!valid}>{t.ui.submit}</button>
       </form>
       {result}
     </Page>
@@ -215,24 +246,26 @@ function NamePage() {
 }
 
 function TodayPage() {
+  const t = useDictionary()
   const [birthText, setBirthText] = useStoredState('kantei:birth', '')
   const [opened, setOpened] = useState(false)
   const birth = parseDate(birthText)
   const todayText = formatDate(new Date())
   const [y, m, d] = todayText.split('-').map(Number)
   const f = birth ? dailyFortune(birthText, todayText) : null
+  const tt = t.ui.today
 
   return (
-    <Page title="今日の運勢・おみくじ" emoji="⛩️" lead="神社と同じように、箱を振っておみくじを引いてみましょう。生年月日と今日の日付から、あなただけの運勢が出ます。毎日0時に新しくなります。">
+    <Page id="today" lead={tt.lead}>
       <div className="form">
-        <DateInput id="birth-today" label="生年月日" value={birthText} onChange={(v) => { setBirthText(v); setOpened(false) }} />
-        {!birth && <p className="note">生年月日を入れると、おみくじの箱が出てきます。</p>}
+        <DateInput id="birth-today" value={birthText} onChange={(v) => { setBirthText(v); setOpened(false) }} />
+        {!birth && <p className="note">{tt.needBirth}</p>}
       </div>
       {f && (
         <Omikuji
           key={birthText}
           fortune={f}
-          dateLabel={`${y}年${m}月${d}日`}
+          dateLabel={formatLongDate(t.locale, y, m, d)}
           onOpen={() => setOpened(true)}
           onReset={() => setOpened(false)}
         />
@@ -241,87 +274,96 @@ function TodayPage() {
         <div className="result">
           <table className="score-table">
             <tbody>
-              <tr><th>総合運</th><td><Stars value={f.scores.total} /></td></tr>
-              <tr><th>恋愛運</th><td><Stars value={f.scores.love} /></td></tr>
-              <tr><th>金運</th><td><Stars value={f.scores.money} /></td></tr>
-              <tr><th>仕事運</th><td><Stars value={f.scores.work} /></td></tr>
-              <tr><th>健康運</th><td><Stars value={f.scores.health} /></td></tr>
+              {['total', 'love', 'money', 'work', 'health'].map((key) => (
+                <tr key={key}><th>{tt.scores[key]}</th><td><Stars value={f.scores[key]} /></td></tr>
+              ))}
             </tbody>
           </table>
           <div className="lucky-grid">
-            <div><span>ラッキーカラー</span><strong>{f.luckyColor}</strong></div>
-            <div><span>ラッキーアイテム</span><strong>{f.luckyItem}</strong></div>
-            <div><span>ラッキーナンバー</span><strong>{f.luckyNumber}</strong></div>
-            <div><span>開運アクション</span><strong>{f.luckyAction}</strong></div>
+            <div><span>{tt.lucky.color}</span><strong>{t.luckyColors[f.luckyColor]}</strong></div>
+            <div><span>{tt.lucky.item}</span><strong>{t.luckyItems[f.luckyItem]}</strong></div>
+            <div><span>{tt.lucky.number}</span><strong>{f.luckyNumber}</strong></div>
+            <div><span>{tt.lucky.action}</span><strong>{t.luckyActions[f.luckyAction]}</strong></div>
           </div>
-          <p className="note">同じ日は何回引いても同じ結果です。日付が変わると新しいおみくじになります。</p>
-          <ShareButtons text={`今日のおみくじは【${f.omikuji}】!ラッキーアイテムは「${f.luckyItem}」⛩️`} />
+          <p className="note">{tt.sameDay}</p>
+          <ShareButtons text={tt.share(t.omikujiRanks[f.omikujiIndex], t.luckyItems[f.luckyItem])} />
         </div>
       )}
     </Page>
   )
 }
 
+function compatCommentIndex(percent) {
+  if (percent >= 90) return 0
+  if (percent >= 80) return 1
+  if (percent >= 70) return 2
+  if (percent >= 60) return 3
+  return 4
+}
+
 function CompatPage() {
+  const t = useDictionary()
+  const tc = t.ui.compat
   const [birthA, setBirthA] = useStoredState('kantei:birth', '')
   const [nameA, setNameA] = useState('')
   const [birthB, setBirthB] = useState('')
   const [nameB, setNameB] = useState('')
   const [submitted, setSubmitted] = useState(false)
+  const strokesReady = useStrokesReady(nameA, nameB)
   const a = parseDate(birthA)
   const b = parseDate(birthB)
   const reset = (setter) => (v) => { setter(v); setSubmitted(false) }
 
   let result = null
-  if (submitted && a && b) {
+  if (submitted && a && b && strokesReady) {
     const c = compatibility(
       { birth: a, birthText: birthA, name: nameA },
       { birth: b, birthText: birthB, name: nameB },
     )
-    const rel = relationTexts[c.relation]
-    const labelA = nameA.trim() || 'あなた'
-    const labelB = nameB.trim() || 'お相手'
+    const rel = t.relationTexts[c.relation]
+    const labelA = nameA.trim() || tc.you
+    const labelB = nameB.trim() || tc.partner
     result = (
       <div className="result">
         <div className="compat-meter">
           <p className="eyebrow">{labelA} × {labelB}</p>
           <div className="percent">{c.percent}<small>%</small></div>
           <div className="meter"><div className="meter-fill" style={{ width: `${c.percent}%` }} /></div>
-          <p>{compatComment(c.percent)}</p>
+          <p>{t.compatComments[compatCommentIndex(c.percent)]}</p>
         </div>
         <div className="number-pair">
-          <div className="mini-card"><span>{labelA}の運命数</span><strong>{c.lifePaths[0]}</strong><em>{numberTypes[c.lifePaths[0]].title}</em></div>
-          <div className="mini-card"><span>{labelB}の運命数</span><strong>{c.lifePaths[1]}</strong><em>{numberTypes[c.lifePaths[1]].title}</em></div>
+          <div className="mini-card"><span>{tc.lifePathOf(labelA)}</span><strong>{c.lifePaths[0]}</strong><em>{t.numberTypes[c.lifePaths[0]].title}</em></div>
+          <div className="mini-card"><span>{tc.lifePathOf(labelB)}</span><strong>{c.lifePaths[1]}</strong><em>{t.numberTypes[c.lifePaths[1]].title}</em></div>
         </div>
         <div className="sections">
           <section><h4>💞 {rel.title}</h4><p>{rel.text}</p></section>
         </div>
         <table className="score-table">
           <tbody>
-            <tr><th>会話の相性</th><td><Stars value={c.sub.talk} /></td></tr>
-            <tr><th>心の相性</th><td><Stars value={c.sub.heart} /></td></tr>
-            <tr><th>将来の相性</th><td><Stars value={c.sub.future} /></td></tr>
+            {['talk', 'heart', 'future'].map((key) => (
+              <tr key={key}><th>{tc.subs[key]}</th><td><Stars value={c.sub[key]} /></td></tr>
+            ))}
           </tbody>
         </table>
-        <ShareButtons text={`${labelA}と${labelB}の相性は${c.percent}%!「${rel.title}」でした💞`} />
+        <ShareButtons text={tc.share(labelA, labelB, c.percent, rel.title)} />
       </div>
     )
   }
 
   return (
-    <Page title="2人の相性鑑定" emoji="💞" lead="2人の運命数の関係から相性を鑑定します。名前も入れると、より詳しく占えます(名前は任意)。">
+    <Page id="compat" lead={tc.lead}>
       <form className="form" onSubmit={(e) => { e.preventDefault(); setSubmitted(true) }}>
         <fieldset>
-          <legend>あなた</legend>
-          <DateInput id="birth-a" label="生年月日" value={birthA} onChange={reset(setBirthA)} />
-          <NameInput id="name-a" label="名前(任意)" value={nameA} onChange={reset(setNameA)} />
+          <legend>{tc.you}</legend>
+          <DateInput id="birth-a" value={birthA} onChange={reset(setBirthA)} />
+          <NameInput id="name-a" label={tc.nameOptional} value={nameA} onChange={reset(setNameA)} />
         </fieldset>
         <fieldset>
-          <legend>お相手</legend>
-          <DateInput id="birth-b" label="生年月日" value={birthB} onChange={reset(setBirthB)} />
-          <NameInput id="name-b" label="名前(任意)" value={nameB} onChange={reset(setNameB)} />
+          <legend>{tc.partner}</legend>
+          <DateInput id="birth-b" value={birthB} onChange={reset(setBirthB)} />
+          <NameInput id="name-b" label={tc.nameOptional} value={nameB} onChange={reset(setNameB)} />
         </fieldset>
-        <button type="submit" className="primary" disabled={!a || !b}>相性を鑑定する</button>
+        <button type="submit" className="primary" disabled={!a || !b}>{tc.submit}</button>
       </form>
       {result}
     </Page>
@@ -330,15 +372,18 @@ function CompatPage() {
 
 // ---- レイアウト ----
 
-function Page({ title, emoji, lead, children }) {
+function Page({ id, lead, children }) {
+  const t = useDictionary()
+  const menu = MENU_IDS.find((m) => m.id === id)
+  const title = t.ui.menus[id].title
   useEffect(() => {
-    document.title = `${title}｜${SITE_NAME}`
-  }, [title])
+    document.title = `${title}｜${t.siteName}`
+  }, [title, t.siteName])
   return (
     <main className="page">
-      <a className="back" href="#/">← 村の入口へ</a>
+      <a className="back" href="#/">{t.ui.back}</a>
       <header className="page-header">
-        <div className="page-emoji">{emoji}</div>
+        <div className="page-emoji">{menu.emoji}</div>
         <h2>{title}</h2>
         <p>{lead}</p>
       </header>
@@ -349,14 +394,15 @@ function Page({ title, emoji, lead, children }) {
 }
 
 function OtherMenus() {
+  const t = useDictionary()
   return (
-    <nav className="other-menus" aria-label="ほかの鑑定">
-      <p className="eyebrow">ほかの鑑定もどうぞ</p>
+    <nav className="other-menus" aria-label={t.ui.otherMenus}>
+      <p className="eyebrow">{t.ui.otherMenus}</p>
       <div className="menu-grid compact">
-        {MENUS.map((menu) => (
+        {MENU_IDS.map((menu) => (
           <a key={menu.id} className="menu-card" href={`#/${menu.id}`}>
             <span className="menu-emoji">{menu.emoji}</span>
-            <strong>{menu.title}</strong>
+            <strong>{t.ui.menus[menu.id].title}</strong>
           </a>
         ))}
       </div>
@@ -365,22 +411,24 @@ function OtherMenus() {
 }
 
 function Home() {
+  const t = useDictionary()
   useEffect(() => {
-    document.title = `${SITE_NAME}｜無料の誕生日鑑定・名前鑑定・今日の運勢・相性占い`
-  }, [])
+    document.title = t.meta.title
+  }, [t.meta.title])
   return (
     <main>
       <header className="hero">
-        <p className="eyebrow">無料・登録不要の占いの村</p>
+        <p className="eyebrow">{t.ui.heroEyebrow}</p>
         <h1>鑑定村</h1>
-        <p>生年月日や名前に宿る「数」から、あなたの本質・今日の運気・大切な人との相性を読み解きます。</p>
+        {t.siteName !== '鑑定村' && <p className="hero-sub">{t.siteName}</p>}
+        <p>{t.ui.heroText}</p>
       </header>
       <div className="menu-grid">
-        {MENUS.map((menu) => (
+        {MENU_IDS.map((menu) => (
           <a key={menu.id} className="menu-card" href={`#/${menu.id}`}>
             <span className="menu-emoji">{menu.emoji}</span>
-            <strong>{menu.title}</strong>
-            <span>{menu.text}</span>
+            <strong>{t.ui.menus[menu.id].title}</strong>
+            <span>{t.ui.menus[menu.id].text}</span>
           </a>
         ))}
       </div>
@@ -388,19 +436,84 @@ function Home() {
   )
 }
 
+// 言語の切り替え。選ぶと /en/ などその言語のページへ移動する(今見ている鑑定のページはそのまま)。
+function LanguageSwitcher({ current }) {
+  const t = useDictionary()
+  const change = (e) => {
+    const lang = LANGUAGES.find((l) => l.code === e.target.value)
+    window.location.href = languagePath(lang) + window.location.hash
+  }
+  return (
+    <label className="language-switcher">
+      <span aria-hidden="true">🌐</span>
+      <select value={current.code} onChange={change} aria-label={t.ui.language}>
+        {LANGUAGES.map((lang) => <option key={lang.code} value={lang.code}>{lang.label}</option>)}
+      </select>
+    </label>
+  )
+}
+
+// 日本語のトップで、ブラウザの言語が別の言語なら、その言語のページを案内する
+function LanguageSuggestion({ current }) {
+  const [dismissed, setDismissed] = useState(() => {
+    try {
+      return window.localStorage.getItem('kantei:lang-suggest') === 'off'
+    } catch {
+      return false
+    }
+  })
+  const suggestion = current.code === 'ja' ? preferredLanguage(navigator.languages || [navigator.language]) : null
+  if (dismissed || !suggestion || suggestion.code === 'ja') return null
+  const close = () => {
+    setDismissed(true)
+    try {
+      window.localStorage.setItem('kantei:lang-suggest', 'off')
+    } catch {
+      // 無視
+    }
+  }
+  return (
+    <div className="lang-suggest" lang={suggestion.code}>
+      <a href={languagePath(suggestion) + window.location.hash}>🌐 {LANGUAGE_SUGGESTIONS[suggestion.code]} →</a>
+      <button type="button" onClick={close} aria-label="×">×</button>
+    </div>
+  )
+}
+
+const currentLanguage = languageFromPath(window.location.pathname)
+
 export default function App() {
   const route = useHashRoute()
+  const [dictionary, setDictionary] = useState(currentLanguage.code === 'ja' ? ja : null)
+
+  useEffect(() => {
+    document.documentElement.lang = currentLanguage.code
+    if (currentLanguage.code === 'ja') return
+    let alive = true
+    loadDictionary(currentLanguage.code).then((dict) => alive && setDictionary(dict))
+    return () => {
+      alive = false
+    }
+  }, [])
+
+  if (!dictionary) return <div className="app loading" aria-busy="true" />
+
   const pages = { birthday: BirthdayPage, name: NamePage, today: TodayPage, compat: CompatPage }
   const Current = pages[route] || Home
   return (
-    <div className="app">
-      <div className="sky" aria-hidden="true" />
-      <Current />
-      <footer className="footer">
-        <p>※ 鑑定結果は数秘術をもとにしたエンターテインメントです。大切な判断はご自身の意思で行ってください。</p>
-        <p>入力内容はお使いのブラウザ内でのみ処理され、サーバーには送信されません。</p>
-        <p>© {SITE_NAME}</p>
-      </footer>
-    </div>
+    <DictionaryContext.Provider value={dictionary}>
+      <div className="app">
+        <div className="sky" aria-hidden="true" />
+        <div className="topbar">
+          <LanguageSwitcher current={currentLanguage} />
+        </div>
+        <LanguageSuggestion current={currentLanguage} />
+        <Current />
+        <footer className="footer">
+          {dictionary.ui.footer.map((line) => <p key={line}>{line}</p>)}
+          <p>© {dictionary.siteName}</p>
+        </footer>
+      </div>
+    </DictionaryContext.Provider>
   )
 }

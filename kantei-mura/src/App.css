@@ -342,6 +342,8 @@ legend { color: var(--gold); padding: 0 6px; }
   color: var(--ink);
   font-size: 0.82rem;
   cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .stage-box, .stage-drawer, .stage-open, .stage-tied {
@@ -512,3 +514,82 @@ legend { color: var(--gold); padding: 0 6px; }
 @media (prefers-reduced-motion: reduce) {
   .omikuji-stage *, .omikuji-stage *::before { animation-duration: 0.01s !important; animation-iteration-count: 1 !important; transition-duration: 0.01s !important; }
 }
+
+/* ---- 多言語 ---- */
+
+/* 中国語・韓国語では、その言語向けの明朝体(セリフ体)を優先する */
+:root:lang(zh-Hans) { font-family: 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', 'SimSun', serif; }
+:root:lang(zh-Hant) { font-family: 'Songti TC', 'Noto Serif TC', 'Source Han Serif TC', 'PMingLiU', serif; }
+:root:lang(ko) { font-family: 'AppleMyungjo', 'Noto Serif KR', 'Nanum Myeongjo', 'Batang', serif; }
+:root:lang(en), :root:lang(es) { font-family: 'Georgia', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; }
+
+/* おみくじの紙・箱は、どの言語でも日本語の明朝体で表示する */
+.omikuji-sheet, .drawer, .folded-paper, .omikuji-box-svg {
+  font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif JP', 'Noto Serif CJK JP', serif;
+}
+
+.app.loading { min-height: 100vh; }
+
+.topbar { display: flex; justify-content: flex-end; margin-bottom: 12px; }
+
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px 4px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.language-switcher select {
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 4px 4px 4px 0;
+  cursor: pointer;
+  color-scheme: dark;
+}
+
+.language-switcher select:focus-visible { outline: 2px solid var(--gold); border-radius: 6px; }
+
+.lang-suggest {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--gold-soft);
+  font-size: 0.9rem;
+}
+.lang-suggest a { color: var(--ink); text-decoration: none; }
+.lang-suggest a:hover { text-decoration: underline; }
+.lang-suggest button {
+  border: none;
+  background: none;
+  color: var(--muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.hero-sub { margin: -6px 0 12px; color: var(--gold); letter-spacing: 0.2em; }
+
+.sheet-translation {
+  width: 100%;
+  text-align: left;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px dashed var(--border);
+}
+.sheet-translation h4 { margin: 0 0 8px; color: var(--gold); }
+.sheet-translation dl { margin: 0; display: grid; gap: 6px; }
+.sheet-translation dl div { display: grid; grid-template-columns: minmax(90px, 38%) 1fr; gap: 10px; }
+.sheet-translation dt { color: var(--muted); font-size: 0.85rem; }
+.sheet-translation dd { margin: 0; }
