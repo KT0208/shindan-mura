@@ -66,6 +66,17 @@ export default {
       subs: { talk: '会話の相性', heart: '心の相性', future: '将来の相性' },
       share: (a, b, percent, title) => `${a}と${b}の相性は${percent}%!「${title}」でした💞`,
     },
+    sister: {
+      label: '姉妹サイト',
+      footer: '🧩 キャラクターで性格がわかる「診断村」',
+      button: '診断村で診断する',
+      pages: {
+        birthday: { emoji: '🧭', title: '向いている働き方もキャラで診断', text: '運命数でわかった才能を、質問8つの「仕事向き診断」でもチェック。' },
+        name: { emoji: '🌓', title: 'あなたの「裏の顔」はどんなキャラ?', text: '名前に宿る本質の次は、もう一つの顔を「裏人格診断」で。' },
+        today: { emoji: '💰', title: 'あなたの金運タイプは?', text: '今日の運勢の次は、お金との付き合い方を「金運タイプ診断」で。' },
+        compat: { emoji: '💘', title: 'あなたの恋愛こじらせ度は?', text: '2人の相性の次は、自分の恋愛傾向を「恋愛こじらせ診断」で。' },
+      },
+    },
     omikuji: {
       dateLabel: (date) => `${date}のおみくじ`,
       soundOn: '🔊 音あり',

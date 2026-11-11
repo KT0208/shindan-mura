@@ -65,6 +65,17 @@ export default {
       subs: { talk: 'Conversation', heart: 'Emotional bond', future: 'Future together' },
       share: (a, b, percent, title) => `${a} & ${b}: ${percent}% compatible! “${title}” 💞`,
     },
+    sister: {
+      label: 'Sister site',
+      footer: '🧩 Personality quizzes with cute characters: Shindan Mura',
+      button: 'Take the quiz on Shindan Mura',
+      pages: {
+        birthday: { emoji: '🧭', title: 'Which work style suits you?', text: 'You know your talents — now find your ideal way of working with an 8-question character quiz.' },
+        name: { emoji: '🌓', title: 'What’s your hidden personality?', text: 'After the true self in your name, meet your other face in a character quiz.' },
+        today: { emoji: '💰', title: 'What’s your money personality?', text: 'After today’s luck, discover how you deal with money in a character quiz.' },
+        compat: { emoji: '💘', title: 'How complicated are you in love?', text: 'After your compatibility, check your own love tendencies in a character quiz.' },
+      },
+    },
     omikuji: {
       dateLabel: (date) => `Omikuji for ${date}`,
       soundOn: '🔊 Sound on',

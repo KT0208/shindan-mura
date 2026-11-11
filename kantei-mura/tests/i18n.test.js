@@ -63,3 +63,10 @@ test('language detection', () => {
   assert.equal(preferredLanguage(['ja-JP', 'en']).code, 'ja')
   assert.equal(preferredLanguage(['fr-FR']), null)
 })
+
+test('sister site links', async () => {
+  const { shindanUrl } = await import('../src/sisterSite.js')
+  assert.equal(shindanUrl('ja', 'compat', 'result_compat'), 'https://shindanmura.com/?lang=ja&utm_source=kanteimura&utm_medium=referral&utm_campaign=result_compat#diagnosis=love-complicated')
+  assert.ok(shindanUrl('ko', null, 'footer').startsWith('https://shindanmura.com/?lang=en&'))
+  assert.ok(!shindanUrl('es', null, 'footer').includes('#'))
+})

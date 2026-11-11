@@ -18,6 +18,7 @@ import { loadDictionary, ja } from './i18n'
 import { DictionaryContext, useDictionary } from './i18n/context'
 import { LANGUAGES, LANGUAGE_SUGGESTIONS, languageFromPath, languagePath, preferredLanguage } from './i18n/languages'
 import Omikuji from './Omikuji'
+import { shindanUrl } from './sisterSite'
 
 const MENU_IDS = [
   { id: 'birthday', emoji: '🎂' },
@@ -135,6 +136,26 @@ function NameInput({ id, label, value, onChange, required = false }) {
   )
 }
 
+// 結果の下に出す、姉妹サイト「診断村」の案内カード(1つだけ)
+function SisterCard({ page }) {
+  const t = useDictionary()
+  const sister = t.ui.sister
+  const item = sister.pages[page]
+  return (
+    <a className="sister-card" href={shindanUrl(t.code, page, `result_${page}`)} target="_blank" rel="noopener">
+      <span className="sister-label">{sister.label} 🧩 診断村</span>
+      <span className="sister-body">
+        <span className="sister-emoji" aria-hidden="true">{item.emoji}</span>
+        <span>
+          <strong>{item.title}</strong>
+          <small>{item.text}</small>
+        </span>
+      </span>
+      <span className="sister-button">{sister.button} →</span>
+    </a>
+  )
+}
+
 function NumberCard({ number, heading }) {
   const t = useDictionary()
   const info = t.numberTypes[number]
@@ -189,6 +210,7 @@ function BirthdayPage() {
           <p>{t.yearThemes[py].text}</p>
         </div>
         <ShareButtons text={t.ui.birthday.share(lp, t.numberTypes[lp].title, thisYear, t.yearThemes[py].theme)} />
+        <SisterCard page="birthday" />
       </div>
     )
   }
@@ -231,6 +253,7 @@ function NamePage() {
           <p>{t.numberTypes[s].nature}</p>
         </div>
         <ShareButtons text={t.ui.name.share(t.numberTypes[n].title, t.numberTypes[s].title)} />
+        <SisterCard page="name" />
       </div>
     )
   }
@@ -287,6 +310,7 @@ function TodayPage() {
           </div>
           <p className="note">{tt.sameDay}</p>
           <ShareButtons text={tt.share(t.omikujiRanks[f.omikujiIndex], t.luckyItems[f.luckyItem])} />
+          <SisterCard page="today" />
         </div>
       )}
     </Page>
@@ -346,6 +370,7 @@ function CompatPage() {
           </tbody>
         </table>
         <ShareButtons text={tc.share(labelA, labelB, c.percent, rel.title)} />
+        <SisterCard page="compat" />
       </div>
     )
   }
@@ -511,6 +536,9 @@ export default function App() {
         <Current />
         <footer className="footer">
           {dictionary.ui.footer.map((line) => <p key={line}>{line}</p>)}
+          <p className="sister-footer">
+            {dictionary.ui.sister.label}: <a href={shindanUrl(dictionary.code, null, 'footer')} target="_blank" rel="noopener">{dictionary.ui.sister.footer}</a>
+          </p>
           <p>© {dictionary.siteName}</p>
         </footer>
       </div>

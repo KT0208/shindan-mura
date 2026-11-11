@@ -593,3 +593,30 @@ legend { color: var(--gold); padding: 0 6px; }
 .sheet-translation dl div { display: grid; grid-template-columns: minmax(90px, 38%) 1fr; gap: 10px; }
 .sheet-translation dt { color: var(--muted); font-size: 0.85rem; }
 .sheet-translation dd { margin: 0; }
+
+/* ---- 姉妹サイト「診断村」の案内 ---- */
+.sister-card {
+  display: grid;
+  gap: 10px;
+  padding: 16px 18px 18px;
+  border-radius: 20px;
+  color: var(--ink);
+  text-decoration: none;
+  background: linear-gradient(135deg, rgba(255, 158, 199, 0.16), rgba(140, 90, 255, 0.14));
+  border: 1px solid rgba(255, 158, 199, 0.4);
+  transition: transform 0.2s, border-color 0.2s;
+}
+.sister-card:hover { transform: translateY(-2px); border-color: #ff9ec7; }
+.sister-label { font-size: 0.78rem; letter-spacing: 0.08em; color: #ff9ec7; }
+.sister-body { display: flex; align-items: center; gap: 12px; }
+.sister-emoji { font-size: 2rem; flex-shrink: 0; }
+.sister-body strong { display: block; font-size: 1.02rem; }
+.sister-body small { display: block; margin-top: 2px; color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
+.sister-button {
+  justify-self: center;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 158, 199, 0.6);
+  font-size: 0.88rem;
+}
+.footer .sister-footer a { color: var(--ink); }

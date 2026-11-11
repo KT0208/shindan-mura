@@ -65,6 +65,17 @@ export default {
       subs: { talk: 'Conversación', heart: 'Conexión emocional', future: 'Futuro juntos' },
       share: (a, b, percent, title) => `¡${a} y ${b}: ${percent}% de compatibilidad! «${title}» 💞`,
     },
+    sister: {
+      label: 'Sitio hermano',
+      footer: '🧩 Tests de personalidad con personajes: Shindan Mura (en inglés)',
+      button: 'Ir a Shindan Mura (en inglés)',
+      pages: {
+        birthday: { emoji: '🧭', title: '¿Qué forma de trabajar te va?', text: 'Ya conoces tus talentos: descubre tu estilo de trabajo ideal con un test de 8 preguntas.' },
+        name: { emoji: '🌓', title: '¿Cuál es tu personalidad oculta?', text: 'Después de tu esencia en el nombre, conoce tu otra cara con un test de personajes.' },
+        today: { emoji: '💰', title: '¿Cuál es tu tipo con el dinero?', text: 'Después de tu suerte de hoy, descubre tu relación con el dinero con un test de personajes.' },
+        compat: { emoji: '💘', title: '¿Qué tan complicado eres en el amor?', text: 'Después de vuestra compatibilidad, mira tus tendencias en el amor con un test de personajes.' },
+      },
+    },
     omikuji: {
       dateLabel: (date) => `Omikuji del ${date}`,
       soundOn: '🔊 Sonido sí',

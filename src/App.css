@@ -2422,3 +2422,76 @@ button {
   line-height: 1.9;
   color: #6b5a80;
 }
+
+/* 姉妹サイト「鑑定村」の案内(結果画面に1つ・フッターに小さく) */
+.sister-card {
+  display: grid;
+  gap: 10px;
+  margin: 20px 0;
+  padding: 16px 18px 18px;
+  border-radius: 22px;
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(135deg, rgba(60, 36, 110, 0.9), rgba(27, 16, 54, 0.92));
+  border: 1px solid rgba(232, 194, 106, 0.45);
+  box-shadow: 0 12px 30px rgba(20, 8, 40, 0.25);
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.sister-card:hover {
+  transform: translateY(-2px);
+  border-color: #e8c26a;
+}
+
+.sister-label {
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: #e8c26a;
+}
+
+.sister-body {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+}
+
+.sister-emoji {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.sister-body strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.sister-body small {
+  display: block;
+  margin-top: 2px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.sister-button {
+  justify-self: center;
+  padding: 9px 20px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f3d48a, #c89a3c);
+  color: #2a1a00;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.sister-footer {
+  font-size: 12px;
+}
+
+.sister-footer a {
+  color: inherit;
+  font-weight: 900;
+  text-underline-offset: 3px;
+}

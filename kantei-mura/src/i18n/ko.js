@@ -65,6 +65,17 @@ export default {
       subs: { talk: '대화 궁합', heart: '마음 궁합', future: '미래 궁합' },
       share: (a, b, percent, title) => `${a}와(과) ${b}의 궁합은 ${percent}%! 「${title}」💞`,
     },
+    sister: {
+      label: '자매 사이트',
+      footer: '🧩 귀여운 캐릭터로 알아보는 성격 테스트: Shindan Mura (영어)',
+      button: 'Shindan Mura로 가기 (영어)',
+      pages: {
+        birthday: { emoji: '🧭', title: '나에게 맞는 일하는 방식은?', text: '재능을 알았다면, 8문항 캐릭터 테스트로 나에게 맞는 일 스타일도 확인해 보세요.' },
+        name: { emoji: '🌓', title: '나의 “숨은 얼굴”은 어떤 캐릭터?', text: '이름에 담긴 본모습 다음은, 캐릭터 테스트로 또 다른 나를 만나 보세요.' },
+        today: { emoji: '💰', title: '나의 금전 타입은?', text: '오늘의 운세 다음은, 캐릭터 테스트로 돈과 친해지는 방법을 알아보세요.' },
+        compat: { emoji: '💘', title: '나의 연애 꼬임 지수는?', text: '두 사람의 궁합 다음은, 캐릭터 테스트로 나의 연애 성향을 확인해 보세요.' },
+      },
+    },
     omikuji: {
       dateLabel: (date) => `${date}의 오미쿠지`,
       soundOn: '🔊 소리 켬',

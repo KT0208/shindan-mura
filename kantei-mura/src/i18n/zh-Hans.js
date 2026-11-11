@@ -65,6 +65,17 @@ export default {
       subs: { talk: '聊天契合度', heart: '心灵契合度', future: '未来契合度' },
       share: (a, b, percent, title) => `${a}和${b}的契合度是${percent}%！「${title}」💞`,
     },
+    sister: {
+      label: '姐妹网站',
+      footer: '🧩 用可爱角色测性格：Shindan Mura（英文）',
+      button: '去 Shindan Mura（英文）',
+      pages: {
+        birthday: { emoji: '🧭', title: '你适合怎样的工作方式？', text: '知道了天赋，再用8道题的角色测验看看适合你的工作方式。' },
+        name: { emoji: '🌓', title: '你的“另一面”是什么角色？', text: '看完姓名中的本质，再用角色测验认识另一个你。' },
+        today: { emoji: '💰', title: '你是哪种金钱类型？', text: '看完今天的运势，再用角色测验看看你和金钱的相处方式。' },
+        compat: { emoji: '💘', title: '你在恋爱中有多“别扭”？', text: '看完两人的契合度，再用角色测验看看自己的恋爱倾向。' },
+      },
+    },
     omikuji: {
       dateLabel: (date) => `${date}的御神签`,
       soundOn: '🔊 有声音',

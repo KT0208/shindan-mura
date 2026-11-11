@@ -37,6 +37,8 @@ import { uiText, legalPagesByLanguage, answerCommentsByLanguage } from './i18n'
 import { getEnPack, loadEnPack } from './langPacks'
 import { getReplyTypeFontStyle } from './fontStyles'
 import AdBanner from './components/AdBanner'
+import SisterSiteCard from './components/SisterSiteCard'
+import { kanteiUrl, sisterTexts } from './sisterSite'
 import { useEffect, useState } from 'react'
 import './App.css'
 
@@ -576,7 +578,12 @@ function safeSetItem(key, value) {
 }
 
 function App() {
-  const [language, setLanguage] = useState(() => safeGetItem('shindanMuraLanguage') || 'ja')
+  // ?lang=en / ?lang=ja が付いたリンク(姉妹サイトの鑑定村など)から来たときは、その言語で開く
+  const [language, setLanguage] = useState(() => {
+    const fromUrl = new URLSearchParams(window.location.search).get('lang')
+    if (fromUrl === 'ja' || fromUrl === 'en') return fromUrl
+    return safeGetItem('shindanMuraLanguage') || 'ja'
+  })
 
   // 英語データの遅延読み込み。読み込み完了時に再レンダリングして英語表示へ切り替える。
   // (読み込みが終わるまでは各所の `|| ja` フォールバックにより日本語のまま表示される)
@@ -1491,6 +1498,8 @@ ${resultShareUrl}`
               </button>
             </div>
 
+            <SisterSiteCard language={language} diagnosisId={diagnosis.id} />
+
             <AdBanner />
 
             <div className="result-nav-actions">
@@ -1769,6 +1778,10 @@ ${resultShareUrl}`
             {t.footerLinks.operator}
           </button>
         </nav>
+        <p className="sister-footer">
+          {sisterTexts(language).label}:{' '}
+          <a href={kanteiUrl(language, null, 'footer')} target="_blank" rel="noopener">{sisterTexts(language).footer}</a>
+        </p>
         <p>{t.footerCopyright}</p>
       </footer>
 
