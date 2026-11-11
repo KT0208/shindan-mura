@@ -5,7 +5,7 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', 'kantei-mura/dist']),
   {
     files: ['**/*.{js,jsx}'],
     extends: [
@@ -20,7 +20,7 @@ export default defineConfig([
   },
   {
     // Node(GitHub Actions)から実行するスクリプトはブラウザではなくNodeのグローバルで動く。
-    files: ['scripts/**/*.js'],
+    files: ['scripts/**/*.js', 'kantei-mura/tests/**/*.js'],
     languageOptions: {
       globals: globals.node,
     },
