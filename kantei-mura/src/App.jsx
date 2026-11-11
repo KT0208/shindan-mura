@@ -11,7 +11,8 @@ import {
   soulNumber,
   zodiacSign,
 } from './fortune'
-import { compatComment, numberTypes, omikujiMessages, relationTexts, yearThemes } from './readings'
+import { compatComment, numberTypes, relationTexts, yearThemes } from './readings'
+import Omikuji from './Omikuji'
 
 const SITE_NAME = '鑑定村'
 
@@ -215,63 +216,48 @@ function NamePage() {
 
 function TodayPage() {
   const [birthText, setBirthText] = useStoredState('kantei:birth', '')
-  const [drawn, setDrawn] = useState(false)
-  const [shaking, setShaking] = useState(false)
+  const [opened, setOpened] = useState(false)
   const birth = parseDate(birthText)
   const todayText = formatDate(new Date())
   const [y, m, d] = todayText.split('-').map(Number)
-
-  const draw = (e) => {
-    e.preventDefault()
-    setShaking(true)
-    setTimeout(() => {
-      setShaking(false)
-      setDrawn(true)
-    }, 900)
-  }
-
-  let result = null
-  if (drawn && birth) {
-    const f = dailyFortune(birthText, todayText)
-    result = (
-      <div className="result">
-        <div className={`omikuji omikuji-${f.omikujiIndex}`}>
-          <p className="eyebrow">{y}年{m}月{d}日のおみくじ</p>
-          <div className="omikuji-paper" aria-label={f.omikuji}>
-            {[...f.omikuji].map((ch, i) => <span key={i}>{ch}</span>)}
-          </div>
-          <p>{omikujiMessages[f.omikuji]}</p>
-        </div>
-        <table className="score-table">
-          <tbody>
-            <tr><th>総合運</th><td><Stars value={f.scores.total} /></td></tr>
-            <tr><th>恋愛運</th><td><Stars value={f.scores.love} /></td></tr>
-            <tr><th>金運</th><td><Stars value={f.scores.money} /></td></tr>
-            <tr><th>仕事運</th><td><Stars value={f.scores.work} /></td></tr>
-            <tr><th>健康運</th><td><Stars value={f.scores.health} /></td></tr>
-          </tbody>
-        </table>
-        <div className="lucky-grid">
-          <div><span>ラッキーカラー</span><strong>{f.luckyColor}</strong></div>
-          <div><span>ラッキーアイテム</span><strong>{f.luckyItem}</strong></div>
-          <div><span>ラッキーナンバー</span><strong>{f.luckyNumber}</strong></div>
-          <div><span>開運アクション</span><strong>{f.luckyAction}</strong></div>
-        </div>
-        <p className="note">運勢は1日1回、日付が変わると新しくなります。</p>
-        <ShareButtons text={`今日のおみくじは【${f.omikuji}】!ラッキーアイテムは「${f.luckyItem}」⛩️`} />
-      </div>
-    )
-  }
+  const f = birth ? dailyFortune(birthText, todayText) : null
 
   return (
-    <Page title="今日の運勢・おみくじ" emoji="⛩️" lead="生年月日と今日の日付から、あなただけの今日の運勢を占います。毎日0時に更新されます。">
-      <form className="form" onSubmit={draw}>
-        <DateInput id="birth-today" label="生年月日" value={birthText} onChange={(v) => { setBirthText(v); setDrawn(false) }} />
-        <button type="submit" className={`primary ${shaking ? 'shaking' : ''}`} disabled={!birth || shaking}>
-          {shaking ? 'おみくじを振っています…' : 'おみくじを引く'}
-        </button>
-      </form>
-      {result}
+    <Page title="今日の運勢・おみくじ" emoji="⛩️" lead="神社と同じように、箱を振っておみくじを引いてみましょう。生年月日と今日の日付から、あなただけの運勢が出ます。毎日0時に新しくなります。">
+      <div className="form">
+        <DateInput id="birth-today" label="生年月日" value={birthText} onChange={(v) => { setBirthText(v); setOpened(false) }} />
+        {!birth && <p className="note">生年月日を入れると、おみくじの箱が出てきます。</p>}
+      </div>
+      {f && (
+        <Omikuji
+          key={birthText}
+          fortune={f}
+          dateLabel={`${y}年${m}月${d}日`}
+          onOpen={() => setOpened(true)}
+          onReset={() => setOpened(false)}
+        />
+      )}
+      {f && opened && (
+        <div className="result">
+          <table className="score-table">
+            <tbody>
+              <tr><th>総合運</th><td><Stars value={f.scores.total} /></td></tr>
+              <tr><th>恋愛運</th><td><Stars value={f.scores.love} /></td></tr>
+              <tr><th>金運</th><td><Stars value={f.scores.money} /></td></tr>
+              <tr><th>仕事運</th><td><Stars value={f.scores.work} /></td></tr>
+              <tr><th>健康運</th><td><Stars value={f.scores.health} /></td></tr>
+            </tbody>
+          </table>
+          <div className="lucky-grid">
+            <div><span>ラッキーカラー</span><strong>{f.luckyColor}</strong></div>
+            <div><span>ラッキーアイテム</span><strong>{f.luckyItem}</strong></div>
+            <div><span>ラッキーナンバー</span><strong>{f.luckyNumber}</strong></div>
+            <div><span>開運アクション</span><strong>{f.luckyAction}</strong></div>
+          </div>
+          <p className="note">同じ日は何回引いても同じ結果です。日付が変わると新しいおみくじになります。</p>
+          <ShareButtons text={`今日のおみくじは【${f.omikuji}】!ラッキーアイテムは「${f.luckyItem}」⛩️`} />
+        </div>
+      )}
     </Page>
   )
 }

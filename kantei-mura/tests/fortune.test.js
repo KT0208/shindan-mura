@@ -95,3 +95,19 @@ test('total score follows omikuji rank (never below 2)', () => {
     assert.equal(f.scores.total, [5, 4, 4, 3, 3, 2][f.omikujiIndex])
   }
 })
+
+test('omikuji stick number and item picks', async () => {
+  const { toKanjiNumber, omikujiTier } = await import('../src/fortune.js')
+  const { omikujiItems } = await import('../src/readings.js')
+  assert.equal(toKanjiNumber(1), '一')
+  assert.equal(toKanjiNumber(10), '十')
+  assert.equal(toKanjiNumber(23), '二十三')
+  assert.equal(toKanjiNumber(50), '五十')
+  for (let d = 1; d <= 28; d += 1) {
+    const f = dailyFortune('1985-07-07', `2026-04-${String(d).padStart(2, '0')}`)
+    assert.ok(f.stickNumber >= 1 && f.stickNumber <= 50)
+    assert.equal(f.itemPicks.length, omikujiItems.length)
+    const tier = omikujiTier(f.omikujiIndex)
+    omikujiItems.forEach((item, i) => assert.ok(item.tiers[tier][f.itemPicks[i]]))
+  }
+})

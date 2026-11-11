@@ -195,7 +195,25 @@ export function dailyFortune(birthText, dateText) {
     luckyItem: LUCKY_ITEMS[Math.floor(rand() * LUCKY_ITEMS.length)],
     luckyNumber: Math.floor(rand() * 9) + 1,
     luckyAction: LUCKY_ACTIONS[Math.floor(rand() * LUCKY_ACTIONS.length)],
+    // おみくじの棒の番号(1〜50)と、紙に書く各項目の文言の選び方(0か1)
+    stickNumber: Math.floor(rand() * 50) + 1,
+    itemPicks: Array.from({ length: 7 }, () => (rand() < 0.5 ? 0 : 1)),
   }
+}
+
+// おみくじの吉凶を、紙の文言の3段階に分ける
+export function omikujiTier(omikujiIndex) {
+  if (omikujiIndex <= 1) return 'good'
+  if (omikujiIndex <= 3) return 'mid'
+  return 'low'
+}
+
+// 1〜99 を漢数字に(23 → 二十三)
+export function toKanjiNumber(n) {
+  const digits = ['', '一', '二', '三', '四', '五', '六', '七', '八', '九']
+  const tens = Math.floor(n / 10)
+  const ones = n % 10
+  return (tens ? (tens === 1 ? '' : digits[tens]) + '十' : '') + digits[ones]
 }
 
 // ---- 相性鑑定 ----
