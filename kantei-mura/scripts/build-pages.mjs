@@ -1,6 +1,8 @@
 // ビルド後に実行し、読み物ページ・運命数の解説ページ・規約ページを、
-// 文章がそのまま入った静的なHTMLとして dist/ に書き出す(検索エンジンやアドセンス審査が読みやすいように)。
-// フォルダを作らず dist/ 直下に置くので、Xserver へのアップロードも1か所で済む。
+// 文章がそのまま入った静的なHTMLとして書き出す(検索エンジンやアドセンス審査が読みやすいように)。
+// - 日本語: dist/ 直下(例: /sanpai.html)
+// - ほかの言語: dist/{言語}/ の中(例: /en/sanpai.html)。フォルダは言語ページ用に既にあるので増えない。
+// 数秘術・運命数・規約のページは日本語のみ。神社・おみくじなど日本文化の記事は全言語で作る。
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -8,7 +10,7 @@ import ja from '../src/i18n/ja.js'
 import numberGuide from '../src/content/numberGuide.ja.js'
 import { articles, shrineArticles, legalPages, CONTACT_EMAIL } from '../src/content/articles.ja.js'
 import { lifePathNumber, numberRelation, reduceNumber } from '../src/fortune.js'
-import { SITE_URL } from '../src/i18n/languages.js'
+import { LANGUAGES, SITE_URL, languagePath } from '../src/i18n/languages.js'
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 const dist = path.join(root, 'dist')
@@ -16,6 +18,8 @@ const dist = path.join(root, 'dist')
 export const NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 22, 33]
 const numberFile = (n) => `number-${n}.html`
 const GUIDE_FILE = 'guide.html'
+// 全言語で作る日本文化の記事(この順で一覧に並べる)
+const CULTURE_KEYS = ['sanpai', 'temizu', 'jinjaTera', 'omamori', 'saisen', 'hatsumode', 'goshuin', 'omikuji']
 
 const esc = (text) => String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
@@ -26,61 +30,108 @@ function linkify(text) {
     .replace(/[\w.+-]+@[\w-]+\.[\w.]+/g, (mail) => `<a href="mailto:${mail}">${mail}</a>`)
 }
 
-function layout({ file, title, description, breadcrumb, body, jsonLd }) {
-  const url = `${SITE_URL}/${file}`
-  const crumbs = [{ name: '鑑定村', href: '/' }, ...breadcrumb]
+// ---- 言語ごとの、ページの枠(ヘッダー・フッターなど)の文言 ----
+const jaUi = {
+  siteName: '鑑定村',
+  nav: { birthday: '誕生日鑑定', name: '名前鑑定', today: 'おみくじ', compat: '相性' },
+  navAria: '鑑定メニュー',
+  breadcrumbAria: 'パンくずリスト',
+  readings: '読み物',
+  related: 'あわせて読みたい',
+  footerAria: 'サイト情報',
+  legal: { privacy: 'プライバシーポリシー', contact: 'お問い合わせ', operator: '運営者情報' },
+  sister: '姉妹サイト:🧩 キャラクターで性格がわかる「診断村」',
+  disclaimer: '※ 鑑定結果は数秘術などをもとにしたエンターテインメントです。',
+  quotes: ['「', '」'],
+  languages: 'この記事をほかの言語で読む',
+  guide: {
+    title: '読み物一覧|数秘術・おみくじ・神社のお参りの作法',
+    description: '鑑定村の読み物一覧です。数秘術の基本と運命数1〜9・11・22・33の解説、おみくじの意味、手水や二礼二拍手一礼など神社のお参りの作法をまとめています。',
+    lead: '鑑定村の占いをもっと楽しむための解説ページです。数秘術のしくみや運命数ごとの性格、おみくじの意味、神社でのお参りの作法をまとめています。',
+    cultureHeading: '神社・お寺・おみくじ',
+    cta: { text: '読んだら、実際に鑑定してみましょう', label: '鑑定村のトップへ' },
+  },
+}
+
+async function loadCulture(lang) {
+  if (lang.code === 'ja') {
+    return { ui: jaUi, articles: { ...shrineArticles, omikuji: articles.omikuji } }
+  }
+  // まだ翻訳がない言語は作らない(日本語ページだけになる)
+  if (!fs.existsSync(path.join(root, 'src', 'content', 'culture', `${lang.code}.js`))) return null
+  const mod = await import(`../src/content/culture/${lang.code}.js`)
+  return mod.default
+}
+
+const cultures = {}
+for (const lang of LANGUAGES) cultures[lang.code] = await loadCulture(lang)
+
+const pageUrl = (lang, file) => `${SITE_URL}${languagePath(lang)}${file}`
+
+function layout({ lang, file, title, description, breadcrumb, body, jsonLd, alternates = [] }) {
+  const ui = cultures[lang.code].ui
+  const base = languagePath(lang)
+  const url = pageUrl(lang, file)
+  const crumbs = [{ name: ui.siteName, href: base }, ...breadcrumb]
   const breadcrumbLd = {
     '@type': 'BreadcrumbList',
-    itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: `${SITE_URL}${c.href || `/${file}`}` })),
+    itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: c.href ? `${SITE_URL}${c.href}` : url })),
   }
   const ld = { '@context': 'https://schema.org', '@graph': [breadcrumbLd, ...(jsonLd ? [jsonLd] : [])] }
+  const hreflang = alternates.length > 1
+    ? `\n    ${alternates.map((a) => `<link rel="alternate" hreflang="${a.code}" href="${pageUrl(a, file)}" />`).join('\n    ')}\n    <link rel="alternate" hreflang="x-default" href="${pageUrl(LANGUAGES[0], file)}" />`
+    : ''
+  // 規約ページは日本語のみ。ほかの言語では「(日本語)」付きのラベルで日本語ページへ
+  const dict = langDicts[lang.code]
+  const legalLabel = (key) => (lang.code === 'ja' ? ui.legal[key] : dict.ui.links[key])
+  const sisterHref = `https://shindanmura.com/?lang=${lang.code === 'ja' ? 'ja' : 'en'}&amp;utm_source=kanteimura&amp;utm_medium=referral&amp;utm_campaign=pages`
   return `<!doctype html>
-<html lang="ja">
+<html lang="${lang.code}">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>${esc(title)}｜鑑定村</title>
+    <title>${esc(title)}｜${esc(ui.siteName)}</title>
     <meta name="description" content="${esc(description)}" />
-    <link rel="canonical" href="${url}" />
+    <link rel="canonical" href="${url}" />${hreflang}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="stylesheet" href="/pages.css" />
     <meta property="og:type" content="article" />
-    <meta property="og:site_name" content="鑑定村" />
+    <meta property="og:site_name" content="${esc(ui.siteName)}" />
     <meta property="og:title" content="${esc(title)}" />
     <meta property="og:description" content="${esc(description)}" />
     <meta property="og:url" content="${url}" />
     <meta property="og:image" content="${SITE_URL}/og-image.jpg" />
-    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:locale" content="${lang.ogLocale}" />
     <meta name="twitter:card" content="summary_large_image" />
     <script type="application/ld+json">${JSON.stringify(ld)}</script>
   </head>
   <body>
     <header class="site-header">
-      <a class="logo" href="/">鑑定村</a>
-      <nav aria-label="鑑定メニュー">
-        <a href="/#/birthday">誕生日鑑定</a>
-        <a href="/#/name">名前鑑定</a>
-        <a href="/#/today">おみくじ</a>
-        <a href="/#/compat">相性</a>
+      <a class="logo" href="${base}">鑑定村</a>
+      <nav aria-label="${esc(ui.navAria)}">
+        <a href="${base}#/birthday">${esc(ui.nav.birthday)}</a>
+        <a href="${base}#/name">${esc(ui.nav.name)}</a>
+        <a href="${base}#/today">${esc(ui.nav.today)}</a>
+        <a href="${base}#/compat">${esc(ui.nav.compat)}</a>
       </nav>
     </header>
-    <nav class="breadcrumb" aria-label="パンくずリスト">
+    <nav class="breadcrumb" aria-label="${esc(ui.breadcrumbAria)}">
       ${crumbs.map((c, i) => (i < crumbs.length - 1 ? `<a href="${c.href}">${esc(c.name)}</a>` : `<span>${esc(c.name)}</span>`)).join(' › ')}
     </nav>
     <main class="article">
 ${body}
     </main>
     <footer class="site-footer">
-      <nav aria-label="サイト情報">
-        <a href="/${GUIDE_FILE}">読み物</a>
-        <a href="/${legalPages.privacy.file}">プライバシーポリシー</a>
-        <a href="/${legalPages.contact.file}">お問い合わせ</a>
-        <a href="/${legalPages.operator.file}">運営者情報</a>
+      <nav aria-label="${esc(ui.footerAria)}">
+        <a href="${base}${GUIDE_FILE}">${esc(ui.readings)}</a>
+        <a href="/${legalPages.privacy.file}">${esc(legalLabel('privacy'))}</a>
+        <a href="/${legalPages.contact.file}">${esc(legalLabel('contact'))}</a>
+        <a href="/${legalPages.operator.file}">${esc(legalLabel('operator'))}</a>
       </nav>
-      <p>姉妹サイト:<a href="https://shindanmura.com/?utm_source=kanteimura&amp;utm_medium=referral&amp;utm_campaign=pages" rel="noopener">🧩 キャラクターで性格がわかる「診断村」</a></p>
-      <p>※ 鑑定結果は数秘術などをもとにしたエンターテインメントです。</p>
-      <p>© 2026 鑑定村</p>
+      <p><a href="${sisterHref}" rel="noopener">${esc(ui.sister)}</a></p>
+      <p>${esc(ui.disclaimer)}</p>
+      <p>© 2026 ${esc(ui.siteName)}</p>
     </footer>
   </body>
 </html>
@@ -109,6 +160,27 @@ function renderSection(section) {
 
 const cta = ({ text, href, label }) => `      <div class="cta"><p>${esc(text)}</p><a class="cta-button" href="${href}">${esc(label)}</a></div>`
 
+const shortName = (a) => a.shortTitle || a.title.split(/[?|？]/)[0]
+const articleCard = (a, base) => `        <a class="card" href="${base}${a.file}"><b>${a.emoji || '📖'} ${esc(a.title)}</b><span>${esc(a.description)}</span></a>`
+
+// 本文中で「記事名」と書かれているところを、その記事へのリンクにする
+function linkArticleNames(html, self, all, base, [open, close]) {
+  let out = html
+  for (const a of Object.values(all)) {
+    if (a === self) continue
+    const name = shortName(a).replace(/\s*[(（].*[)）]$/, '')
+    out = out.split(`${open}${esc(name)}${close}`).join(`${open}<a href="${base}${a.file}">${esc(name)}</a>${close}`)
+  }
+  return out
+}
+
+const langDicts = {}
+for (const lang of LANGUAGES) langDicts[lang.code] = (await import(`../src/i18n/${lang.code}.js`)).default
+
+const pages = []
+const jaLang = LANGUAGES[0]
+
+// ---- 運命数の解説ページ(日本語のみ) ----
 function numberGrid(current) {
   return `      <div class="number-grid">${NUMBERS.map((n) => (n === current
     ? `<span class="current"><b>${n}</b><small>${esc(ja.numberTypes[n].title.replace(/\(.*\)/, ''))}</small></span>`
@@ -142,9 +214,8 @@ function goodPartners(n) {
   return NUMBERS.filter((m) => m !== n && m <= 9).map((m) => ({ m, relation: numberRelation(n, m) })).filter((r) => r.relation === 'harmony' || r.relation === 'complement')
 }
 
-const pages = []
+const articleLd = (title, code) => ({ '@type': 'Article', headline: title, inLanguage: code, author: { '@type': 'Organization', name: '鑑定村' } })
 
-// ---- 運命数の解説ページ ----
 for (const n of NUMBERS) {
   const info = ja.numberTypes[n]
   const extra = numberGuide[n]
@@ -168,76 +239,70 @@ for (const n of NUMBERS) {
     `      <p>同じ運命数どうしは「${esc(ja.relationTexts.same.title)}」の関係です。2人の生年月日から相性を％で知りたいときは、<a href="/#/compat">相性鑑定</a>を試してみてください。</p>`,
     renderSection({ heading: '成長のヒント', paragraphs: [extra.growth] }),
     renderSection({ heading: '開運アドバイス', paragraphs: [info.advice] }),
-    example ? renderSection({ heading: `運命数${n}になる生年月日の例`, paragraphs: ['運命数は、生年月日の数字をすべて1けたずつ足して求めます。'], example: [`例:${example.label}`, ...example.steps, `→ 運命数は「${n}」`], after: [`くわしい計算方法は「<数秘術とは?>」で解説しています。`] }).replace('&lt;数秘術とは?&gt;', `<a href="/${articles.numerology.file}">数秘術とは?</a>`) : '',
+    example ? renderSection({ heading: `運命数${n}になる生年月日の例`, paragraphs: ['運命数は、生年月日の数字をすべて1けたずつ足して求めます。'], example: [`例:${example.label}`, ...example.steps, `→ 運命数は「${n}」`], after: ['くわしい計算方法は「数秘術とは?」で解説しています。'] }).replace('「数秘術とは?」', `「<a href="/${articles.numerology.file}">数秘術とは?</a>」`) : '',
     cta({ text: 'あなたの運命数はいくつ?生年月日を入れるだけで鑑定できます', href: '/#/birthday', label: '誕生日鑑定をする' }),
     `      <h2>ほかの運命数</h2>`,
     numberGrid(n),
   ].filter(Boolean).join('\n')
-  pages.push({ file: numberFile(n), title, description: `${extra.summary} 運命数${n}の性格・強み・恋愛・向いている仕事・相性の良い数を解説します。`.slice(0, 160), breadcrumb: [{ name: '読み物', href: `/${GUIDE_FILE}` }, { name: `運命数${n}` }], body, jsonLd: { '@type': 'Article', headline: title, inLanguage: 'ja', author: { '@type': 'Organization', name: '鑑定村' } } })
+  pages.push({ lang: jaLang, file: numberFile(n), title, description: `${extra.summary} 運命数${n}の性格・強み・恋愛・向いている仕事・相性の良い数を解説します。`.slice(0, 160), breadcrumb: [{ name: '読み物', href: `/${GUIDE_FILE}` }, { name: `運命数${n}` }], body, jsonLd: articleLd(title, 'ja') })
 }
 
-// ---- 読み物記事 ----
-const allArticles = { ...articles, ...shrineArticles }
-const articleCard = (a) => `        <a class="card" href="/${a.file}"><b>${a.emoji || '📖'} ${esc(a.title)}</b><span>${esc(a.description)}</span></a>`
-const shortName = (a) => a.shortTitle || a.title.split(/[?|]/)[0]
-
-function related(keys) {
-  if (!keys?.length) return ''
-  return [`      <h2>あわせて読みたい</h2>`, `      <div class="cards">`, ...keys.map((k) => articleCard(allArticles[k])), `      </div>`].join('\n')
-}
-
-// 本文中の「〜」(記事名)を、その記事へのリンクにする
-function linkArticleNames(html, self) {
-  let out = html
-  for (const a of Object.values(allArticles)) {
-    if (a === self) continue
-    const name = shortName(a).replace(/\(.*\)$/, '')
-    out = out.replace(`「${esc(name)}」`, `「<a href="/${a.file}">${esc(name)}</a>」`)
-  }
-  return out
-}
-
-for (const article of Object.values(allArticles)) {
+// ---- 数秘術の記事(日本語のみ) ----
+{
+  const a = articles.numerology
   const body = [
     `      <p class="eyebrow">読み物</p>`,
-    `      <h1>${esc(article.title)}</h1>`,
-    `      <p class="lead">${esc(article.lead)}</p>`,
-    ...article.sections.map((section) => linkArticleNames(renderSection(section), article)),
-    cta(article.cta),
-    article === articles.numerology ? `      <h2>運命数ごとの解説</h2>\n${numberGrid(null)}` : '',
-    related(article.related),
-  ].filter(Boolean).join('\n')
-  pages.push({ file: article.file, title: article.title, description: article.description, breadcrumb: [{ name: '読み物', href: `/${GUIDE_FILE}` }, { name: shortName(article) }], body, jsonLd: { '@type': 'Article', headline: article.title, inLanguage: 'ja', author: { '@type': 'Organization', name: '鑑定村' } } })
+    `      <h1>${esc(a.title)}</h1>`,
+    `      <p class="lead">${esc(a.lead)}</p>`,
+    ...a.sections.map(renderSection),
+    cta(a.cta),
+    `      <h2>運命数ごとの解説</h2>\n${numberGrid(null)}`,
+  ].join('\n')
+  pages.push({ lang: jaLang, file: a.file, title: a.title, description: a.description, breadcrumb: [{ name: '読み物', href: `/${GUIDE_FILE}` }, { name: shortName(a) }], body, jsonLd: articleLd(a.title, 'ja') })
 }
 
-// ---- 読み物一覧 ----
-pages.push({
-  file: GUIDE_FILE,
-  title: '読み物一覧|数秘術・おみくじ・神社のお参りの作法',
-  description: '鑑定村の読み物一覧です。数秘術の基本と運命数1〜9・11・22・33の解説、おみくじの意味、手水や二礼二拍手一礼など神社のお参りの作法をまとめています。',
-  breadcrumb: [{ name: '読み物' }],
-  body: [
-    `      <p class="eyebrow">読み物</p>`,
-    `      <h1>読み物一覧</h1>`,
-    `      <p class="lead">鑑定村の占いをもっと楽しむための解説ページです。数秘術のしくみや運命数ごとの性格、おみくじの意味、神社でのお参りの作法をまとめています。</p>`,
-    `      <h2>神社・おみくじ</h2>`,
-    `      <div class="cards">`,
-    articleCard(shrineArticles.sanpai),
-    articleCard(shrineArticles.temizu),
-    articleCard(shrineArticles.jinjaTera),
-    articleCard(articles.omikuji),
-    `      </div>`,
-    `      <h2>数秘術</h2>`,
-    `      <div class="cards">`,
-    articleCard(articles.numerology),
-    `      </div>`,
-    `      <h3>運命数ごとの解説</h3>`,
-    numberGrid(null),
-    cta({ text: '読んだら、実際に鑑定してみましょう', href: '/', label: '鑑定村のトップへ' }),
-  ].join('\n'),
-})
+// ---- 日本文化の記事(全言語) ----
+for (const lang of LANGUAGES) {
+  if (!cultures[lang.code]) continue
+  const { ui, articles: all } = cultures[lang.code]
+  const base = languagePath(lang)
+  const available = LANGUAGES.filter((l) => cultures[l.code])
+  for (const key of CULTURE_KEYS) {
+    const article = all[key]
+    if (!article) throw new Error(`${lang.code}: article "${key}" is missing`)
+    const ctaHref = article.cta.href.replace(/^\//, base)
+    const otherLangs = available.filter((l) => l.code !== lang.code)
+    const body = [
+      `      <p class="eyebrow">${esc(ui.readings)}</p>`,
+      `      <h1>${esc(article.title)}</h1>`,
+      `      <p class="lead">${esc(article.lead)}</p>`,
+      ...article.sections.map((section) => linkArticleNames(renderSection(section), article, all, base, ui.quotes)),
+      cta({ ...article.cta, href: ctaHref }),
+      article.related?.length ? [`      <h2>${esc(ui.related)}</h2>`, `      <div class="cards">`, ...article.related.map((k) => articleCard(all[k], base)), `      </div>`].join('\n') : '',
+      `      <p class="other-languages">🌐 ${esc(ui.languages)}: ${otherLangs.map((l) => `<a href="${languagePath(l)}${article.file}" hreflang="${l.code}">${esc(l.label)}</a>`).join(' · ')}</p>`,
+    ].filter(Boolean).join('\n')
+    pages.push({ lang, file: article.file, title: article.title, description: article.description, breadcrumb: [{ name: ui.readings, href: `${base}${GUIDE_FILE}` }, { name: shortName(article) }], body, jsonLd: articleLd(article.title, lang.code), alternates: available })
+  }
 
-// ---- 規約ページ ----
+  // 読み物一覧
+  const g = ui.guide
+  const guideBody = [
+    `      <p class="eyebrow">${esc(ui.readings)}</p>`,
+    `      <h1>${esc(g.title.split('|')[0])}</h1>`,
+    `      <p class="lead">${esc(g.lead)}</p>`,
+    `      <h2>${esc(g.cultureHeading)}</h2>`,
+    `      <div class="cards">`,
+    ...CULTURE_KEYS.map((k) => articleCard(all[k], base)),
+    `      </div>`,
+    lang.code === 'ja'
+      ? [`      <h2>数秘術</h2>`, `      <div class="cards">`, articleCard(articles.numerology, '/'), `      </div>`, `      <h3>運命数ごとの解説</h3>`, numberGrid(null)].join('\n')
+      : '',
+    cta({ text: g.cta.text, href: base, label: g.cta.label }),
+  ].filter(Boolean).join('\n')
+  pages.push({ lang, file: GUIDE_FILE, title: g.title, description: g.description, breadcrumb: [{ name: ui.readings }], body: guideBody, alternates: available })
+}
+
+// ---- 規約ページ(日本語のみ) ----
 for (const page of Object.values(legalPages)) {
   const body = [
     `      <h1>${esc(page.title)}</h1>`,
@@ -246,16 +311,23 @@ for (const page of Object.values(legalPages)) {
     page.file === legalPages.operator.file ? `      <p><a href="/${legalPages.contact.file}">お問い合わせページへ</a></p>` : '',
     page.updated ? `      <p class="updated">${esc(page.updated)}</p>` : '',
   ].filter(Boolean).join('\n')
-  pages.push({ file: page.file, title: page.title, description: page.description, breadcrumb: [{ name: page.title }], body })
+  pages.push({ lang: jaLang, file: page.file, title: page.title, description: page.description, breadcrumb: [{ name: page.title }], body, legal: true })
 }
 
-for (const page of pages) fs.writeFileSync(path.join(dist, page.file), layout(page))
+for (const page of pages) {
+  const dir = page.lang.path ? path.join(dist, page.lang.path) : dist
+  fs.mkdirSync(dir, { recursive: true })
+  fs.writeFileSync(path.join(dir, page.file), layout(page))
+}
 
 // サイトマップに追記する(build-languages.mjs が先に作った sitemap.xml の末尾に足す)
 const sitemapPath = path.join(dist, 'sitemap.xml')
 const extraUrls = pages
-  .filter((p) => !Object.values(legalPages).some((l) => l.file === p.file))
-  .map((p) => `  <url>\n    <loc>${SITE_URL}/${p.file}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`)
+  .filter((p) => !p.legal)
+  .map((p) => {
+    const alts = (p.alternates || []).length > 1 ? p.alternates.map((a) => `\n    <xhtml:link rel="alternate" hreflang="${a.code}" href="${pageUrl(a, p.file)}" />`).join('') : ''
+    return `  <url>\n    <loc>${pageUrl(p.lang, p.file)}</loc>${alts}\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`
+  })
   .join('\n')
 const sitemap = fs.readFileSync(sitemapPath, 'utf8').replace('</urlset>', `${extraUrls}\n</urlset>`)
 fs.writeFileSync(sitemapPath, sitemap)

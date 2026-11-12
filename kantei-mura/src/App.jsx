@@ -469,7 +469,7 @@ function Home() {
             </a>
           ))}
         </div>
-        <a className="detail-link" href="/guide.html">{t.ui.links.readingsMore}</a>
+        <a className="detail-link" href={`${languagePath(currentLanguage)}guide.html`}>{t.ui.links.readingsMore}</a>
       </section>
     </main>
   )
@@ -550,7 +550,7 @@ export default function App() {
         <Current />
         <footer className="footer">
           <nav className="footer-links" aria-label={dictionary.ui.links.guide}>
-            <a href="/guide.html">{dictionary.ui.links.guide}</a>
+            <a href={`${languagePath(currentLanguage)}guide.html`}>{dictionary.ui.links.guide}</a>
             <a href="/privacy.html">{dictionary.ui.links.privacy}</a>
             <a href="/contact.html">{dictionary.ui.links.contact}</a>
             <a href="/operator.html">{dictionary.ui.links.operator}</a>
