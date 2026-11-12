@@ -879,6 +879,8 @@ function App() {
 
   // GA4: ハッシュルーティング用の手動 page_view 発火(SPA対策)
   // 診断・結果・図鑑・私の村など、画面が切り替わったタイミングで仮想パスとして計測する。
+  // index.html の gtag は send_page_view: false なので、SPAのページビューはここだけが送る(二重計測しない)。
+  // 診断中の画面は /play/{id}/ とする。/diagnosis/{id}/ は実在する静的な解説ページのパスなので、名前を分ける。
   const gaLastPathRef = useRef(null)
   useEffect(() => {
     if (typeof window === 'undefined' || typeof window.gtag !== 'function') return
@@ -901,7 +903,7 @@ function App() {
       title = `${d?.title || '診断'} 結果${resultTitle ? ' : ' + resultTitle : ''}`
     } else if (selectedId) {
       const d = diagnoses.find((it) => it.id === selectedId)
-      path = `/diagnosis/${selectedId}/`
+      path = `/play/${selectedId}/`
       title = `${d?.title || '診断'} 診断中`
     } else {
       path = '/'
@@ -911,7 +913,8 @@ function App() {
     gaLastPathRef.current = path
     window.gtag('event', 'page_view', {
       page_title: title,
-      page_location: window.location.origin + path,
+      // ?utm_source=... などのクエリは残す(SNS投稿からの流入元を取りこぼさないため)
+      page_location: window.location.origin + path + window.location.search,
       page_path: path,
     })
   }, [hasEnteredVillage, showMyVillage, showCharacterGuide, guideDiagnosisId, selectedId, showResult, resultTitle, diagnoses])
@@ -1008,6 +1011,10 @@ function App() {
   }
 
   const updateAnswer = (index, value) => {
+    // 最初の1問に答えた時点を「診断開始」として計測する(診断完了 diagnosis_complete と合わせて完了率を出す)
+    if (diagnosis && answers.every((answer) => answer === null)) {
+      trackEvent('diagnosis_start', { diagnosis_id: diagnosis.id, diagnosis_title: diagnosis.title })
+    }
     const nextAnswers = [...answers]
     nextAnswers[index] = value
     setAnswers(nextAnswers)

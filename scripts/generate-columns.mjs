@@ -10,6 +10,7 @@
 //   - 診断への回遊導線を増やす
 import { mkdir, writeFile, readdir, readFile } from 'node:fs/promises'
 import path from 'node:path'
+import { GA_TAG } from './ga-tag.mjs'
 import { fileURLToPath } from 'node:url'
 
 const SITE_ORIGIN = 'https://shindanmura.com'
@@ -145,6 +146,7 @@ ${robots ? `<meta name="robots" content="${robots}" />\n` : ''}<title>${escapeHt
 <meta name="twitter:description" content="${escapeHtml(description)}" />
 <meta name="twitter:image" content="${SITE_ORIGIN}/og-image.jpg" />
 <script type="application/ld+json">${JSON.stringify(extraJsonLd)}</script>
+${GA_TAG}
 <style>${STYLE}</style>`
 }
 

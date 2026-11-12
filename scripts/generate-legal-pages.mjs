@@ -14,6 +14,7 @@
 // 実行: npm run generate:legal (prebuildで自動実行)
 import { mkdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
+import { GA_TAG } from './ga-tag.mjs'
 import { fileURLToPath } from 'node:url'
 
 import { legalPagesByLanguage } from '../src/i18n.js'
@@ -66,6 +67,7 @@ function head({ title, description, url }) {
 <meta property="og:description" content="${escapeHtml(description)}" />
 <meta property="og:url" content="${url}" />
 <meta property="og:locale" content="ja_JP" />
+${GA_TAG}
 <style>${STYLE}</style>`
 }
 

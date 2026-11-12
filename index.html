@@ -72,14 +72,21 @@
       ]
     }
     </script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5Q648ZRFZB"></script>
+    <!-- Google tag (gtag.js)
+         - 本番ドメイン(shindanmura.com)のときだけ読み込む。localhost・プレビュー環境のアクセスを本番の数値に混ぜないため。
+         - page_view は App.jsx の手動送信に一本化する(send_page_view: false)。
+           自動送信と手動送信が両方動くと、1回の表示が二重に数えられるため。 -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-5Q648ZRFZB');
+      if (/(^|\.)shindanmura\.com$/.test(location.hostname)) {
+        var gaScript = document.createElement('script');
+        gaScript.async = true;
+        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-5Q648ZRFZB';
+        document.head.appendChild(gaScript);
+        gtag('js', new Date());
+        gtag('config', 'G-5Q648ZRFZB', { send_page_view: false });
+      }
     </script>
   </head>
   <body>

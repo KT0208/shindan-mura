@@ -13,6 +13,7 @@
 // 実行: npm run generate:diagnosis (prebuildで自動実行)
 import { mkdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
+import { GA_TAG } from './ga-tag.mjs'
 import { fileURLToPath } from 'node:url'
 
 import { diagnoses } from '../src/diagnosisData.js'
@@ -108,6 +109,7 @@ function head({ title, description, url, jsonLd }) {
 <meta name="twitter:description" content="${escapeHtml(description)}" />
 <meta name="twitter:image" content="${SITE_ORIGIN}/og-image.jpg" />
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
+${GA_TAG}
 <style>${STYLE}</style>`
 }
 
