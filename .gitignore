@@ -71,3 +71,6 @@ data/shorts-state.json
 data/shorts-uploaded.json
 data/shorts-data.json
 data/shorts-announced.json
+
+# デプロイ用ZIP(1GB近くありGitHubに上げられない)
+/dist.zip
