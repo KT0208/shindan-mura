@@ -5,5 +5,5 @@ export default {
   adsenseClient: 'ca-pub-2348704902723015',
   // Google アナリティクス(GA4)の測定ID(例: 'G-ABCDE12345')。
   // 入れるとビルド時に、全ページへ計測コードを入れる。空のときは何もしない。
-  gaMeasurementId: '',
+  gaMeasurementId: 'G-WMBV27HFBQ',
 }
