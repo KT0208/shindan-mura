@@ -1,0 +1,2902 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>村人図鑑｜診断村の全キャラクター一覧</title>
+<meta name="description" content="診断村に登場する全512体のキャラクターを一覧で楽しめる村人図鑑。気になる子の診断にそのまま進めます。" />
+<link rel="canonical" href="https://shindanmura.com/zukan/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="診断村" />
+<meta property="og:title" content="村人図鑑｜診断村の全キャラクター一覧" />
+<meta property="og:description" content="診断村に登場する全512体のキャラクターを一覧で楽しめる村人図鑑。気になる子の診断にそのまま進めます。" />
+<meta property="og:url" content="https://shindanmura.com/zukan/" />
+<meta property="og:image" content="https://shindanmura.com/og-image.jpg" />
+<meta property="og:locale" content="ja_JP" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="村人図鑑｜診断村の全キャラクター一覧" />
+<meta name="twitter:description" content="診断村に登場する全512体のキャラクターを一覧で楽しめる村人図鑑。気になる子の診断にそのまま進めます。" />
+<meta name="twitter:image" content="https://shindanmura.com/og-image.jpg" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"村人図鑑｜診断村の全キャラクター一覧","description":"診断村に登場する全512体のキャラクター図鑑です。","url":"https://shindanmura.com/zukan/","isPartOf":{"@type":"WebSite","name":"診断村","url":"https://shindanmura.com"}}</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  if (/(^|\.)shindanmura\.com$/.test(location.hostname)) {
+    var gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-5Q648ZRFZB';
+    document.head.appendChild(gaScript);
+    gtag('js', new Date());
+    gtag('config', 'G-5Q648ZRFZB');
+  }
+</script>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', sans-serif;
+    background: linear-gradient(160deg, #fff8fd 0%, #ffe6f8 55%, #ece2fb 100%);
+    color: #241436; min-height: 100vh; padding: 24px 16px 56px;
+    display: flex; justify-content: center; line-height: 1.9;
+  }
+  .page { max-width: 760px; width: 100%; }
+  .brand { font-size: 14px; letter-spacing: 0.06em; text-align: center; margin-bottom: 16px; }
+  .brand a { color: #8e5fc6; font-weight: 700; text-decoration: none; }
+  .card, article {
+    background: rgba(255, 255, 255, 0.94); border-radius: 24px;
+    padding: 30px 24px; box-shadow: 0 12px 40px rgba(97, 72, 127, 0.16);
+  }
+  .category { display: inline-block; font-size: 12px; color: #8f4ed8; background: #f6ecff; padding: 4px 12px; border-radius: 999px; }
+  h1 { font-size: 25px; line-height: 1.5; margin: 12px 0 8px; color: #2c1a44; }
+  .lead { margin-top: 10px; color: #4a3763; font-size: 15.5px; }
+  h2 { font-size: 19px; margin: 30px 0 12px; color: #61487f; border-left: 5px solid #ff8fd0; padding-left: 12px; }
+  .how p { font-size: 15px; color: #33234a; margin: 10px 0; }
+  .how ul { margin: 10px 0 0 20px; }
+  .how li { font-size: 15px; color: #33234a; margin: 6px 0; }
+  .type-list { display: grid; gap: 16px; margin-top: 8px; }
+  .type-card {
+    display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: start;
+    background: #fff; border: 1px solid #f0e4fb; border-radius: 18px; padding: 16px;
+  }
+  .type-card img { width: 96px; height: 64px; object-fit: contain; border-radius: 12px; background: #faf4ff; }
+  .type-name { font-weight: 700; font-size: 16px; color: #2c1a44; }
+  .type-title { font-size: 12.5px; color: #8f4ed8; margin: 2px 0 6px; }
+  .type-role { font-size: 13px; color: #61487f; margin-bottom: 6px; }
+  .type-desc { font-size: 14px; color: #33234a; margin-bottom: 6px; }
+  .type-meta { font-size: 12.5px; color: #6b5685; margin-top: 3px; }
+  .cta {
+    display: block; margin-top: 28px; padding: 16px; border-radius: 999px; text-decoration: none;
+    background: linear-gradient(135deg, #ff67ad, #8f4ed8); color: #fff; font-weight: 700;
+    font-size: 16px; text-align: center;
+  }
+  .diagnosis-list { display: grid; gap: 14px; margin-top: 20px; }
+  .diagnosis-item {
+    display: block; background: rgba(255,255,255,0.94); border-radius: 18px;
+    padding: 18px 20px; text-decoration: none; color: #241436;
+    box-shadow: 0 8px 26px rgba(97, 72, 127, 0.12);
+  }
+  .diagnosis-item strong { display: block; font-size: 17px; margin: 6px 0 4px; }
+  .diagnosis-item p { font-size: 13.5px; color: #5b476f; }
+  .sub-links { margin-top: 22px; font-size: 13px; text-align: center; }
+  .sub-links a { color: #8e5fc6; margin: 0 8px; white-space: nowrap; }
+  .zukan-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .zukan-nav a { font-size: 12.5px; color: #8f4ed8; background: #f6ecff; padding: 5px 11px; border-radius: 999px; text-decoration: none; }
+  .zukan-section { margin-top: 30px; }
+  .zukan-section h2 { margin-bottom: 4px; }
+  .zukan-section h2 a { color: #61487f; text-decoration: none; }
+  .zukan-lead { font-size: 13px; color: #5b476f; margin: 0 0 12px; }
+  .zukan-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .zukan-char { display: block; text-decoration: none; color: #241436; background: #fff; border: 1px solid #f0e4fb; border-radius: 14px; padding: 8px; text-align: center; }
+  .zukan-char img { width: 100%; height: 72px; object-fit: contain; background: #faf4ff; border-radius: 10px; }
+  .zukan-char .cname { display: block; font-size: 12px; font-weight: 700; margin-top: 6px; line-height: 1.4; color: #2c1a44; }
+  .zukan-char .ctype { display: block; font-size: 10.5px; color: #8f7ba6; line-height: 1.3; }
+  @media (max-width: 520px) { .zukan-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="brand"><a href="/">診断村</a></div>
+  <div class="card">
+    <span class="category">村人図鑑</span>
+    <h1>村人図鑑</h1>
+    <p class="lead">診断村に暮らす全512体のキャラクターの一覧です。気になる子を見つけたら、その診断にそのまま進んで、あなたに近い村人に出会ってください。</p>
+    <nav class="zukan-nav">
+    <a href="#hidden-personality">🌓 裏人格診断</a>
+    <a href="#love-complicated">💘 恋愛こじらせ診断</a>
+    <a href="#menhera-level">🫧 メンヘラ度診断</a>
+    <a href="#dangerous-man">🕶️ 危ない男診断</a>
+    <a href="#popularity-season">🌹 モテ期診断</a>
+    <a href="#sns-approval">📱 SNS承認欲求診断</a>
+    <a href="#dark-fall">🌑 闇落ち度診断</a>
+    <a href="#money-luck">💰 金運タイプ診断</a>
+    <a href="#work-style">🧭 仕事向き診断</a>
+    <a href="#life-bug">🎮 人生バグり度診断</a>
+    <a href="#oshikatsu-type">🌟 推し活タイプ診断</a>
+    <a href="#reply-type">💬 返信タイプ診断</a>
+    <a href="#crush-misread">💌 脈あり勘違い診断</a>
+    <a href="#dark-depth">🌊 性格の闇深度診断</a>
+    <a href="#holiday-style">🛋️ 休日の過ごし方診断</a>
+    <a href="#emo-nostalgia">📼 エモ懐古度診断</a>
+    <a href="#sleep-type">😴 睡眠タイプ診断</a>
+    <a href="#bind-level">🎀 束縛度診断</a>
+    <a href="#my-pace">🐱 マイペース度診断</a>
+    <a href="#isekai-position">⚔️ 異世界転生ポジション診断</a>
+    <a href="#procrastination">🦥 先延ばし癖診断</a>
+    <a href="#past-life">🐣 前世診断</a>
+    <a href="#self-esteem">🌱 自己肯定感タイプ診断</a>
+    <a href="#stress-level">🎈 ストレス限界度診断</a>
+    <a href="#animal-type">🐾 ハイブリッドアニマル診断</a>
+    <a href="#anger-style">🌶️ キレ方診断</a>
+    <a href="#shyness">🐚 人見知り度診断</a>
+    <a href="#spending-type">🪙 お金の使い方診断</a>
+    <a href="#scaredy-level">👻 ビビり度診断</a>
+    <a href="#dream-type">🌙 夢診断</a>
+    <a href="#hidden-talent">✨ 隠れた才能診断</a>
+    <a href="#lending-type">💸 貸し借り診断</a>
+    </nav>
+  </div>
+  <section class="zukan-section" id="hidden-personality">
+    <h2><a href="/diagnosis/hidden-personality/">🌓 裏人格診断</a></h2>
+    <p class="zukan-lead">普段は見えにくい、あなたのもう一つの顔をキャラクターで診断する無料の心理テストです。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/hidden-personality/">
+        <img src="/characters-small/hidden-personality/honest-villager-spirit.webp" alt="若葉の素直スピリット" loading="lazy" width="120" height="72" />
+        <span class="cname">若葉の素直スピリット</span>
+        <span class="ctype">素直な村人タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-personality/">
+        <img src="/characters-small/hidden-personality/peaceful-face-spirit.webp" alt="平和のほほえみスピリット" loading="lazy" width="120" height="72" />
+        <span class="cname">平和のほほえみスピリット</span>
+        <span class="ctype">平和な表の顔タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-personality/">
+        <img src="/characters-small/hidden-personality/harmless-observer-spirit.webp" alt="こっそり観察スピリット" loading="lazy" width="120" height="72" />
+        <span class="cname">こっそり観察スピリット</span>
+        <span class="ctype">無害そうな観察者タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-personality/">
+        <img src="/characters-small/hidden-personality/camouflage-spirit.webp" alt="ふわ雲カモフラスピリット" loading="lazy" width="120" height="72" />
+        <span class="cname">ふわ雲カモフラスピリット</span>
+        <span class="ctype">天然カモフラージュタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-personality/">
+        <img src="/characters-small/hidden-personality/silent-observer-spirit.webp" alt="月かげ観察スピリット" loading="lazy" width="120" height="72" />
+        <span class="cname">月かげ観察スピリット</span>
+        <span class="ctype">静かな観察者タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-personality/">
+        <img src="/characters-small/hidden-personality/atmosphere-reader-spirit.webp" alt="風読みスピリット" loading="lazy" width="120" height="72" />
+        <span class="cname">風読みスピリット</span>
+        <span class="ctype">空気読み職人タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-personality/">
+        <img src="/characters-small/hidden-personality/true-feelings-lock-spirit.webp" alt="鍵ハートスピリット" loading="lazy" width="120" height="72" />
+        <span class="cname">鍵ハートスピリット</span>
+        <span class="ctype">本音セーブタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-personality/">
+        <img src="/characters-small/hidden-personality/distance-controller-spirit.webp" alt="結界リングスピリット" loading="lazy" width="120" height="72" />
+        <span class="cname">結界リングスピリット</span>
+        <span class="ctype">距離感コントローラータイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-personality/">
+        <img src="/characters-small/hidden-personality/hidden-ruler-spirit.webp" alt="影王スピリット" loading="lazy" width="120" height="72" />
+        <span class="cname">影王スピリット</span>
+        <span class="ctype">隠れ支配者タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-personality/">
+        <img src="/characters-small/hidden-personality/mastermind-spirit.webp" alt="作戦メモスピリット" loading="lazy" width="120" height="72" />
+        <span class="cname">作戦メモスピリット</span>
+        <span class="ctype">裏で整える参謀タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-personality/">
+        <img src="/characters-small/hidden-personality/masked-strategist-spirit.webp" alt="仮面ポーカースピリット" loading="lazy" width="120" height="72" />
+        <span class="cname">仮面ポーカースピリット</span>
+        <span class="ctype">感情を見せない策士タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-personality/">
+        <img src="/characters-small/hidden-personality/human-watcher-spirit.webp" alt="観測ルーペスピリット" loading="lazy" width="120" height="72" />
+        <span class="cname">観測ルーペスピリット</span>
+        <span class="ctype">人間観察ガチ勢タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-personality/">
+        <img src="/characters-small/hidden-personality/lone-boss-spirit.webp" alt="唯我独尊スピリット" loading="lazy" width="120" height="72" />
+        <span class="cname">唯我独尊スピリット</span>
+        <span class="ctype">天上天下唯我独尊タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-personality/">
+        <img src="/characters-small/hidden-personality/silent-ruler-spirit.webp" alt="黒霧サイレンススピリット" loading="lazy" width="120" height="72" />
+        <span class="cname">黒霧サイレンススピリット</span>
+        <span class="ctype">沈黙の支配者タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-personality/">
+        <img src="/characters-small/hidden-personality/heart-castle-spirit.webp" alt="こころ城スピリット" loading="lazy" width="120" height="72" />
+        <span class="cname">こころ城スピリット</span>
+        <span class="ctype">心の城主タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-personality/">
+        <img src="/characters-small/hidden-personality/awakened-shadow-spirit.webp" alt="覚醒シャドウスピリット" loading="lazy" width="120" height="72" />
+        <span class="cname">覚醒シャドウスピリット</span>
+        <span class="ctype">裏人格覚醒タイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="love-complicated">
+    <h2><a href="/diagnosis/love-complicated/">💘 恋愛こじらせ診断</a></h2>
+    <p class="zukan-lead">好きなのに素直になれない。恋愛傾向と不安になりやすいポイントがわかる無料の恋愛こじらせ診断です。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/love-complicated/">
+        <img src="/characters-small/love/airy-villager.webp" alt="ふわ恋触覚クマ" loading="lazy" width="120" height="72" />
+        <span class="cname">ふわ恋触覚クマ</span>
+        <span class="ctype">ピュア直感タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/love-complicated/">
+        <img src="/characters-small/love/distance-guardian.webp" alt="イワシ" loading="lazy" width="120" height="72" />
+        <span class="cname">イワシ</span>
+        <span class="ctype">安心距離キープタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/love-complicated/">
+        <img src="/characters-small/love/low-power-lover.webp" alt="省エネ恋年増ぐま" loading="lazy" width="120" height="72" />
+        <span class="cname">省エネ恋年増ぐま</span>
+        <span class="ctype">低燃費恋愛タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/love-complicated/">
+        <img src="/characters-small/love/natural-wanderer.webp" alt="不思議リーフくん" loading="lazy" width="120" height="72" />
+        <span class="cname">不思議リーフくん</span>
+        <span class="ctype">自然体ふらりタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/love-complicated/">
+        <img src="/characters-small/love/shy-runner.webp" alt="テレニゲ" loading="lazy" width="120" height="72" />
+        <span class="cname">テレニゲ</span>
+        <span class="ctype">好き避けダッシュタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/love-complicated/">
+        <img src="/characters-small/love/tsundere-knight.webp" alt="ツンキシ" loading="lazy" width="120" height="72" />
+        <span class="cname">ツンキシ</span>
+        <span class="ctype">素直になれない防衛タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/love-complicated/">
+        <img src="/characters-small/love/reply-crafter.webp" alt="真鯵" loading="lazy" width="120" height="72" />
+        <span class="cname">真鯵</span>
+        <span class="ctype">返信文こだわりタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/love-complicated/">
+        <img src="/characters-small/love/secret-keeper.webp" alt="鍵穴マン" loading="lazy" width="120" height="72" />
+        <span class="cname">鍵穴マン</span>
+        <span class="ctype">本音しまい込みタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/love-complicated/">
+        <img src="/characters-small/love/swamp-entrant.webp" alt="ヌッマ" loading="lazy" width="120" height="72" />
+        <span class="cname">ヌッマ</span>
+        <span class="ctype">恋の入口で即ときめくタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/love-complicated/">
+        <img src="/characters-small/love/love-analyst.webp" alt="恋愛探偵ポム" loading="lazy" width="120" height="72" />
+        <span class="cname">恋愛探偵ポム</span>
+        <span class="ctype">分析しすぎタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/love-complicated/">
+        <img src="/characters-small/love/notification-watcher.webp" alt="自称ロボ" loading="lazy" width="120" height="72" />
+        <span class="cname">自称ロボ</span>
+        <span class="ctype">返信待ち監視タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/love-complicated/">
+        <img src="/characters-small/love/emotion-coaster.webp" alt="コースターハムスターくん" loading="lazy" width="120" height="72" />
+        <span class="cname">コースターハムスターくん</span>
+        <span class="ctype">気分ジェットコースタータイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/love-complicated/">
+        <img src="/characters-small/love/love-swamp-resident.webp" alt="恋沼ピーター" loading="lazy" width="120" height="72" />
+        <span class="cname">恋沼ピーター</span>
+        <span class="ctype">どっぷり沼りタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/love-complicated/">
+        <img src="/characters-small/love/affection-meter.webp" alt="愛情ベアメーターちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">愛情ベアメーターちゃん</span>
+        <span class="ctype">愛情確認タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/love-complicated/">
+        <img src="/characters-small/love/complicated-demon-king.webp" alt="太っちょカラス" loading="lazy" width="120" height="72" />
+        <span class="cname">太っちょカラス</span>
+        <span class="ctype">好きが大きすぎるタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/love-complicated/">
+        <img src="/characters-small/love/romance-strategist.webp" alt="カツオ" loading="lazy" width="120" height="72" />
+        <span class="cname">カツオ</span>
+        <span class="ctype">恋愛戦略タイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="menhera-level">
+    <h2><a href="/diagnosis/menhera-level/">🫧 メンヘラ度診断</a></h2>
+    <p class="zukan-lead">かまってほしい、でも言えない。恋愛で不安になりやすい度合いをチェックする無料診断です。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/menhera-level/">
+        <img src="/characters-small/menheraLevelCharacters/menhera-sorry-rabbit-jelly.webp" alt="ごめんねうさぎクラゲ" loading="lazy" width="120" height="72" />
+        <span class="cname">ごめんねうさぎクラゲ</span>
+        <span class="ctype">安定メンタルタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/menhera-level/">
+        <img src="/characters-small/menheraLevelCharacters/menhera-shutdown-jelly.webp" alt="ひとり時間クラゲ" loading="lazy" width="120" height="72" />
+        <span class="cname">ひとり時間クラゲ</span>
+        <span class="ctype">自立マイペースタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/menhera-level/">
+        <img src="/characters-small/menheraLevelCharacters/menhera-soft-receiver-jelly.webp" alt="ふわ受信クラゲ" loading="lazy" width="120" height="72" />
+        <span class="cname">ふわ受信クラゲ</span>
+        <span class="ctype">愛情ゆる受信タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/menhera-level/">
+        <img src="/characters-small/menheraLevelCharacters/menhera-guardian-jelly.webp" alt="おねだり守護クラゲ" loading="lazy" width="120" height="72" />
+        <span class="cname">おねだり守護クラゲ</span>
+        <span class="ctype">平和な甘え上手タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/menhera-level/">
+        <img src="/characters-small/menheraLevelCharacters/menhera-like-monster-jelly.webp" alt="既読もんすたークラゲ" loading="lazy" width="120" height="72" />
+        <span class="cname">既読もんすたークラゲ</span>
+        <span class="ctype">既読ちょい気にタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/menhera-level/">
+        <img src="/characters-small/menheraLevelCharacters/menhera-attention-jelly.webp" alt="かまってクラゲ" loading="lazy" width="120" height="72" />
+        <span class="cname">かまってクラゲ</span>
+        <span class="ctype">かまってライトタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/menhera-level/">
+        <img src="/characters-small/menheraLevelCharacters/menhera-hope-star-jelly.webp" alt="通知待機クラゲ" loading="lazy" width="120" height="72" />
+        <span class="cname">通知待機クラゲ</span>
+        <span class="ctype">寂しがり通知待ちタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/menhera-level/">
+        <img src="/characters-small/menheraLevelCharacters/menhera-smile-mask-jelly.webp" alt="笑顔マスククラゲ" loading="lazy" width="120" height="72" />
+        <span class="cname">笑顔マスククラゲ</span>
+        <span class="ctype">強がり不安タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/menhera-level/">
+        <img src="/characters-small/menheraLevelCharacters/menhera-labyrinth-jelly.webp" alt="迷宮クラゲ" loading="lazy" width="120" height="72" />
+        <span class="cname">迷宮クラゲ</span>
+        <span class="ctype">深読み不安タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/menhera-level/">
+        <img src="/characters-small/menheraLevelCharacters/menhera-dont-leave-jelly.webp" alt="行かないでクラゲ" loading="lazy" width="120" height="72" />
+        <span class="cname">行かないでクラゲ</span>
+        <span class="ctype">試し行動タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/menhera-level/">
+        <img src="/characters-small/menheraLevelCharacters/menhera-watch-jealous-jelly.webp" alt="ヤキモチ監視クラゲ" loading="lazy" width="120" height="72" />
+        <span class="cname">ヤキモチ監視クラゲ</span>
+        <span class="ctype">ヤキモチ小悪魔タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/menhera-level/">
+        <img src="/characters-small/menheraLevelCharacters/menhera-yami-angel-jelly.webp" alt="やみえんじぇるクラゲ" loading="lazy" width="120" height="72" />
+        <span class="cname">やみえんじぇるクラゲ</span>
+        <span class="ctype">感情ジェットコースタータイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/menhera-level/">
+        <img src="/characters-small/menheraLevelCharacters/menhera-heart-meter-jelly.webp" alt="愛情メータークラゲ" loading="lazy" width="120" height="72" />
+        <span class="cname">愛情メータークラゲ</span>
+        <span class="ctype">愛情確認中毒タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/menhera-level/">
+        <img src="/characters-small/menheraLevelCharacters/menhera-dependent-jelly.webp" alt="依存クラゲ" loading="lazy" width="120" height="72" />
+        <span class="cname">依存クラゲ</span>
+        <span class="ctype">依存クラゲタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/menhera-level/">
+        <img src="/characters-small/menheraLevelCharacters/menhera-memory-collector-jelly.webp" alt="思い出収集クラゲ" loading="lazy" width="120" height="72" />
+        <span class="cname">思い出収集クラゲ</span>
+        <span class="ctype">未練コレクタータイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/menhera-level/">
+        <img src="/characters-small/menheraLevelCharacters/menhera-ending-queen-jelly.webp" alt="愛の支配者クラゲ" loading="lazy" width="120" height="72" />
+        <span class="cname">愛の支配者クラゲ</span>
+        <span class="ctype">愛の支配者タイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="dangerous-man">
+    <h2><a href="/diagnosis/dangerous-man/">🕶️ 危ない男診断</a></h2>
+    <p class="zukan-lead">何してるかわからないけど気になる。危険な魅力に惹かれる度合いを測る恋愛系の心理テストです。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/dangerous-man/">
+        <img src="/characters-small/dangerousManCharacters/danger-safe-watcher.webp" alt="安全圏ウォッチャー" loading="lazy" width="120" height="72" />
+        <span class="cname">安全圏ウォッチャー</span>
+        <span class="ctype">安全圏観察タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dangerous-man/">
+        <img src="/characters-small/dangerousManCharacters/danger-peace-brake-guardian.webp" alt="平和ブレーキ守護者" loading="lazy" width="120" height="72" />
+        <span class="cname">平和ブレーキ守護者</span>
+        <span class="ctype">平和主義ブレーキタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dangerous-man/">
+        <img src="/characters-small/dangerousManCharacters/danger-honesty-checker.webp" alt="誠実チェック係" loading="lazy" width="120" height="72" />
+        <span class="cname">誠実チェック係</span>
+        <span class="ctype">誠実チェックタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dangerous-man/">
+        <img src="/characters-small/dangerousManCharacters/danger-distance-shield-knight.webp" alt="距離感シールド騎士" loading="lazy" width="120" height="72" />
+        <span class="cname">距離感シールド騎士</span>
+        <span class="ctype">距離感ガードタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dangerous-man/">
+        <img src="/characters-small/dangerousManCharacters/danger-red-signal-sensor.webp" alt="赤信号センサー" loading="lazy" width="120" height="72" />
+        <span class="cname">赤信号センサー</span>
+        <span class="ctype">ちょい危険センサータイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dangerous-man/">
+        <img src="/characters-small/dangerousManCharacters/danger-gap-swamp-gatekeeper.webp" alt="ギャップ沼の入口番" loading="lazy" width="120" height="72" />
+        <span class="cname">ギャップ沼の入口番</span>
+        <span class="ctype">ギャップに弱いタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dangerous-man/">
+        <img src="/characters-small/dangerousManCharacters/danger-shadow-lantern.webp" alt="影追いランタン" loading="lazy" width="120" height="72" />
+        <span class="cname">影追いランタン</span>
+        <span class="ctype">ミステリアス惹かれタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dangerous-man/">
+        <img src="/characters-small/dangerousManCharacters/danger-pushed-cushion.webp" alt="押されがちクッション" loading="lazy" width="120" height="72" />
+        <span class="cname">押されがちクッション</span>
+        <span class="ctype">押しに弱いタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dangerous-man/">
+        <img src="/characters-small/dangerousManCharacters/danger-swamp-alarm-fairy.webp" alt="沼アラーム妖精" loading="lazy" width="120" height="72" />
+        <span class="cname">沼アラーム妖精</span>
+        <span class="ctype">沼りかけ警報タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dangerous-man/">
+        <img src="/characters-small/dangerousManCharacters/danger-storm-heart-receiver.webp" alt="嵐ハート受信機" loading="lazy" width="120" height="72" />
+        <span class="cname">嵐ハート受信機</span>
+        <span class="ctype">不安定男に惹かれタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dangerous-man/">
+        <img src="/characters-small/dangerousManCharacters/danger-oresama-crown-collector.webp" alt="俺様王冠コレクター" loading="lazy" width="120" height="72" />
+        <span class="cname">俺様王冠コレクター</span>
+        <span class="ctype">俺様耐性低めタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dangerous-man/">
+        <img src="/characters-small/dangerousManCharacters/danger-read-wait-ghost.webp" alt="既読待ちゴースト" loading="lazy" width="120" height="72" />
+        <span class="cname">既読待ちゴースト</span>
+        <span class="ctype">既読スルー耐性崩壊タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dangerous-man/">
+        <img src="/characters-small/dangerousManCharacters/danger-swamp-resident.webp" alt="危険沼の住人" loading="lazy" width="120" height="72" />
+        <span class="cname">危険沼の住人</span>
+        <span class="ctype">危険な沼住人タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dangerous-man/">
+        <img src="/characters-small/dangerousManCharacters/danger-rescue-angel-nurse.webp" alt="救済ナース天使" loading="lazy" width="120" height="72" />
+        <span class="cname">救済ナース天使</span>
+        <span class="ctype">救いたい症候群タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dangerous-man/">
+        <img src="/characters-small/dangerousManCharacters/danger-thrill-candy-devil.webp" alt="スリルキャンディ悪魔" loading="lazy" width="120" height="72" />
+        <span class="cname">スリルキャンディ悪魔</span>
+        <span class="ctype">刺激中毒タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dangerous-man/">
+        <img src="/characters-small/dangerousManCharacters/danger-final-queen.webp" alt="深沼の支配者" loading="lazy" width="120" height="72" />
+        <span class="cname">深沼の支配者</span>
+        <span class="ctype">深沼の支配者タイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="popularity-season">
+    <h2><a href="/diagnosis/popularity-season/">🌹 モテ期診断</a></h2>
+    <p class="zukan-lead">あなたのモテ期は今？これから？魅力が開花するタイミングがわかる無料のモテ期診断です。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/popularity-season/">
+        <img src="/characters-small/popularitySeasonCharacters/popularity-bud.webp" alt="つぼみちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">つぼみちゃん</span>
+        <span class="ctype">通常運転タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/popularity-season/">
+        <img src="/characters-small/popularitySeasonCharacters/popularity-baby-breath.webp" alt="かすみちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">かすみちゃん</span>
+        <span class="ctype">隠れ魅力タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/popularity-season/">
+        <img src="/characters-small/popularitySeasonCharacters/popularity-lily-of-the-valley.webp" alt="すずらんちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">すずらんちゃん</span>
+        <span class="ctype">親しみやすさタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/popularity-season/">
+        <img src="/characters-small/popularitySeasonCharacters/popularity-lavender.webp" alt="ラベンダーちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">ラベンダーちゃん</span>
+        <span class="ctype">自然体好印象タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/popularity-season/">
+        <img src="/characters-small/popularitySeasonCharacters/popularity-tulip.webp" alt="チューリップちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">チューリップちゃん</span>
+        <span class="ctype">ちょいモテ気配タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/popularity-season/">
+        <img src="/characters-small/popularitySeasonCharacters/popularity-marguerite.webp" alt="マーガレットちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">マーガレットちゃん</span>
+        <span class="ctype">褒められ増加タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/popularity-season/">
+        <img src="/characters-small/popularitySeasonCharacters/popularity-cosmos.webp" alt="コスモスちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">コスモスちゃん</span>
+        <span class="ctype">好感度上昇タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/popularity-season/">
+        <img src="/characters-small/popularitySeasonCharacters/popularity-cherry-blossom.webp" alt="さくらちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">さくらちゃん</span>
+        <span class="ctype">恋の予兆タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/popularity-season/">
+        <img src="/characters-small/popularitySeasonCharacters/popularity-gerbera.webp" alt="ガーベラちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">ガーベラちゃん</span>
+        <span class="ctype">モテ波到来タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/popularity-season/">
+        <img src="/characters-small/popularitySeasonCharacters/popularity-sunflower.webp" alt="ひまわりちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">ひまわりちゃん</span>
+        <span class="ctype">視線集めタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/popularity-season/">
+        <img src="/characters-small/popularitySeasonCharacters/popularity-white-lily.webp" alt="白ゆりちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">白ゆりちゃん</span>
+        <span class="ctype">誘われやすいタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/popularity-season/">
+        <img src="/characters-small/popularitySeasonCharacters/popularity-peony.webp" alt="ピオニーちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">ピオニーちゃん</span>
+        <span class="ctype">恋愛チャンス増加タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/popularity-season/">
+        <img src="/characters-small/popularitySeasonCharacters/popularity-dahlia.webp" alt="ダリアちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">ダリアちゃん</span>
+        <span class="ctype">モテ期本番タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/popularity-season/">
+        <img src="/characters-small/popularitySeasonCharacters/popularity-rose.webp" alt="ローズちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">ローズちゃん</span>
+        <span class="ctype">恋愛無双タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/popularity-season/">
+        <img src="/characters-small/popularitySeasonCharacters/popularity-lotus.webp" alt="れんげちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">れんげちゃん</span>
+        <span class="ctype">フェロモン放出タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/popularity-season/">
+        <img src="/characters-small/popularitySeasonCharacters/popularity-princess-flower.webp" alt="おひめさまちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">おひめさまちゃん</span>
+        <span class="ctype">恋愛スタータイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="sns-approval">
+    <h2><a href="/diagnosis/sns-approval/">📱 SNS承認欲求診断</a></h2>
+    <p class="zukan-lead">いいね、閲覧数、匂わせ。あなたのSNS承認欲求タイプがわかる無料診断です。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/sns-approval/">
+        <img src="/characters-small/snsApprovalCharacters/sns-offline-kobito.webp" alt="オフラインこびと" loading="lazy" width="120" height="72" />
+        <span class="cname">オフラインこびと</span>
+        <span class="ctype">SNSマイペースタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sns-approval/">
+        <img src="/characters-small/snsApprovalCharacters/sns-random-post-spirit.webp" alt="きまぐれ投稿スピリット" loading="lazy" width="120" height="72" />
+        <span class="cname">きまぐれ投稿スピリット</span>
+        <span class="ctype">投稿ゆる民タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sns-approval/">
+        <img src="/characters-small/snsApprovalCharacters/sns-lurker-listener.webp" alt="のぞき見リスナー" loading="lazy" width="120" height="72" />
+        <span class="cname">のぞき見リスナー</span>
+        <span class="ctype">見る専タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sns-approval/">
+        <img src="/characters-small/snsApprovalCharacters/sns-peace-scroll-fairy.webp" alt="ゆるスクロール妖精" loading="lazy" width="120" height="72" />
+        <span class="cname">ゆるスクロール妖精</span>
+        <span class="ctype">平和スクロールタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sns-approval/">
+        <img src="/characters-small/snsApprovalCharacters/sns-like-check-monster.webp" alt="いいね確認ミニモンスター" loading="lazy" width="120" height="72" />
+        <span class="cname">いいね確認ミニモンスター</span>
+        <span class="ctype">ちょい気にしタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sns-approval/">
+        <img src="/characters-small/snsApprovalCharacters/sns-story-gatekeeper.webp" alt="ストーリー番人" loading="lazy" width="120" height="72" />
+        <span class="cname">ストーリー番人</span>
+        <span class="ctype">閲覧者チェックタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sns-approval/">
+        <img src="/characters-small/snsApprovalCharacters/sns-caption-crafter.webp" alt="キャプション職人" loading="lazy" width="120" height="72" />
+        <span class="cname">キャプション職人</span>
+        <span class="ctype">投稿前考えすぎタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sns-approval/">
+        <img src="/characters-small/snsApprovalCharacters/sns-notification-rabbit.webp" alt="通知待機うさぎ" loading="lazy" width="120" height="72" />
+        <span class="cname">通知待機うさぎ</span>
+        <span class="ctype">反応待ちタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sns-approval/">
+        <img src="/characters-small/snsApprovalCharacters/sns-hint-candle.webp" alt="匂わせキャンドル" loading="lazy" width="120" height="72" />
+        <span class="cname">匂わせキャンドル</span>
+        <span class="ctype">匂わせ見習いタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sns-approval/">
+        <img src="/characters-small/snsApprovalCharacters/sns-heart-charge-monster.webp" alt="ハート充電モンスター" loading="lazy" width="120" height="72" />
+        <span class="cname">ハート充電モンスター</span>
+        <span class="ctype">いいね依存タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sns-approval/">
+        <img src="/characters-small/snsApprovalCharacters/sns-compare-mirror-spirit.webp" alt="比べ鏡の精霊" loading="lazy" width="120" height="72" />
+        <span class="cname">比べ鏡の精霊</span>
+        <span class="ctype">比較しがちタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sns-approval/">
+        <img src="/characters-small/snsApprovalCharacters/sns-spotlight-fairy.webp" alt="スポットライト妖精" loading="lazy" width="120" height="72" />
+        <span class="cname">スポットライト妖精</span>
+        <span class="ctype">承認欲求高まりタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sns-approval/">
+        <img src="/characters-small/snsApprovalCharacters/sns-hint-witch.webp" alt="匂わせ呪符師" loading="lazy" width="120" height="72" />
+        <span class="cname">匂わせ呪符師</span>
+        <span class="ctype">匂わせ職人タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sns-approval/">
+        <img src="/characters-small/snsApprovalCharacters/sns-viewer-watcher.webp" alt="既読ウォッチャー" loading="lazy" width="120" height="72" />
+        <span class="cname">既読ウォッチャー</span>
+        <span class="ctype">閲覧者監視タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sns-approval/">
+        <img src="/characters-small/snsApprovalCharacters/sns-approval-monster.webp" alt="いいね喰いモンスター" loading="lazy" width="120" height="72" />
+        <span class="cname">いいね喰いモンスター</span>
+        <span class="ctype">承認欲求モンスタータイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sns-approval/">
+        <img src="/characters-small/snsApprovalCharacters/sns-timeline-queen.webp" alt="自己顕示欲全解放の女王" loading="lazy" width="120" height="72" />
+        <span class="cname">自己顕示欲全解放の女王</span>
+        <span class="ctype">自己顕示欲全解放タイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="dark-fall">
+    <h2><a href="/diagnosis/dark-fall/">🌑 闇落ち度診断</a></h2>
+    <p class="zukan-lead">あなたはまだ光側？それともラスボス覚醒寸前？心の闇レベルを測る性格診断です。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/dark-fall/">
+        <img src="/characters-small/darkFallCharacters/dark-light-border-keeper.webp" alt="光の境界守り" loading="lazy" width="120" height="72" />
+        <span class="cname">光の境界守り</span>
+        <span class="ctype">光側キープタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-fall/">
+        <img src="/characters-small/darkFallCharacters/dark-gentle-shadow-spirit.webp" alt="やさしい影つき精霊" loading="lazy" width="120" height="72" />
+        <span class="cname">やさしい影つき精霊</span>
+        <span class="ctype">平和な影持ちタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-fall/">
+        <img src="/characters-small/darkFallCharacters/dark-reason-brake-knight.webp" alt="理性ブレーキ騎士" loading="lazy" width="120" height="72" />
+        <span class="cname">理性ブレーキ騎士</span>
+        <span class="ctype">理性ブレーキタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-fall/">
+        <img src="/characters-small/darkFallCharacters/dark-night-window-observer.webp" alt="夜窓の観察者" loading="lazy" width="120" height="72" />
+        <span class="cname">夜窓の観察者</span>
+        <span class="ctype">静かな闇観察タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-fall/">
+        <img src="/characters-small/darkFallCharacters/dark-door-gatekeeper.webp" alt="闇扉の番人" loading="lazy" width="120" height="72" />
+        <span class="cname">闇扉の番人</span>
+        <span class="ctype">闇の入口タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-fall/">
+        <img src="/characters-small/darkFallCharacters/dark-cracked-heart-spirit.webp" alt="ひび割れハート精霊" loading="lazy" width="120" height="72" />
+        <span class="cname">ひび割れハート精霊</span>
+        <span class="ctype">傷つき蓄積タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-fall/">
+        <img src="/characters-small/darkFallCharacters/dark-history-repeat-ghost.webp" alt="黒歴史リピート幽霊" loading="lazy" width="120" height="72" />
+        <span class="cname">黒歴史リピート幽霊</span>
+        <span class="ctype">黒歴史反芻タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-fall/">
+        <img src="/characters-small/darkFallCharacters/dark-suspicion-devil.webp" alt="疑い目の小悪魔" loading="lazy" width="120" height="72" />
+        <span class="cname">疑い目の小悪魔</span>
+        <span class="ctype">疑心暗鬼タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-fall/">
+        <img src="/characters-small/darkFallCharacters/dark-lonely-blackcat.webp" alt="孤独の黒猫使い" loading="lazy" width="120" height="72" />
+        <span class="cname">孤独の黒猫使い</span>
+        <span class="ctype">孤独深まりタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-fall/">
+        <img src="/characters-small/darkFallCharacters/dark-revenge-note-scribe.webp" alt="復讐メモ書記" loading="lazy" width="120" height="72" />
+        <span class="cname">復讐メモ書記</span>
+        <span class="ctype">復讐メモタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-fall/">
+        <img src="/characters-small/darkFallCharacters/dark-emotion-seal-mask.webp" alt="感情封印マスク" loading="lazy" width="120" height="72" />
+        <span class="cname">感情封印マスク</span>
+        <span class="ctype">感情封印タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-fall/">
+        <img src="/characters-small/darkFallCharacters/dark-night-poem-witch.webp" alt="夜詩のインク魔女" loading="lazy" width="120" height="72" />
+        <span class="cname">夜詩のインク魔女</span>
+        <span class="ctype">闇ポエム生成タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-fall/">
+        <img src="/characters-small/darkFallCharacters/dark-awakened-shadow-knight.webp" alt="覚醒シャドウナイト" loading="lazy" width="120" height="72" />
+        <span class="cname">覚醒シャドウナイト</span>
+        <span class="ctype">闇落ち覚醒タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-fall/">
+        <img src="/characters-small/darkFallCharacters/dark-ruin-rose-noble.webp" alt="破滅ローズ貴族" loading="lazy" width="120" height="72" />
+        <span class="cname">破滅ローズ貴族</span>
+        <span class="ctype">破滅美学タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-fall/">
+        <img src="/characters-small/darkFallCharacters/dark-shadow-string-mastermind.webp" alt="影糸の黒幕" loading="lazy" width="120" height="72" />
+        <span class="cname">影糸の黒幕</span>
+        <span class="ctype">黒幕化タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-fall/">
+        <img src="/characters-small/darkFallCharacters/dark-final-night-king.webp" alt="深淵の住人" loading="lazy" width="120" height="72" />
+        <span class="cname">深淵の住人</span>
+        <span class="ctype">深淵の住人タイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="money-luck">
+    <h2><a href="/diagnosis/money-luck/">💰 金運タイプ診断</a></h2>
+    <p class="zukan-lead">稼ぐ？貯める？使う？あなたのお金との付き合い方がわかる無料の金運タイプ診断です。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/money-luck/">
+        <img src="/characters-small/moneyLuckCharacters/money-coin-crystal.webp" alt="小銭クリスタル" loading="lazy" width="120" height="72" />
+        <span class="cname">小銭クリスタル</span>
+        <span class="ctype">堅実キープタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/money-luck/">
+        <img src="/characters-small/moneyLuckCharacters/money-saving-stone.webp" alt="貯金石ころ" loading="lazy" width="120" height="72" />
+        <span class="cname">貯金石ころ</span>
+        <span class="ctype">節約上手タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/money-luck/">
+        <img src="/characters-small/moneyLuckCharacters/money-raw-gem.webp" alt="きらきら原石" loading="lazy" width="120" height="72" />
+        <span class="cname">きらきら原石</span>
+        <span class="ctype">計画財布タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/money-luck/">
+        <img src="/characters-small/moneyLuckCharacters/money-treasure-box-hider.webp" alt="宝箱こもり" loading="lazy" width="120" height="72" />
+        <span class="cname">宝箱こもり</span>
+        <span class="ctype">安定金運タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/money-luck/">
+        <img src="/characters-small/moneyLuckCharacters/money-gold-slime.webp" alt="金塊スライム" loading="lazy" width="120" height="72" />
+        <span class="cname">金塊スライム</span>
+        <span class="ctype">ちょい浪費タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/money-luck/">
+        <img src="/characters-small/moneyLuckCharacters/money-ruby-merchant.webp" alt="ルビー商人" loading="lazy" width="120" height="72" />
+        <span class="cname">ルビー商人</span>
+        <span class="ctype">ポイント回収タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/money-luck/">
+        <img src="/characters-small/moneyLuckCharacters/money-diamond-guardian.webp" alt="ダイヤ守り" loading="lazy" width="120" height="72" />
+        <span class="cname">ダイヤ守り</span>
+        <span class="ctype">買い物テンションタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/money-luck/">
+        <img src="/characters-small/moneyLuckCharacters/money-maneki-ore-cat.webp" alt="招き鉱石猫" loading="lazy" width="120" height="72" />
+        <span class="cname">招き鉱石猫</span>
+        <span class="ctype">収支ざっくりタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/money-luck/">
+        <img src="/characters-small/moneyLuckCharacters/money-treasure-dragon.webp" alt="財宝ドラゴン" loading="lazy" width="120" height="72" />
+        <span class="cname">財宝ドラゴン</span>
+        <span class="ctype">金運上昇タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/money-luck/">
+        <img src="/characters-small/moneyLuckCharacters/money-gold-coin-octopus.webp" alt="金貨タコ" loading="lazy" width="120" height="72" />
+        <span class="cname">金貨タコ</span>
+        <span class="ctype">副収入アンテナタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/money-luck/">
+        <img src="/characters-small/moneyLuckCharacters/money-investment-compass.webp" alt="投資コンパス" loading="lazy" width="120" height="72" />
+        <span class="cname">投資コンパス</span>
+        <span class="ctype">チャンス投資タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/money-luck/">
+        <img src="/characters-small/moneyLuckCharacters/money-golden-dragon-king.webp" alt="黄金ドラゴン王" loading="lazy" width="120" height="72" />
+        <span class="cname">黄金ドラゴン王</span>
+        <span class="ctype">お金引き寄せタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/money-luck/">
+        <img src="/characters-small/moneyLuckCharacters/money-jackpot-roulette.webp" alt="一攫千金ルーレット" loading="lazy" width="120" height="72" />
+        <span class="cname">一攫千金ルーレット</span>
+        <span class="ctype">金運覚醒タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/money-luck/">
+        <img src="/characters-small/moneyLuckCharacters/money-rich-jewel.webp" alt="成金ジュエル" loading="lazy" width="120" height="72" />
+        <span class="cname">成金ジュエル</span>
+        <span class="ctype">勝負運強めタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/money-luck/">
+        <img src="/characters-small/moneyLuckCharacters/money-fortune-golem.webp" alt="財運ゴーレム" loading="lazy" width="120" height="72" />
+        <span class="cname">財運ゴーレム</span>
+        <span class="ctype">成金予備軍タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/money-luck/">
+        <img src="/characters-small/moneyLuckCharacters/money-awakened-diamond-king.webp" alt="金運覚醒ダイヤ王" loading="lazy" width="120" height="72" />
+        <span class="cname">金運覚醒ダイヤ王</span>
+        <span class="ctype">財運マスタータイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="work-style">
+    <h2><a href="/diagnosis/work-style/">🧭 仕事向き診断</a></h2>
+    <p class="zukan-lead">会社員？営業？クリエイター？向いている働き方がわかる無料の仕事タイプ性格診断です。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/work-style/">
+        <img src="/characters-small/workStyleCharacters/work-time-card.webp" alt="タイムカードくん" loading="lazy" width="120" height="72" />
+        <span class="cname">タイムカードくん</span>
+        <span class="ctype">安定勤務タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/work-style/">
+        <img src="/characters-small/workStyleCharacters/work-file-mole.webp" alt="書類ファイルもぐら" loading="lazy" width="120" height="72" />
+        <span class="cname">書類ファイルもぐら</span>
+        <span class="ctype">サポート上手タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/work-style/">
+        <img src="/characters-small/workStyleCharacters/work-sticky-note-supporter.webp" alt="付箋サポーター" loading="lazy" width="120" height="72" />
+        <span class="cname">付箋サポーター</span>
+        <span class="ctype">コツコツ職人タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/work-style/">
+        <img src="/characters-small/workStyleCharacters/work-whiteboard-manager.webp" alt="ホワイトボード管理人" loading="lazy" width="120" height="72" />
+        <span class="cname">ホワイトボード管理人</span>
+        <span class="ctype">調和型チームタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/work-style/">
+        <img src="/characters-small/workStyleCharacters/work-toolbox-tanuki.webp" alt="工具箱タヌキ" loading="lazy" width="120" height="72" />
+        <span class="cname">工具箱タヌキ</span>
+        <span class="ctype">アイデア発想タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/work-style/">
+        <img src="/characters-small/workStyleCharacters/work-business-card-dog.webp" alt="名刺ホルダー犬" loading="lazy" width="120" height="72" />
+        <span class="cname">名刺ホルダー犬</span>
+        <span class="ctype">マルチタスクタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/work-style/">
+        <img src="/characters-small/workStyleCharacters/work-calendar-cat.webp" alt="カレンダー調整猫" loading="lazy" width="120" height="72" />
+        <span class="cname">カレンダー調整猫</span>
+        <span class="ctype">人たらし営業タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/work-style/">
+        <img src="/characters-small/workStyleCharacters/work-coffee-maker-spirit.webp" alt="コーヒーメーカー精霊" loading="lazy" width="120" height="72" />
+        <span class="cname">コーヒーメーカー精霊</span>
+        <span class="ctype">自由裁量タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/work-style/">
+        <img src="/characters-small/workStyleCharacters/work-idea-bulb.webp" alt="アイデア電球" loading="lazy" width="120" height="72" />
+        <span class="cname">アイデア電球</span>
+        <span class="ctype">企画クリエイタータイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/work-style/">
+        <img src="/characters-small/workStyleCharacters/work-calculator-owl.webp" alt="電卓フクロウ" loading="lazy" width="120" height="72" />
+        <span class="cname">電卓フクロウ</span>
+        <span class="ctype">リーダー補佐タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/work-style/">
+        <img src="/characters-small/workStyleCharacters/work-meeting-sofa.webp" alt="会議室ソファ" loading="lazy" width="120" height="72" />
+        <span class="cname">会議室ソファ</span>
+        <span class="ctype">現場突破タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/work-style/">
+        <img src="/characters-small/workStyleCharacters/work-stopwatch-captain.webp" alt="ストップウォッチ隊長" loading="lazy" width="120" height="72" />
+        <span class="cname">ストップウォッチ隊長</span>
+        <span class="ctype">分析改善タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/work-style/">
+        <img src="/characters-small/workStyleCharacters/work-clipboard-strategist.webp" alt="クリップボード参謀" loading="lazy" width="120" height="72" />
+        <span class="cname">クリップボード参謀</span>
+        <span class="ctype">起業家気質タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/work-style/">
+        <img src="/characters-small/workStyleCharacters/work-megaphone-commander.webp" alt="メガホン指揮官" loading="lazy" width="120" height="72" />
+        <span class="cname">メガホン指揮官</span>
+        <span class="ctype">カリスマリーダータイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/work-style/">
+        <img src="/characters-small/workStyleCharacters/work-rocket-desk.webp" alt="ロケットデスク" loading="lazy" width="120" height="72" />
+        <span class="cname">ロケットデスク</span>
+        <span class="ctype">天才肌タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/work-style/">
+        <img src="/characters-small/workStyleCharacters/work-boss-chair-lion.webp" alt="社長イスライオン" loading="lazy" width="120" height="72" />
+        <span class="cname">社長イスライオン</span>
+        <span class="ctype">ビジネス覇者タイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="life-bug">
+    <h2><a href="/diagnosis/life-bug/">🎮 人生バグり度診断</a></h2>
+    <p class="zukan-lead">選択肢ミス？主人公補正？あなたの人生のバグり具合を笑って確かめる無料のネタ診断です。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/life-bug/">
+        <img src="/characters-small/lifeBugCharacters/life-bug-too-sunny.webp" alt="ぽかぽか晴れすぎバグ" loading="lazy" width="120" height="72" />
+        <span class="cname">ぽかぽか晴れすぎバグ</span>
+        <span class="ctype">通常プレイタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/life-bug/">
+        <img src="/characters-small/lifeBugCharacters/life-bug-sudden-rain.webp" alt="にわか雨ふりすぎバグ" loading="lazy" width="120" height="72" />
+        <span class="cname">にわか雨ふりすぎバグ</span>
+        <span class="ctype">小バグ修正タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/life-bug/">
+        <img src="/characters-small/lifeBugCharacters/life-bug-lost-cloud.webp" alt="迷子雲ぐるぐるバグ" loading="lazy" width="120" height="72" />
+        <span class="cname">迷子雲ぐるぐるバグ</span>
+        <span class="ctype">平和な迷子タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/life-bug/">
+        <img src="/characters-small/lifeBugCharacters/life-bug-little-thunder.webp" alt="小雷ビリビリ連発バグ" loading="lazy" width="120" height="72" />
+        <span class="cname">小雷ビリビリ連発バグ</span>
+        <span class="ctype">仕様ですタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/life-bug/">
+        <img src="/characters-small/lifeBugCharacters/life-bug-over-tailwind.webp" alt="追い風強すぎバグ" loading="lazy" width="120" height="72" />
+        <span class="cname">追い風強すぎバグ</span>
+        <span class="ctype">選択ミス多めタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/life-bug/">
+        <img src="/characters-small/lifeBugCharacters/life-bug-fog-route.webp" alt="霧ルート迷子バグ" loading="lazy" width="120" height="72" />
+        <span class="cname">霧ルート迷子バグ</span>
+        <span class="ctype">タイミングずれタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/life-bug/">
+        <img src="/characters-small/lifeBugCharacters/life-bug-freeze-snowman.webp" alt="フリーズ雪だるまバグ" loading="lazy" width="120" height="72" />
+        <span class="cname">フリーズ雪だるまバグ</span>
+        <span class="ctype">人間関係ラグタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/life-bug/">
+        <img src="/characters-small/lifeBugCharacters/life-bug-rainbow-overflow.webp" alt="虹いっぱい出すぎバグ" loading="lazy" width="120" height="72" />
+        <span class="cname">虹いっぱい出すぎバグ</span>
+        <span class="ctype">予定崩壊タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/life-bug/">
+        <img src="/characters-small/lifeBugCharacters/life-bug-guerrilla-rain.webp" alt="ゲリラ豪雨バグ" loading="lazy" width="120" height="72" />
+        <span class="cname">ゲリラ豪雨バグ</span>
+        <span class="ctype">人生エラー多発タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/life-bug/">
+        <img src="/characters-small/lifeBugCharacters/life-bug-tornado-trap.webp" alt="竜巻巻き込まれバグ" loading="lazy" width="120" height="72" />
+        <span class="cname">竜巻巻き込まれバグ</span>
+        <span class="ctype">やらかし常習タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/life-bug/">
+        <img src="/characters-small/lifeBugCharacters/life-bug-lightning-hit.webp" alt="落雷直撃バグ" loading="lazy" width="120" height="72" />
+        <span class="cname">落雷直撃バグ</span>
+        <span class="ctype">フラグ回収タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/life-bug/">
+        <img src="/characters-small/lifeBugCharacters/life-bug-typhoon-eye.webp" alt="台風の目でなぜか平和バグ" loading="lazy" width="120" height="72" />
+        <span class="cname">台風の目でなぜか平和バグ</span>
+        <span class="ctype">混乱イベント発生タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/life-bug/">
+        <img src="/characters-small/lifeBugCharacters/life-bug-meteor-warning.webp" alt="隕石ふってくるバグ" loading="lazy" width="120" height="72" />
+        <span class="cname">隕石ふってくるバグ</span>
+        <span class="ctype">バグ覚醒タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/life-bug/">
+        <img src="/characters-small/lifeBugCharacters/life-bug-weather-forecast-error.webp" alt="天気予報ぜんぶバラバラバグ" loading="lazy" width="120" height="72" />
+        <span class="cname">天気予報ぜんぶバラバラバグ</span>
+        <span class="ctype">カオス耐性強めタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/life-bug/">
+        <img src="/characters-small/lifeBugCharacters/life-bug-worldline-aurora.webp" alt="世界線オーロラバグ" loading="lazy" width="120" height="72" />
+        <span class="cname">世界線オーロラバグ</span>
+        <span class="ctype">人生チート疑惑タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/life-bug/">
+        <img src="/characters-small/lifeBugCharacters/life-bug-chaos-weather-max.webp" alt="異常気象カオスMAXバグ" loading="lazy" width="120" height="72" />
+        <span class="cname">異常気象カオスMAXバグ</span>
+        <span class="ctype">カオスプレイヤータイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="oshikatsu-type">
+    <h2><a href="/diagnosis/oshikatsu-type/">🌟 推し活タイプ診断</a></h2>
+    <p class="zukan-lead">現場派？収集派？考察派？あなたの推し方と限界オタク度がわかる無料の推し活診断です。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/oshikatsu-type/">
+        <img src="/characters-small/oshikatsuCharacters/oshi-gentle-watch-spirit.webp" alt="そっと見守り精霊" loading="lazy" width="120" height="72" />
+        <span class="cname">そっと見守り精霊</span>
+        <span class="ctype">ゆる見守りタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/oshikatsu-type/">
+        <img src="/characters-small/oshikatsuCharacters/oshi-badge-spirit.webp" alt="缶バッジ精霊" loading="lazy" width="120" height="72" />
+        <span class="cname">缶バッジ精霊</span>
+        <span class="ctype">ときどきグッズタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/oshikatsu-type/">
+        <img src="/characters-small/oshikatsuCharacters/oshi-night-talk-spirit.webp" alt="月夜語り精霊" loading="lazy" width="120" height="72" />
+        <span class="cname">月夜語り精霊</span>
+        <span class="ctype">たまに語りタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/oshikatsu-type/">
+        <img src="/characters-small/oshikatsuCharacters/oshi-secret-promo-spirit.webp" alt="こっそり布教精霊" loading="lazy" width="120" height="72" />
+        <span class="cname">こっそり布教精霊</span>
+        <span class="ctype">さりげなく勧めタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/oshikatsu-type/">
+        <img src="/characters-small/oshikatsuCharacters/oshi-penlight-spirit.webp" alt="ペンライト妖精" loading="lazy" width="120" height="72" />
+        <span class="cname">ペンライト妖精</span>
+        <span class="ctype">現場参戦タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/oshikatsu-type/">
+        <img src="/characters-small/oshikatsuCharacters/oshi-tradingcard-spirit.webp" alt="トレカファイル精霊" loading="lazy" width="120" height="72" />
+        <span class="cname">トレカファイル精霊</span>
+        <span class="ctype">コレクター街道タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/oshikatsu-type/">
+        <img src="/characters-small/oshikatsuCharacters/oshi-theory-spirit.webp" alt="考察メガネ精霊" loading="lazy" width="120" height="72" />
+        <span class="cname">考察メガネ精霊</span>
+        <span class="ctype">考察ノートタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/oshikatsu-type/">
+        <img src="/characters-small/oshikatsuCharacters/oshi-presentation-spirit.webp" alt="布教ボード精霊" loading="lazy" width="120" height="72" />
+        <span class="cname">布教ボード精霊</span>
+        <span class="ctype">プレゼン営業タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/oshikatsu-type/">
+        <img src="/characters-small/oshikatsuCharacters/oshi-tour-spirit.webp" alt="遠征キャリー精霊" loading="lazy" width="120" height="72" />
+        <span class="cname">遠征キャリー精霊</span>
+        <span class="ctype">全通勢タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/oshikatsu-type/">
+        <img src="/characters-small/oshikatsuCharacters/oshi-altar-spirit.webp" alt="祭壇づくり精霊" loading="lazy" width="120" height="72" />
+        <span class="cname">祭壇づくり精霊</span>
+        <span class="ctype">祭壇建立タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/oshikatsu-type/">
+        <img src="/characters-small/oshikatsuCharacters/oshi-art-brush-spirit.webp" alt="創作ふで精霊" loading="lazy" width="120" height="72" />
+        <span class="cname">創作ふで精霊</span>
+        <span class="ctype">二次創作職人タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/oshikatsu-type/">
+        <img src="/characters-small/oshikatsuCharacters/oshi-swamp-guide-spirit.webp" alt="沼案内精霊" loading="lazy" width="120" height="72" />
+        <span class="cname">沼案内精霊</span>
+        <span class="ctype">沼への案内人タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/oshikatsu-type/">
+        <img src="/characters-small/oshikatsuCharacters/oshi-devotion-flame-spirit.webp" alt="推し一筋ドラゴン" loading="lazy" width="120" height="72" />
+        <span class="cname">推し一筋ドラゴン</span>
+        <span class="ctype">人生捧げタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/oshikatsu-type/">
+        <img src="/characters-small/oshikatsuCharacters/oshi-museum-spirit.webp" alt="コレクション博物館クジラ" loading="lazy" width="120" height="72" />
+        <span class="cname">コレクション博物館クジラ</span>
+        <span class="ctype">博物館級タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/oshikatsu-type/">
+        <img src="/characters-small/oshikatsuCharacters/oshi-concept-spirit.webp" alt="概念スピリット" loading="lazy" width="120" height="72" />
+        <span class="cname">概念スピリット</span>
+        <span class="ctype">概念解釈タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/oshikatsu-type/">
+        <img src="/characters-small/oshikatsuCharacters/oshi-speaker-spirit.webp" alt="伝道スピーカー精霊" loading="lazy" width="120" height="72" />
+        <span class="cname">伝道スピーカー精霊</span>
+        <span class="ctype">伝道師タイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="reply-type">
+    <h2><a href="/diagnosis/reply-type/">💬 返信タイプ診断</a></h2>
+    <p class="zukan-lead">即レス派？未読の主？あなたのLINE・DMの返信スタイルをフォントにたとえる無料の心理テストです。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/reply-type/">
+        <img src="/characters-small/fontCharacters/font-gokuboso-mincho.webp" alt="極細明朝さん" loading="lazy" width="120" height="72" />
+        <span class="cname">極細明朝さん</span>
+        <span class="ctype">極細明朝体タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/reply-type/">
+        <img src="/characters-small/fontCharacters/font-kaku-gothic.webp" alt="角ゴシックさん" loading="lazy" width="120" height="72" />
+        <span class="cname">角ゴシックさん</span>
+        <span class="ctype">角ゴシック体タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/reply-type/">
+        <img src="/characters-small/fontCharacters/font-hikkitai.webp" alt="筆記体さん" loading="lazy" width="120" height="72" />
+        <span class="cname">筆記体さん</span>
+        <span class="ctype">筆記体タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/reply-type/">
+        <img src="/characters-small/fontCharacters/font-funwari-marumoji.webp" alt="ふんわり丸文字さん" loading="lazy" width="120" height="72" />
+        <span class="cname">ふんわり丸文字さん</span>
+        <span class="ctype">ふんわり丸文字体タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/reply-type/">
+        <img src="/characters-small/fontCharacters/font-yawaraka-mincho.webp" alt="やわらか明朝さん" loading="lazy" width="120" height="72" />
+        <span class="cname">やわらか明朝さん</span>
+        <span class="ctype">やわらか明朝体タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/reply-type/">
+        <img src="/characters-small/fontCharacters/font-maru-gothic.webp" alt="丸ゴシックさん" loading="lazy" width="120" height="72" />
+        <span class="cname">丸ゴシックさん</span>
+        <span class="ctype">丸ゴシック体タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/reply-type/">
+        <img src="/characters-small/fontCharacters/font-craft-moji.webp" alt="クラフト文字さん" loading="lazy" width="120" height="72" />
+        <span class="cname">クラフト文字さん</span>
+        <span class="ctype">クラフト文字体タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/reply-type/">
+        <img src="/characters-small/fontCharacters/font-marumoji.webp" alt="丸文字さん" loading="lazy" width="120" height="72" />
+        <span class="cname">丸文字さん</span>
+        <span class="ctype">丸文字体タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/reply-type/">
+        <img src="/characters-small/fontCharacters/font-mincho.webp" alt="明朝体さん" loading="lazy" width="120" height="72" />
+        <span class="cname">明朝体さん</span>
+        <span class="ctype">明朝体タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/reply-type/">
+        <img src="/characters-small/fontCharacters/font-futomaru-gothic.webp" alt="太丸ゴシックさん" loading="lazy" width="120" height="72" />
+        <span class="cname">太丸ゴシックさん</span>
+        <span class="ctype">太丸ゴシック体タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/reply-type/">
+        <img src="/characters-small/fontCharacters/font-tegaki.webp" alt="手書き風さん" loading="lazy" width="120" height="72" />
+        <span class="cname">手書き風さん</span>
+        <span class="ctype">手書き風フォントタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/reply-type/">
+        <img src="/characters-small/fontCharacters/font-pop.webp" alt="ポップ体さん" loading="lazy" width="120" height="72" />
+        <span class="cname">ポップ体さん</span>
+        <span class="ctype">ポップ体タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/reply-type/">
+        <img src="/characters-small/fontCharacters/font-kyokasho.webp" alt="教科書体さん" loading="lazy" width="120" height="72" />
+        <span class="cname">教科書体さん</span>
+        <span class="ctype">教科書体タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/reply-type/">
+        <img src="/characters-small/fontCharacters/font-gokubuto-gothic.webp" alt="極太ゴシックさん" loading="lazy" width="120" height="72" />
+        <span class="cname">極太ゴシックさん</span>
+        <span class="ctype">極太ゴシック体タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/reply-type/">
+        <img src="/characters-small/fontCharacters/font-kaisho.webp" alt="楷書体さん" loading="lazy" width="120" height="72" />
+        <span class="cname">楷書体さん</span>
+        <span class="ctype">楷書体タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/reply-type/">
+        <img src="/characters-small/fontCharacters/font-deco-moji.webp" alt="デコ文字さん" loading="lazy" width="120" height="72" />
+        <span class="cname">デコ文字さん</span>
+        <span class="ctype">デコ文字体タイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="crush-misread">
+    <h2><a href="/diagnosis/crush-misread/">💌 脈あり勘違い診断</a></h2>
+    <p class="zukan-lead">その優しさ、脈あり？社交辞令？あなたの脈あり勘違い度がわかる無料の恋愛心理テストです。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/crush-misread/">
+        <img src="/characters-small/crushFoxCharacters/crush-judge-fox.webp" alt="審判メガネギツネ" loading="lazy" width="120" height="72" />
+        <span class="cname">審判メガネギツネ</span>
+        <span class="ctype">冷静ジャッジタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/crush-misread/">
+        <img src="/characters-small/crushFoxCharacters/crush-salt-fox.webp" alt="塩対応ギツネ" loading="lazy" width="120" height="72" />
+        <span class="cname">塩対応ギツネ</span>
+        <span class="ctype">塩リアリストタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/crush-misread/">
+        <img src="/characters-small/crushFoxCharacters/crush-dictionary-fox.webp" alt="辞書持ちギツネ" loading="lazy" width="120" height="72" />
+        <span class="cname">辞書持ちギツネ</span>
+        <span class="ctype">社交辞令翻訳者タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/crush-misread/">
+        <img src="/characters-small/crushFoxCharacters/crush-dice-fox.webp" alt="サイコロギツネ" loading="lazy" width="120" height="72" />
+        <span class="cname">サイコロギツネ</span>
+        <span class="ctype">偶然は偶然タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/crush-misread/">
+        <img src="/characters-small/crushFoxCharacters/crush-sakura-fox.webp" alt="ほんのり桜ギツネ" loading="lazy" width="120" height="72" />
+        <span class="cname">ほんのり桜ギツネ</span>
+        <span class="ctype">ちょい期待タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/crush-misread/">
+        <img src="/characters-small/crushFoxCharacters/crush-heart-lens-fox.webp" alt="ハート虫めがねギツネ" loading="lazy" width="120" height="72" />
+        <span class="cname">ハート虫めがねギツネ</span>
+        <span class="ctype">いいね気にしタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/crush-misread/">
+        <img src="/characters-small/crushFoxCharacters/crush-calendar-fox.webp" alt="カレンダーギツネ" loading="lazy" width="120" height="72" />
+        <span class="cname">カレンダーギツネ</span>
+        <span class="ctype">また今度期待タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/crush-misread/">
+        <img src="/characters-small/crushFoxCharacters/crush-star-memo-fox.webp" alt="流れ星メモギツネ" loading="lazy" width="120" height="72" />
+        <span class="cname">流れ星メモギツネ</span>
+        <span class="ctype">プチ運命感タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/crush-misread/">
+        <img src="/characters-small/crushFoxCharacters/crush-heart-antenna-fox.webp" alt="ハート耳アンテナギツネ" loading="lazy" width="120" height="72" />
+        <span class="cname">ハート耳アンテナギツネ</span>
+        <span class="ctype">優しさ=好意タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/crush-misread/">
+        <img src="/characters-small/crushFoxCharacters/crush-phone-fox.webp" alt="スマホ抱えギツネ" loading="lazy" width="120" height="72" />
+        <span class="cname">スマホ抱えギツネ</span>
+        <span class="ctype">既読3秒脈ありタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/crush-misread/">
+        <img src="/characters-small/crushFoxCharacters/crush-megaphone-fox.webp" alt="直訳メガホンギツネ" loading="lazy" width="120" height="72" />
+        <span class="cname">直訳メガホンギツネ</span>
+        <span class="ctype">社交辞令直訳タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/crush-misread/">
+        <img src="/characters-small/crushFoxCharacters/crush-red-string-fox.webp" alt="赤い糸ぐるぐるギツネ" loading="lazy" width="120" height="72" />
+        <span class="cname">赤い糸ぐるぐるギツネ</span>
+        <span class="ctype">運命こじつけタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/crush-misread/">
+        <img src="/characters-small/crushFoxCharacters/crush-radar-fox.webp" alt="全方位ハートレーダーギツネ" loading="lazy" width="120" height="72" />
+        <span class="cname">全方位ハートレーダーギツネ</span>
+        <span class="ctype">全部脈ありタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/crush-misread/">
+        <img src="/characters-small/crushFoxCharacters/crush-detective-fox.webp" alt="足跡ルーペギツネ" loading="lazy" width="120" height="72" />
+        <span class="cname">足跡ルーペギツネ</span>
+        <span class="ctype">SNS探偵タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/crush-misread/">
+        <img src="/characters-small/crushFoxCharacters/crush-planner-fox.webp" alt="予定びっしり手帳ギツネ" loading="lazy" width="120" height="72" />
+        <span class="cname">予定びっしり手帳ギツネ</span>
+        <span class="ctype">「また今度」手帳タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/crush-misread/">
+        <img src="/characters-small/crushFoxCharacters/crush-bouquet-fox.webp" alt="赤い糸束ねギツネ" loading="lazy" width="120" height="72" />
+        <span class="cname">赤い糸束ねギツネ</span>
+        <span class="ctype">運命の人量産タイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="dark-depth">
+    <h2><a href="/diagnosis/dark-depth/">🌊 性格の闇深度診断</a></h2>
+    <p class="zukan-lead">あなたの心の闇、水深何メートル？性格の闇の深さを深海レベルで測る無料の心理テストです。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/dark-depth/">
+        <img src="/characters-small/abyssClioneCharacters/abyss-sunny-clione.webp" alt="ひなたクリオネ" loading="lazy" width="120" height="72" />
+        <span class="cname">ひなたクリオネ</span>
+        <span class="ctype">心の声だだ漏れタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-depth/">
+        <img src="/characters-small/abyssClioneCharacters/abyss-forgetful-clione.webp" alt="わすれんぼクリオネ" loading="lazy" width="120" height="72" />
+        <span class="cname">わすれんぼクリオネ</span>
+        <span class="ctype">3歩で忘れるタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-depth/">
+        <img src="/characters-small/abyssClioneCharacters/abyss-honest-clione.webp" alt="まっすぐクリオネ" loading="lazy" width="120" height="72" />
+        <span class="cname">まっすぐクリオネ</span>
+        <span class="ctype">人を信じすぎタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-depth/">
+        <img src="/characters-small/abyssClioneCharacters/abyss-glass-clione.webp" alt="ガラスの心クリオネ" loading="lazy" width="120" height="72" />
+        <span class="cname">ガラスの心クリオネ</span>
+        <span class="ctype">裏表なしタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-depth/">
+        <img src="/characters-small/abyssClioneCharacters/abyss-innervoice-clione.webp" alt="心の声クリオネ" loading="lazy" width="120" height="72" />
+        <span class="cname">心の声クリオネ</span>
+        <span class="ctype">内心ツッコミ職人タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-depth/">
+        <img src="/characters-small/abyssClioneCharacters/abyss-memo-clione.webp" alt="メモ持ちクリオネ" loading="lazy" width="120" height="72" />
+        <span class="cname">メモ持ちクリオネ</span>
+        <span class="ctype">根に持ちかけタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-depth/">
+        <img src="/characters-small/abyssClioneCharacters/abyss-cautious-clione.webp" alt="様子見クリオネ" loading="lazy" width="120" height="72" />
+        <span class="cname">様子見クリオネ</span>
+        <span class="ctype">ちょい様子見タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-depth/">
+        <img src="/characters-small/abyssClioneCharacters/abyss-tactics-clione.webp" alt="駆け引き見習いクリオネ" loading="lazy" width="120" height="72" />
+        <span class="cname">駆け引き見習いクリオネ</span>
+        <span class="ctype">小さな駆け引きタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-depth/">
+        <img src="/characters-small/abyssClioneCharacters/abyss-neon-clione.webp" alt="毒舌発光クリオネ" loading="lazy" width="120" height="72" />
+        <span class="cname">毒舌発光クリオネ</span>
+        <span class="ctype">毒舌発光タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-depth/">
+        <img src="/characters-small/abyssClioneCharacters/abyss-grudgebook-clione.webp" alt="恨み帳クリオネ" loading="lazy" width="120" height="72" />
+        <span class="cname">恨み帳クリオネ</span>
+        <span class="ctype">恨み帳保管タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-depth/">
+        <img src="/characters-small/abyssClioneCharacters/abyss-fortress-clione.webp" alt="鉄壁クリオネ" loading="lazy" width="120" height="72" />
+        <span class="cname">鉄壁クリオネ</span>
+        <span class="ctype">心の鉄壁タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-depth/">
+        <img src="/characters-small/abyssClioneCharacters/abyss-strategist-clione.webp" alt="静かな策士クリオネ" loading="lazy" width="120" height="72" />
+        <span class="cname">静かな策士クリオネ</span>
+        <span class="ctype">静かな策士タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-depth/">
+        <img src="/characters-small/abyssClioneCharacters/abyss-king-clione.webp" alt="深淵の毒舌王クリオネ" loading="lazy" width="120" height="72" />
+        <span class="cname">深淵の毒舌王クリオネ</span>
+        <span class="ctype">深淵の毒舌王タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-depth/">
+        <img src="/characters-small/abyssClioneCharacters/abyss-eternal-clione.webp" alt="千年おぼえクリオネ" loading="lazy" width="120" height="72" />
+        <span class="cname">千年おぼえクリオネ</span>
+        <span class="ctype">千年根に持つタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-depth/">
+        <img src="/characters-small/abyssClioneCharacters/abyss-solitude-clione.webp" alt="孤高の深淵クリオネ" loading="lazy" width="120" height="72" />
+        <span class="cname">孤高の深淵クリオネ</span>
+        <span class="ctype">誰も信じない孤高タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dark-depth/">
+        <img src="/characters-small/abyssClioneCharacters/abyss-mastermind-clione.webp" alt="海溝の黒幕クリオネ" loading="lazy" width="120" height="72" />
+        <span class="cname">海溝の黒幕クリオネ</span>
+        <span class="ctype">海溝の黒幕タイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="holiday-style">
+    <h2><a href="/diagnosis/holiday-style/">🛋️ 休日の過ごし方診断</a></h2>
+    <p class="zukan-lead">布団の主？フェスの民？あなたの休日タイプと理想の休み方がわかる無料の性格診断・心理テストです。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/holiday-style/">
+        <img src="/characters-small/holidayCapybaraCharacters/holiday-oke-capy.webp" alt="おけカピ" loading="lazy" width="120" height="72" />
+        <span class="cname">おけカピ</span>
+        <span class="ctype">おふろ充電タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/holiday-style/">
+        <img src="/characters-small/holidayCapybaraCharacters/holiday-cushion-capy.webp" alt="クッションカピ" loading="lazy" width="120" height="72" />
+        <span class="cname">クッションカピ</span>
+        <span class="ctype">ゴロゴロおしゃべりタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/holiday-style/">
+        <img src="/characters-small/holidayCapybaraCharacters/holiday-book-capy.webp" alt="ほんカピ" loading="lazy" width="120" height="72" />
+        <span class="cname">ほんカピ</span>
+        <span class="ctype">積ん読消化タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/holiday-style/">
+        <img src="/characters-small/holidayCapybaraCharacters/holiday-bed-capy.webp" alt="ベッドカピ" loading="lazy" width="120" height="72" />
+        <span class="cname">ベッドカピ</span>
+        <span class="ctype">夢の中まで休日タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/holiday-style/">
+        <img src="/characters-small/holidayCapybaraCharacters/holiday-shoe-capy.webp" alt="くつカピ" loading="lazy" width="120" height="72" />
+        <span class="cname">くつカピ</span>
+        <span class="ctype">ふらっとさんぽタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/holiday-style/">
+        <img src="/characters-small/holidayCapybaraCharacters/holiday-cake-capy.webp" alt="ケーキカピ" loading="lazy" width="120" height="72" />
+        <span class="cname">ケーキカピ</span>
+        <span class="ctype">カフェとスイーツタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/holiday-style/">
+        <img src="/characters-small/holidayCapybaraCharacters/holiday-bag-capy.webp" alt="かばんカピ" loading="lazy" width="120" height="72" />
+        <span class="cname">かばんカピ</span>
+        <span class="ctype">支度から楽しむタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/holiday-style/">
+        <img src="/characters-small/holidayCapybaraCharacters/holiday-picnic-capy.webp" alt="ピクニックカピ" loading="lazy" width="120" height="72" />
+        <span class="cname">ピクニックカピ</span>
+        <span class="ctype">ピクニック日和タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/holiday-style/">
+        <img src="/characters-small/holidayCapybaraCharacters/holiday-ukiwa-capy.webp" alt="うきわカピ" loading="lazy" width="120" height="72" />
+        <span class="cname">うきわカピ</span>
+        <span class="ctype">うきわでぷかぷかタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/holiday-style/">
+        <img src="/characters-small/holidayCapybaraCharacters/holiday-tong-capy.webp" alt="トングカピ" loading="lazy" width="120" height="72" />
+        <span class="cname">トングカピ</span>
+        <span class="ctype">みんなでBBQタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/holiday-style/">
+        <img src="/characters-small/holidayCapybaraCharacters/holiday-tent-capy.webp" alt="テントカピ" loading="lazy" width="120" height="72" />
+        <span class="cname">テントカピ</span>
+        <span class="ctype">キャンプ設営タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/holiday-style/">
+        <img src="/characters-small/holidayCapybaraCharacters/holiday-bucket-capy.webp" alt="バケツカピ" loading="lazy" width="120" height="72" />
+        <span class="cname">バケツカピ</span>
+        <span class="ctype">水辺であそぶタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/holiday-style/">
+        <img src="/characters-small/holidayCapybaraCharacters/holiday-mountain-capy.webp" alt="やまカピ" loading="lazy" width="120" height="72" />
+        <span class="cname">やまカピ</span>
+        <span class="ctype">頂上めざすタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/holiday-style/">
+        <img src="/characters-small/holidayCapybaraCharacters/holiday-rucksack-capy.webp" alt="リュックカピ" loading="lazy" width="120" height="72" />
+        <span class="cname">リュックカピ</span>
+        <span class="ctype">仲間と旅するタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/holiday-style/">
+        <img src="/characters-small/holidayCapybaraCharacters/holiday-hat-capy.webp" alt="ぼうしカピ" loading="lazy" width="120" height="72" />
+        <span class="cname">ぼうしカピ</span>
+        <span class="ctype">準備万端アウトドアタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/holiday-style/">
+        <img src="/characters-small/holidayCapybaraCharacters/holiday-kayak-capy.webp" alt="カヤックカピ" loading="lazy" width="120" height="72" />
+        <span class="cname">カヤックカピ</span>
+        <span class="ctype">アクティビティ挑戦タイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="emo-nostalgia">
+    <h2><a href="/diagnosis/emo-nostalgia/">📼 エモ懐古度診断</a></h2>
+    <p class="zukan-lead">シール帳？プリ帳？あなたの「エモい」の正体と平成懐古タイプがわかる無料の性格診断・心理テストです。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/emo-nostalgia/">
+        <img src="/characters-small/emoNostalgiaCharacters/emo-sticker-pet.webp" alt="シールくんペット" loading="lazy" width="120" height="72" />
+        <span class="cname">シールくんペット</span>
+        <span class="ctype">ときどき断捨離タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/emo-nostalgia/">
+        <img src="/characters-small/emoNostalgiaCharacters/emo-earphone-pet.webp" alt="イヤホンペット" loading="lazy" width="120" height="72" />
+        <span class="cname">イヤホンペット</span>
+        <span class="ctype">イントロで泣くタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/emo-nostalgia/">
+        <img src="/characters-small/emoNostalgiaCharacters/emo-kendama-pet.webp" alt="けん玉ペット" loading="lazy" width="120" height="72" />
+        <span class="cname">けん玉ペット</span>
+        <span class="ctype">たまに童心タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/emo-nostalgia/">
+        <img src="/characters-small/emoNostalgiaCharacters/emo-filmcam-pet.webp" alt="写ルンですペット" loading="lazy" width="120" height="72" />
+        <span class="cname">写ルンですペット</span>
+        <span class="ctype">アルバムちら見タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/emo-nostalgia/">
+        <img src="/characters-small/emoNostalgiaCharacters/emo-stickerbook-pet.webp" alt="シール帳ペット" loading="lazy" width="120" height="72" />
+        <span class="cname">シール帳ペット</span>
+        <span class="ctype">コレクション整理中タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/emo-nostalgia/">
+        <img src="/characters-small/emoNostalgiaCharacters/emo-cassette-pet.webp" alt="カセットペット" loading="lazy" width="120" height="72" />
+        <span class="cname">カセットペット</span>
+        <span class="ctype">サブスクで漁るタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/emo-nostalgia/">
+        <img src="/characters-small/emoNostalgiaCharacters/emo-digipet-pet.webp" alt="たまごっ子ペット" loading="lazy" width="120" height="72" />
+        <span class="cname">たまごっ子ペット</span>
+        <span class="ctype">デジペット世代タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/emo-nostalgia/">
+        <img src="/characters-small/emoNostalgiaCharacters/emo-profilebook-pet.webp" alt="プロフ帳ペット" loading="lazy" width="120" height="72" />
+        <span class="cname">プロフ帳ペット</span>
+        <span class="ctype">プロフ帳回すタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/emo-nostalgia/">
+        <img src="/characters-small/emoNostalgiaCharacters/emo-collection-pet.webp" alt="コレクションペット" loading="lazy" width="120" height="72" />
+        <span class="cname">コレクションペット</span>
+        <span class="ctype">保存の達人タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/emo-nostalgia/">
+        <img src="/characters-small/emoNostalgiaCharacters/emo-walkman-pet.webp" alt="ウォークマンペット" loading="lazy" width="120" height="72" />
+        <span class="cname">ウォークマンペット</span>
+        <span class="ctype">OP全部歌えるタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/emo-nostalgia/">
+        <img src="/characters-small/emoNostalgiaCharacters/emo-handheldgame-pet.webp" alt="ゲーム機ペット" loading="lazy" width="120" height="72" />
+        <span class="cname">ゲーム機ペット</span>
+        <span class="ctype">放課後マスタータイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/emo-nostalgia/">
+        <img src="/characters-small/emoNostalgiaCharacters/emo-garake-pet.webp" alt="ガラケーペット" loading="lazy" width="120" height="72" />
+        <span class="cname">ガラケーペット</span>
+        <span class="ctype">ガラケー保存タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/emo-nostalgia/">
+        <img src="/characters-small/emoNostalgiaCharacters/emo-treasurebox-pet.webp" alt="思い出箱ペット" loading="lazy" width="120" height="72" />
+        <span class="cname">思い出箱ペット</span>
+        <span class="ctype">開かずの箱の主タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/emo-nostalgia/">
+        <img src="/characters-small/emoNostalgiaCharacters/emo-record-pet.webp" alt="レコードペット" loading="lazy" width="120" height="72" />
+        <span class="cname">レコードペット</span>
+        <span class="ctype">サントラ全部持ってるタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/emo-nostalgia/">
+        <img src="/characters-small/emoNostalgiaCharacters/emo-arcade-pet.webp" alt="アーケードペット" loading="lazy" width="120" height="72" />
+        <span class="cname">アーケードペット</span>
+        <span class="ctype">レトロ沼の住人タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/emo-nostalgia/">
+        <img src="/characters-small/emoNostalgiaCharacters/emo-purikura-pet.webp" alt="プリ帳ペット" loading="lazy" width="120" height="72" />
+        <span class="cname">プリ帳ペット</span>
+        <span class="ctype">思い出保管庫タイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="sleep-type">
+    <h2><a href="/diagnosis/sleep-type/">😴 睡眠タイプ診断</a></h2>
+    <p class="zukan-lead">夜型？朝型？秒で寝る？あなたの睡眠タイプと相性のいい眠り方がわかる無料の性格診断・心理テストです。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/sleep-type/">
+        <img src="/characters-small/sleepSheepCharacters/sleep-nightowl-sheep.webp" alt="よふかしショートひつじ" loading="lazy" width="120" height="72" />
+        <span class="cname">よふかしショートひつじ</span>
+        <span class="ctype">夜ふかしショートタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sleep-type/">
+        <img src="/characters-small/sleepSheepCharacters/sleep-earlybird-sheep.webp" alt="はやおきショートひつじ" loading="lazy" width="120" height="72" />
+        <span class="cname">はやおきショートひつじ</span>
+        <span class="ctype">早起きショートタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sleep-type/">
+        <img src="/characters-small/sleepSheepCharacters/sleep-nap-sheep.webp" alt="うたたねひつじ" loading="lazy" width="120" height="72" />
+        <span class="cname">うたたねひつじ</span>
+        <span class="ctype">うたた寝タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sleep-type/">
+        <img src="/characters-small/sleepSheepCharacters/sleep-eyemask-sheep.webp" alt="かいみんみならいひつじ" loading="lazy" width="120" height="72" />
+        <span class="cname">かいみんみならいひつじ</span>
+        <span class="ctype">快眠見習いタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sleep-type/">
+        <img src="/characters-small/sleepSheepCharacters/sleep-nightcap-sheep.webp" alt="よいっぱりひつじ" loading="lazy" width="120" height="72" />
+        <span class="cname">よいっぱりひつじ</span>
+        <span class="ctype">宵っ張りタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sleep-type/">
+        <img src="/characters-small/sleepSheepCharacters/sleep-morning-sheep.webp" alt="あさかつひつじ" loading="lazy" width="120" height="72" />
+        <span class="cname">あさかつひつじ</span>
+        <span class="ctype">朝活タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sleep-type/">
+        <img src="/characters-small/sleepSheepCharacters/sleep-sofa-sheep.webp" alt="ソファねおちひつじ" loading="lazy" width="120" height="72" />
+        <span class="cname">ソファねおちひつじ</span>
+        <span class="ctype">ソファ寝落ちタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sleep-type/">
+        <img src="/characters-small/sleepSheepCharacters/sleep-pillow-sheep.webp" alt="かいみんじゅんびひつじ" loading="lazy" width="120" height="72" />
+        <span class="cname">かいみんじゅんびひつじ</span>
+        <span class="ctype">快眠準備タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sleep-type/">
+        <img src="/characters-small/sleepSheepCharacters/sleep-midnight-sheep.webp" alt="よふかしじょうしゅうひつじ" loading="lazy" width="120" height="72" />
+        <span class="cname">よふかしじょうしゅうひつじ</span>
+        <span class="ctype">夜更かし常習タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sleep-type/">
+        <img src="/characters-small/sleepSheepCharacters/sleep-sunrise-sheep.webp" alt="すっきりはやおきひつじ" loading="lazy" width="120" height="72" />
+        <span class="cname">すっきりはやおきひつじ</span>
+        <span class="ctype">すっきり早起きタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sleep-type/">
+        <img src="/characters-small/sleepSheepCharacters/sleep-anywhere-sheep.webp" alt="どこでもねられるひつじ" loading="lazy" width="120" height="72" />
+        <span class="cname">どこでもねられるひつじ</span>
+        <span class="ctype">どこでも寝られるタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sleep-type/">
+        <img src="/characters-small/sleepSheepCharacters/sleep-bedding-sheep.webp" alt="しんぐマニアひつじ" loading="lazy" width="120" height="72" />
+        <span class="cname">しんぐマニアひつじ</span>
+        <span class="ctype">寝具マニアタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sleep-type/">
+        <img src="/characters-small/sleepSheepCharacters/sleep-fullowl-sheep.webp" alt="かんぜんよるがたひつじ" loading="lazy" width="120" height="72" />
+        <span class="cname">かんぜんよるがたひつじ</span>
+        <span class="ctype">完全夜型タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sleep-type/">
+        <img src="/characters-small/sleepSheepCharacters/sleep-dawn-sheep.webp" alt="はやねはやおきたつじんひつじ" loading="lazy" width="120" height="72" />
+        <span class="cname">はやねはやおきたつじんひつじ</span>
+        <span class="ctype">早寝早起きの達人タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sleep-type/">
+        <img src="/characters-small/sleepSheepCharacters/sleep-instant-sheep.webp" alt="びょうでねるひつじ" loading="lazy" width="120" height="72" />
+        <span class="cname">びょうでねるひつじ</span>
+        <span class="ctype">秒で寝るタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/sleep-type/">
+        <img src="/characters-small/sleepSheepCharacters/sleep-master-sheep.webp" alt="かいみんをきわめたひつじ" loading="lazy" width="120" height="72" />
+        <span class="cname">かいみんをきわめたひつじ</span>
+        <span class="ctype">快眠を極めたタイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="bind-level">
+    <h2><a href="/diagnosis/bind-level/">🎀 束縛度診断</a></h2>
+    <p class="zukan-lead">あなたの愛、ちょっと重い？相手を束縛したくなる度合いがわかる無料の恋愛心理テストです。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/bind-level/">
+        <img src="/characters-small/bindRibbonCharacters/bind-patrol-ribbon.webp" alt="ゆるパトリボン" loading="lazy" width="120" height="72" />
+        <span class="cname">ゆるパトリボン</span>
+        <span class="ctype">ときどきパトロールタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/bind-level/">
+        <img src="/characters-small/bindRibbonCharacters/bind-jealous-ribbon.webp" alt="やきもちリボン" loading="lazy" width="120" height="72" />
+        <span class="cname">やきもちリボン</span>
+        <span class="ctype">ちょっとヤキモチタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/bind-level/">
+        <img src="/characters-small/bindRibbonCharacters/bind-curious-ribbon.webp" alt="きになるリボン" loading="lazy" width="120" height="72" />
+        <span class="cname">きになるリボン</span>
+        <span class="ctype">やんわり気になるタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/bind-level/">
+        <img src="/characters-small/bindRibbonCharacters/bind-lonely-ribbon.webp" alt="さみしがりリボン" loading="lazy" width="120" height="72" />
+        <span class="cname">さみしがりリボン</span>
+        <span class="ctype">たまに寂しがりタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/bind-level/">
+        <img src="/characters-small/bindRibbonCharacters/bind-read-ribbon.webp" alt="きどくリボン" loading="lazy" width="120" height="72" />
+        <span class="cname">きどくリボン</span>
+        <span class="ctype">既読チェックタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/bind-level/">
+        <img src="/characters-small/bindRibbonCharacters/bind-number1-ribbon.webp" alt="いちばんリボン" loading="lazy" width="120" height="72" />
+        <span class="cname">いちばんリボン</span>
+        <span class="ctype">一番でいたいタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/bind-level/">
+        <img src="/characters-small/bindRibbonCharacters/bind-schedule-ribbon.webp" alt="よていリボン" loading="lazy" width="120" height="72" />
+        <span class="cname">よていリボン</span>
+        <span class="ctype">予定把握したいタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/bind-level/">
+        <img src="/characters-small/bindRibbonCharacters/bind-waiting-ribbon.webp" alt="れんらくまちリボン" loading="lazy" width="120" height="72" />
+        <span class="cname">れんらくまちリボン</span>
+        <span class="ctype">連絡待ちドキドキタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/bind-level/">
+        <img src="/characters-small/bindRibbonCharacters/bind-location-ribbon.webp" alt="いちじょうほうリボン" loading="lazy" width="120" height="72" />
+        <span class="cname">いちじょうほうリボン</span>
+        <span class="ctype">位置情報気になるタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/bind-level/">
+        <img src="/characters-small/bindRibbonCharacters/bind-monopoly-ribbon.webp" alt="ひとりじめリボン" loading="lazy" width="120" height="72" />
+        <span class="cname">ひとりじめリボン</span>
+        <span class="ctype">独り占めしたいタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/bind-level/">
+        <img src="/characters-small/bindRibbonCharacters/bind-coorde-ribbon.webp" alt="こでリボン" loading="lazy" width="120" height="72" />
+        <span class="cname">こでリボン</span>
+        <span class="ctype">コーデ口出しタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/bind-level/">
+        <img src="/characters-small/bindRibbonCharacters/bind-confirm-ribbon.webp" alt="たしかめリボン" loading="lazy" width="120" height="72" />
+        <span class="cname">たしかめリボン</span>
+        <span class="ctype">確かめずにいられないタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/bind-level/">
+        <img src="/characters-small/bindRibbonCharacters/bind-24hpatrol-ribbon.webp" alt="にじゅうよじリボン" loading="lazy" width="120" height="72" />
+        <span class="cname">にじゅうよじリボン</span>
+        <span class="ctype">24時間パトロールタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/bind-level/">
+        <img src="/characters-small/bindRibbonCharacters/bind-onlyus-ribbon.webp" alt="ふたりきりリボン" loading="lazy" width="120" height="72" />
+        <span class="cname">ふたりきりリボン</span>
+        <span class="ctype">世界で二人きり希望タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/bind-level/">
+        <img src="/characters-small/bindRibbonCharacters/bind-control-ribbon.webp" alt="かんりリボン" loading="lazy" width="120" height="72" />
+        <span class="cname">かんりリボン</span>
+        <span class="ctype">全部管理したいタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/bind-level/">
+        <img src="/characters-small/bindRibbonCharacters/bind-clingy-ribbon.webp" alt="かまってリボン" loading="lazy" width="120" height="72" />
+        <span class="cname">かまってリボン</span>
+        <span class="ctype">かまってMAXタイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="my-pace">
+    <h2><a href="/diagnosis/my-pace/">🐱 マイペース度診断</a></h2>
+    <p class="zukan-lead">あなたのマイペース度を16匹の猫キャラで診断。周りに合わせ上手？それとも猫界の自由人？無料1分で遊べる性格診断・心理テストです。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/my-pace/">
+        <img src="/characters-small/myPaceCatCharacters/mypace-ragdoll-cat.webp" alt="おっとりラグドール" loading="lazy" width="120" height="72" />
+        <span class="cname">おっとりラグドール</span>
+        <span class="ctype">寄り添いペースタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/my-pace/">
+        <img src="/characters-small/myPaceCatCharacters/mypace-amesho-cat.webp" alt="ノリのいいアメショ" loading="lazy" width="120" height="72" />
+        <span class="cname">ノリのいいアメショ</span>
+        <span class="ctype">ノリ合わせ上手タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/my-pace/">
+        <img src="/characters-small/myPaceCatCharacters/mypace-hachiware-cat.webp" alt="窓辺のハチワレ" loading="lazy" width="120" height="72" />
+        <span class="cname">窓辺のハチワレ</span>
+        <span class="ctype">ひとり時間ちょい足しタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/my-pace/">
+        <img src="/characters-small/myPaceCatCharacters/mypace-munchkin-cat.webp" alt="てくてくマンチカン" loading="lazy" width="120" height="72" />
+        <span class="cname">てくてくマンチカン</span>
+        <span class="ctype">さりげなく自分流タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/my-pace/">
+        <img src="/characters-small/myPaceCatCharacters/mypace-scottish-cat.webp" alt="まったりスコティッシュ" loading="lazy" width="120" height="72" />
+        <span class="cname">まったりスコティッシュ</span>
+        <span class="ctype">のんびり屋さんタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/my-pace/">
+        <img src="/characters-small/myPaceCatCharacters/mypace-mike-cat.webp" alt="きまぐれ三毛猫" loading="lazy" width="120" height="72" />
+        <span class="cname">きまぐれ三毛猫</span>
+        <span class="ctype">気分屋ときどき協調タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/my-pace/">
+        <img src="/characters-small/myPaceCatCharacters/mypace-kijitora-cat.webp" alt="さんぽキジトラ" loading="lazy" width="120" height="72" />
+        <span class="cname">さんぽキジトラ</span>
+        <span class="ctype">ふらっとソロ活タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/my-pace/">
+        <img src="/characters-small/myPaceCatCharacters/mypace-bengal-cat.webp" alt="全力ベンガル" loading="lazy" width="120" height="72" />
+        <span class="cname">全力ベンガル</span>
+        <span class="ctype">好きなものは譲らないタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/my-pace/">
+        <img src="/characters-small/myPaceCatCharacters/mypace-chatora-cat.webp" alt="ひるね茶トラ" loading="lazy" width="120" height="72" />
+        <span class="cname">ひるね茶トラ</span>
+        <span class="ctype">自分時間ゆずらないタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/my-pace/">
+        <img src="/characters-small/myPaceCatCharacters/mypace-sabi-cat.webp" alt="きぶんやサビ猫" loading="lazy" width="120" height="72" />
+        <span class="cname">きぶんやサビ猫</span>
+        <span class="ctype">その日の気分がすべてタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/my-pace/">
+        <img src="/characters-small/myPaceCatCharacters/mypace-russianblue-cat.webp" alt="クールなロシアンブルー" loading="lazy" width="120" height="72" />
+        <span class="cname">クールなロシアンブルー</span>
+        <span class="ctype">クールな単独行動タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/my-pace/">
+        <img src="/characters-small/myPaceCatCharacters/mypace-mainecoon-cat.webp" alt="どっしりメインクーン" loading="lazy" width="120" height="72" />
+        <span class="cname">どっしりメインクーン</span>
+        <span class="ctype">動じない我が道タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/my-pace/">
+        <img src="/characters-small/myPaceCatCharacters/mypace-persian-cat.webp" alt="ゆうぜんペルシャ" loading="lazy" width="120" height="72" />
+        <span class="cname">ゆうぜんペルシャ</span>
+        <span class="ctype">悠然マイペースの極みタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/my-pace/">
+        <img src="/characters-small/myPaceCatCharacters/mypace-siamese-cat.webp" alt="おしゃべりシャム" loading="lazy" width="120" height="72" />
+        <span class="cname">おしゃべりシャム</span>
+        <span class="ctype">言いたいことは言うタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/my-pace/">
+        <img src="/characters-small/myPaceCatCharacters/mypace-kuroneko-cat.webp" alt="よふかし黒猫" loading="lazy" width="120" height="72" />
+        <span class="cname">よふかし黒猫</span>
+        <span class="ctype">夜の自由人タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/my-pace/">
+        <img src="/characters-small/myPaceCatCharacters/mypace-sphynx-cat.webp" alt="ありのままスフィンクス" loading="lazy" width="120" height="72" />
+        <span class="cname">ありのままスフィンクス</span>
+        <span class="ctype">唯一無二の我が道タイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="isekai-position">
+    <h2><a href="/diagnosis/isekai-position/">⚔️ 異世界転生ポジション診断</a></h2>
+    <p class="zukan-lead">異世界に転生したら、あなたはどのポジション？勇者・魔王・賢者から村人まで、16タイプでわかる無料の性格診断・心理テストです。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/isekai-position/">
+        <img src="/characters-small/isekaiPuniCharacters/isekai-guard-puni.webp" alt="見回りぷに" loading="lazy" width="120" height="72" />
+        <span class="cname">見回りぷに</span>
+        <span class="ctype">村の自警団タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/isekai-position/">
+        <img src="/characters-small/isekaiPuniCharacters/isekai-shopkeeper-puni.webp" alt="道具屋ぷに" loading="lazy" width="120" height="72" />
+        <span class="cname">道具屋ぷに</span>
+        <span class="ctype">街の道具屋タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/isekai-position/">
+        <img src="/characters-small/isekaiPuniCharacters/isekai-innkeeper-puni.webp" alt="宿屋ぷに" loading="lazy" width="120" height="72" />
+        <span class="cname">宿屋ぷに</span>
+        <span class="ctype">宿屋の看板店主タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/isekai-position/">
+        <img src="/characters-small/isekaiPuniCharacters/isekai-bard-puni.webp" alt="吟遊詩人ぷに" loading="lazy" width="120" height="72" />
+        <span class="cname">吟遊詩人ぷに</span>
+        <span class="ctype">旅の吟遊詩人タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/isekai-position/">
+        <img src="/characters-small/isekaiPuniCharacters/isekai-swordsman-puni.webp" alt="剣士ぷに" loading="lazy" width="120" height="72" />
+        <span class="cname">剣士ぷに</span>
+        <span class="ctype">前衛剣士タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/isekai-position/">
+        <img src="/characters-small/isekaiPuniCharacters/isekai-mage-puni.webp" alt="魔法使いぷに" loading="lazy" width="120" height="72" />
+        <span class="cname">魔法使いぷに</span>
+        <span class="ctype">パーティの魔法使いタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/isekai-position/">
+        <img src="/characters-small/isekaiPuniCharacters/isekai-healer-puni.webp" alt="ヒーラーぷに" loading="lazy" width="120" height="72" />
+        <span class="cname">ヒーラーぷに</span>
+        <span class="ctype">癒しの僧侶タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/isekai-position/">
+        <img src="/characters-small/isekaiPuniCharacters/isekai-hunter-puni.webp" alt="トレハンぷに" loading="lazy" width="120" height="72" />
+        <span class="cname">トレハンぷに</span>
+        <span class="ctype">トレジャーハンタータイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/isekai-position/">
+        <img src="/characters-small/isekaiPuniCharacters/isekai-knight-puni.webp" alt="騎士団長ぷに" loading="lazy" width="120" height="72" />
+        <span class="cname">騎士団長ぷに</span>
+        <span class="ctype">騎士団長タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/isekai-position/">
+        <img src="/characters-small/isekaiPuniCharacters/isekai-sage-puni.webp" alt="賢者ぷに" loading="lazy" width="120" height="72" />
+        <span class="cname">賢者ぷに</span>
+        <span class="ctype">宮廷賢者タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/isekai-position/">
+        <img src="/characters-small/isekaiPuniCharacters/isekai-saint-puni.webp" alt="聖ぷに" loading="lazy" width="120" height="72" />
+        <span class="cname">聖ぷに</span>
+        <span class="ctype">聖なる守り手タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/isekai-position/">
+        <img src="/characters-small/isekaiPuniCharacters/isekai-phantom-puni.webp" alt="怪盗ぷに" loading="lazy" width="120" height="72" />
+        <span class="cname">怪盗ぷに</span>
+        <span class="ctype">仮面の怪盗タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/isekai-position/">
+        <img src="/characters-small/isekaiPuniCharacters/isekai-hero-puni.webp" alt="勇者ぷに" loading="lazy" width="120" height="72" />
+        <span class="cname">勇者ぷに</span>
+        <span class="ctype">伝説の勇者タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/isekai-position/">
+        <img src="/characters-small/isekaiPuniCharacters/isekai-archmage-puni.webp" alt="大魔導士ぷに" loading="lazy" width="120" height="72" />
+        <span class="cname">大魔導士ぷに</span>
+        <span class="ctype">大魔導士タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/isekai-position/">
+        <img src="/characters-small/isekaiPuniCharacters/isekai-spiritking-puni.webp" alt="精霊王ぷに" loading="lazy" width="120" height="72" />
+        <span class="cname">精霊王ぷに</span>
+        <span class="ctype">精霊王タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/isekai-position/">
+        <img src="/characters-small/isekaiPuniCharacters/isekai-maou-puni.webp" alt="魔王ぷに" loading="lazy" width="120" height="72" />
+        <span class="cname">魔王ぷに</span>
+        <span class="ctype">魔王タイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="procrastination">
+    <h2><a href="/diagnosis/procrastination/">🦥 先延ばし癖診断</a></h2>
+    <p class="zukan-lead">「あとでやる」が口ぐせのあなたへ。先延ばし度と先延ばしのクセを16匹のナマケモノで診断する無料の性格診断・心理テストです。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/procrastination/">
+        <img src="/characters-small/laterSlothCharacters/later-morning-sloth.webp" alt="朝イチ片付けナマケモノ" loading="lazy" width="120" height="72" />
+        <span class="cname">朝イチ片付けナマケモノ</span>
+        <span class="ctype">朝イチ片付けタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/procrastination/">
+        <img src="/characters-small/laterSlothCharacters/later-quick-sloth.webp" alt="即レスナマケモノ" loading="lazy" width="120" height="72" />
+        <span class="cname">即レスナマケモノ</span>
+        <span class="ctype">即レス行動タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/procrastination/">
+        <img src="/characters-small/laterSlothCharacters/later-steady-sloth.webp" alt="コツコツナマケモノ" loading="lazy" width="120" height="72" />
+        <span class="cname">コツコツナマケモノ</span>
+        <span class="ctype">コツコツ習慣タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/procrastination/">
+        <img src="/characters-small/laterSlothCharacters/later-early-sloth.webp" alt="前倒しナマケモノ" loading="lazy" width="120" height="72" />
+        <span class="cname">前倒しナマケモノ</span>
+        <span class="ctype">前倒し余裕タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/procrastination/">
+        <img src="/characters-small/laterSlothCharacters/later-list-sloth.webp" alt="リスト作りナマケモノ" loading="lazy" width="120" height="72" />
+        <span class="cname">リスト作りナマケモノ</span>
+        <span class="ctype">リスト作って満足タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/procrastination/">
+        <img src="/characters-small/laterSlothCharacters/later-mood-sloth.webp" alt="気分待ちナマケモノ" loading="lazy" width="120" height="72" />
+        <span class="cname">気分待ちナマケモノ</span>
+        <span class="ctype">やる気の天気待ちタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/procrastination/">
+        <img src="/characters-small/laterSlothCharacters/later-nagara-sloth.webp" alt="ながら作業ナマケモノ" loading="lazy" width="120" height="72" />
+        <span class="cname">ながら作業ナマケモノ</span>
+        <span class="ctype">ながら脱線タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/procrastination/">
+        <img src="/characters-small/laterSlothCharacters/later-fivemin-sloth.webp" alt="あと5分ナマケモノ" loading="lazy" width="120" height="72" />
+        <span class="cname">あと5分ナマケモノ</span>
+        <span class="ctype">あと5分だけタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/procrastination/">
+        <img src="/characters-small/laterSlothCharacters/later-setup-sloth.webp" alt="準備中ナマケモノ" loading="lazy" width="120" height="72" />
+        <span class="cname">準備中ナマケモノ</span>
+        <span class="ctype">永遠の準備中タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/procrastination/">
+        <img src="/characters-small/laterSlothCharacters/later-tomorrow-sloth.webp" alt="明日から本気ナマケモノ" loading="lazy" width="120" height="72" />
+        <span class="cname">明日から本気ナマケモノ</span>
+        <span class="ctype">明日から本気タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/procrastination/">
+        <img src="/characters-small/laterSlothCharacters/later-temptation-sloth.webp" alt="誘惑まっしぐらナマケモノ" loading="lazy" width="120" height="72" />
+        <span class="cname">誘惑まっしぐらナマケモノ</span>
+        <span class="ctype">誘惑まっしぐらタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/procrastination/">
+        <img src="/characters-small/laterSlothCharacters/later-lastnight-sloth.webp" alt="締切前夜ナマケモノ" loading="lazy" width="120" height="72" />
+        <span class="cname">締切前夜ナマケモノ</span>
+        <span class="ctype">締切前夜の火事場タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/procrastination/">
+        <img src="/characters-small/laterSlothCharacters/later-finalday-sloth.webp" alt="夏休み最終日ナマケモノ" loading="lazy" width="120" height="72" />
+        <span class="cname">夏休み最終日ナマケモノ</span>
+        <span class="ctype">夏休み最終日タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/procrastination/">
+        <img src="/characters-small/laterSlothCharacters/later-nextlife-sloth.webp" alt="来世でやるナマケモノ" loading="lazy" width="120" height="72" />
+        <span class="cname">来世でやるナマケモノ</span>
+        <span class="ctype">来世でやるタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/procrastination/">
+        <img src="/characters-small/laterSlothCharacters/later-king-sloth.webp" alt="先延ばし王ナマケモノ" loading="lazy" width="120" height="72" />
+        <span class="cname">先延ばし王ナマケモノ</span>
+        <span class="ctype">先延ばし王タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/procrastination/">
+        <img src="/characters-small/laterSlothCharacters/later-forgot-sloth.webp" alt="忘れてたナマケモノ" loading="lazy" width="120" height="72" />
+        <span class="cname">忘れてたナマケモノ</span>
+        <span class="ctype">完全に忘れてたタイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="past-life">
+    <h2><a href="/diagnosis/past-life/">🐣 前世診断</a></h2>
+    <p class="zukan-lead">あなたの前世は農家？お姫さま？それとも海賊船長？16羽の魂のひよこが、あなたの前世と受け継いだ性格を教えてくれる無料の性格診断・心理テストです。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/past-life/">
+        <img src="/characters-small/pastlifeChickCharacters/pastlife-farmer-chick.webp" alt="農家ひよこ" loading="lazy" width="120" height="72" />
+        <span class="cname">農家ひよこ</span>
+        <span class="ctype">のどかな農家の前世タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/past-life/">
+        <img src="/characters-small/pastlifeChickCharacters/pastlife-baker-chick.webp" alt="パン屋ひよこ" loading="lazy" width="120" height="72" />
+        <span class="cname">パン屋ひよこ</span>
+        <span class="ctype">街のパン職人の前世タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/past-life/">
+        <img src="/characters-small/pastlifeChickCharacters/pastlife-gardener-chick.webp" alt="庭師ひよこ" loading="lazy" width="120" height="72" />
+        <span class="cname">庭師ひよこ</span>
+        <span class="ctype">花を育てた庭師の前世タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/past-life/">
+        <img src="/characters-small/pastlifeChickCharacters/pastlife-fisher-chick.webp" alt="漁師ひよこ" loading="lazy" width="120" height="72" />
+        <span class="cname">漁師ひよこ</span>
+        <span class="ctype">海の漁師の前世タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/past-life/">
+        <img src="/characters-small/pastlifeChickCharacters/pastlife-merchant-chick.webp" alt="旅商人ひよこ" loading="lazy" width="120" height="72" />
+        <span class="cname">旅商人ひよこ</span>
+        <span class="ctype">旅の商人の前世タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/past-life/">
+        <img src="/characters-small/pastlifeChickCharacters/pastlife-scholar-chick.webp" alt="学者ひよこ" loading="lazy" width="120" height="72" />
+        <span class="cname">学者ひよこ</span>
+        <span class="ctype">静かな学者の前世タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/past-life/">
+        <img src="/characters-small/pastlifeChickCharacters/pastlife-doctor-chick.webp" alt="お医者ひよこ" loading="lazy" width="120" height="72" />
+        <span class="cname">お医者ひよこ</span>
+        <span class="ctype">町のお医者の前世タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/past-life/">
+        <img src="/characters-small/pastlifeChickCharacters/pastlife-performer-chick.webp" alt="旅芸人ひよこ" loading="lazy" width="120" height="72" />
+        <span class="cname">旅芸人ひよこ</span>
+        <span class="ctype">旅芸人の前世タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/past-life/">
+        <img src="/characters-small/pastlifeChickCharacters/pastlife-samurai-chick.webp" alt="侍ひよこ" loading="lazy" width="120" height="72" />
+        <span class="cname">侍ひよこ</span>
+        <span class="ctype">一本気な侍の前世タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/past-life/">
+        <img src="/characters-small/pastlifeChickCharacters/pastlife-inventor-chick.webp" alt="発明家ひよこ" loading="lazy" width="120" height="72" />
+        <span class="cname">発明家ひよこ</span>
+        <span class="ctype">ひらめき発明家の前世タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/past-life/">
+        <img src="/characters-small/pastlifeChickCharacters/pastlife-princess-chick.webp" alt="姫ひよこ" loading="lazy" width="120" height="72" />
+        <span class="cname">姫ひよこ</span>
+        <span class="ctype">心優しい姫の前世タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/past-life/">
+        <img src="/characters-small/pastlifeChickCharacters/pastlife-navigator-chick.webp" alt="航海士ひよこ" loading="lazy" width="120" height="72" />
+        <span class="cname">航海士ひよこ</span>
+        <span class="ctype">大海の航海士の前世タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/past-life/">
+        <img src="/characters-small/pastlifeChickCharacters/pastlife-dragonknight-chick.webp" alt="竜騎士ひよこ" loading="lazy" width="120" height="72" />
+        <span class="cname">竜騎士ひよこ</span>
+        <span class="ctype">竜騎士の前世タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/past-life/">
+        <img src="/characters-small/pastlifeChickCharacters/pastlife-onmyoji-chick.webp" alt="大陰陽師ひよこ" loading="lazy" width="120" height="72" />
+        <span class="cname">大陰陽師ひよこ</span>
+        <span class="ctype">大陰陽師の前世タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/past-life/">
+        <img src="/characters-small/pastlifeChickCharacters/pastlife-stargazer-chick.webp" alt="星読みひよこ" loading="lazy" width="120" height="72" />
+        <span class="cname">星読みひよこ</span>
+        <span class="ctype">星読みの前世タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/past-life/">
+        <img src="/characters-small/pastlifeChickCharacters/pastlife-pirate-chick.webp" alt="海賊船長ひよこ" loading="lazy" width="120" height="72" />
+        <span class="cname">海賊船長ひよこ</span>
+        <span class="ctype">海賊船長の前世タイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="self-esteem">
+    <h2><a href="/diagnosis/self-esteem/">🌱 自己肯定感タイプ診断</a></h2>
+    <p class="zukan-lead">あなたの自己肯定感はどんな形？16種類の植物キャラで、自分との付き合い方と心の育て方がわかる無料の性格診断・心理テストです。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/self-esteem/">
+        <img src="/characters-small/esteemPlantCharacters/esteem-futaba-sprout.webp" alt="ふたばの芽" loading="lazy" width="120" height="72" />
+        <span class="cname">ふたばの芽</span>
+        <span class="ctype">そっと芽吹きタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/self-esteem/">
+        <img src="/characters-small/esteemPlantCharacters/esteem-koke-moss.webp" alt="こけまる" loading="lazy" width="120" height="72" />
+        <span class="cname">こけまる</span>
+        <span class="ctype">かくれんぼ苔タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/self-esteem/">
+        <img src="/characters-small/esteemPlantCharacters/esteem-tsubomi-bud.webp" alt="つぼみちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">つぼみちゃん</span>
+        <span class="ctype">雨待ちつぼみタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/self-esteem/">
+        <img src="/characters-small/esteemPlantCharacters/esteem-niku-succulent.webp" alt="にくまる" loading="lazy" width="120" height="72" />
+        <span class="cname">にくまる</span>
+        <span class="ctype">すみっこ多肉タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/self-esteem/">
+        <img src="/characters-small/esteemPlantCharacters/esteem-daisy-flower.webp" alt="デイジーちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">デイジーちゃん</span>
+        <span class="ctype">陽だまりデイジータイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/self-esteem/">
+        <img src="/characters-small/esteemPlantCharacters/esteem-gungun-leaf.webp" alt="ぐんぐんくん" loading="lazy" width="120" height="72" />
+        <span class="cname">ぐんぐんくん</span>
+        <span class="ctype">ぐんぐん双葉タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/self-esteem/">
+        <img src="/characters-small/esteemPlantCharacters/esteem-clover.webp" alt="よつばちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">よつばちゃん</span>
+        <span class="ctype">よりそいクローバータイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/self-esteem/">
+        <img src="/characters-small/esteemPlantCharacters/esteem-cosmos-flower.webp" alt="コスモちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">コスモちゃん</span>
+        <span class="ctype">風にゆれるコスモスタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/self-esteem/">
+        <img src="/characters-small/esteemPlantCharacters/esteem-himawari-sun.webp" alt="ひまりん" loading="lazy" width="120" height="72" />
+        <span class="cname">ひまりん</span>
+        <span class="ctype">太陽まっすぐひまわりタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/self-esteem/">
+        <img src="/characters-small/esteemPlantCharacters/esteem-lavender.webp" alt="ラベちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">ラベちゃん</span>
+        <span class="ctype">自分色ラベンダータイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/self-esteem/">
+        <img src="/characters-small/esteemPlantCharacters/esteem-bamboo.webp" alt="たけのこくん" loading="lazy" width="120" height="72" />
+        <span class="cname">たけのこくん</span>
+        <span class="ctype">しなやか竹タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/self-esteem/">
+        <img src="/characters-small/esteemPlantCharacters/esteem-mikan-tree.webp" alt="みかん先輩" loading="lazy" width="120" height="72" />
+        <span class="cname">みかん先輩</span>
+        <span class="ctype">実りのみかんタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/self-esteem/">
+        <img src="/characters-small/esteemPlantCharacters/esteem-rose.webp" alt="ローズ様" loading="lazy" width="120" height="72" />
+        <span class="cname">ローズ様</span>
+        <span class="ctype">堂々ばらタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/self-esteem/">
+        <img src="/characters-small/esteemPlantCharacters/esteem-taiju-tree.webp" alt="たいじゅ" loading="lazy" width="120" height="72" />
+        <span class="cname">たいじゅ</span>
+        <span class="ctype">悠然おおきな木タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/self-esteem/">
+        <img src="/characters-small/esteemPlantCharacters/esteem-sennen-cedar.webp" alt="せんねん杉" loading="lazy" width="120" height="72" />
+        <span class="cname">せんねん杉</span>
+        <span class="ctype">千年杉タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/self-esteem/">
+        <img src="/characters-small/esteemPlantCharacters/esteem-world-tree.webp" alt="せかいじゅ" loading="lazy" width="120" height="72" />
+        <span class="cname">せかいじゅ</span>
+        <span class="ctype">世界樹タイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="stress-level">
+    <h2><a href="/diagnosis/stress-level/">🎈 ストレス限界度診断</a></h2>
+    <p class="zukan-lead">心の風船、いまどれくらい膨らんでる？ストレスの溜まり具合と、上手なガス抜きの方法が16の風船キャラでわかる無料の心理テストです。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/stress-level/">
+        <img src="/characters-small/stressBalloonCharacters/stress-yoyuu-balloon.webp" alt="よゆう風船" loading="lazy" width="120" height="72" />
+        <span class="cname">よゆう風船</span>
+        <span class="ctype">余裕たっぷりタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/stress-level/">
+        <img src="/characters-small/stressBalloonCharacters/stress-purun-balloon.webp" alt="ぷるん風船" loading="lazy" width="120" height="72" />
+        <span class="cname">ぷるん風船</span>
+        <span class="ctype">ぷるんと安定タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/stress-level/">
+        <img src="/characters-small/stressBalloonCharacters/stress-choihari-balloon.webp" alt="ちょいはり風船" loading="lazy" width="120" height="72" />
+        <span class="cname">ちょいはり風船</span>
+        <span class="ctype">ちょい張りタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/stress-level/">
+        <img src="/characters-small/stressBalloonCharacters/stress-kibari-balloon.webp" alt="きばり風船" loading="lazy" width="120" height="72" />
+        <span class="cname">きばり風船</span>
+        <span class="ctype">気を張りがちタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/stress-level/">
+        <img src="/characters-small/stressBalloonCharacters/stress-uchigawa-balloon.webp" alt="うちがわ風船" loading="lazy" width="120" height="72" />
+        <span class="cname">うちがわ風船</span>
+        <span class="ctype">内側で膨らみ中タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/stress-level/">
+        <img src="/characters-small/stressBalloonCharacters/stress-karagenki-balloon.webp" alt="からげんき風船" loading="lazy" width="120" height="72" />
+        <span class="cname">からげんき風船</span>
+        <span class="ctype">無理して笑顔タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/stress-level/">
+        <img src="/characters-small/stressBalloonCharacters/stress-kizukare-balloon.webp" alt="きづかれ風船" loading="lazy" width="120" height="72" />
+        <span class="cname">きづかれ風船</span>
+        <span class="ctype">気疲れしやすいタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/stress-level/">
+        <img src="/characters-small/stressBalloonCharacters/stress-guruguru-balloon.webp" alt="ぐるぐる風船" loading="lazy" width="120" height="72" />
+        <span class="cname">ぐるぐる風船</span>
+        <span class="ctype">考えすぎてパンパンタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/stress-level/">
+        <img src="/characters-small/stressBalloonCharacters/stress-shibomi-balloon.webp" alt="しぼみ風船" loading="lazy" width="120" height="72" />
+        <span class="cname">しぼみ風船</span>
+        <span class="ctype">急にしぼむタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/stress-level/">
+        <img src="/characters-small/stressBalloonCharacters/stress-girigiri-balloon.webp" alt="ぎりぎり風船" loading="lazy" width="120" height="72" />
+        <span class="cname">ぎりぎり風船</span>
+        <span class="ctype">限界ギリギリタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/stress-level/">
+        <img src="/characters-small/stressBalloonCharacters/stress-punpun-balloon.webp" alt="ぷんぷん風船" loading="lazy" width="120" height="72" />
+        <span class="cname">ぷんぷん風船</span>
+        <span class="ctype">小さなことで爆発寸前タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/stress-level/">
+        <img src="/characters-small/stressBalloonCharacters/stress-moumuri-balloon.webp" alt="もうむり風船" loading="lazy" width="120" height="72" />
+        <span class="cname">もうむり風船</span>
+        <span class="ctype">もう無理かもタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/stress-level/">
+        <img src="/characters-small/stressBalloonCharacters/stress-boroboro-balloon.webp" alt="ぼろぼろ風船" loading="lazy" width="120" height="72" />
+        <span class="cname">ぼろぼろ風船</span>
+        <span class="ctype">表面は元気、中はボロボロタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/stress-level/">
+        <img src="/characters-small/stressBalloonCharacters/stress-kincho-balloon.webp" alt="きんちょう風船" loading="lazy" width="120" height="72" />
+        <span class="cname">きんちょう風船</span>
+        <span class="ctype">いつも緊張タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/stress-level/">
+        <img src="/characters-small/stressBalloonCharacters/stress-fukkatsu-balloon.webp" alt="ふっかつ風船" loading="lazy" width="120" height="72" />
+        <span class="cname">ふっかつ風船</span>
+        <span class="ctype">ちょっとした休息で復活タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/stress-level/">
+        <img src="/characters-small/stressBalloonCharacters/stress-bakuhatsu-balloon.webp" alt="ばくはつ風船" loading="lazy" width="120" height="72" />
+        <span class="cname">ばくはつ風船</span>
+        <span class="ctype">完全に爆発タイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="animal-type">
+    <h2><a href="/diagnosis/animal-type/">🐾 ハイブリッドアニマル診断</a></h2>
+    <p class="zukan-lead">あなたを動物にたとえると？2匹の動物が合体した16種の“ハイブリッドアニマル”で、あなたの性格と魅力がわかる無料の性格診断・心理テストです。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/animal-type/">
+        <img src="/characters-small/animalTypeCharacters/hybrid-capybara-koala.webp" alt="カピコさん" loading="lazy" width="120" height="72" />
+        <span class="cname">カピコさん</span>
+        <span class="ctype">究極まったりタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/animal-type/">
+        <img src="/characters-small/animalTypeCharacters/hybrid-sloth-owl.webp" alt="ナマフクさん" loading="lazy" width="120" height="72" />
+        <span class="cname">ナマフクさん</span>
+        <span class="ctype">スローな夜ふかしタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/animal-type/">
+        <img src="/characters-small/animalTypeCharacters/hybrid-otter-jellyfish.webp" alt="ぷからさん" loading="lazy" width="120" height="72" />
+        <span class="cname">ぷからさん</span>
+        <span class="ctype">ぷかぷかマイペースタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/animal-type/">
+        <img src="/characters-small/animalTypeCharacters/hybrid-salamander-whaleshark.webp" alt="ぬしさま" loading="lazy" width="120" height="72" />
+        <span class="cname">ぬしさま</span>
+        <span class="ctype">どっしり大物タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/animal-type/">
+        <img src="/characters-small/animalTypeCharacters/hybrid-beaver-wooper.webp" alt="ぴんくぱーちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">ぴんくぱーちゃん</span>
+        <span class="ctype">みんなの癒しアイドルタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/animal-type/">
+        <img src="/characters-small/animalTypeCharacters/hybrid-rabbit-seaslug.webp" alt="にじうさちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">にじうさちゃん</span>
+        <span class="ctype">カラフル愛されタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/animal-type/">
+        <img src="/characters-small/animalTypeCharacters/hybrid-deer-butterfly.webp" alt="ひらりちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">ひらりちゃん</span>
+        <span class="ctype">ふわり妖精タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/animal-type/">
+        <img src="/characters-small/animalTypeCharacters/hybrid-seahorse-deer.webp" alt="きらりちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">きらりちゃん</span>
+        <span class="ctype">神秘のきらめきタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/animal-type/">
+        <img src="/characters-small/animalTypeCharacters/hybrid-shoebill-octopus.webp" alt="ハシダコ先生" loading="lazy" width="120" height="72" />
+        <span class="cname">ハシダコ先生</span>
+        <span class="ctype">動かない策士タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/animal-type/">
+        <img src="/characters-small/animalTypeCharacters/hybrid-pangolin-rabbit.webp" alt="ふみおくん" loading="lazy" width="120" height="72" />
+        <span class="cname">ふみおくん</span>
+        <span class="ctype">気くばりメッセンジャータイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/animal-type/">
+        <img src="/characters-small/animalTypeCharacters/hybrid-ayeaye-bat.webp" alt="ランタン博士" loading="lazy" width="120" height="72" />
+        <span class="cname">ランタン博士</span>
+        <span class="ctype">夜の探究者タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/animal-type/">
+        <img src="/characters-small/animalTypeCharacters/hybrid-penguin-toucan.webp" alt="ペンハシ隊長" loading="lazy" width="120" height="72" />
+        <span class="cname">ペンハシ隊長</span>
+        <span class="ctype">準備万端の冒険者タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/animal-type/">
+        <img src="/characters-small/animalTypeCharacters/hybrid-blackcat-bat.webp" alt="よるのクロモリ" loading="lazy" width="120" height="72" />
+        <span class="cname">よるのクロモリ</span>
+        <span class="ctype">ミステリアス夜行タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/animal-type/">
+        <img src="/characters-small/animalTypeCharacters/hybrid-anteater-fennec.webp" alt="すなのアリネック" loading="lazy" width="120" height="72" />
+        <span class="cname">すなのアリネック</span>
+        <span class="ctype">砂漠の一匹狼タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/animal-type/">
+        <img src="/characters-small/animalTypeCharacters/hybrid-fennec-leopard.webp" alt="ゆきのユキフェン" loading="lazy" width="120" height="72" />
+        <span class="cname">ゆきのユキフェン</span>
+        <span class="ctype">孤高のハンタータイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/animal-type/">
+        <img src="/characters-small/animalTypeCharacters/hybrid-giraffe-gibbon.webp" alt="たかみのキリテナ" loading="lazy" width="120" height="72" />
+        <span class="cname">たかみのキリテナ</span>
+        <span class="ctype">高みを行く自由人タイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="anger-style">
+    <h2><a href="/diagnosis/anger-style/">🌶️ キレ方診断</a></h2>
+    <p class="zukan-lead">あなたのキレ度は世界一辛いペッパー級？それとも甘いパプリカ級？16種の唐辛子精霊であなたの怒りの強さと出し方がわかる無料の性格診断・心理テストです。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/anger-style/">
+        <img src="/characters-small/angerChiliCharacters/anger-mini-eruption.webp" alt="甘口パプ" loading="lazy" width="120" height="72" />
+        <span class="cname">甘口パプ</span>
+        <span class="ctype">甘口パプリカタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/anger-style/">
+        <img src="/characters-small/angerChiliCharacters/anger-instant-boil.webp" alt="ハラペーくん" loading="lazy" width="120" height="72" />
+        <span class="cname">ハラペーくん</span>
+        <span class="ctype">ハラペー標準タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/anger-style/">
+        <img src="/characters-small/angerChiliCharacters/anger-volcano.webp" alt="セラちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">セラちゃん</span>
+        <span class="ctype">細身セラーノタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/anger-style/">
+        <img src="/characters-small/angerChiliCharacters/anger-lava.webp" alt="カイエンさん" loading="lazy" width="120" height="72" />
+        <span class="cname">カイエンさん</span>
+        <span class="ctype">料理定番カイエンタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/anger-style/">
+        <img src="/characters-small/angerChiliCharacters/anger-pout.webp" alt="バーズアイちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">バーズアイちゃん</span>
+        <span class="ctype">小粒バーズアイタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/anger-style/">
+        <img src="/characters-small/angerChiliCharacters/anger-limit.webp" alt="スコッちゃん" loading="lazy" width="120" height="72" />
+        <span class="cname">スコッちゃん</span>
+        <span class="ctype">帽子スコッチタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/anger-style/">
+        <img src="/characters-small/angerChiliCharacters/anger-pressure-pot.webp" alt="ハバねぇ" loading="lazy" width="120" height="72" />
+        <span class="cname">ハバねぇ</span>
+        <span class="ctype">フルーティハバネロタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/anger-style/">
+        <img src="/characters-small/angerChiliCharacters/anger-time-bomb.webp" alt="ナガモリくん" loading="lazy" width="120" height="72" />
+        <span class="cname">ナガモリくん</span>
+        <span class="ctype">シワ多めナガモリチタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/anger-style/">
+        <img src="/characters-small/angerChiliCharacters/anger-cold-shoulder.webp" alt="チョコセブンさん" loading="lazy" width="120" height="72" />
+        <span class="cname">チョコセブンさん</span>
+        <span class="ctype">チョコ濃厚7ポットタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/anger-style/">
+        <img src="/characters-small/angerChiliCharacters/anger-silent-pressure.webp" alt="ゴーストさん" loading="lazy" width="120" height="72" />
+        <span class="cname">ゴーストさん</span>
+        <span class="ctype">幽玄ゴーストペッパータイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/anger-style/">
+        <img src="/characters-small/angerChiliCharacters/anger-absolute-zero.webp" alt="インフィニさん" loading="lazy" width="120" height="72" />
+        <span class="cname">インフィニさん</span>
+        <span class="ctype">無限地獄インフィニティタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/anger-style/">
+        <img src="/characters-small/angerChiliCharacters/anger-shutdown.webp" alt="ナガヴァイパーさん" loading="lazy" width="120" height="72" />
+        <span class="cname">ナガヴァイパーさん</span>
+        <span class="ctype">細長シワのナガヴァイパータイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/anger-style/">
+        <img src="/characters-small/angerChiliCharacters/anger-hehe-dodge.webp" alt="サソちゃんT" loading="lazy" width="120" height="72" />
+        <span class="cname">サソちゃんT</span>
+        <span class="ctype">サソリ針ブッチTタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/anger-style/">
+        <img src="/characters-small/angerChiliCharacters/anger-bitter-smile.webp" alt="モルガさん" loading="lazy" width="120" height="72" />
+        <span class="cname">モルガさん</span>
+        <span class="ctype">悪魔級モルガスコーピオンタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/anger-style/">
+        <img src="/characters-small/angerChiliCharacters/anger-self-joke.webp" alt="キャロリーパーさま" loading="lazy" width="120" height="72" />
+        <span class="cname">キャロリーパーさま</span>
+        <span class="ctype">しっぽ悪魔キャロリーパータイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/anger-style/">
+        <img src="/characters-small/angerChiliCharacters/anger-enlightened.webp" alt="ペッパーXさま" loading="lazy" width="120" height="72" />
+        <span class="cname">ペッパーXさま</span>
+        <span class="ctype">世界最強ペッパーXタイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="shyness">
+    <h2><a href="/diagnosis/shyness/">🐚 人見知り度診断</a></h2>
+    <p class="zukan-lead">あなたの人見知り度はどのくらい？16のヤドカリの殻の厚さで、心の壁の育ち具合と付き合い方がわかる無料の性格診断・心理テストです。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/shyness/">
+        <img src="/characters-small/shynessHermitCharacters/shy-jelly.webp" alt="シャボンヤドカリ" loading="lazy" width="120" height="72" />
+        <span class="cname">シャボンヤドカリ</span>
+        <span class="ctype">シャボン殻タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/shyness/">
+        <img src="/characters-small/shynessHermitCharacters/shy-one-heart.webp" alt="ジェリーヤドカリ" loading="lazy" width="120" height="72" />
+        <span class="cname">ジェリーヤドカリ</span>
+        <span class="ctype">ジェリー殻タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/shyness/">
+        <img src="/characters-small/shynessHermitCharacters/shy-colorful.webp" alt="編みかごヤドカリ" loading="lazy" width="120" height="72" />
+        <span class="cname">編みかごヤドカリ</span>
+        <span class="ctype">編みかご殻タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/shyness/">
+        <img src="/characters-small/shynessHermitCharacters/shy-frosted-glass.webp" alt="軽やか貝ヤドカリ" loading="lazy" width="120" height="72" />
+        <span class="cname">軽やか貝ヤドカリ</span>
+        <span class="ctype">軽やか貝殻タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/shyness/">
+        <img src="/characters-small/shynessHermitCharacters/shy-warm-tea.webp" alt="木樽ヤドカリ" loading="lazy" width="120" height="72" />
+        <span class="cname">木樽ヤドカリ</span>
+        <span class="ctype">木樽殻タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/shyness/">
+        <img src="/characters-small/shynessHermitCharacters/shy-single-flower.webp" alt="毛糸玉ヤドカリ" loading="lazy" width="120" height="72" />
+        <span class="cname">毛糸玉ヤドカリ</span>
+        <span class="ctype">ピンク毛糸殻タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/shyness/">
+        <img src="/characters-small/shynessHermitCharacters/shy-sticker.webp" alt="ティーカップヤドカリ" loading="lazy" width="120" height="72" />
+        <span class="cname">ティーカップヤドカリ</span>
+        <span class="ctype">ティーカップ殻タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/shyness/">
+        <img src="/characters-small/shynessHermitCharacters/shy-curtain.webp" alt="紫貝ヤドカリ" loading="lazy" width="120" height="72" />
+        <span class="cname">紫貝ヤドカリ</span>
+        <span class="ctype">紫貝殻タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/shyness/">
+        <img src="/characters-small/shynessHermitCharacters/shy-yarn-ball.webp" alt="苔石ヤドカリ" loading="lazy" width="120" height="72" />
+        <span class="cname">苔石ヤドカリ</span>
+        <span class="ctype">苔石殻タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/shyness/">
+        <img src="/characters-small/shynessHermitCharacters/shy-treasure-lock.webp" alt="段ボールヤドカリ" loading="lazy" width="120" height="72" />
+        <span class="cname">段ボールヤドカリ</span>
+        <span class="ctype">段ボール殻タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/shyness/">
+        <img src="/characters-small/shynessHermitCharacters/shy-many-windows.webp" alt="宝箱ヤドカリ" loading="lazy" width="120" height="72" />
+        <span class="cname">宝箱ヤドカリ</span>
+        <span class="ctype">宝箱殻タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/shyness/">
+        <img src="/characters-small/shynessHermitCharacters/shy-thick-book.webp" alt="金庫ヤドカリ" loading="lazy" width="120" height="72" />
+        <span class="cname">金庫ヤドカリ</span>
+        <span class="ctype">金庫殻タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/shyness/">
+        <img src="/characters-small/shynessHermitCharacters/shy-ice-castle.webp" alt="お城ヤドカリ" loading="lazy" width="120" height="72" />
+        <span class="cname">お城ヤドカリ</span>
+        <span class="ctype">お城殻タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/shyness/">
+        <img src="/characters-small/shynessHermitCharacters/shy-padlock-safe.webp" alt="石造ドームヤドカリ" loading="lazy" width="120" height="72" />
+        <span class="cname">石造ドームヤドカリ</span>
+        <span class="ctype">石造ドーム殻タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/shyness/">
+        <img src="/characters-small/shynessHermitCharacters/shy-fortress-window.webp" alt="苔ドームヤドカリ" loading="lazy" width="120" height="72" />
+        <span class="cname">苔ドームヤドカリ</span>
+        <span class="ctype">苔ドーム殻タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/shyness/">
+        <img src="/characters-small/shynessHermitCharacters/shy-cardboard.webp" alt="クリスタル要塞ヤドカリ" loading="lazy" width="120" height="72" />
+        <span class="cname">クリスタル要塞ヤドカリ</span>
+        <span class="ctype">クリスタル要塞タイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="spending-type">
+    <h2><a href="/diagnosis/spending-type/">🪙 お金の使い方診断</a></h2>
+    <p class="zukan-lead">あなたのお金の使い方は？貯め方・使い方のクセが、尻尾がコインの束になった16匹の“銭さししっぽ”でわかる無料の診断・心理テストです。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/spending-type/">
+        <img src="/characters-small/zeniTailCharacters/zeni-gold-saver.webp" alt="きんぴかぜに" loading="lazy" width="120" height="72" />
+        <span class="cname">きんぴかぜに</span>
+        <span class="ctype">ゴールド貯金タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/spending-type/">
+        <img src="/characters-small/zeniTailCharacters/zeni-steady-saver.webp" alt="ふたばぜに" loading="lazy" width="120" height="72" />
+        <span class="cname">ふたばぜに</span>
+        <span class="ctype">コツコツ積立タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/spending-type/">
+        <img src="/characters-small/zeniTailCharacters/zeni-planner.webp" alt="けいかくぜに" loading="lazy" width="120" height="72" />
+        <span class="cname">けいかくぜに</span>
+        <span class="ctype">計画キッチリタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/spending-type/">
+        <img src="/characters-small/zeniTailCharacters/zeni-investor.webp" alt="とうしぜに" loading="lazy" width="120" height="72" />
+        <span class="cname">とうしぜに</span>
+        <span class="ctype">投資チャレンジタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/spending-type/">
+        <img src="/characters-small/zeniTailCharacters/zeni-slow-grower.webp" alt="めばえぜに" loading="lazy" width="120" height="72" />
+        <span class="cname">めばえぜに</span>
+        <span class="ctype">のんびり資産形成タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/spending-type/">
+        <img src="/characters-small/zeniTailCharacters/zeni-worrier.webp" alt="しんぱいぜに" loading="lazy" width="120" height="72" />
+        <span class="cname">しんぱいぜに</span>
+        <span class="ctype">お金の不安が大きいタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/spending-type/">
+        <img src="/characters-small/zeniTailCharacters/zeni-tokimeki.webp" alt="ときめきぜに" loading="lazy" width="120" height="72" />
+        <span class="cname">ときめきぜに</span>
+        <span class="ctype">ときめき優先タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/spending-type/">
+        <img src="/characters-small/zeniTailCharacters/zeni-easygoing.webp" alt="すやすやぜに" loading="lazy" width="120" height="72" />
+        <span class="cname">すやすやぜに</span>
+        <span class="ctype">お金ほったらかしタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/spending-type/">
+        <img src="/characters-small/zeniTailCharacters/zeni-adventurer.webp" alt="たびぜに" loading="lazy" width="120" height="72" />
+        <span class="cname">たびぜに</span>
+        <span class="ctype">体験・旅行派タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/spending-type/">
+        <img src="/characters-small/zeniTailCharacters/zeni-foodie.webp" alt="ぐるめぜに" loading="lazy" width="120" height="72" />
+        <span class="cname">ぐるめぜに</span>
+        <span class="ctype">食費かさみタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/spending-type/">
+        <img src="/characters-small/zeniTailCharacters/zeni-shopper.webp" alt="おかいものぜに" loading="lazy" width="120" height="72" />
+        <span class="cname">おかいものぜに</span>
+        <span class="ctype">お買い物大好きタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/spending-type/">
+        <img src="/characters-small/zeniTailCharacters/zeni-subsc.webp" alt="さぶすくぜに" loading="lazy" width="120" height="72" />
+        <span class="cname">さぶすくぜに</span>
+        <span class="ctype">サブスク沼タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/spending-type/">
+        <img src="/characters-small/zeniTailCharacters/zeni-showoff.webp" alt="みえっぱりぜに" loading="lazy" width="120" height="72" />
+        <span class="cname">みえっぱりぜに</span>
+        <span class="ctype">見栄はり散財タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/spending-type/">
+        <img src="/characters-small/zeniTailCharacters/zeni-beauty.webp" alt="びようぜに" loading="lazy" width="120" height="72" />
+        <span class="cname">びようぜに</span>
+        <span class="ctype">美容に全力タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/spending-type/">
+        <img src="/characters-small/zeniTailCharacters/zeni-broke.webp" alt="ぐったりぜに" loading="lazy" width="120" height="72" />
+        <span class="cname">ぐったりぜに</span>
+        <span class="ctype">金欠ぐったりタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/spending-type/">
+        <img src="/characters-small/zeniTailCharacters/zeni-spender.webp" alt="からっぽぜに" loading="lazy" width="120" height="72" />
+        <span class="cname">からっぽぜに</span>
+        <span class="ctype">宵越しの金なしタイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="scaredy-level">
+    <h2><a href="/diagnosis/scaredy-level/">👻 ビビり度診断</a></h2>
+    <p class="zukan-lead">あなたのビビり度は？ちょうちん片手の16匹のもふもふ妖怪で、肝の据わり具合と怖がり方のクセがわかる無料の心理テスト・性格診断です。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/scaredy-level/">
+        <img src="/characters-small/scaredyYokaiCharacters/scaredy-boss.webp" alt="どっしり獅子" loading="lazy" width="120" height="72" />
+        <span class="cname">どっしり獅子</span>
+        <span class="ctype">動じない大物タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/scaredy-level/">
+        <img src="/characters-small/scaredyYokaiCharacters/scaredy-curious.webp" alt="わくわくダヌキ" loading="lazy" width="120" height="72" />
+        <span class="cname">わくわくダヌキ</span>
+        <span class="ctype">怖いもの見たさタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/scaredy-level/">
+        <img src="/characters-small/scaredyYokaiCharacters/scaredy-analyst.webp" alt="ものしりフクロウ" loading="lazy" width="120" height="72" />
+        <span class="cname">ものしりフクロウ</span>
+        <span class="ctype">冷静分析タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/scaredy-level/">
+        <img src="/characters-small/scaredyYokaiCharacters/scaredy-oblivious.webp" alt="すやすやウサ" loading="lazy" width="120" height="72" />
+        <span class="cname">すやすやウサ</span>
+        <span class="ctype">マイペース鈍感タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/scaredy-level/">
+        <img src="/characters-small/scaredyYokaiCharacters/scaredy-bluffer.webp" alt="つよがり小鬼" loading="lazy" width="120" height="72" />
+        <span class="cname">つよがり小鬼</span>
+        <span class="ctype">強がり平気フリタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/scaredy-level/">
+        <img src="/characters-small/scaredyYokaiCharacters/scaredy-laugher.webp" alt="てへぺろダヌキ" loading="lazy" width="120" height="72" />
+        <span class="cname">てへぺろダヌキ</span>
+        <span class="ctype">ビビってすぐ笑うタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/scaredy-level/">
+        <img src="/characters-small/scaredyYokaiCharacters/scaredy-buddy.webp" alt="よりそいコイヌ" loading="lazy" width="120" height="72" />
+        <span class="cname">よりそいコイヌ</span>
+        <span class="ctype">誰かといれば平気タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/scaredy-level/">
+        <img src="/characters-small/scaredyYokaiCharacters/scaredy-daylight.webp" alt="ひなたジシ" loading="lazy" width="120" height="72" />
+        <span class="cname">ひなたジシ</span>
+        <span class="ctype">明るいうちは平気タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/scaredy-level/">
+        <img src="/characters-small/scaredyYokaiCharacters/scaredy-jumpy.webp" alt="びくっフェネ" loading="lazy" width="120" height="72" />
+        <span class="cname">びくっフェネ</span>
+        <span class="ctype">物音ビクッタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/scaredy-level/">
+        <img src="/characters-small/scaredyYokaiCharacters/scaredy-imaginative.webp" alt="もやもやケケ" loading="lazy" width="120" height="72" />
+        <span class="cname">もやもやケケ</span>
+        <span class="ctype">想像ふくらみタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/scaredy-level/">
+        <img src="/characters-small/scaredyYokaiCharacters/scaredy-behind.webp" alt="うしろガエリ" loading="lazy" width="120" height="72" />
+        <span class="cname">うしろガエリ</span>
+        <span class="ctype">背後が気になるタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/scaredy-level/">
+        <img src="/characters-small/scaredyYokaiCharacters/scaredy-nightalone.webp" alt="よるムリプー" loading="lazy" width="120" height="72" />
+        <span class="cname">よるムリプー</span>
+        <span class="ctype">夜の一人行動ムリタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/scaredy-level/">
+        <img src="/characters-small/scaredyYokaiCharacters/scaredy-screamer.webp" alt="さけびトリ" loading="lazy" width="120" height="72" />
+        <span class="cname">さけびトリ</span>
+        <span class="ctype">悲鳴先行タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/scaredy-level/">
+        <img src="/characters-small/scaredyYokaiCharacters/scaredy-frozen.webp" alt="かたまりカベ" loading="lazy" width="120" height="72" />
+        <span class="cname">かたまりカベ</span>
+        <span class="ctype">固まって動けないタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/scaredy-level/">
+        <img src="/characters-small/scaredyYokaiCharacters/scaredy-runner.webp" alt="なきダッシュ" loading="lazy" width="120" height="72" />
+        <span class="cname">なきダッシュ</span>
+        <span class="ctype">涙目ダッシュタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/scaredy-level/">
+        <img src="/characters-small/scaredyYokaiCharacters/scaredy-blanket.webp" alt="ふとんウサ" loading="lazy" width="120" height="72" />
+        <span class="cname">ふとんウサ</span>
+        <span class="ctype">布団から出られないタイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="dream-type">
+    <h2><a href="/diagnosis/dream-type/">🌙 夢診断</a></h2>
+    <p class="zukan-lead">あなたがよく見る夢は？16匹のゆめだまで、夢に隠れた&quot;今の心のサイン&quot;がわかる無料の夢占い・心理テストです。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/dream-type/">
+        <img src="/characters-small/dreamTypeCharacters/dream-flying.webp" alt="そらとびゆめだま" loading="lazy" width="120" height="72" />
+        <span class="cname">そらとびゆめだま</span>
+        <span class="ctype">空飛ぶ夢タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dream-type/">
+        <img src="/characters-small/dreamTypeCharacters/dream-chased.webp" alt="おわれゆめだま" loading="lazy" width="120" height="72" />
+        <span class="cname">おわれゆめだま</span>
+        <span class="ctype">追われる夢タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dream-type/">
+        <img src="/characters-small/dreamTypeCharacters/dream-falling.webp" alt="おちゆめだま" loading="lazy" width="120" height="72" />
+        <span class="cname">おちゆめだま</span>
+        <span class="ctype">落ちる夢タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dream-type/">
+        <img src="/characters-small/dreamTypeCharacters/dream-tooth.webp" alt="はぬけゆめだま" loading="lazy" width="120" height="72" />
+        <span class="cname">はぬけゆめだま</span>
+        <span class="ctype">歯が抜ける夢タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dream-type/">
+        <img src="/characters-small/dreamTypeCharacters/dream-late.webp" alt="ちこくゆめだま" loading="lazy" width="120" height="72" />
+        <span class="cname">ちこくゆめだま</span>
+        <span class="ctype">テスト遅刻の夢タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dream-type/">
+        <img src="/characters-small/dreamTypeCharacters/dream-crush.webp" alt="こいゆめだま" loading="lazy" width="120" height="72" />
+        <span class="cname">こいゆめだま</span>
+        <span class="ctype">好きな人の夢タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dream-type/">
+        <img src="/characters-small/dreamTypeCharacters/dream-oshi.webp" alt="おしゆめだま" loading="lazy" width="120" height="72" />
+        <span class="cname">おしゆめだま</span>
+        <span class="ctype">推しに会う夢タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dream-type/">
+        <img src="/characters-small/dreamTypeCharacters/dream-treasure.webp" alt="おたからゆめだま" loading="lazy" width="120" height="72" />
+        <span class="cname">おたからゆめだま</span>
+        <span class="ctype">お宝ざくざく夢タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dream-type/">
+        <img src="/characters-small/dreamTypeCharacters/dream-lost.webp" alt="まいごゆめだま" loading="lazy" width="120" height="72" />
+        <span class="cname">まいごゆめだま</span>
+        <span class="ctype">迷子の夢タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dream-type/">
+        <img src="/characters-small/dreamTypeCharacters/dream-reunion.webp" alt="あいたいゆめだま" loading="lazy" width="120" height="72" />
+        <span class="cname">あいたいゆめだま</span>
+        <span class="ctype">会いたい人の夢タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dream-type/">
+        <img src="/characters-small/dreamTypeCharacters/dream-repeat.webp" alt="ループゆめだま" loading="lazy" width="120" height="72" />
+        <span class="cname">ループゆめだま</span>
+        <span class="ctype">繰り返す夢タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dream-type/">
+        <img src="/characters-small/dreamTypeCharacters/dream-water.webp" alt="みずゆめだま" loading="lazy" width="120" height="72" />
+        <span class="cname">みずゆめだま</span>
+        <span class="ctype">水の夢タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dream-type/">
+        <img src="/characters-small/dreamTypeCharacters/dream-feast.webp" alt="ごちそうゆめだま" loading="lazy" width="120" height="72" />
+        <span class="cname">ごちそうゆめだま</span>
+        <span class="ctype">ごちそう夢タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dream-type/">
+        <img src="/characters-small/dreamTypeCharacters/dream-hero.webp" alt="ぼうけんゆめだま" loading="lazy" width="120" height="72" />
+        <span class="cname">ぼうけんゆめだま</span>
+        <span class="ctype">冒険ヒーロー夢タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dream-type/">
+        <img src="/characters-small/dreamTypeCharacters/dream-lucid.webp" alt="めいせきゆめだま" loading="lazy" width="120" height="72" />
+        <span class="cname">めいせきゆめだま</span>
+        <span class="ctype">明晰夢タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/dream-type/">
+        <img src="/characters-small/dreamTypeCharacters/dream-sleepy.webp" alt="ぐっすりゆめだま" loading="lazy" width="120" height="72" />
+        <span class="cname">ぐっすりゆめだま</span>
+        <span class="ctype">夢うつつタイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="hidden-talent">
+    <h2><a href="/diagnosis/hidden-talent/">✨ 隠れた才能診断</a></h2>
+    <p class="zukan-lead">あなたの隠れた才能は？16体の“才能の精”で、自分では気づきにくい本当の強み・得意がわかる無料の心理テスト・才能診断です。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/hidden-talent/">
+        <img src="/characters-small/hiddenTalentCharacters/01-listener.webp" alt="きき上手せい" loading="lazy" width="120" height="72" />
+        <span class="cname">きき上手せい</span>
+        <span class="ctype">聞き上手タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-talent/">
+        <img src="/characters-small/hiddenTalentCharacters/02-softener.webp" alt="やわらげせい" loading="lazy" width="120" height="72" />
+        <span class="cname">やわらげせい</span>
+        <span class="ctype">空気やわらげタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-talent/">
+        <img src="/characters-small/hiddenTalentCharacters/03-attentive.webp" alt="きくばりせい" loading="lazy" width="120" height="72" />
+        <span class="cname">きくばりせい</span>
+        <span class="ctype">気配り察しタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-talent/">
+        <img src="/characters-small/hiddenTalentCharacters/04-leader.webp" alt="まとめやくせい" loading="lazy" width="120" height="72" />
+        <span class="cname">まとめやくせい</span>
+        <span class="ctype">まとめ役タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-talent/">
+        <img src="/characters-small/hiddenTalentCharacters/05-idea.webp" alt="ひらめきせい" loading="lazy" width="120" height="72" />
+        <span class="cname">ひらめきせい</span>
+        <span class="ctype">ひらめきタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-talent/">
+        <img src="/characters-small/hiddenTalentCharacters/06-expression.webp" alt="つたえせい" loading="lazy" width="120" height="72" />
+        <span class="cname">つたえせい</span>
+        <span class="ctype">表現・伝え上手タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-talent/">
+        <img src="/characters-small/hiddenTalentCharacters/07-intuition.webp" alt="ちょっかんせい" loading="lazy" width="120" height="72" />
+        <span class="cname">ちょっかんせい</span>
+        <span class="ctype">直感センスタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-talent/">
+        <img src="/characters-small/hiddenTalentCharacters/08-dexterous.webp" alt="きようせい" loading="lazy" width="120" height="72" />
+        <span class="cname">きようせい</span>
+        <span class="ctype">器用職人タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-talent/">
+        <img src="/characters-small/hiddenTalentCharacters/09-steady.webp" alt="こつこつせい" loading="lazy" width="120" height="72" />
+        <span class="cname">こつこつせい</span>
+        <span class="ctype">コツコツ継続タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-talent/">
+        <img src="/characters-small/hiddenTalentCharacters/10-analyst.webp" alt="みぬきせい" loading="lazy" width="120" height="72" />
+        <span class="cname">みぬきせい</span>
+        <span class="ctype">分析・見抜きタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-talent/">
+        <img src="/characters-small/hiddenTalentCharacters/11-action.webp" alt="そっこうせい" loading="lazy" width="120" height="72" />
+        <span class="cname">そっこうせい</span>
+        <span class="ctype">即行動タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-talent/">
+        <img src="/characters-small/hiddenTalentCharacters/12-learner.webp" alt="まなびせい" loading="lazy" width="120" height="72" />
+        <span class="cname">まなびせい</span>
+        <span class="ctype">学び吸収タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-talent/">
+        <img src="/characters-small/hiddenTalentCharacters/13-healer.webp" alt="いやしせい" loading="lazy" width="120" height="72" />
+        <span class="cname">いやしせい</span>
+        <span class="ctype">癒し安心タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-talent/">
+        <img src="/characters-small/hiddenTalentCharacters/14-negotiator.webp" alt="ねばりせい" loading="lazy" width="120" height="72" />
+        <span class="cname">ねばりせい</span>
+        <span class="ctype">粘り交渉タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-talent/">
+        <img src="/characters-small/hiddenTalentCharacters/15-moodmaker.webp" alt="もりあげせい" loading="lazy" width="120" height="72" />
+        <span class="cname">もりあげせい</span>
+        <span class="ctype">ムードメーカータイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/hidden-talent/">
+        <img src="/characters-small/hiddenTalentCharacters/16-supporter.webp" alt="ささえせい" loading="lazy" width="120" height="72" />
+        <span class="cname">ささえせい</span>
+        <span class="ctype">縁の下の支えタイプ</span>
+      </a>
+    </div>
+  </section>
+  <section class="zukan-section" id="lending-type">
+    <h2><a href="/diagnosis/lending-type/">💸 貸し借り診断</a></h2>
+    <p class="zukan-lead">あなたはお金を「貸す側」？「借りる側」？貸す側と借りる側が対で生きる“貸し借り族”16タイプで、あなたのお金と人との距離感がわかる無料の心理テスト・お金診断です。</p>
+    <div class="zukan-grid">
+      <a class="zukan-char" href="/diagnosis/lending-type/">
+        <img src="/characters-small/lendingTypeCharacters/lend-game-freeloader.webp" alt="ごろ寝ゲーマー" loading="lazy" width="120" height="72" />
+        <span class="cname">ごろ寝ゲーマー</span>
+        <span class="ctype">ゲーム三昧の甘えんぼタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/lending-type/">
+        <img src="/characters-small/lendingTypeCharacters/lend-hammock-lazy.webp" alt="ハンモックぐで" loading="lazy" width="120" height="72" />
+        <span class="cname">ハンモックぐで</span>
+        <span class="ctype">ぐうたらハンモックタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/lending-type/">
+        <img src="/characters-small/lendingTypeCharacters/lend-bandman-dreamer.webp" alt="夢追いバンドマン" loading="lazy" width="120" height="72" />
+        <span class="cname">夢追いバンドマン</span>
+        <span class="ctype">夢追いバンドマンタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/lending-type/">
+        <img src="/characters-small/lendingTypeCharacters/lend-iv-dependent.webp" alt="点滴ヒモボット" loading="lazy" width="120" height="72" />
+        <span class="cname">点滴ヒモボット</span>
+        <span class="ctype">完全養われタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/lending-type/">
+        <img src="/characters-small/lendingTypeCharacters/lend-sprout-equal.webp" alt="ふたば夫婦" loading="lazy" width="120" height="72" />
+        <span class="cname">ふたば夫婦</span>
+        <span class="ctype">対等支え合いタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/lending-type/">
+        <img src="/characters-small/lendingTypeCharacters/lend-bubble-healer.webp" alt="ゆるゆる癒し" loading="lazy" width="120" height="72" />
+        <span class="cname">ゆるゆる癒し</span>
+        <span class="ctype">のんびり癒し尽くしタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/lending-type/">
+        <img src="/characters-small/lendingTypeCharacters/lend-maid-budget.webp" alt="やりくりメイド" loading="lazy" width="120" height="72" />
+        <span class="cname">やりくりメイド</span>
+        <span class="ctype">世話焼きやりくりタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/lending-type/">
+        <img src="/characters-small/lendingTypeCharacters/lend-kimono-devotee.webp" alt="貢ぎきり和装" loading="lazy" width="120" height="72" />
+        <span class="cname">貢ぎきり和装</span>
+        <span class="ctype">貢ぎきり献身タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/lending-type/">
+        <img src="/characters-small/lendingTypeCharacters/lend-forest-steady.webp" alt="森のふたり" loading="lazy" width="120" height="72" />
+        <span class="cname">森のふたり</span>
+        <span class="ctype">堅実スローライフタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/lending-type/">
+        <img src="/characters-small/lendingTypeCharacters/lend-abacus-owl.webp" alt="そろばんフクロウ" loading="lazy" width="120" height="72" />
+        <span class="cname">そろばんフクロウ</span>
+        <span class="ctype">計算きっちりタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/lending-type/">
+        <img src="/characters-small/lendingTypeCharacters/lend-star-dreamer.webp" alt="星つみびと" loading="lazy" width="120" height="72" />
+        <span class="cname">星つみびと</span>
+        <span class="ctype">コツコツ夢見タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/lending-type/">
+        <img src="/characters-small/lendingTypeCharacters/lend-shark-collector.webp" alt="取り立てザメ" loading="lazy" width="120" height="72" />
+        <span class="cname">取り立てザメ</span>
+        <span class="ctype">鬼の取り立てタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/lending-type/">
+        <img src="/characters-small/lendingTypeCharacters/lend-coin-napper.webp" alt="コイン寝落ち" loading="lazy" width="120" height="72" />
+        <span class="cname">コイン寝落ち</span>
+        <span class="ctype">脱力マイペースタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/lending-type/">
+        <img src="/characters-small/lendingTypeCharacters/lend-resort-splurge.webp" alt="バカンス浪費" loading="lazy" width="120" height="72" />
+        <span class="cname">バカンス浪費</span>
+        <span class="ctype">リゾート豪遊タイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/lending-type/">
+        <img src="/characters-small/lendingTypeCharacters/lend-devil-pizza.webp" alt="魔性のヒモ" loading="lazy" width="120" height="72" />
+        <span class="cname">魔性のヒモ</span>
+        <span class="ctype">魔性のヒモタイプ</span>
+      </a>
+      <a class="zukan-char" href="/diagnosis/lending-type/">
+        <img src="/characters-small/lendingTypeCharacters/lend-treasure-king.webp" alt="貢がれキング" loading="lazy" width="120" height="72" />
+        <span class="cname">貢がれキング</span>
+        <span class="ctype">貢がれ王様タイプ</span>
+      </a>
+    </div>
+  </section>
+    <div class="sub-links">
+      <a href="/diagnosis/">診断一覧</a>
+      <a href="/zukan/">村人図鑑</a>
+      <a href="/column/">コラム</a>
+      <a href="/">トップ</a>
+      <a href="/about/">運営者情報</a>
+      <a href="/privacy/">プライバシー</a>
+      <a href="/contact/">お問い合わせ</a>
+    </div>
+</div>
+</body>
+</html>

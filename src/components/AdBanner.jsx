@@ -1,49 +1,62 @@
-// A8.net(ちょびリッチ)の広告バナー。PC用728×90 / スマホ用300×250をCSSの
-// メディアクエリで出し分ける。診断中の質問・回答画面には表示しないこと。
-export default function AdBanner() {
-  return (
-    <div className="ad-banner" aria-label="広告">
-      <div className="ad-banner-pc">
-        <a
-          href="https://px.a8.net/svt/ejp?a8mat=4B7SGX+FHV6LU+389A+6IHCX"
-          rel="nofollow sponsored noopener noreferrer"
-          target="_blank"
-        >
-          <img
-            width="728"
-            height="90"
-            alt="広告"
-            src="https://www25.a8.net/svt/bgt?aid=260703969937&wid=001&eno=01&mid=s00000015067001094000&mc=1"
-          />
-        </a>
-        <img
-          width="1"
-          height="1"
-          src="https://www11.a8.net/0.gif?a8mat=4B7SGX+FHV6LU+389A+6IHCX"
-          alt=""
-        />
-      </div>
+// A8.net の広告バナー。
+// - diagnosisId が渡され、その診断に専用広告(adsConfig)が割り当てられていれば、その広告を表示。
+// - 割り当てが無い / diagnosisId 無し(ホーム等)の場合は、従来の汎用バナー(PC728×90 / スマホ300×250)を表示。
+// 診断中の質問・回答画面には表示しないこと。
+import { useMemo } from 'react'
+import { getAdForDiagnosis, getDefaultAd, noAdDiagnoses } from '../adsConfig'
+import { trackEvent } from '../analytics'
 
-      <div className="ad-banner-sp">
-        <a
-          href="https://px.a8.net/svt/ejp?a8mat=4B7SGX+FHV6LU+389A+67RK1"
-          rel="nofollow sponsored noopener noreferrer"
-          target="_blank"
-        >
-          <img
-            width="300"
-            height="250"
-            alt="広告"
-            src="https://www22.a8.net/svt/bgt?aid=260703969937&wid=001&eno=01&mid=s00000015067001044000&mc=1"
-          />
-        </a>
-        <img
-          width="1"
-          height="1"
-          src="https://www11.a8.net/0.gif?a8mat=4B7SGX+FHV6LU+389A+67RK1"
-          alt=""
-        />
+export default function AdBanner({ diagnosisId }) {
+  // ランダム出し分けが再描画のたびに変わらないよう、診断IDごとに一度だけ選ぶ。
+  // 割り当てが無い診断・ホームは「安全なデフォルト広告」から選ぶ(ちょびリッチ固定をやめ、出会い系も出さない)。
+  const matched = useMemo(() => {
+    // メンタル系など「広告なし」の診断では何も出さない(デフォルト広告にも落とさない)
+    if (diagnosisId && noAdDiagnoses.has(diagnosisId)) return null
+    return (diagnosisId ? getAdForDiagnosis(diagnosisId) : null) || getDefaultAd()
+  }, [diagnosisId])
+
+  if (matched) {
+    const { banner, text } = matched
+    return (
+      <div className="ad-banner ad-matched" aria-label="広告">
+        <span className="ad-pr-label">PR</span>
+        {banner && (
+          <>
+            <a
+              href={banner.href}
+              rel="nofollow sponsored noopener noreferrer"
+              target="_blank"
+              onClick={() => trackEvent('ad_click', { ad: banner.alt, placement: 'banner', diagnosis_id: diagnosisId })}
+            >
+              <img
+                width={banner.width}
+                height={banner.height}
+                alt={banner.alt || '広告'}
+                src={banner.img}
+                loading="lazy"
+              />
+            </a>
+            {banner.pixel && <img width="1" height="1" src={banner.pixel} alt="" />}
+          </>
+        )}
+        {text && (
+          <>
+            <a
+              className="ad-matched-text"
+              href={text.href}
+              rel="nofollow sponsored noopener noreferrer"
+              target="_blank"
+              onClick={() => trackEvent('ad_click', { ad: banner?.alt, placement: 'text', diagnosis_id: diagnosisId })}
+            >
+              {text.label}
+            </a>
+            {text.pixel && <img width="1" height="1" src={text.pixel} alt="" />}
+          </>
+        )}
       </div>
-    </div>
-  )
+    )
+  }
+
+  // ここに来るのは「広告なし」の診断(noAdDiagnoses)か、getDefaultAd が null の時。何も出さない。
+  return null
 }

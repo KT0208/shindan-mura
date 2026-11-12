@@ -1,0 +1,16 @@
+{
+  "diagnosisId": "popularity-season",
+  "diagnosisTitle": "モテ期診断",
+  "productType": "sticker",
+  "setSize": 24,
+  "title": "診断村 モテ期診断スタンプ",
+  "description": "診断村のお花キャラクターたちが、毎日の会話を明るく可愛く彩ります。",
+  "stickers": [
+    [1,"おはよう","popularity-bud"],[2,"ありがとう","popularity-baby-breath"],[3,"おつかれさま","popularity-lily-of-the-valley"],[4,"はーい","popularity-lavender"],
+    [5,"了解です","popularity-tulip"],[6,"お願いします","popularity-marguerite"],[7,"ごめんね","popularity-cosmos"],[8,"大丈夫だよ","popularity-cherry-blossom"],
+    [9,"いいね！","popularity-gerbera"],[10,"やったー！","popularity-sunflower"],[11,"またね","popularity-white-lily"],[12,"おやすみ","popularity-peony"],
+    [13,"おめでとう","popularity-dahlia"],[14,"少し待ってて","popularity-rose"],[15,"休憩しよ","popularity-lotus"],[16,"よろしくね","popularity-princess-flower"],
+    [17,"花ひらく予感","popularity-bud"],[18,"きらめき中","popularity-baby-breath"],[19,"ごきげん咲き","popularity-cherry-blossom"],[20,"今向かってる","popularity-tulip"],
+    [21,"応援してる","popularity-sunflower"],[22,"あとで見るね","popularity-lavender"],[23,"OK","popularity-rose"],[24,"お先にどうぞ","popularity-lotus"]
+  ]
+}

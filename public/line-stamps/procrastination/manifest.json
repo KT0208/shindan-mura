@@ -1,0 +1,22 @@
+{
+  "diagnosisId": "procrastination",
+  "diagnosisTitle": "先延ばし癖診断",
+  "productType": "sticker",
+  "setSize": 24,
+  "title": "診断村 先延ばし癖診断スタンプ",
+  "description": "診断村のナマケモノたちが、締切ややる気待ちをゆるく代弁します。",
+  "stickers": [
+    [1, "朝イチで完了", "later-morning-sloth"], [2, "すぐやる", "later-quick-sloth"],
+    [3, "ちょっとずつ", "later-steady-sloth"], [4, "もう終わった", "later-early-sloth"],
+    [5, "リストは完璧", "later-list-sloth"], [6, "やる気待ち", "later-mood-sloth"],
+    [7, "気づいたら休憩", "later-nagara-sloth"], [8, "あと5分…", "later-fivemin-sloth"],
+    [9, "準備だけ完璧", "later-setup-sloth"], [10, "明日から本気", "later-tomorrow-sloth"],
+    [11, "誘惑に負けた", "later-temptation-sloth"], [12, "締切やばい", "later-lastnight-sloth"],
+    [13, "まだ間に合う", "later-finalday-sloth"], [14, "来世でやる", "later-nextlife-sloth"],
+    [15, "急がない", "later-king-sloth"], [16, "完全に忘れてた", "later-forgot-sloth"],
+    [17, "今日こそやる", "later-tomorrow-sloth"], [18, "今から本気", "later-lastnight-sloth"],
+    [19, "タスク見ない", "later-list-sloth"], [20, "現実逃避中", "later-mood-sloth"],
+    [21, "期限は明日の俺", "later-early-sloth"], [22, "やる気ください", "later-fivemin-sloth"],
+    [23, "できる気がする", "later-quick-sloth"], [24, "おつかれ自分", "later-morning-sloth"]
+  ]
+}

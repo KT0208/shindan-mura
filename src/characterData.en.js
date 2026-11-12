@@ -1481,3 +1481,1194 @@ export const darkDepthResultTypesEn = [
   ["Glowing Sharp Tongue Type", "Grudge Ledger Type", "Iron Heart Type", "Silent Strategist Type"],
   ["Abyss Tongue King Type", "Thousand-Year Grudge Type", "Solitary Abyss Type", "Trench Mastermind Type"],
 ]
+
+export const holidayCapybaraCharactersEn = {
+  "Bath Recharge Type": {
+    characterName: "Oke Capy",
+    role: "A capy washing the week away in a tub",
+    visualConcept: "A capybara soaking in a wooden bathtub, blue towel on head, steam rising, eyes half closed in bliss.",
+    imageKey: "holiday-oke-capy",
+  },
+  "Chatty Lounging Type": {
+    characterName: "Cushion Capy",
+    role: "A capy who can't stop lounging on fluff",
+    visualConcept: "A capybara fused with a big lavender cushion, utterly melted, with zero intention of getting up.",
+    imageKey: "holiday-cushion-capy",
+  },
+  "Book Pile Clearing Type": {
+    characterName: "Book Capy",
+    role: "A reader capy clearing the to-read pile",
+    visualConcept: "A capybara fused with a thick green book, purple cushion as a pillow, peeking out with sleepy eyes.",
+    imageKey: "holiday-book-capy",
+  },
+  "Holiday Even in Dreams Type": {
+    characterName: "Bed Capy",
+    role: "A capy touring the world inside dreams",
+    visualConcept: "A capybara fused with a wooden bed, star-patterned blanket and nightcap, crescent moon nearby. Unwakeable.",
+    imageKey: "holiday-bed-capy",
+  },
+  "Casual Stroll Type": {
+    characterName: "Shoe Capy",
+    role: "A capy who heads out on a whim",
+    visualConcept: "A capybara fused with a red sneaker, face peeking from the fluffy collar, sensing perfect walking weather.",
+    imageKey: "holiday-shoe-capy",
+  },
+  "Cafe & Sweets Type": {
+    characterName: "Cake Capy",
+    role: "A capy filling holidays with sweetness",
+    visualConcept: "A capybara fused with a strawberry shortcake, whipped-cream hat and a strawberry on top, content on a plate.",
+    imageKey: "holiday-cake-capy",
+  },
+  "Joy of Packing Type": {
+    characterName: "Bag Capy",
+    role: "A capy who enjoys the packing most",
+    visualConcept: "A capybara fused with a floral boston bag, peeking from the opening, pondering where to go.",
+    imageKey: "holiday-bag-capy",
+  },
+  "Perfect Picnic Type": {
+    characterName: "Picnic Capy",
+    role: "A capy who loves good food under the sky",
+    visualConcept: "A capybara fused with a picnic basket, surrounded by gingham cloth, grapes, bread and cheese.",
+    imageKey: "holiday-picnic-capy",
+  },
+  "Float & Drift Type": {
+    characterName: "Ukiwa Capy",
+    role: "A capy happiest when floating",
+    visualConcept: "A capybara snug in a striped swim ring, heart sunglasses on head, drifting with a rubber duck.",
+    imageKey: "holiday-ukiwa-capy",
+  },
+  "BBQ Together Type": {
+    characterName: "Tong Capy",
+    role: "The capy in charge of grilling at BBQs",
+    visualConcept: "A capybara fused with BBQ tongs, looking satisfied even while gently pinched, with wisps of tasty steam.",
+    imageKey: "holiday-tong-capy",
+  },
+  "Camp Setup Type": {
+    characterName: "Tent Capy",
+    role: "A camper capy who loves setup to sleep",
+    visualConcept: "A capybara fused with a white tent, peeking from the entrance, lantern, mug and sleeping bag at hand.",
+    imageKey: "holiday-tent-capy",
+  },
+  "Waterside Play Type": {
+    characterName: "Bucket Capy",
+    role: "A capy who gets serious about water play",
+    visualConcept: "A capybara snug in a blue bucket, towel on head, splashes flying. More absorbed than any kid.",
+    imageKey: "holiday-bucket-capy",
+  },
+  "Summit Seeker Type": {
+    characterName: "Yama Capy",
+    role: "A hiking capy who became the mountain",
+    visualConcept: "A capybara fused with a snow-capped mountain, red flag at the peak, forests and flowers at the base.",
+    imageKey: "holiday-mountain-capy",
+  },
+  "Journey with Friends Type": {
+    characterName: "Rucksack Capy",
+    role: "A capy whose travel prep is always done",
+    visualConcept: "A capybara fused with a big green rucksack, sleeping bag and bottle strapped on, ready for anywhere.",
+    imageKey: "holiday-rucksack-capy",
+  },
+  "Fully Equipped Outdoor Type": {
+    characterName: "Hat Capy",
+    role: "A capy prepared even against sunshine",
+    visualConcept: "A capybara fused with a flower-decorated straw hat, gentle eyes peeking from under the brim.",
+    imageKey: "holiday-hat-capy",
+  },
+  "Activity Challenger Type": {
+    characterName: "Kayak Capy",
+    role: "A capy tackling one new activity after another",
+    visualConcept: "A capybara paddling an orange kayak with a yellow paddle, splashing forward with joy.",
+    imageKey: "holiday-kayak-capy",
+  },
+}
+
+export const holidayResultTypesEn = [
+  ["Bath Recharge Type", "Chatty Lounging Type", "Book Pile Clearing Type", "Holiday Even in Dreams Type"],
+  ["Casual Stroll Type", "Cafe & Sweets Type", "Joy of Packing Type", "Perfect Picnic Type"],
+  ["Float & Drift Type", "BBQ Together Type", "Camp Setup Type", "Waterside Play Type"],
+  ["Summit Seeker Type", "Journey with Friends Type", "Fully Equipped Outdoor Type", "Activity Challenger Type"],
+]
+
+export const emoNostalgiaCharactersEn = {
+  "Occasional Declutterer Type": {
+    characterName: "Sticker Pet",
+    role: "A light-touch nostalgic who keeps just one keepsake",
+    visualConcept: "90s anime cel style. An egg-shaped retro digital-pet spirit holding one favorite shiny sticker in both hands. Light and tidy.",
+    imageKey: "emo-sticker-pet",
+  },
+  "Cries At The Intro Type": {
+    characterName: "Earphone Pet",
+    role: "Time-travels the instant a nostalgic intro plays",
+    visualConcept: "The egg spirit with one large retro earphone, eyes closed, lost in the music. A single music note. Crisp 90s anime linework.",
+    imageKey: "emo-earphone-pet",
+  },
+  "Sometimes Childlike Type": {
+    characterName: "Kendama Pet",
+    role: "Returns to childhood at the smallest trigger",
+    visualConcept: "The egg spirit innocently playing with a small kendama or yo-yo. Retro anime flat coloring with highlights.",
+    imageKey: "emo-kendama-pet",
+  },
+  "Album Peeker Type": {
+    characterName: "Film Camera Pet",
+    role: "Quietly flips through old photos now and then",
+    visualConcept: "The egg spirit holding up a retro disposable film camera for a snap. 90s anime cel style.",
+    imageKey: "emo-filmcam-pet",
+  },
+  "Collection Sorter Type": {
+    characterName: "Sticker Book Pet",
+    role: "Loves lining up treasures and admiring them",
+    visualConcept: "The egg spirit opening a thick sticker book, gazing dreamily. Slightly retro-saturated cel style.",
+    imageKey: "emo-stickerbook-pet",
+  },
+  "Subscription Digger Type": {
+    characterName: "Cassette Pet",
+    role: "Digs up nostalgic classics to listen again",
+    visualConcept: "The egg spirit hugging a cassette tape, winding it with a pencil. 90s anime style.",
+    imageKey: "emo-cassette-pet",
+  },
+  "Digipet Generation Type": {
+    characterName: "Tama Egg Pet",
+    role: "Devoted their youth to raising a virtual pet",
+    visualConcept: "The egg spirit cradling a palm-sized egg-shaped raising game (nested). Retro anime cel style.",
+    imageKey: "emo-digipet-pet",
+  },
+  "Profile Book Passer Type": {
+    characterName: "Profile Book Pet",
+    role: "Cherishes the exchange notebooks passed among friends",
+    visualConcept: "The egg spirit holding a colorful profile book and pen, excited. 90s anime linework.",
+    imageKey: "emo-profilebook-pet",
+  },
+  "Preservation Master Type": {
+    characterName: "Collection Pet",
+    role: "Master of 'keep, display, and share' copies",
+    visualConcept: "The egg spirit hugging a densely packed collection case. Retro anime flat coloring.",
+    imageKey: "emo-collection-pet",
+  },
+  "Sings Every Theme Song Type": {
+    characterName: "Walkman Pet",
+    role: "Can belt every anime and show theme in full",
+    visualConcept: "The egg spirit singing into a CD player hung around its neck, mouth wide open. 90s anime cel style.",
+    imageKey: "emo-walkman-pet",
+  },
+  "After-School Master Type": {
+    characterName: "Handheld Game Pet",
+    role: "Conquered every after-school game genre",
+    visualConcept: "The egg spirit gripping a handheld game console, fully absorbed. Crisp retro anime lines.",
+    imageKey: "emo-handheldgame-pet",
+  },
+  "Flip Phone Keeper Type": {
+    characterName: "Flip Phone Pet",
+    role: "Can't part with old mails or phone straps",
+    visualConcept: "The egg spirit flipping open a flip phone covered in charms. 90s anime cel style.",
+    imageKey: "emo-garake-pet",
+  },
+  "Sealed Box Keeper Type": {
+    characterName: "Memory Box Pet",
+    role: "Holds a box bursting with un-throwable memories",
+    visualConcept: "The egg spirit perched atop an overflowing memory box, items spilling out. Retro anime cel style, teary eyes.",
+    imageKey: "emo-treasurebox-pet",
+  },
+  "Owns Every Soundtrack Type": {
+    characterName: "Record Pet",
+    role: "Completing every format is the baseline",
+    visualConcept: "The egg spirit hugging a large vinyl record with several floating around. 90s anime style with sparkly highlights.",
+    imageKey: "emo-record-pet",
+  },
+  "Retro Swamp Dweller Type": {
+    characterName: "Arcade Pet",
+    role: "Pours their life into retro games and toys",
+    visualConcept: "The egg spirit clinging to a tiny arcade cabinet, glued to the glowing screen. Retro anime cel style.",
+    imageKey: "emo-arcade-pet",
+  },
+  "Memory Vault Type": {
+    characterName: "Purikura Pet",
+    role: "Keeps everything — a vault of the heart",
+    visualConcept: "The egg spirit hugging a stuffed purikura album, teary-eyed, small photos fluttering around. Emo 90s anime cel style.",
+    imageKey: "emo-purikura-pet",
+  },
+}
+
+export const emoNostalgiaResultTypesEn = [
+  ["Occasional Declutterer Type", "Cries At The Intro Type", "Sometimes Childlike Type", "Album Peeker Type"],
+  ["Collection Sorter Type", "Subscription Digger Type", "Digipet Generation Type", "Profile Book Passer Type"],
+  ["Preservation Master Type", "Sings Every Theme Song Type", "After-School Master Type", "Flip Phone Keeper Type"],
+  ["Sealed Box Keeper Type", "Owns Every Soundtrack Type", "Retro Swamp Dweller Type", "Memory Vault Type"],
+]
+
+export const sleepSheepCharactersEn = {
+  "Night Owl Short Sleeper Type": {
+    characterName: "Night Owl Sheep",
+    role: "Energetic at night but short on sleep — a night type",
+    visualConcept: "Watercolor chibi. A round sheep in a nightcap staying up late with faint dark circles, holding a tiny phone. White background, full body.",
+    imageKey: "sleep-nightowl-sheep",
+  },
+  "Early Bird Short Sleeper Type": {
+    characterName: "Early Bird Sheep",
+    role: "Wakes up sharp on little sleep — an efficient morning type",
+    visualConcept: "A round nightcap sheep springing awake with a small alarm clock, hint of morning light. Watercolor chibi, white background, full body.",
+    imageKey: "sleep-earlybird-sheep",
+  },
+  "Dozer Type": {
+    characterName: "Dozy Sheep",
+    role: "A light-sleep fairy who keeps nodding off",
+    visualConcept: "A nightcap sheep nodding off, dozing with little sleepy bubbles. Watercolor chibi, white background, full body.",
+    imageKey: "sleep-nap-sheep",
+  },
+  "Sleep Rookie Type": {
+    characterName: "Eye-Mask Sheep",
+    role: "A sleep beginner just starting to fix their rest",
+    visualConcept: "A nightcap sheep proudly holding a brand-new eye mask; still a light sleeper. Watercolor chibi, white background, full body.",
+    imageKey: "sleep-eyemask-sheep",
+  },
+  "Night Person Type": {
+    characterName: "Night Cap Sheep",
+    role: "Night is prime time — a happy night type",
+    visualConcept: "A nightcap sheep cheerfully awake with a late-night snack, stars out the window. Watercolor chibi, white background, full body.",
+    imageKey: "sleep-nightcap-sheep",
+  },
+  "Morning Person Type": {
+    characterName: "Morning Sheep",
+    role: "Early to bed and rise, making the most of mornings",
+    visualConcept: "A round sheep opening the morning curtains with a big stretch, refreshed. Watercolor chibi, white background, full body.",
+    imageKey: "sleep-morning-sheep",
+  },
+  "Sofa Crasher Type": {
+    characterName: "Sofa Sheep",
+    role: "Keeps dozing off on the sofa — irregular sleeper",
+    visualConcept: "A round sheep asleep on a small sofa/cushion, remote still in hand. Watercolor chibi, white background, full body.",
+    imageKey: "sleep-sofa-sheep",
+  },
+  "Sleep Prep Type": {
+    characterName: "Pillow Sheep",
+    role: "A sleep-minded type who perfects the bedtime routine",
+    visualConcept: "A nightcap sheep fluffing up a plump pillow with a calm face. Watercolor chibi, white background, full body.",
+    imageKey: "sleep-pillow-sheep",
+  },
+  "Habitual Night Owl Type": {
+    characterName: "Midnight Sheep",
+    role: "Staying up till late is a habit — a die-hard night type",
+    visualConcept: "A nightcap sheep up late with a steaming mug, owl-like eyes. Watercolor chibi, white background, full body.",
+    imageKey: "sleep-midnight-sheep",
+  },
+  "Bright Early Riser Type": {
+    characterName: "Sunrise Sheep",
+    role: "Full of energy from the morning — a lively early riser",
+    visualConcept: "A round sheep stretching big in the morning light, wide awake and cheerful. Watercolor chibi, white background, full body.",
+    imageKey: "sleep-sunrise-sheep",
+  },
+  "Sleeps Anywhere Type": {
+    characterName: "Anywhere Sheep",
+    role: "Blessed with the talent to sleep anywhere",
+    visualConcept: "A round sheep sleeping peacefully sitting up (as if on a train seat), fully at ease. Watercolor chibi, white background, full body.",
+    imageKey: "sleep-anywhere-sheep",
+  },
+  "Bedding Maniac Type": {
+    characterName: "Bedding Sheep",
+    role: "A sleep seeker obsessed with pillows, futons, and lighting",
+    visualConcept: "A nightcap sheep blissfully buried in a plump futon and pillow. Watercolor chibi, white background, full body.",
+    imageKey: "sleep-bedding-sheep",
+  },
+  "Full Nocturnal Type": {
+    characterName: "Nocturnal Sheep",
+    role: "Up till dawn and asleep by day — a true night dweller",
+    visualConcept: "A nightcap sheep happily enjoying the night against a big moon, nocturnal aura. Watercolor chibi, white background, full body.",
+    imageKey: "sleep-fullowl-sheep",
+  },
+  "Early-to-Bed Master Type": {
+    characterName: "Dawn Sheep",
+    role: "A sleep honor student with the ideal rhythm",
+    visualConcept: "A round sheep stretching refreshed against a clock, a healthy aura. Watercolor chibi, white background, full body.",
+    imageKey: "sleep-dawn-sheep",
+  },
+  "Instant Sleeper Type": {
+    characterName: "Instant Sheep",
+    role: "A falling-asleep genius who's out the moment they hit the pillow",
+    visualConcept: "A nightcap sheep flopped fast asleep the instant its head hits the pillow, big sleep bubble. Watercolor chibi, white background, full body.",
+    imageKey: "sleep-instant-sheep",
+  },
+  "Sleep Master Type": {
+    characterName: "Sleep Master Sheep",
+    role: "A sleep master who rests deeply every night with the best setup",
+    visualConcept: "A nightcap sheep sleeping blissfully in a perfectly arranged bed, deep-sleep aura. Watercolor chibi, white background, full body.",
+    imageKey: "sleep-master-sheep",
+  },
+}
+
+export const sleepTypeResultTypesEn = [
+  ["Night Owl Short Sleeper Type", "Early Bird Short Sleeper Type", "Dozer Type", "Sleep Rookie Type"],
+  ["Night Person Type", "Morning Person Type", "Sofa Crasher Type", "Sleep Prep Type"],
+  ["Habitual Night Owl Type", "Bright Early Riser Type", "Sleeps Anywhere Type", "Bedding Maniac Type"],
+  ["Full Nocturnal Type", "Early-to-Bed Master Type", "Instant Sleeper Type", "Sleep Master Type"],
+]
+
+export const bindRibbonCharactersEn = {
+  "Occasional Patrol Type": {
+    characterName: "Casual Patrol Ribbon",
+    role: "A light-binding type who occasionally peeks at their partner's social media",
+    visualConcept: "Watercolor chibi. A round pastel spirit holding a small loosely-tied ribbon, glancing at a phone. Light and sweet mood. White background, full body.",
+    imageKey: "bind-patrol-ribbon",
+  },
+  "A Little Jealous Type": {
+    characterName: "Jealous Ribbon",
+    role: "A cute binding beginner who gets a little jealous",
+    visualConcept: "A round spirit pressing a ribbon to its cheek, puffing up a bit with a jealous face. Watercolor chibi, white background, full body.",
+    imageKey: "bind-jealous-ribbon",
+  },
+  "Mildly Curious Type": {
+    characterName: "Curious Ribbon",
+    role: "A modest meddler mildly curious about their partner's plans",
+    visualConcept: "A round spirit twirling a thin ribbon on its finger, fidgeting curiously. Watercolor chibi, white background, full body.",
+    imageKey: "bind-curious-ribbon",
+  },
+  "Sometimes Lonely Type": {
+    characterName: "Lonely Ribbon",
+    role: "A sweet, clingy type who gets lonely now and then",
+    visualConcept: "A round spirit hugging a small ribbon, looking a little lonely with teary eyes. Watercolor chibi, white background, full body.",
+    imageKey: "bind-lonely-ribbon",
+  },
+  "Read-Receipt Checker Type": {
+    characterName: "Read-Receipt Ribbon",
+    role: "A standard watcher type mindful of read receipts and replies",
+    visualConcept: "A round spirit staring at a ribbon-decorated phone, minding the read receipt with a restless face. Watercolor chibi, white background, full body.",
+    imageKey: "bind-read-ribbon",
+  },
+  "Wants To Be Number One Type": {
+    characterName: "Number One Ribbon",
+    role: "A cute possessive type who wants to be their partner's number one",
+    visualConcept: "A round spirit proudly holding up a ribbon flag marked '1'. Watercolor chibi, white background, full body.",
+    imageKey: "bind-number1-ribbon",
+  },
+  "Wants To Know The Schedule Type": {
+    characterName: "Schedule Ribbon",
+    role: "A thorough meddler who wants to know their partner's plans",
+    visualConcept: "A round spirit holding a small ribbon-decorated planner (calendar), checking the schedule. Watercolor chibi, white background, full body.",
+    imageKey: "bind-schedule-ribbon",
+  },
+  "Anxious Reply Waiter Type": {
+    characterName: "Waiting Ribbon",
+    role: "An anxious type who gets nervous when no message comes",
+    visualConcept: "A round spirit clutching a ribbon-tied phone in both hands, nervously waiting for a reply. Watercolor chibi, white background, full body.",
+    imageKey: "bind-waiting-ribbon",
+  },
+  "Minds The Location Type": {
+    characterName: "Location Ribbon",
+    role: "A firm watcher type curious about 'where are you now?'",
+    visualConcept: "A round spirit spreading a ribbon-tied map (with a pin), minding their partner's location. Watercolor chibi, white background, full body.",
+    imageKey: "bind-location-ribbon",
+  },
+  "Wants To Monopolize Type": {
+    characterName: "Monopoly Ribbon",
+    role: "A strongly possessive type who wants their partner all to themselves",
+    visualConcept: "A round spirit hugging a heart plush tightly with a big ribbon. Watercolor chibi, white background, full body.",
+    imageKey: "bind-monopoly-ribbon",
+  },
+  "Outfit Commenter Type": {
+    characterName: "Outfit Ribbon",
+    role: "A meddler who can't help commenting on outfits and actions",
+    visualConcept: "A round spirit holding a ribbon-tied outfit (on a hanger), suggesting 'wear this'. Watercolor chibi, white background, full body.",
+    imageKey: "bind-coorde-ribbon",
+  },
+  "Needs Constant Reassurance Type": {
+    characterName: "Reassurance Ribbon",
+    role: "An anxious type who wants to confirm 'do you love me?' again and again",
+    visualConcept: "A round spirit offering a heart-shaped ribbon, checking 'do you love me?' with upturned eyes. Watercolor chibi, white background, full body.",
+    imageKey: "bind-confirm-ribbon",
+  },
+  "24-Hour Patrol Type": {
+    characterName: "24-Hour Ribbon",
+    role: "A hardcore watcher whose 24-hour checking never stops",
+    visualConcept: "A round spirit surrounded by many ribbons and phones, eyes sparkling on all-around patrol — a little desperate but cute. Watercolor chibi, white background, full body.",
+    imageKey: "bind-24hpatrol-ribbon",
+  },
+  "Just The Two Of Us Type": {
+    characterName: "Only-Us Ribbon",
+    role: "A MAX-possessive type who wants a world of just the two of them",
+    visualConcept: "A round spirit tying its own and its partner's hearts together with a big ribbon, making a world for two. Watercolor chibi, white background, full body.",
+    imageKey: "bind-onlyus-ribbon",
+  },
+  "Wants To Manage Everything Type": {
+    characterName: "Management Ribbon",
+    role: "A hardcore meddler who wants to manage all plans and friendships",
+    visualConcept: "A round spirit holding a planner, key, and checklist bundled with ribbon, managing it all neatly. Watercolor chibi, white background, full body.",
+    imageKey: "bind-control-ribbon",
+  },
+  "Maximum Clingy Type": {
+    characterName: "Clingy Ribbon",
+    role: "A sweet, hardcore-anxious type with MAX need for attention",
+    visualConcept: "A round spirit spreading ribbons wide, clinging with its whole body 'pay attention to me!' — teary and desperate but endearing. Watercolor chibi, white background, full body.",
+    imageKey: "bind-clingy-ribbon",
+  },
+}
+
+export const bindLevelResultTypesEn = [
+  ["Occasional Patrol Type", "A Little Jealous Type", "Mildly Curious Type", "Sometimes Lonely Type"],
+  ["Read-Receipt Checker Type", "Wants To Be Number One Type", "Wants To Know The Schedule Type", "Anxious Reply Waiter Type"],
+  ["Minds The Location Type", "Wants To Monopolize Type", "Outfit Commenter Type", "Needs Constant Reassurance Type"],
+  ["24-Hour Patrol Type", "Just The Two Of Us Type", "Wants To Manage Everything Type", "Maximum Clingy Type"],
+]
+
+export const myPaceCharactersEn = {
+  "Gentle Pace Type": {
+    characterName: "Mellow Ragdoll",
+    role: "A cat that softly matches your rhythm",
+    visualConcept: "A fluffy white-and-gray Ragdoll with blue eyes, completely relaxed and content even when held.",
+    imageKey: "mypace-ragdoll-cat",
+  },
+  "Easygoing Social Type": {
+    characterName: "Friendly Shorthair",
+    role: "A sociable cat that plays well with anyone",
+    visualConcept: "A silver American Shorthair with black swirl patterns, tail up, trotting over with a friendly smile.",
+    imageKey: "mypace-amesho-cat",
+  },
+  "A Little Me-Time Type": {
+    characterName: "Windowsill Hachiware",
+    role: "Adaptable, but cherishes its own quiet time",
+    visualConcept: "A black-and-white bicolor cat perched on a windowsill, calmly watching birds outside in profile.",
+    imageKey: "mypace-hachiware-cat",
+  },
+  "Subtly My-Way Type": {
+    characterName: "Strolling Munchkin",
+    role: "Short legs, but walks its own path",
+    visualConcept: "A short-legged Munchkin trotting adorably, loved by everyone yet choosing its own destination with a proud face.",
+    imageKey: "mypace-munchkin-cat",
+  },
+  "Laid-back Type": {
+    characterName: "Chill Scottish Fold",
+    role: "Moves only on its own schedule",
+    visualConcept: "A round-faced Scottish Fold with folded ears, sitting flat with legs out, smiling contentedly.",
+    imageKey: "mypace-scottish-cat",
+  },
+  "Moody but Friendly Type": {
+    characterName: "Whimsical Calico",
+    role: "Pettable sometimes — depends on the day",
+    visualConcept: "A white, orange and black calico swaying its tail, looking up as if asking which mood is it today.",
+    imageKey: "mypace-mike-cat",
+  },
+  "Casual Solo Adventurer Type": {
+    characterName: "Wandering Kijitora",
+    role: "Slips away and comes back on a whim",
+    visualConcept: "A brown-striped tabby with a dignified wild look, caught mid-stride on its way somewhere.",
+    imageKey: "mypace-kijitora-cat",
+  },
+  "Never Compromise on Favorites Type": {
+    characterName: "Full-Power Bengal",
+    role: "Goes all out for the games it loves",
+    visualConcept: "A leopard-spotted Bengal with sparkling eyes, crouched low and ready to pounce on a toy.",
+    imageKey: "mypace-bengal-cat",
+  },
+  "My Time Is Sacred Type": {
+    characterName: "Naptime Orange Tabby",
+    role: "Meals and naps are non-negotiable",
+    visualConcept: "An orange tabby sleeping belly-up in pure bliss, looking like nothing in the world could wake it.",
+    imageKey: "mypace-chatora-cat",
+  },
+  "Mood Rules Everything Type": {
+    characterName: "Moody Tortie",
+    role: "The day's mood decides everything",
+    visualConcept: "A black-and-orange tortoiseshell lounging languidly, glancing over with a not-in-the-mood-today expression.",
+    imageKey: "mypace-sabi-cat",
+  },
+  "Cool Lone Walker Type": {
+    characterName: "Cool Russian Blue",
+    role: "A graceful cat of quiet solo action",
+    visualConcept: "A silver-gray Russian Blue sitting perfectly upright, gazing quietly with emerald eyes.",
+    imageKey: "mypace-russianblue-cat",
+  },
+  "Unshakeable My-Way Type": {
+    characterName: "Steady Maine Coon",
+    role: "Big, calm, and utterly unshakeable",
+    visualConcept: "A large fluffy Maine Coon with a lion-like mane, sitting with immense, unbothered dignity.",
+    imageKey: "mypace-mainecoon-cat",
+  },
+  "Supreme Serenity Type": {
+    characterName: "Serene Persian",
+    role: "Never hurries, no matter what",
+    visualConcept: "A long-haired Persian loafing elegantly on a cushion, eyes half closed in bliss, as if time itself stopped.",
+    imageKey: "mypace-persian-cat",
+  },
+  "Says What It Wants Type": {
+    characterName: "Chatty Siamese",
+    role: "Speaks its mind with a loud meow",
+    visualConcept: "A cream Siamese with dark points and sapphire eyes, mouth open mid-meow, confidently making a statement.",
+    imageKey: "mypace-siamese-cat",
+  },
+  "Free Spirit of the Night Type": {
+    characterName: "Night-Stroll Black Cat",
+    role: "A lone wolf that owns the night",
+    visualConcept: "A glossy black cat with glowing golden eyes, glancing back mysteriously mid-stride.",
+    imageKey: "mypace-kuroneko-cat",
+  },
+  "One and Only Type": {
+    characterName: "True-Self Sphynx",
+    role: "Cares zero percent about others' eyes",
+    visualConcept: "A hairless wrinkly Sphynx with big ears, chest out and utterly confident, as if saying this is me.",
+    imageKey: "mypace-sphynx-cat",
+  },
+}
+
+export const myPaceResultTypesEn = [
+  ["Gentle Pace Type", "Easygoing Social Type", "A Little Me-Time Type", "Subtly My-Way Type"],
+  ["Laid-back Type", "Moody but Friendly Type", "Casual Solo Adventurer Type", "Never Compromise on Favorites Type"],
+  ["My Time Is Sacred Type", "Mood Rules Everything Type", "Cool Lone Walker Type", "Unshakeable My-Way Type"],
+  ["Supreme Serenity Type", "Says What It Wants Type", "Free Spirit of the Night Type", "One and Only Type"],
+]
+
+export const isekaiPositionCharactersEn = {
+  "Village Watch Type": {
+    characterName: "Patrol Puni",
+    role: "A puni loosely guarding village peace",
+    visualConcept: "A yellow-green squishy blob creature holding a wooden stick and pot-lid shield, patrolling proudly.",
+    imageKey: "isekai-guard-puni",
+  },
+  "Town Shopkeeper Type": {
+    characterName: "Shopkeeper Puni",
+    role: "A reliable puni with everything in stock",
+    visualConcept: "A light-blue squishy blob in a tiny apron, cheerfully serving customers among colorful potion bottles.",
+    imageKey: "isekai-shopkeeper-puni",
+  },
+  "Inn Master Type": {
+    characterName: "Innkeeper Puni",
+    role: "A hospitable puni who heals travelers",
+    visualConcept: "A cream-colored squishy blob in a nightcap, raising a warm lantern to welcome travelers with a smile.",
+    imageKey: "isekai-innkeeper-puni",
+  },
+  "Wandering Bard Type": {
+    characterName: "Bard Puni",
+    role: "A free-spirited puni singing across the land",
+    visualConcept: "A lavender squishy blob in a feathered hat, happily strumming a tiny lute.",
+    imageKey: "isekai-bard-puni",
+  },
+  "Front-line Swordsman Type": {
+    characterName: "Swordsman Puni",
+    role: "A dependable puni fighting at the front",
+    visualConcept: "A red squishy blob with a small sword and shield, headband on, full of fighting spirit.",
+    imageKey: "isekai-swordsman-puni",
+  },
+  "Party Mage Type": {
+    characterName: "Mage Puni",
+    role: "A wise puni supporting allies with spells",
+    visualConcept: "A blue squishy blob in a star-patterned pointed hat, a small magic light glowing at its staff.",
+    imageKey: "isekai-mage-puni",
+  },
+  "Healing Priest Type": {
+    characterName: "Healer Puni",
+    role: "A gentle puni mending allies' wounds",
+    visualConcept: "A white squishy blob in a hooded robe, holding a softly glowing staff with a calm smile.",
+    imageKey: "isekai-healer-puni",
+  },
+  "Treasure Hunter Type": {
+    characterName: "Hunter Puni",
+    role: "A free puni with a nose for treasure",
+    visualConcept: "A brown squishy blob with a fluttering cape, eyes sparkling over an unrolled treasure map.",
+    imageKey: "isekai-hunter-puni",
+  },
+  "Knight Commander Type": {
+    characterName: "Commander Puni",
+    role: "A righteous puni leading everyone",
+    visualConcept: "A silver squishy blob in tiny armor and a red cape, standing proud with great dignity.",
+    imageKey: "isekai-knight-puni",
+  },
+  "Court Sage Type": {
+    characterName: "Sage Puni",
+    role: "A wise puni trusted as the kingdom's brain",
+    visualConcept: "A deep-green squishy blob with a white beard and round glasses, hugging a thick grimoire.",
+    imageKey: "isekai-sage-puni",
+  },
+  "Holy Guardian Type": {
+    characterName: "Saint Puni",
+    role: "A puni of light protecting all with prayer",
+    visualConcept: "A pale-gold squishy blob with a small halo, hands together in prayer, surrounded by light particles.",
+    imageKey: "isekai-saint-puni",
+  },
+  "Masked Phantom Thief Type": {
+    characterName: "Phantom Puni",
+    role: "An elusive yet lovable puni",
+    visualConcept: "A purple squishy blob with a white mask, silk hat and tiny cape, striking a pose with a rose.",
+    imageKey: "isekai-phantom-puni",
+  },
+  "Legendary Hero Type": {
+    characterName: "Hero Puni",
+    role: "A puni destined to save the world",
+    visualConcept: "A golden glowing squishy blob raising a holy sword high, royal blue cape fluttering.",
+    imageKey: "isekai-hero-puni",
+  },
+  "Archmage Type": {
+    characterName: "Archmage Puni",
+    role: "A legendary puni of ultimate magic",
+    visualConcept: "An indigo squishy blob in a starry-sky robe, open grimoires floating around it.",
+    imageKey: "isekai-archmage-puni",
+  },
+  "Spirit King Type": {
+    characterName: "Spirit King Puni",
+    role: "A royal puni beloved by forests and creatures",
+    visualConcept: "An emerald translucent squishy blob with a flower crown and wings of light, smiling among birds and butterflies.",
+    imageKey: "isekai-spiritking-puni",
+  },
+  "Demon Lord Type": {
+    characterName: "Maou Puni",
+    role: "The final-boss puni of its own path",
+    visualConcept: "A black squishy blob with tiny horns and a black cape, sitting smugly on an adorable throne.",
+    imageKey: "isekai-maou-puni",
+  },
+}
+
+export const isekaiPositionResultTypesEn = [
+  ["Village Watch Type", "Town Shopkeeper Type", "Inn Master Type", "Wandering Bard Type"],
+  ["Front-line Swordsman Type", "Party Mage Type", "Healing Priest Type", "Treasure Hunter Type"],
+  ["Knight Commander Type", "Court Sage Type", "Holy Guardian Type", "Masked Phantom Thief Type"],
+  ["Legendary Hero Type", "Archmage Type", "Spirit King Type", "Demon Lord Type"],
+]
+
+export const procrastinationCharactersEn = {
+  "Morning Clearer Type": {
+    characterName: "Morning-Task Sloth",
+    role: "A sloth who clears chores first thing",
+    visualConcept: "A sloth proudly checking off a list with a pencil, bedhead still showing.",
+    imageKey: "later-morning-sloth",
+  },
+  "Instant Action Type": {
+    characterName: "Instant-Reply Sloth",
+    role: "The sloth world's maverick who moves on impulse",
+    visualConcept: "A sloth with sharp sparkling eyes, standing upright with a phone in hand.",
+    imageKey: "later-quick-sloth",
+  },
+  "Steady Habit Type": {
+    characterName: "Steady Sloth",
+    role: "A master of daily small progress",
+    visualConcept: "A sloth placing stickers on a small calendar with a calm, earnest smile.",
+    imageKey: "later-steady-sloth",
+  },
+  "Ahead of Schedule Type": {
+    characterName: "Early-Bird Sloth",
+    role: "A sloth who finishes far before deadlines",
+    visualConcept: "A sloth with a small backpack, already departing. 'Oh, I finished already.'",
+    imageKey: "later-early-sloth",
+  },
+  "Satisfied by the List Type": {
+    characterName: "List-Maker Sloth",
+    role: "A sloth fulfilled the moment the list is done",
+    visualConcept: "A sloth proudly holding up a beautifully written to-do list (nothing started yet).",
+    imageKey: "later-list-sloth",
+  },
+  "Waiting for Motivation Weather Type": {
+    characterName: "Mood-Waiting Sloth",
+    role: "A sloth forever awaiting motivation weather",
+    visualConcept: "A sloth resting its chin on its paws, gazing out the window. Cloudy today, apparently.",
+    imageKey: "later-mood-sloth",
+  },
+  "Sidetracked Snacker Type": {
+    characterName: "Multitask Sloth",
+    role: "A sloth who can't work without snacks",
+    visualConcept: "A sloth eating snacks with one paw, holding a single document with the other, crumbs around its mouth.",
+    imageKey: "later-nagara-sloth",
+  },
+  "Just Five More Minutes Type": {
+    characterName: "Five-More-Minutes Sloth",
+    role: "A sloth infinitely renewing 'five more minutes'",
+    visualConcept: "A sloth wrapped in a blanket, hugging an alarm clock with a blissful sleeping face.",
+    imageKey: "later-fivemin-sloth",
+  },
+  "Eternal Preparation Type": {
+    characterName: "Prep-Forever Sloth",
+    role: "A sloth whose workspace alone keeps evolving",
+    visualConcept: "A sloth admiring a perfectly arranged desk, never actually starting.",
+    imageKey: "later-setup-sloth",
+  },
+  "Serious From Tomorrow Type": {
+    characterName: "Tomorrow Sloth",
+    role: "A sloth asleep while holding the 'tomorrow' flag",
+    visualConcept: "A sloth sound asleep gripping a small flag that sways with its breathing.",
+    imageKey: "later-tomorrow-sloth",
+  },
+  "Straight to Temptation Type": {
+    characterName: "Temptation Sloth",
+    role: "A sloth absorbed by the fun next to the task",
+    visualConcept: "A sloth clutching a game console, half buried in a mountain of comics, eyes glued to the screen.",
+    imageKey: "later-temptation-sloth",
+  },
+  "Deadline-Eve Blaze Type": {
+    characterName: "Deadline-Eve Sloth",
+    role: "A sloth who awakens only on the eve",
+    visualConcept: "A sloth at midnight, eyes wide, working at full speed with a headband, papers flying.",
+    imageKey: "later-lastnight-sloth",
+  },
+  "Last Day of Summer Type": {
+    characterName: "Final-Day Sloth",
+    role: "A sloth shouldering everything on the last day",
+    visualConcept: "A sloth surrounded by mountains of homework, staring into the distance, pencil on head.",
+    imageKey: "later-finalday-sloth",
+  },
+  "Next Life Type": {
+    characterName: "Next-Life Sloth",
+    role: "A sloth enlightened at procrastination's end",
+    visualConcept: "A sloth meditating on a lotus flower with a perfectly serene face. Practically divine.",
+    imageKey: "later-nextlife-sloth",
+  },
+  "Procrastination King Type": {
+    characterName: "Procrastination King Sloth",
+    role: "A royal sloth beyond all hurry",
+    visualConcept: "A big-shot sloth lounging in a hammock, sunglasses on head, the ultimate smile of leisure.",
+    imageKey: "later-king-sloth",
+  },
+  "Totally Forgot Type": {
+    characterName: "Forgot-It Sloth",
+    role: "A sloth who forgets deadlines exist",
+    visualConcept: "A sloth frozen mid-realization with an 'oh no...!' face and a single drop of sweat.",
+    imageKey: "later-forgot-sloth",
+  },
+}
+
+export const procrastinationResultTypesEn = [
+  ["Morning Clearer Type", "Instant Action Type", "Steady Habit Type", "Ahead of Schedule Type"],
+  ["Satisfied by the List Type", "Waiting for Motivation Weather Type", "Sidetracked Snacker Type", "Just Five More Minutes Type"],
+  ["Eternal Preparation Type", "Serious From Tomorrow Type", "Straight to Temptation Type", "Deadline-Eve Blaze Type"],
+  ["Last Day of Summer Type", "Next Life Type", "Procrastination King Type", "Totally Forgot Type"],
+]
+
+export const pastLifeCharactersEn = {
+  "Peaceful Farmer Past Life": {
+    characterName: "Farmer Chick",
+    role: "A chick who lived with the earth",
+    visualConcept: "A chick in a straw hat holding a small hoe, wheat at its feet, smiling simply and happily.",
+    imageKey: "pastlife-farmer-chick",
+  },
+  "Town Baker Past Life": {
+    characterName: "Baker Chick",
+    role: "A chick who woke the town with morning aromas",
+    visualConcept: "A chick in a white chef hat and apron, hugging a basket of fresh bread with rising steam.",
+    imageKey: "pastlife-baker-chick",
+  },
+  "Flower Gardener Past Life": {
+    characterName: "Gardener Chick",
+    role: "A chick who cherished flowers and greenery",
+    visualConcept: "A chick watering flowers with a watering can, a single petal on its head, smiling gently.",
+    imageKey: "pastlife-gardener-chick",
+  },
+  "Sea Fisher Past Life": {
+    characterName: "Fisher Chick",
+    role: "A free-spirited chick who lived with the sea",
+    visualConcept: "A chick with a twisted headband proudly holding up a big fish, net on shoulder.",
+    imageKey: "pastlife-fisher-chick",
+  },
+  "Traveling Merchant Past Life": {
+    characterName: "Merchant Chick",
+    role: "A chick who carried goods and stories between towns",
+    visualConcept: "A chick with a big cloth bundle on its back and an abacus, wearing a savvy smile.",
+    imageKey: "pastlife-merchant-chick",
+  },
+  "Quiet Scholar Past Life": {
+    characterName: "Scholar Chick",
+    role: "A chick who sought truth among books",
+    visualConcept: "A chick with round glasses and a graduation cap, reading an open scroll with keen eyes.",
+    imageKey: "pastlife-scholar-chick",
+  },
+  "Town Doctor Past Life": {
+    characterName: "Doctor Chick",
+    role: "A chick who healed everyone in town",
+    visualConcept: "A chick in a white coat with a doctor's bag and a head mirror, calm and dependable.",
+    imageKey: "pastlife-doctor-chick",
+  },
+  "Traveling Performer Past Life": {
+    characterName: "Performer Chick",
+    role: "A chick who gathered laughter and applause",
+    visualConcept: "A chick in colorful costume juggling bright balls with an entertaining smile.",
+    imageKey: "pastlife-performer-chick",
+  },
+  "Devoted Samurai Past Life": {
+    characterName: "Samurai Chick",
+    role: "A chick who lived by loyalty and sincerity",
+    visualConcept: "A chick with topknot feathers and hakama, small katana at its side, standing gallantly.",
+    imageKey: "pastlife-samurai-chick",
+  },
+  "Inventor Past Life": {
+    characterName: "Inventor Chick",
+    role: "A chick who made the world handier",
+    visualConcept: "A chick with goggles on its head, holding a wrench and gear, eyes sparkling with ideas.",
+    imageKey: "pastlife-inventor-chick",
+  },
+  "Kindhearted Princess Past Life": {
+    characterName: "Princess Chick",
+    role: "A gentle chick beloved by the people",
+    visualConcept: "A chick with a tiny tiara and pale pink dress, holding a fan with elegant poise.",
+    imageKey: "pastlife-princess-chick",
+  },
+  "Ocean Navigator Past Life": {
+    characterName: "Navigator Chick",
+    role: "A chick who crossed great seas by stars and charts",
+    visualConcept: "A chick in a captain's hat gripping a ship's wheel, telescope ready, facing the sea wind.",
+    imageKey: "pastlife-navigator-chick",
+  },
+  "Dragon Knight Past Life": {
+    characterName: "Dragon Knight Chick",
+    role: "A legendary chick bonded with a dragon",
+    visualConcept: "A chick in small armor with a plumed helmet, a palm-sized baby dragon by its side.",
+    imageKey: "pastlife-dragonknight-chick",
+  },
+  "Grand Onmyoji Past Life": {
+    characterName: "Onmyoji Chick",
+    role: "A legendary chick who guarded the capital from shadows",
+    visualConcept: "A chick in traditional robes and a tall cap, raising a paper talisman, faint mystic flames around.",
+    imageKey: "pastlife-onmyoji-chick",
+  },
+  "Stargazer Past Life": {
+    characterName: "Stargazer Chick",
+    role: "A legendary chick who heard the voices of stars",
+    visualConcept: "A chick in a starry cloak holding a small telescope and star chart, gazing up like a romantic.",
+    imageKey: "pastlife-stargazer-chick",
+  },
+  "Pirate Captain Past Life": {
+    characterName: "Pirate Captain Chick",
+    role: "A legendary chick who sailed the seven seas free",
+    visualConcept: "A chick with a pirate hat and eyepatch, small parrot on shoulder, grinning fearlessly and charmingly.",
+    imageKey: "pastlife-pirate-chick",
+  },
+}
+
+export const pastLifeResultTypesEn = [
+  ["Peaceful Farmer Past Life", "Town Baker Past Life", "Flower Gardener Past Life", "Sea Fisher Past Life"],
+  ["Traveling Merchant Past Life", "Quiet Scholar Past Life", "Town Doctor Past Life", "Traveling Performer Past Life"],
+  ["Devoted Samurai Past Life", "Inventor Past Life", "Kindhearted Princess Past Life", "Ocean Navigator Past Life"],
+  ["Dragon Knight Past Life", "Grand Onmyoji Past Life", "Stargazer Past Life", "Pirate Captain Past Life"],
+]
+
+export const selfEsteemCharactersEn = {
+  "Quiet Sprout Type": {
+    characterName: "Futaba Sprout",
+    role: "A tiny sprout just emerging from the soil",
+    visualConcept: "A small two-leaf sprout peeking from the earth, timid yet clearly facing the light.",
+    imageKey: "esteem-futaba-sprout",
+  },
+  "Hide-and-Seek Moss Type": {
+    characterName: "Kokemaru",
+    role: "Modest moss thriving in the shade",
+    visualConcept: "Soft green moss spreading in a rock crevice — unassuming, but wonderfully soft to touch.",
+    imageKey: "esteem-koke-moss",
+  },
+  "Waiting-for-Rain Bud Type": {
+    characterName: "Tsubomi",
+    role: "A bud preparing to bloom, waiting for rain",
+    visualConcept: "A plump closed pink bud. Not open yet, but packed with color inside.",
+    imageKey: "esteem-tsubomi-bud",
+  },
+  "Corner Succulent Type": {
+    characterName: "Nikumaru",
+    role: "A small succulent that lives on little water",
+    visualConcept: "A little succulent with layered plump leaves — unflashy, but surely living at its own pace.",
+    imageKey: "esteem-niku-succulent",
+  },
+  "Sunny Daisy Type": {
+    characterName: "Daisy",
+    role: "A small flower smiling in the sun",
+    visualConcept: "A daisy with white petals and a yellow center — small yet blooming boldly, brightening its surroundings.",
+    imageKey: "esteem-daisy-flower",
+  },
+  "Steadily Growing Type": {
+    characterName: "Gungun",
+    role: "A young leaf growing a little taller each day",
+    visualConcept: "A slender stem with fresh leaves, expressing the excitement of growth with its whole body.",
+    imageKey: "esteem-gungun-leaf",
+  },
+  "Side-by-Side Clover Type": {
+    characterName: "Yotsuba",
+    role: "A clover that grows supported by its cluster",
+    visualConcept: "A four-leaf clover surrounded by three-leaf friends, all swaying in the wind together.",
+    imageKey: "esteem-clover",
+  },
+  "Swaying Cosmos Type": {
+    characterName: "Cosmo",
+    role: "A supple flower that always returns upright",
+    visualConcept: "A pink cosmos swaying atop a slender stem — bending greatly in wind, yet never breaking.",
+    imageKey: "esteem-cosmos-flower",
+  },
+  "Sun-Facing Sunflower Type": {
+    characterName: "Himarin",
+    role: "A cheerful sunflower facing the sun directly",
+    visualConcept: "A sunflower with a big yellow bloom, head always up, eyes on the light.",
+    imageKey: "esteem-himawari-sun",
+  },
+  "Own-Color Lavender Type": {
+    characterName: "Lavie",
+    role: "A calm flower wearing its own fragrance",
+    visualConcept: "Lavender with strands of small purple flowers, serene expression, spreading a soothing scent.",
+    imageKey: "esteem-lavender",
+  },
+  "Supple Bamboo Type": {
+    characterName: "Takenoko",
+    role: "Young bamboo growing straight, node by node",
+    visualConcept: "Green young bamboo standing tall — supple, confident, unbroken by wind.",
+    imageKey: "esteem-bamboo",
+  },
+  "Fruiting Mandarin Type": {
+    characterName: "Senpai Mikan",
+    role: "A tree that bears fruit and shares it",
+    visualConcept: "A small mandarin tree loaded with orange fruit, itching to share with someone.",
+    imageKey: "esteem-mikan-tree",
+  },
+  "Dignified Rose Type": {
+    characterName: "Lady Rose",
+    role: "A rose that owns both thorns and beauty",
+    visualConcept: "A rose in deep crimson bloom, thorns unhidden, standing with dignity.",
+    imageKey: "esteem-rose",
+  },
+  "Serene Great Tree Type": {
+    characterName: "Taiju",
+    role: "A great tree rooted deep and unshaken",
+    visualConcept: "A great tree with a thick trunk and lush leaves; birds perch on branches, someone rests in its shade.",
+    imageKey: "esteem-taiju-tree",
+  },
+  "Thousand-Year Cedar Type": {
+    characterName: "Sennen Cedar",
+    role: "A quiet cedar that has lived through ages",
+    visualConcept: "A giant moss-covered cedar with a serene gaze, watching over everything.",
+    imageKey: "esteem-sennen-cedar",
+  },
+  "World Tree Type": {
+    characterName: "Sekaiju",
+    role: "A legendary tree that nurtures other lives",
+    visualConcept: "A colossal tree wreathed in light, with countless small flowers and sprouts at its base and light particles drifting through its branches.",
+    imageKey: "esteem-world-tree",
+  },
+}
+
+export const selfEsteemResultTypesEn = [
+  ["Quiet Sprout Type", "Hide-and-Seek Moss Type", "Waiting-for-Rain Bud Type", "Corner Succulent Type"],
+  ["Sunny Daisy Type", "Steadily Growing Type", "Side-by-Side Clover Type", "Swaying Cosmos Type"],
+  ["Sun-Facing Sunflower Type", "Own-Color Lavender Type", "Supple Bamboo Type", "Fruiting Mandarin Type"],
+  ["Dignified Rose Type", "Serene Great Tree Type", "Thousand-Year Cedar Type", "World Tree Type"],
+]
+
+export const stressLevelCharactersEn = {
+  "Carefree Type": { characterName: "Yoyuu Balloon", role: "A carefree balloon that floats high, never holding onto stress", visualConcept: "A round pink balloon character spreading its arms, blowing hearts with a cheerful grin.", imageKey: "stress-yoyuu-balloon" },
+  "Steady & Calm Type": { characterName: "Purun Balloon", role: "A steady balloon that keeps its shape even when things get busy", visualConcept: "An orange balloon character lounging with a flower, humming softly with a serene smile.", imageKey: "stress-purun-balloon" },
+  "Slightly Tense Type": { characterName: "Choihari Balloon", role: "A balloon just starting to feel a little tension", visualConcept: "A yellow balloon character pressing its hands together with a slightly worried 'hmm?' face.", imageKey: "stress-choihari-balloon" },
+  "Always Pushing Type": { characterName: "Kibari Balloon", role: "A balloon that always pushes itself and stays tense", visualConcept: "A yellow-green balloon character with a drop of sweat and faint tremble lines, brows furrowed as it strains.", imageKey: "stress-kibari-balloon" },
+  "Swelling Inside Type": { characterName: "Uchigawa Balloon", role: "A balloon quietly swelling from the inside with held-in feelings", visualConcept: "A mint-green balloon character clasping its hands at its chest, tremble lines around it, holding something in.", imageKey: "stress-uchigawa-balloon" },
+  "Forced Smile Type": { characterName: "Karagenki Balloon", role: "A balloon that smiles through the strain on forced cheer", visualConcept: "A light-blue balloon character grinning widely but teary-eyed, fists clenched in forced cheer.", imageKey: "stress-karagenki-balloon" },
+  "Easily Drained Type": { characterName: "Kizukare Balloon", role: "A balloon easily drained from over-accommodating others", visualConcept: "A blue balloon character hugging a white towel, sagging with tired half-lidded eyes and a small sigh.", imageKey: "stress-kizukare-balloon" },
+  "Overthinking Type": { characterName: "Guruguru Balloon", role: "A balloon stretched tight with a head full of thoughts", visualConcept: "A deep blue-purple balloon character with spiral eyes and a swirl of thoughts overhead, stretched tight.", imageKey: "stress-guruguru-balloon" },
+  "Sudden Deflate Type": { characterName: "Shibomi Balloon", role: "A listless balloon that suddenly deflates when it runs out of energy", visualConcept: "A purple balloon character deflated flat on the ground, blank and listless with half-lidded eyes.", imageKey: "stress-shibomi-balloon" },
+  "On the Edge Type": { characterName: "Girigiri Balloon", role: "A balloon barely holding on, right at its limit", visualConcept: "A purple, over-inflated balloon character squeezing its eyes shut with clenched fists and tremble lines.", imageKey: "stress-girigiri-balloon" },
+  "About to Burst Type": { characterName: "Punpun Balloon", role: "An oversensitive balloon ready to burst at the slightest trigger", visualConcept: "A hot-pink balloon character, mouth open in anger, red anger marks and stars bursting around it.", imageKey: "stress-punpun-balloon" },
+  "Running on Empty Type": { characterName: "Moumuri Balloon", role: "A worn-out balloon living constantly past its limit", visualConcept: "A red balloon character deflated on the ground, brows drooping, utterly worn out.", imageKey: "stress-moumuri-balloon" },
+  "Fine Outside, Broken Inside Type": { characterName: "Boroboro Balloon", role: "A balloon that looks fine outside but is falling apart within", visualConcept: "A brown balloon character beaming and sparkling, yet covered in little bandages.", imageKey: "stress-boroboro-balloon" },
+  "Always Nervous Type": { characterName: "Kincho Balloon", role: "A balloon always on edge, gripped by tension", visualConcept: "A pale balloon character sweating, fists clenched tight, shrinking anxiously.", imageKey: "stress-kincho-balloon" },
+  "Bounces Back Type": { characterName: "Fukkatsu Balloon", role: "A resilient balloon that bounces back with a little rest", visualConcept: "A fluffy, cloud-like white balloon character sleeping peacefully with Zzz overhead.", imageKey: "stress-fukkatsu-balloon" },
+  "Total Meltdown Type": { characterName: "Bakuhatsu Balloon", role: "A balloon that finally burst after stress passed its limit", visualConcept: "A charred black balloon character with fiery red cracks, debris flying as it screams wide-eyed.", imageKey: "stress-bakuhatsu-balloon" },
+}
+
+export const stressLevelResultTypesEn = [
+  ["Carefree Type", "Slightly Tense Type", "Steady & Calm Type", "Bounces Back Type"],
+  ["Forced Smile Type", "Swelling Inside Type", "Always Pushing Type", "Easily Drained Type"],
+  ["Fine Outside, Broken Inside Type", "Always Nervous Type", "Overthinking Type", "Sudden Deflate Type"],
+  ["Running on Empty Type", "About to Burst Type", "On the Edge Type", "Total Meltdown Type"],
+]
+
+export const animalTypeCharactersEn = {
+  "Ultimate Chill Type": { characterName: "Capico", role: "The ultimate laid-back soul, unshaken by anything", visualConcept: "A capybara x koala hybrid, chunky and mossy with a little cart on its back, half-lidded and utterly relaxed.", imageKey: "hybrid-capybara-koala" },
+  "Slow Night Owl Type": { characterName: "Namafuku", role: "Slow by day, wide awake at night", visualConcept: "A sloth x owl hybrid with owl wings and sloth claws, holding a lantern with a drowsy smile.", imageKey: "hybrid-sloth-owl" },
+  "Go-With-The-Flow Type": { characterName: "Pukara", role: "A free spirit who drifts with the current", visualConcept: "An otter x jellyfish hybrid wrapped in glowing blue tentacles, floating on the water with a relaxed look.", imageKey: "hybrid-otter-jellyfish" },
+  "Big & Unshakable Type": { characterName: "Nushi", role: "The big, unshakable master of the waters", visualConcept: "A giant salamander x whale shark hybrid with a large starry body, carrying gear and smiling calmly.", imageKey: "hybrid-salamander-whaleshark" },
+  "Beloved Healing Idol Type": { characterName: "Pinkooper", role: "A beloved idol who brightens any room just by being there", visualConcept: "A beaver x axolotl hybrid with pink gills and a crystal pickaxe, grinning with buck teeth.", imageKey: "hybrid-beaver-wooper" },
+  "Colorful Charmer Type": { characterName: "Nijiusa", role: "A rainbow-hued favorite who lifts everyone's spirits", visualConcept: "A rabbit x sea slug hybrid with rainbow frills on its back, fluffy and white with a sweet smile.", imageKey: "hybrid-rabbit-seaslug" },
+  "Fluttering Fairy Type": { characterName: "Hirari", role: "A fairy who dances in lightly and brightens the air", visualConcept: "A deer x butterfly hybrid with large butterfly wings, lithe and lovely, dancing through the forest.", imageKey: "hybrid-deer-butterfly" },
+  "Mystic Sparkle Type": { characterName: "Kirari", role: "A mysterious charm that draws everyone in", visualConcept: "A seahorse x deer hybrid with antlers and translucent wings, glittering amid bubbles, dreamlike.", imageKey: "hybrid-seahorse-deer" },
+  "Still Strategist Type": { characterName: "Prof. Hashidako", role: "A strategist who stays still and sees through everything", visualConcept: "A shoebill x octopus hybrid with a huge bill and eight tentacles, wearing goggles with a stern face.", imageKey: "hybrid-shoebill-octopus" },
+  "Thoughtful Messenger Type": { characterName: "Fumio", role: "Caring and considerate, like one who delivers letters", visualConcept: "A pangolin x rabbit hybrid with a scaled body and long ears, holding a letter with a gentle look.", imageKey: "hybrid-pangolin-rabbit" },
+  "Night Explorer Type": { characterName: "Dr. Lantern", role: "A researcher who explores steadily late into the night", visualConcept: "An aye-aye x bat hybrid with big eyes and ears, holding a lantern — a nocturnal little scholar.", imageKey: "hybrid-ayeaye-bat" },
+  "Well-Prepared Adventurer Type": { characterName: "Captain Penhashi", role: "A reliable adventurer who prepares before moving", visualConcept: "A penguin x toucan hybrid with a colorful bill and an explorer's backpack, standing dependably.", imageKey: "hybrid-penguin-toucan" },
+  "Mysterious Nocturnal Type": { characterName: "Kuromori of the Night", role: "A mysterious loner who moves quietly at night", visualConcept: "A black cat x bat hybrid with dark fur, bat wings and golden eyes gazing mysteriously.", imageKey: "hybrid-blackcat-bat" },
+  "Desert Lone Wolf Type": { characterName: "Arineck of the Sands", role: "A lone wolf who digs its own path in silence", visualConcept: "An anteater x fennec hybrid with big ears and a slim snout, digging through the sand independently.", imageKey: "hybrid-anteater-fennec" },
+  "Solitary Hunter Type": { characterName: "Yukifen of the Snow", role: "A solitary hunter who waits quietly for the moment", visualConcept: "A fennec x snow leopard hybrid with big ears and spots, carrying a lantern — a dignified hunter.", imageKey: "hybrid-fennec-leopard" },
+  "Free Spirit on High Type": { characterName: "Kiritena of the Heights", role: "A free spirit who watches the world from up high", visualConcept: "A giraffe x gibbon hybrid with a long neck and arms, swinging through trees, free and lofty.", imageKey: "hybrid-giraffe-gibbon" },
+}
+
+export const animalTypeResultTypesEn = [
+  ["Ultimate Chill Type", "Slow Night Owl Type", "Go-With-The-Flow Type", "Big & Unshakable Type"],
+  ["Beloved Healing Idol Type", "Colorful Charmer Type", "Fluttering Fairy Type", "Mystic Sparkle Type"],
+  ["Still Strategist Type", "Thoughtful Messenger Type", "Night Explorer Type", "Well-Prepared Adventurer Type"],
+  ["Mysterious Nocturnal Type", "Desert Lone Wolf Type", "Solitary Hunter Type", "Free Spirit on High Type"],
+]
+
+export const angerStyleCharactersEn = {
+  "Mild Bell Pepper Type": { characterName: "Sweet Papu", role: "A perfectly mild, round bell pepper spirit", visualConcept: "A green round bell-pepper-shaped spirit with a peaceful smile, worlds away from anger.", imageKey: "anger-mini-eruption" },
+  "Standard Jalapeño Type": { characterName: "Jalapé-kun", role: "A familiar standard green chili spirit", visualConcept: "A plump green jalapeño-type spirit, slightly annoyed with a wisp of steam.", imageKey: "anger-instant-boil" },
+  "Slim Serrano Type": { characterName: "Serra-chan", role: "A slender slightly spicy serrano spirit", visualConcept: "A slim green chili spirit with sharpened eyes and pursed lips, mildly discontent.", imageKey: "anger-volcano" },
+  "Cayenne Standard Type": { characterName: "Mr. Cayenne", role: "A red cooking-favorite chili spirit starting to assert", visualConcept: "A slim red chili spirit with a wisp of steam from its stem and fighting eyes.", imageKey: "anger-lava" },
+  "Tiny Bird's Eye Type": { characterName: "Birdi-chan", role: "A small but sharply spicy red chili spirit", visualConcept: "A bright red small slim chili spirit with puffed cheeks in dissatisfaction.", imageKey: "anger-pout" },
+  "Hat-Shaped Scotch Type": { characterName: "Scotchi", role: "A hat-shaped yellow chili spirit", visualConcept: "A rounded yellow-orange bonnet-hat chili spirit forcing a smile with a vein on the forehead.", imageKey: "anger-limit" },
+  "Fruity Habanero Type": { characterName: "Habané", role: "A fruity but suddenly hot orange spirit", visualConcept: "A plump round orange habanero spirit with a small pot lid on its head hissing steam.", imageKey: "anger-pressure-pot" },
+  "Wrinkled Naga Morich Type": { characterName: "Nagamori-kun", role: "A wrinkled red chili spirit", visualConcept: "A red wrinkled chili spirit whose stem sparks like a fuse; eyes eerily settled.", imageKey: "anger-time-bomb" },
+  "Choco 7-Pot Type": { characterName: "Choco-Seven", role: "A dark-brown ferocious 7-pot-line spirit", visualConcept: "A dark brown gnarled chili spirit with half-lidded scornful eyes; chill air around.", imageKey: "anger-cold-shoulder" },
+  "Ethereal Ghost Pepper Type": { characterName: "Mr. Ghost", role: "A ghostly extreme heat spirit that hits later", visualConcept: "A red chili spirit with a sharply pointed tip, expressionless with arms crossed and cold blue air behind.", imageKey: "anger-silent-pressure" },
+  "Infinite-Hell Infinity Type": { characterName: "Infini", role: "A once-world's-hottest red spirit", visualConcept: "A bright red yet frozen chili spirit with faint frost, staring back coldly.", imageKey: "anger-absolute-zero" },
+  "Long Wrinkled Naga Viper Type": { characterName: "Naga-Viper", role: "A long snake-like deeply wrinkled spirit", visualConcept: "A long red chili spirit covered in deep wrinkles; entire body frozen pale, eyes lifeless.", imageKey: "anger-shutdown" },
+  "Scorpion Stinger Butch T Type": { characterName: "Sorsu-T", role: "An extreme heat spirit with a scorpion-stinger tip", visualConcept: "A red chili spirit with a needle-sharp tip, giggling nervously with a bead of sweat and hand waving.", imageKey: "anger-hehe-dodge" },
+  "Devil-Class Moruga Scorpion Type": { characterName: "Moruga-san", role: "A round, wrinkled spirit with delayed severe heat", visualConcept: "A red round wrinkled chili spirit smiling without smiling eyes; sweat at temple.", imageKey: "anger-bitter-smile" },
+  "Tail-Devil Carolina Reaper Type": { characterName: "Lord Caro-Reaper", role: "A demonic red spirit famous for a tail-like tip", visualConcept: "A deep-red chili spirit with a devilish tail-like protrusion, laughing extravagantly with a tiny 'lol' bubble in hand.", imageKey: "anger-self-joke" },
+  "World-Strongest Pepper X Type": { characterName: "Lord Pepper X", role: "The current Guinness world-hottest king spirit", visualConcept: "A yellow-green gnarled ultimate chili spirit with a Buddha-like forgiving smile and a small halo above.", imageKey: "anger-enlightened" },
+}
+
+export const angerStyleResultTypesEn = [
+  ["Mild Bell Pepper Type", "Standard Jalapeño Type", "Slim Serrano Type", "Cayenne Standard Type"],
+  ["Tiny Bird's Eye Type", "Hat-Shaped Scotch Type", "Fruity Habanero Type", "Wrinkled Naga Morich Type"],
+  ["Choco 7-Pot Type", "Ethereal Ghost Pepper Type", "Infinite-Hell Infinity Type", "Long Wrinkled Naga Viper Type"],
+  ["Scorpion Stinger Butch T Type", "Devil-Class Moruga Scorpion Type", "Tail-Devil Carolina Reaper Type", "World-Strongest Pepper X Type"],
+]
+
+export const shynessCharactersEn = {
+  "Bubble Shell Type": { characterName: "Bubble Hermit", role: "A hermit with an almost-vanishing bubble shell", visualConcept: "A hermit crab with a translucent bubble-like shell — body clearly visible, shell sparkling lightly.", imageKey: "shy-jelly" },
+  "Jelly Shell Type": { characterName: "Jelly Hermit", role: "A nearly-open hermit with a jiggly jelly shell", visualConcept: "A hermit crab with a light-blue translucent jelly shell dotted with a pink star, body visible through it.", imageKey: "shy-one-heart" },
+  "Woven Basket Shell Type": { characterName: "Basket Hermit", role: "A hermit whose shell is a well-ventilated woven basket", visualConcept: "A hermit crab with a lace-like white woven basket shell; light passes through the gaps, bright expression.", imageKey: "shy-colorful" },
+  "Light Seashell Type": { characterName: "Light-Shell Hermit", role: "A hermit with a standard seashell keeping moderate distance", visualConcept: "A hermit crab with a cream-colored standard spiral seashell, quietly smiling outward.", imageKey: "shy-frosted-glass" },
+  "Wooden Barrel Shell Type": { characterName: "Barrel Hermit", role: "A warm-hearted hermit whose shell is a wooden barrel", visualConcept: "A hermit crab with a wooden barrel-shaped shell, moss and leaves around, calm expression.", imageKey: "shy-warm-tea" },
+  "Pink Yarn Shell Type": { characterName: "Yarn-Ball Hermit", role: "A fashionable hermit hiding in a fluffy pink yarn ball", visualConcept: "A hermit crab with a fluffy pink yarn-ball shell, small hearts floating around, bashful expression.", imageKey: "shy-single-flower" },
+  "Teacup Shell Type": { characterName: "Teacup Hermit", role: "A cozy hermit tucked in a warm floral teacup", visualConcept: "A hermit crab settled in a white teacup with blue floral pattern, peeking with elegant calm eyes.", imageKey: "shy-sticker" },
+  "Purple Shell Type": { characterName: "Purple-Shell Hermit", role: "A hermit with a solid deep-purple spiral shell", visualConcept: "A hermit crab with a slightly thick purple spiral shell, watching cautiously.", imageKey: "shy-curtain" },
+  "Moss Rock Shell Type": { characterName: "Moss-Rock Hermit", role: "A heavyweight hermit fused with a mossy rock", visualConcept: "A hermit crab with a heavy gray rock shell covered in moss, peeking out with a wary look.", imageKey: "shy-yarn-ball" },
+  "Cardboard Shell Type": { characterName: "Cardboard Hermit", role: "A hermit crafting its private space with a cardboard box", visualConcept: "A hermit crab hidden inside a brown cardboard box, peeking through the small front gap only.", imageKey: "shy-treasure-lock" },
+  "Treasure Chest Shell Type": { characterName: "Treasure-Chest Hermit", role: "A hermit storing its precious self in a locked chest", visualConcept: "A hermit crab in a wooden treasure chest with a keyhole, lid slightly open, peeking out.", imageKey: "shy-many-windows" },
+  "Safe Shell Type": { characterName: "Safe Hermit", role: "A hermit guarding tightly in a dial-lock safe shell", visualConcept: "A hermit crab in a gray safe with a dial lock, showing only a bit of face from the slightly opened door.", imageKey: "shy-thick-book" },
+  "Castle Shell Type": { characterName: "Castle Hermit", role: "A hermit fortifying itself in a proper castle shell", visualConcept: "A hermit crab in a stone castle shell with towers and flags, quietly peeking out from the gate.", imageKey: "shy-ice-castle" },
+  "Stone Dome Shell Type": { characterName: "Stone-Dome Hermit", role: "A hermit closed inside an igloo-shaped stone dome", visualConcept: "A hermit crab with a stone igloo-dome shell fitted with a wooden door, one eye peeking beside the door.", imageKey: "shy-padlock-safe" },
+  "Moss Dome Shell Type": { characterName: "Moss-Dome Hermit", role: "A hermit fully secluded in a mossy thick rock dome", visualConcept: "A hermit crab with a mossy flower-covered rock dome shell; from the dark inside, only eyes gleam.", imageKey: "shy-fortress-window" },
+  "Crystal Fortress Type": { characterName: "Crystal-Fortress Hermit", role: "A hermit completely sealed in a purple crystal fortress", visualConcept: "A hermit crab in a fortress-like shell covered by purple crystals; inside is pitch dark, only eyes glinting from the gap.", imageKey: "shy-cardboard" },
+}
+
+export const shynessResultTypesEn = [
+  ["Bubble Shell Type", "Jelly Shell Type", "Woven Basket Shell Type", "Light Seashell Type"],
+  ["Wooden Barrel Shell Type", "Pink Yarn Shell Type", "Teacup Shell Type", "Purple Shell Type"],
+  ["Moss Rock Shell Type", "Cardboard Shell Type", "Treasure Chest Shell Type", "Safe Shell Type"],
+  ["Castle Shell Type", "Stone Dome Shell Type", "Moss Dome Shell Type", "Crystal Fortress Type"],
+]
+
+export const zeniTailCharactersEn = {
+  'Gold Saver Type': { characterName: 'Kinpika', role: 'A golden zeni-tail who is great at saving', visualConcept: 'A golden fluffy creature piled with coins, its coin-stack tail packed full, beaming with a sparkly, satisfied smile.', imageKey: 'zeni-gold-saver' },
+  'Steady Saver Type': { characterName: 'Futaba', role: 'A steady zeni-tail who saves little by little for the future', visualConcept: 'A white fluffy creature with a sprout on its head and a gold gem on its forehead, happily hugging a big coin.', imageKey: 'zeni-steady-saver' },
+  'Budget Planner Type': { characterName: 'Keikaku', role: 'A zeni-tail who manages the budget with a household ledger', visualConcept: 'A gray fluffy creature in round glasses, reading a ledger with a quill pen, looking studious.', imageKey: 'zeni-planner' },
+  'Investment Challenger Type': { characterName: 'Toushi', role: 'A bold zeni-tail who takes on growing money', visualConcept: 'A pale-blue fluffy creature hugging a glowing blue coin, with a blue coin-stack tail and bright, eager eyes.', imageKey: 'zeni-investor' },
+  'Slow Grower Type': { characterName: 'Mebae', role: 'A zeni-tail who grows money slowly over the long term', visualConcept: 'A yellow-green fluffy creature cradling a little potted sprout, with leaves drifting around it.', imageKey: 'zeni-slow-grower' },
+  'Money-Anxious Type': { characterName: 'Shinpai', role: 'A worried zeni-tail who saves yet never feels secure', visualConcept: 'A blue-gray fluffy creature clutching a small treasure chest, sweating with teary, anxious eyes.', imageKey: 'zeni-worrier' },
+  'Heart-First Type': { characterName: 'Tokimeki', role: 'A zeni-tail who spends on whatever makes its heart flutter', visualConcept: 'A pink fluffy creature hugging a bright red heart, blissfully content.', imageKey: 'zeni-tokimeki' },
+  'Money-Unbothered Type': { characterName: 'Suyasuya', role: 'An easygoing zeni-tail indifferent to money', visualConcept: 'A white fluffy creature napping face-down on a green paw-print pillow, sleepy bubbles above.', imageKey: 'zeni-easygoing' },
+  'Experience & Travel Type': { characterName: 'Tabi', role: 'A zeni-tail who spends on experiences over things', visualConcept: 'A fluffy creature in an explorer hat and backpack, holding an open map with an excited, ready-to-go face.', imageKey: 'zeni-adventurer' },
+  'Foodie Spender Type': { characterName: 'Gurume', role: 'A gourmet zeni-tail whose wallet loosens for good food', visualConcept: 'A brown fluffy creature chomping a big hamburger with both paws, hearts floating around in delight.', imageKey: 'zeni-foodie' },
+  'Shopping Lover Type': { characterName: 'Okaimono', role: 'A zeni-tail who simply loves shopping', visualConcept: 'A cream fluffy creature cheerfully holding several paw-print shopping bags in both paws.', imageKey: 'zeni-shopper' },
+  'Subscription Swamp Type': { characterName: 'Subusuku', role: 'A zeni-tail drowning in monthly subscriptions', visualConcept: 'A purple fluffy creature surrounded by a laptop, a pile of bills and a coffee, sweating and flustered.', imageKey: 'zeni-subsc' },
+  'Show-Off Spender Type': { characterName: 'Mieppari', role: 'A zeni-tail who overspends to look good', visualConcept: 'A black fluffy creature posing in sunglasses and a gold chain, lounging confidently on a pile of coins.', imageKey: 'zeni-showoff' },
+  'All-In on Beauty Type': { characterName: 'Biyou', role: 'A zeni-tail who pours money into beauty and self-care', visualConcept: 'A pink fluffy creature surrounded by lipstick, cosmetics and shopping bags, tearing up with joy amid hearts.', imageKey: 'zeni-beauty' },
+  'Always Broke Type': { characterName: 'Guttari', role: 'A zeni-tail worn out and broke from overspending', visualConcept: 'A cream fluffy creature slumped limply over coins, a scribble of worry above its head, exhausted half-lidded eyes.', imageKey: 'zeni-broke' },
+  'Live-for-Today Spender Type': { characterName: 'Karappo', role: 'A free-spending zeni-tail who keeps no money overnight', visualConcept: 'A dark fluffy creature sobbing while hugging a cracked pink piggy bank, coins scattered around.', imageKey: 'zeni-spender' },
+}
+
+export const zeniTailResultTypesEn = [
+  ['Gold Saver Type', 'Steady Saver Type', 'Budget Planner Type', 'Investment Challenger Type'],
+  ['Slow Grower Type', 'Money-Anxious Type', 'Heart-First Type', 'Money-Unbothered Type'],
+  ['Experience & Travel Type', 'Foodie Spender Type', 'Shopping Lover Type', 'Subscription Swamp Type'],
+  ['Show-Off Spender Type', 'All-In on Beauty Type', 'Always Broke Type', 'Live-for-Today Spender Type'],
+]
+
+export const scaredyYokaiCharactersEn = {
+  'Unshakable Boss Type': { characterName: 'Dosshiri the Lion', role: 'An unshakable lantern-yokai nothing can rattle', visualConcept: 'A lion-like yokai with white fur and red face markings, holding a lantern high with calm, commanding ease, wrapped in blue spirit flames.', imageKey: 'scaredy-boss' },
+  'Curious Thrill-Seeker Type': { characterName: 'Wakuwaku the Tanuki', role: 'A lantern-yokai who dives toward scary things out of curiosity', visualConcept: 'A tanuki yokai in goggles and a backpack, holding a lantern with sparkling eyes, leaning eagerly forward.', imageKey: 'scaredy-curious' },
+  'Cool Analyst Type': { characterName: 'Monoshiri the Owl', role: 'A composed lantern-yokai who reasons away fear', visualConcept: 'An owl yokai in a graduation cap and round glasses, reading a grimoire with a lantern beside it, perfectly calm.', imageKey: 'scaredy-analyst' },
+  'Blissfully Oblivious Type': { characterName: 'Suyasuya the Bunny', role: 'A carefree lantern-yokai who never notices the scary stuff', visualConcept: 'A bunny yokai wrapped in a star-patterned blanket, sleeping soundly with a lantern by its pillow.', imageKey: 'scaredy-oblivious' },
+  'Tough-Front Bluffer Type': { characterName: 'Tsuyogari the Oni', role: 'A lantern-yokai who fakes bravado while secretly scared', visualConcept: 'A small white oni with red horns, arms crossed in a tough pose, while its feet and lantern tremble.', imageKey: 'scaredy-bluffer' },
+  'Laugh-It-Off Type': { characterName: 'Tehepero the Tanuki', role: 'A lantern-yokai who flinches then laughs it off', visualConcept: 'A tanuki yokai in a straw hat holding up a lantern, eyes shut in a hearty "oh, it is nothing!" laugh.', imageKey: 'scaredy-laugher' },
+  'Braver-Together Type': { characterName: 'Yorisoi the Pup', role: 'A clingy lantern-yokai who turns brave with a buddy', visualConcept: 'A floppy-eared puppy yokai with a round black companion, the two sharing a lantern and floating little hearts.', imageKey: 'scaredy-buddy' },
+  'Fine-in-Daylight Type': { characterName: 'Hinata the Lion', role: 'A lantern-yokai fine by day but a wreck after dark', visualConcept: 'A lion yokai with a sun-like mane, posing in sunglasses with a bright sun overhead.', imageKey: 'scaredy-daylight' },
+  'Jumpy-at-Sounds Type': { characterName: 'Bikutt the Fennec', role: 'A sensitive lantern-yokai who jumps at the faintest sound', visualConcept: 'A big-eared fennec-like white yokai, ears straight up, frozen with a startled "!!" over its head.', imageKey: 'scaredy-jumpy' },
+  'Runaway-Imagination Type': { characterName: 'Moyamoya the Fluff', role: 'A lantern-yokai who scares itself with bad imaginings', visualConcept: 'A shaggy white fluffball yokai with spiral eyes, a cloud of purple imaginary ghosts billowing overhead.', imageKey: 'scaredy-imaginative' },
+  'Checking-Behind Type': { characterName: 'Ushirogaeri the Hamster', role: 'A wary lantern-yokai forever glancing behind', visualConcept: 'A chubby-cheeked hamster yokai hugging a lantern, sweating as it twists to look over its shoulder.', imageKey: 'scaredy-behind' },
+  'No-Night-Alone Type': { characterName: 'Yorumuri the Poodle', role: 'A lantern-yokai who cannot be alone at night', visualConcept: 'A fluffy poodle yokai in dark rain, clinging to its lantern, half-crying with legs frozen.', imageKey: 'scaredy-nightalone' },
+  'Scream-First Type': { characterName: 'Sakebi the Birb', role: 'A lantern-yokai already screaming before anything happens', visualConcept: 'A winged white bird-beast yokai, mouth wide in a scream, lightning marks and tears flying around it.', imageKey: 'scaredy-screamer' },
+  'Frozen-Stiff Type': { characterName: 'Katamari the Wall', role: 'A lantern-yokai that turns to stone when scared', visualConcept: 'A mossy rock (nurikabe) yokai with round eyes wide open, frozen stiff, only its lantern glowing.', imageKey: 'scaredy-frozen' },
+  'Teary-Dash Type': { characterName: 'Nakidash the Glider', role: 'A fleet-footed lantern-yokai who bolts in tears when scared', visualConcept: 'A flying-squirrel yokai in goggles, membrane spread, gliding away teary-eyed and leaving its lantern behind.', imageKey: 'scaredy-runner' },
+  "Can't-Leave-the-Blanket Type": { characterName: 'Futon the Bunny', role: 'The ultimate lantern-yokai who cannot leave the blanket on scary nights', visualConcept: 'A bunny yokai bundled fully under a star-patterned blanket, teary-eyed, hugging its lantern and trembling.', imageKey: 'scaredy-blanket' },
+}
+
+export const scaredyYokaiResultTypesEn = [
+  ['Unshakable Boss Type', 'Curious Thrill-Seeker Type', 'Cool Analyst Type', 'Blissfully Oblivious Type'],
+  ['Tough-Front Bluffer Type', 'Laugh-It-Off Type', 'Braver-Together Type', 'Fine-in-Daylight Type'],
+  ['Jumpy-at-Sounds Type', 'Runaway-Imagination Type', 'Checking-Behind Type', 'No-Night-Alone Type'],
+  ['Scream-First Type', 'Frozen-Stiff Type', 'Teary-Dash Type', "Can't-Leave-the-Blanket Type"],
+]
+
+export const dreamTypeCharactersEn = {
+  'Flying Dream Type': { characterName: 'Soratobi the Dreamlet', role: 'A free, confident dreamlet soaring on open skies', visualConcept: 'A nightcap sleepy sprite spreading wings, gliding blissfully over rainbow clouds among sparkling stars.', imageKey: 'dream-flying' },
+  'Being-Chased Dream Type': { characterName: 'Oware the Dreamlet', role: 'A dutiful dreamlet running from pressure', visualConcept: 'A teary sleepy sprite dashing across clouds, chased by dark shadow-ghosts.', imageKey: 'dream-chased' },
+  'Falling Dream Type': { characterName: 'Ochi the Dreamlet', role: 'A dreamlet who holds steady through tension', visualConcept: 'A sleepy sprite plunging headfirst down a tunnel of falling stars, eyes wide with a jolt.', imageKey: 'dream-falling' },
+  'Teeth-Falling Dream Type': { characterName: 'Hanuke the Dreamlet', role: 'A dreamlet standing at the edge of change', visualConcept: 'A sleepy sprite flustered as teeth pop out and float, a hand mirror before it.', imageKey: 'dream-tooth' },
+  'Late-for-the-Test Dream Type': { characterName: 'Chikoku the Dreamlet', role: 'An earnest, perfectionist dreamlet in a panic', visualConcept: 'A sleepy sprite in a frenzy, clutching a clock, textbooks and a bag, sweating.', imageKey: 'dream-late' },
+  'Crush Dream Type': { characterName: 'Koi the Dreamlet', role: 'A dreamlet fluttering with love, longing to be loved', visualConcept: 'A sleepy sprite wrapped in hearts, hugging a big heart with blushing cheeks.', imageKey: 'dream-crush' },
+  'Meeting-Your-Fave Dream Type': { characterName: 'Oshi the Dreamlet', role: 'A dreamlet powered forward by its fave', visualConcept: 'A sleepy sprite with glow-sticks, tears of joy, surrounded by hearts and an "oshi" sign.', imageKey: 'dream-oshi' },
+  'Treasure Dream Type': { characterName: 'Otakara the Dreamlet', role: 'A lucky dreamlet waking to hidden talents', visualConcept: 'A round sleepy sprite beaming, buried in a treasure chest of gold and gems.', imageKey: 'dream-treasure' },
+  'Lost Dream Type': { characterName: 'Maigo the Dreamlet', role: 'A dreamlet amid choices, seeking its path', visualConcept: 'A sleepy sprite with a lantern, looking around a place full of unknown doors, a "?" over its head.', imageKey: 'dream-lost' },
+  'Reunion Dream Type': { characterName: 'Aitai the Dreamlet', role: 'A tender dreamlet longing for someone dear', visualConcept: 'A sleepy sprite reaching toward a nostalgic silhouette in soft dusk light.', imageKey: 'dream-reunion' },
+  'Recurring Dream Type': { characterName: 'Loop the Dreamlet', role: 'A dreamlet facing an unfinished something, caught in a loop', visualConcept: 'Several identical sleepy sprites drifting within an arrow-loop of the same scenery.', imageKey: 'dream-repeat' },
+  'Water Dream Type': { characterName: 'Mizu the Dreamlet', role: 'A sensitive dreamlet who treasures emotion', visualConcept: 'A sleepy sprite floating underwater in blue, among bubbles, little fish and jellyfish.', imageKey: 'dream-water' },
+  'Feast Dream Type': { characterName: 'Gochiso the Dreamlet', role: 'A dreamlet craving to be filled, reward-seeking', visualConcept: 'A sleepy sprite buried in a mountain of pancakes, cake and feast, blissfully happy.', imageKey: 'dream-feast' },
+  'Adventure Hero Dream Type': { characterName: 'Bouken the Dreamlet', role: 'A bold dreamlet living its own story', visualConcept: 'A sleepy sprite in a red cape with a sword, striking a hero pose before a castle.', imageKey: 'dream-hero' },
+  'Lucid Dream Type': { characterName: 'Meiseki the Dreamlet', role: 'A dreamlet steering dreams with will and imagination', visualConcept: 'A sleepy sprite in a starry sky, conjuring stars and light from its fingertips, controlling the dream.', imageKey: 'dream-lucid' },
+  'Dreamless-Bliss Dream Type': { characterName: 'Gussuri the Dreamlet', role: 'A calm, well-rested, easygoing dreamlet', visualConcept: 'A sleepy sprite snoozing blissfully on fluffy clouds under a crescent moon, with Zzz.', imageKey: 'dream-sleepy' },
+}
+
+export const dreamTypeResultTypesEn = [
+  ['Falling Dream Type', 'Feast Dream Type', 'Crush Dream Type', 'Dreamless-Bliss Dream Type'],
+  ['Late-for-the-Test Dream Type', 'Treasure Dream Type', 'Recurring Dream Type', 'Lost Dream Type'],
+  ['Being-Chased Dream Type', 'Meeting-Your-Fave Dream Type', 'Reunion Dream Type', 'Adventure Hero Dream Type'],
+  ['Teeth-Falling Dream Type', 'Flying Dream Type', 'Water Dream Type', 'Lucid Dream Type'],
+]
+
+// Hidden Talent Diagnosis (talent spirits). Shared base = a round glowing light-spirit
+// (white core, dot eyes, tiny mouth); only aura color + symbol item change per type.
+export const hiddenTalentCharactersEn = {
+  'Great Listener Type': { characterName: 'Kiki the Talent Spirit', role: 'A reassuring spirit who hears you out to the end', visualConcept: 'A round lavender-glowing light-spirit tilting to listen, a gramophone and sound waves above, a soft speech bubble.', imageKey: '01-listener' },
+  'Mood-Softener Type': { characterName: 'Yawaragi the Talent Spirit', role: "A natural lubricant that melts a room's tension", visualConcept: 'A yellow-green glowing light-spirit wrapped in soft ribbons and a gentle breeze, sparkling, with a relaxed smile.', imageKey: '02-softener' },
+  'Attentive Type': { characterName: 'Kikubari the Talent Spirit', role: 'A spirit who notices before being told', visualConcept: 'A pink-glowing light-spirit nestled in flower petals, a little heart floating, offering something with a gentle smile.', imageKey: '03-attentive' },
+  'Organizer Type': { characterName: 'Matome the Talent Spirit', role: 'A commander spirit who binds people and ideas', visualConcept: 'A gold-glowing light-spirit with a small crown, gears and a cape behind, holding a little flag, dependable look.', imageKey: '04-leader' },
+  'Idea Spark Type': { characterName: 'Hirameki the Talent Spirit', role: 'A spirit of ideas that bubble up endlessly', visualConcept: 'A yellow star-shaped light-spirit with a lightbulb above, lightning and sparkles around, an excited "aha" face.', imageKey: '05-idea' },
+  'Expressive Communicator Type': { characterName: 'Tsutae the Talent Spirit', role: 'A communicator spirit who delivers in moving form', visualConcept: 'A magenta-purple glowing light-spirit holding a megaphone, music notes around, wearing a scarf, lively gesture.', imageKey: '06-expression' },
+  'Intuition & Sense Type': { characterName: 'Chokkan the Talent Spirit', role: 'A spirit who just knows before reasoning', visualConcept: 'A purple glowing light-spirit like a planet with Saturn-style rings, stars sparkling, a serene closed-eye look.', imageKey: '07-intuition' },
+  'Skilled Crafter Type': { characterName: 'Kiyou the Talent Spirit', role: 'A dexterous spirit who shapes anything', visualConcept: 'An ochre-glowing light-spirit in a pointed hat, attended by a thread spool, scissors and a button, enjoying the work.', imageKey: '08-dexterous' },
+  'Steady Persistence Type': { characterName: 'Kotsukotsu the Talent Spirit', role: 'A spirit who stacks up effort steadily', visualConcept: 'A gold-glowing light-spirit by a pile of stacked blocks topped with a small flag, a satisfied, accomplished look.', imageKey: '09-steady' },
+  'Analyst Type': { characterName: 'Minuki the Talent Spirit', role: 'A spirit who reads the essence of things', visualConcept: 'A light-blue, ice-cube-clear light-spirit holding a magnifier, a small chart beside it, a calm, discerning gaze.', imageKey: '10-analyst' },
+  'Quick-Action Type': { characterName: 'Sokkou the Talent Spirit', role: 'A spirit who moves before hesitating', visualConcept: 'A red-orange blazing light-spirit in goggles, trailing flames like a comet, full of drive.', imageKey: '11-action' },
+  'Fast Learner Type': { characterName: 'Manabi the Talent Spirit', role: 'A growth spirit who soaks up learning', visualConcept: 'A blue glowing light-spirit in a graduation cap, holding an open book, flowing water and light around, curious eyes.', imageKey: '12-learner' },
+  'Soothing Comfort Type': { characterName: 'Iyashi the Talent Spirit', role: 'A spirit whose very presence soothes', visualConcept: 'A soft-pink glowing light-spirit wrapped in a fluffy blanket, a warm lantern beside it, a drowsy, peaceful smile.', imageKey: '13-healer' },
+  'Tenacious Negotiator Type': { characterName: 'Nebari the Talent Spirit', role: 'A supple spirit who negotiates without breaking', visualConcept: 'A gold-and-red glowing light-spirit wound with rope and tassels, a calm, unshakable, friendly look.', imageKey: '14-negotiator' },
+  'Mood-Maker Type': { characterName: 'Moriage the Talent Spirit', role: 'A sun-like spirit who lights up the room', visualConcept: 'A rainbow-glowing light-spirit in a jester hat with colorful plumes, music notes and sparkles, a big cheerful grin.', imageKey: '15-moodmaker' },
+  'Unsung Support Type': { characterName: 'Sasae the Talent Spirit', role: 'A spirit who quietly holds up the whole', visualConcept: 'An amethyst-glowing light-spirit holding up a crystal arch and pillars, a star on top, a modest, dependable look.', imageKey: '16-supporter' },
+}
+
+export const hiddenTalentResultTypesEn = [
+  ['Great Listener Type', 'Idea Spark Type', 'Steady Persistence Type', 'Soothing Comfort Type'],
+  ['Mood-Softener Type', 'Expressive Communicator Type', 'Analyst Type', 'Tenacious Negotiator Type'],
+  ['Attentive Type', 'Intuition & Sense Type', 'Quick-Action Type', 'Mood-Maker Type'],
+  ['Organizer Type', 'Skilled Crafter Type', 'Fast Learner Type', 'Unsung Support Type'],
+]
+
+// Lending & Borrowing Diagnosis (the "lend-and-borrow tribe": lender x borrower live in pairs)
+export const lendingTypeCharactersEn = {
+  'Game-Addict Freeloader Type': { characterName: 'Couch Gamer', role: 'A smooth-talking borrower kept while gaming', visualConcept: 'A purple fluffball sprawled with a controller while its pink cat-girl partner reluctantly supports it; snacks and coins scattered.', imageKey: 'lend-game-freeloader' },
+  'Lazy Hammock Type': { characterName: 'Hammock Loafer', role: 'An easygoing borrower who sways in a hammock all day', visualConcept: 'A white fluff lazing in a hammock while its explorer partner spreads a map and looks after it.', imageKey: 'lend-hammock-lazy' },
+  'Dream-Chasing Bandmate Type': { characterName: 'Dream-Chasing Bandmate', role: 'A romantic who chases dreams and leaves money to the partner', visualConcept: 'A wolf strumming a guitar while its rabbit partner cheers with a glow stick; empty cans and an amp.', imageKey: 'lend-bandman-dreamer' },
+  'Fully Kept Type': { characterName: 'IV-Drip Freeloader', role: 'A fully dependent borrower kept alive by the partner', visualConcept: 'A robot hooked to a ¥-bag IV drip while its nurse partner dotes on it.', imageKey: 'lend-iv-dependent' },
+  'Equal Partners Type': { characterName: 'Sprout Couple', role: 'A healthy pair that splits every loan and shares fairly', visualConcept: 'A sprout and a flower creature snuggled close, sharing a small coin; hearts floating.', imageKey: 'lend-sprout-equal' },
+  'Easygoing Giver Type': { characterName: 'Mellow Caregiver', role: 'An unhurried giver who wraps you in calm', visualConcept: 'A cloud creature floating in a bath while its purple-haired partner watches over it gently; a duck and coins.', imageKey: 'lend-bubble-healer' },
+  'Caretaker Budgeter Type': { characterName: 'Budgeting Maid', role: 'A caretaking lender who props things up by budgeting', visualConcept: 'A maid-like creature preparing food on a budget for its gourmand partner.', imageKey: 'lend-maid-budget' },
+  'Devoted Giver Type': { characterName: 'All-In Devotee', role: 'A devoted lender who loosens the purse strings completely', visualConcept: 'A kimono-clad creature giving generously to a ghost clutching a bag of gold.', imageKey: 'lend-kimono-devotee' },
+  'Steady Slow-Life Type': { characterName: 'Forest Duo', role: 'A steady pair living modestly and down-to-earth', visualConcept: 'By a forest stump, a mushroom-headed creature and a flora creature live a steady, laid-back life.', imageKey: 'lend-forest-steady' },
+  'By-the-Book Type': { characterName: 'Abacus Owl', role: 'A by-the-book lender who records to the last cent', visualConcept: 'An owl with an abacus and ledger, its partner counting coins and tallying everything precisely.', imageKey: 'lend-abacus-owl' },
+  'Steady Dreamer Type': { characterName: 'Star Saver', role: 'A steady dreamer pair saving up toward a dream', visualConcept: 'An astronaut creature and a witch creature cradling coins turned into stars.', imageKey: 'lend-star-dreamer' },
+  'Ruthless Collector Type': { characterName: 'Collector Shark', role: 'A hard-nosed lender who collects with interest', visualConcept: 'A suited shark holding a rising chart to collect a debt while its drained partner lies limp.', imageKey: 'lend-shark-collector' },
+  'Laid-Back Type': { characterName: 'Coin Napper', role: 'A laid-back sort who keeps money matters loose', visualConcept: 'A creature napping buried in coins while its partner comes to catch it with a butterfly net.', imageKey: 'lend-coin-napper' },
+  'Resort Splurge Type': { characterName: 'Vacation Spender', role: 'A pair that enjoys now over saving, splurging together', visualConcept: 'A shark sipping a cocktail on a float and a sunglasses-wearing penguin living it up at a resort.', imageKey: 'lend-resort-splurge' },
+  'Charming Freeloader Type': { characterName: 'Charming Freeloader', role: 'A charming borrower who gets others to give', visualConcept: 'A pizza-holding purple devil with a gold chain while its angel partner dotes and gives.', imageKey: 'lend-devil-pizza' },
+  'Pampered King Type': { characterName: 'Pampered King', role: 'The final boss who gets endlessly pampered doing nothing', visualConcept: 'A crowned dragon lounging atop a treasure chest while its devil partner keeps on giving.', imageKey: 'lend-treasure-king' },
+}
+
+export const lendingTypeResultTypesEn = [
+  ['Game-Addict Freeloader Type', 'Equal Partners Type', 'Steady Slow-Life Type', 'Laid-Back Type'],
+  ['Lazy Hammock Type', 'Easygoing Giver Type', 'By-the-Book Type', 'Resort Splurge Type'],
+  ['Dream-Chasing Bandmate Type', 'Caretaker Budgeter Type', 'Steady Dreamer Type', 'Charming Freeloader Type'],
+  ['Fully Kept Type', 'Devoted Giver Type', 'Ruthless Collector Type', 'Pampered King Type'],
+]

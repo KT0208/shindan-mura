@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>メンヘラクラゲはこうして生まれた｜16タイプ設計と没案の記録 | 診断村コラム</title>
+<meta name="description" content="診断村で一番愛されているメンヘラクラゲたち。16匹をどうやって描き分けたのか、色決めの試行錯誤、没になったキャラの話まで、制作の裏側を全部公開します。" />
+<link rel="canonical" href="https://shindanmura.com/column/menhera-jelly-design-diary/" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="診断村" />
+<meta property="og:title" content="メンヘラクラゲはこうして生まれた｜16タイプ設計と没案の記録 | 診断村コラム" />
+<meta property="og:description" content="診断村で一番愛されているメンヘラクラゲたち。16匹をどうやって描き分けたのか、色決めの試行錯誤、没になったキャラの話まで、制作の裏側を全部公開します。" />
+<meta property="og:url" content="https://shindanmura.com/column/menhera-jelly-design-diary/" />
+<meta property="og:image" content="https://shindanmura.com/og-image.jpg" />
+<meta property="og:locale" content="ja_JP" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="メンヘラクラゲはこうして生まれた｜16タイプ設計と没案の記録 | 診断村コラム" />
+<meta name="twitter:description" content="診断村で一番愛されているメンヘラクラゲたち。16匹をどうやって描き分けたのか、色決めの試行錯誤、没になったキャラの話まで、制作の裏側を全部公開します。" />
+<meta name="twitter:image" content="https://shindanmura.com/og-image.jpg" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"メンヘラクラゲはこうして生まれた｜16タイプ設計と没案の記録","description":"診断村で一番愛されているメンヘラクラゲたち。16匹をどうやって描き分けたのか、色決めの試行錯誤、没になったキャラの話まで、制作の裏側を全部公開します。","datePublished":"2026-08-08","dateModified":"2026-08-08","url":"https://shindanmura.com/column/menhera-jelly-design-diary/","author":{"@type":"Organization","name":"診断村"},"publisher":{"@type":"Organization","name":"診断村","url":"https://shindanmura.com"},"mainEntityOfPage":"https://shindanmura.com/column/menhera-jelly-design-diary/"}</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  if (/(^|\.)shindanmura\.com$/.test(location.hostname)) {
+    var gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-5Q648ZRFZB';
+    document.head.appendChild(gaScript);
+    gtag('js', new Date());
+    gtag('config', 'G-5Q648ZRFZB');
+  }
+</script>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', sans-serif;
+    background: linear-gradient(160deg, #fff8fd 0%, #ffe6f8 55%, #ece2fb 100%);
+    color: #241436; min-height: 100vh; padding: 24px 16px 48px;
+    display: flex; justify-content: center; line-height: 1.9;
+  }
+  .page { max-width: 720px; width: 100%; }
+  .brand { font-size: 14px; letter-spacing: 0.08em; text-align: center; margin-bottom: 16px; }
+  .brand a { color: #8e5fc6; font-weight: 700; text-decoration: none; }
+  article, .card {
+    background: rgba(255, 255, 255, 0.94); border-radius: 24px;
+    padding: 32px 24px; box-shadow: 0 12px 40px rgba(97, 72, 127, 0.16);
+  }
+  .category { display: inline-block; font-size: 12px; color: #8f4ed8; background: #f6ecff; padding: 4px 12px; border-radius: 999px; }
+  h1 { font-size: 24px; line-height: 1.5; margin: 12px 0 8px; color: #2c1a44; }
+  time { font-size: 13px; color: #8f7ba6; }
+  .lead { margin-top: 14px; color: #4a3763; font-size: 15px; }
+  article h2 { font-size: 19px; margin: 32px 0 10px; color: #61487f; border-left: 5px solid #ff8fd0; padding-left: 12px; }
+  article h3 { font-size: 16px; margin: 22px 0 6px; color: #61487f; }
+  article p { margin: 12px 0; font-size: 15.5px; color: #33234a; }
+  article ul { margin: 12px 0 12px 20px; }
+  article li { margin: 6px 0; font-size: 15px; color: #33234a; }
+  article blockquote {
+    margin: 16px 0; padding: 12px 16px; border-left: 4px solid #c9a6ef;
+    background: #faf4ff; color: #4a3763; font-size: 15px; border-radius: 0 12px 12px 0;
+  }
+  article a { color: #c2358f; }
+  .cta {
+    display: block; margin-top: 32px; padding: 15px; border-radius: 999px; text-decoration: none;
+    background: linear-gradient(135deg, #ff67ad, #8f4ed8); color: #fff; font-weight: 700;
+    font-size: 16px; text-align: center;
+  }
+  .sub-links { margin-top: 18px; font-size: 13px; text-align: center; }
+  .sub-links a { color: #8e5fc6; margin: 0 8px; }
+  .column-list { display: grid; gap: 14px; margin-top: 20px; }
+  .column-item {
+    display: block; background: rgba(255,255,255,0.94); border-radius: 18px;
+    padding: 20px; text-decoration: none; color: #241436;
+    box-shadow: 0 8px 26px rgba(97, 72, 127, 0.12);
+  }
+  .column-item strong { display: block; font-size: 17px; margin: 8px 0 6px; line-height: 1.5; }
+  .column-item p { font-size: 14px; color: #5b476f; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="brand"><a href="/">診断村</a> ／ <a href="/column/">コラム</a></div>
+  <article>
+    <span class="category">キャラクター制作</span>
+    <h1>メンヘラクラゲはこうして生まれた｜16タイプ設計と没案の記録</h1>
+    <time datetime="2026-08-08">2026-08-08</time>
+    <p class="lead">診断村で一番愛されているメンヘラクラゲたち。16匹をどうやって描き分けたのか、色決めの試行錯誤、没になったキャラの話まで、制作の裏側を全部公開します。</p>
+<h2>最初の1匹は「メンヘラちゃん」という女の子だった</h2>
+<p>正直に書く。診断村の最初の失敗作は、この診断だった。</p>
+<p>「メンヘラ度診断」を作ろうと決めたとき、キャラクターは「メンヘラちゃん」というひとりの女の子だった。ゆるふわ系の中学生風の女の子で、表情違いを16枚描いて16タイプを表現しようとしていた。</p>
+<p>準備稿を並べた瞬間、絶望した。同じ女の子の表情違いを16枚並べても、印象がぼんやりしている。3枚目には「同じ子ばかり」に見えてしまう。1タイプずつの個性が、全然立たない。</p>
+<p>数日悩んだ末に、方針を180度変えた。<strong>ひとりの女の子ではなく、16匹の生き物にしよう。</strong></p>
+<h2>なぜクラゲになったのか</h2>
+<p>「メンヘラ」というテーマを表現できる生き物、と考えたときに出てきた候補は3つあった。</p>
+<p><strong>クラゲ / 深海魚 / 蝶</strong></p>
+<p>深海魚は「暗さ」がテーマにハマるが、種類差が大きすぎて統一感を出しづらい。蝶は綺麗すぎて「痛み」が乗せられない。</p>
+<p>クラゲに決めた理由は3つあった。</p>
+<p><strong>1. 透明で儚い</strong></p>
+<p>恋愛で不安になる気持ちを、透明で消えそうな体で表現できる。</p>
+<p><strong>2. ふわふわ漂う</strong></p>
+<p>自分の意思では動けない感じが、感情に振り回される様子と重なる。</p>
+<p><strong>3. 種類の描き分けが容易</strong></p>
+<p>傘の形、触手の長さ、色、模様——組み合わせで16通り作れる。</p>
+<p>決めた瞬間、16タイプの設計がスラスラ書けた。<strong>モチーフが決まると診断そのものの解像度が上がる</strong>、というのを初めて実感した瞬間だった。</p>
+<h2>16タイプの設計方針</h2>
+<p>診断村の16タイプは、すべて<strong>「度合い4段階 × 傾向4系統」</strong>の掛け合わせで作られている。</p>
+<p>メンヘラ度診断の場合:</p>
+<ul>
+<li><strong>度合い4段階</strong>: 安定メンタルタイプ / 既読ちょい気にタイプ / 感情ジェットコースタータイプ / 愛情確認中毒タイプ</li>
+<li><strong>傾向4系統</strong>: 連絡・既読への反応 / 相手の行動への感度 / 不安の伝え方 / 自分の時間の保ち方</li>
+</ul>
+<p>同じ「感情ジェットコースタータイプ」の中でも、深読みして一人で抱える人と、その場で相手にぶつける人では、まったく違う体験になる。それを4×4=16マスで丁寧に描き分けたい。これが16タイプ設計の基本思想だ。</p>
+<p>各マスに、それぞれ独立したクラゲを描く。</p>
+<h2>各クラゲの設計メモ</h2>
+<p>代表的な数匹の設計意図を、そのまま公開する。</p>
+<h3>安定メンタルクラゲ(桜色・透明)</h3>
+<p>安定圏のクラゲは、透明感を強めにした。人を疑わず、干渉されすぎるのが苦手。透明の傘の下に、小さくて丸い体。表情は平常で、少しだけ微笑んでいる。</p>
+<h3>迷宮クラゲ(青紫・渦目)</h3>
+<p>このキャラは診断村で一番の当たり役だった。青紫のクラゲに、渦を巻いた大きな目。片手にはメモ帳のような四角い箱。「相手の一言を頭の中で何度も再生する」タイプ。「一目見て何かを言いたくなるキャラ」の設計例として、以降のキャラ作りの手本になった。</p>
+<h3>笑顔マスククラゲ(オレンジ・仮面)</h3>
+<p>オレンジのクラゲが、笑顔のマスクを顔にあてている。マスクの下は見えない。「大丈夫と言いつつ大丈夫じゃない」タイプ。マスクの模様を「笑顔」にすることで、可愛さと切なさを同居させた。</p>
+<h3>深読み不安クラゲ(赤紫・触手長め)</h3>
+<p>体は小さいのに、触手が全体の3倍くらい長い。長い触手が「頭の中で伸びていく思考」を象徴している。目は伏し目がちで、少し疲れている。</p>
+<h2>没になったクラゲたち</h2>
+<p>16タイプが完成するまでに、10体以上のクラゲが没になった。</p>
+<p><strong>「絶望クラゲ」</strong></p>
+<p>真っ黒いクラゲで、暗すぎたので却下。診断村は「刺すこと」を目的にしていない。共感して笑って受け取ってほしい。</p>
+<p><strong>「叫ぶクラゲ」</strong></p>
+<p>口を大きく開けて叫んでいるクラゲ。可愛くない、そして怖い。</p>
+<p><strong>「メンヘラちゃんクラゲハイブリッド」</strong></p>
+<p>最初の「メンヘラちゃん」を諦めきれず、クラゲに女の子の頭を乗せたキャラを試作。想像通りキメラでバランス悪かった。</p>
+<p>これらを削って残ったのが、今の16匹だ。</p>
+<h2>色決めの試行錯誤</h2>
+<p>配色は、実は診断結果の「度合い」と連動させている。</p>
+<ul>
+<li>安定圏: <strong>桜色〜水色</strong>(明るく、健全なイメージ)</li>
+<li>中間層: <strong>オレンジ〜黄色</strong>(元気だがちょっと不安定)</li>
+<li>高め: <strong>青紫〜紫</strong>(内向的で深い)</li>
+<li>MAX層: <strong>赤紫〜暗い紫</strong>(強い感情の色)</li>
+</ul>
+<p>これはキャラクター全体を並べた時に「グラデーション」として見えるように調整した。図鑑で並べたとき、色の流れで「診断の段階」が視覚的にわかる。</p>
+<h2>キャラクターに名前をつけるコツ</h2>
+<p>診断村のキャラクター名は、必ず<strong>「特徴+モチーフ」</strong>の構造にしている。</p>
+<ul>
+<li>深読み不安クラゲ ← (特徴: 深読み)+(モチーフ: クラゲ)</li>
+<li>笑顔マスククラゲ ← (特徴: 笑顔マスク)+(モチーフ: クラゲ)</li>
+<li>一途愛情クラゲ ← (特徴: 一途)+(モチーフ: クラゲ)</li>
+</ul>
+<p>このルールで統一しているのは、覚えやすさのため。「あのクラゲって何て名前だっけ?」と思い出すとき、特徴が入っていれば思い出せる。</p>
+<p>逆に「マリンちゃん」「ルナちゃん」のような可愛い個人名にすると、キャラクターは魅力的に見えるが、<strong>性格の対応関係が思い出せなくなる</strong>。診断結果として機能させるには、名前自体が情報を持っている必要がある。</p>
+<h2>反響が一番大きかったキャラ</h2>
+<p>公開後、SNSでの反応を数ヶ月見て、一番刺さっていたのは<strong>「迷宮クラゲ」</strong>だった。</p>
+<p>YouTube ShortsではShortsでは他のクラゲの5〜10倍の再生数を叩き出し、「これ私すぎる」というコメントが繰り返し寄せられた。</p>
+<p>理由を分析してみると、以下の要素が重なっていた。</p>
+<ul>
+<li><strong>視覚のインパクト</strong>: 渦目の異質さが一発で記憶に残る</li>
+<li><strong>共感の広さ</strong>: 「深読みしちゃう」は自覚がある人が多い</li>
+<li><strong>痛さの適量</strong>: つらすぎず、笑って受け入れられる範囲</li>
+</ul>
+<p>この学びから、以降の診断ではキャラクターを設計する時に<strong>「角を丸めすぎない」</strong>ことを大事にしている。全員好きになるキャラより、刺さる人には猛烈に刺さるキャラのほうが、結果的に多くの人に届く。</p>
+<h2>これから</h2>
+<p>メンヘラクラゲたちは、公開してもう長い。何度か細部の色調整はしたが、大幅な変更はしていない。愛されているキャラは、そのまま残すのが正解だと思っている。</p>
+<p>将来的には、この16匹を<strong>もっと動かしたい</strong>。今は静止画のShortsが中心だが、いずれAIアニメーションが実用的な品質・コストになった時、メンヘラクラゲたちを動かして短編動画にしたい。彼らが村の中でどう暮らしているか、キャラクター同士がどう会話するか、想像するだけで楽しい。</p>
+<p>その日まで、迷宮クラゲたちは今日も診断結果の中で、あなたを待っている。</p>
+<p><a href="/#diagnosis=menhera-level">メンヘラ度診断をやってみる</a></p>
+    <a class="cta" href="/">診断村で診断してみる</a>
+    <div class="sub-links">
+      <a href="/column/">コラム一覧</a>
+      <a href="/#guide">キャラ図鑑</a>
+      <a href="/">トップ</a>
+    </div>
+  </article>
+</div>
+</body>
+</html>

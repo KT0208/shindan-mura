@@ -1,0 +1,16 @@
+{
+  "diagnosisId": "isekai-position",
+  "diagnosisTitle": "異世界転生ポジション診断",
+  "productType": "sticker",
+  "setSize": 24,
+  "title": "診断村 異世界転生ポジション診断スタンプ",
+  "description": "診断村の異世界ぷにたちが、毎日の会話を楽しく可愛く届けます。",
+  "stickers": [
+    [1, "おはよう", "isekai-guard-puni"], [2, "ありがとう", "isekai-shopkeeper-puni"], [3, "おつかれさま", "isekai-innkeeper-puni"], [4, "はーい", "isekai-bard-puni"],
+    [5, "了解", "isekai-swordsman-puni"], [6, "お願いします", "isekai-mage-puni"], [7, "大丈夫", "isekai-healer-puni"], [8, "やったー！", "isekai-hunter-puni"],
+    [9, "まかせて", "isekai-knight-puni"], [10, "なるほど", "isekai-sage-puni"], [11, "ごめんね", "isekai-saint-puni"], [12, "またね", "isekai-phantom-puni"],
+    [13, "おめでとう", "isekai-hero-puni"], [14, "少し待ってて", "isekai-archmage-puni"], [15, "休憩しよ", "isekai-spiritking-puni"], [16, "おやすみ", "isekai-maou-puni"],
+    [17, "冒険のはじまり", "isekai-guard-puni"], [18, "道具はそろった？", "isekai-shopkeeper-puni"], [19, "回復しよ", "isekai-healer-puni"], [20, "今向かってる", "isekai-hunter-puni"],
+    [21, "いいね！", "isekai-bard-puni"], [22, "応援してる", "isekai-hero-puni"], [23, "OK", "isekai-maou-puni"], [24, "よろしくね", "isekai-mage-puni"]
+  ]
+}

@@ -31,6 +31,24 @@ import {
   replyTypeCharacters,
   crushMisreadCharacters,
   darkDepthCharacters,
+  holidayCapybaraCharacters,
+  emoNostalgiaCharacters,
+  sleepSheepCharacters,
+  bindRibbonCharacters,
+  myPaceCharacters,
+  isekaiPositionCharacters,
+  procrastinationCharacters,
+  pastLifeCharacters,
+  selfEsteemCharacters,
+  stressLevelCharacters,
+  animalTypeCharacters,
+  angerStyleCharacters,
+  shynessCharacters,
+  zeniTailCharacters,
+  scaredyYokaiCharacters,
+  dreamTypeCharacters,
+  hiddenTalentCharacters,
+  lendingTypeCharacters,
 } from '../src/characterData.js'
 import { diagnoses } from '../src/diagnosisData.js'
 import { resultDetails } from '../src/resultDetails.js'
@@ -57,6 +75,73 @@ export const characterCollections = {
   'reply-type': { basePath: 'fontCharacters', characters: replyTypeCharacters },
   'crush-misread': { basePath: 'crushFoxCharacters', characters: crushMisreadCharacters },
   'dark-depth': { basePath: 'abyssClioneCharacters', characters: darkDepthCharacters },
+  'holiday-style': { basePath: 'holidayCapybaraCharacters', characters: holidayCapybaraCharacters },
+  'emo-nostalgia': { basePath: 'emoNostalgiaCharacters', characters: emoNostalgiaCharacters },
+  'sleep-type': { basePath: 'sleepSheepCharacters', characters: sleepSheepCharacters },
+  'bind-level': { basePath: 'bindRibbonCharacters', characters: bindRibbonCharacters },
+  'my-pace': { basePath: 'myPaceCatCharacters', characters: myPaceCharacters },
+  'isekai-position': { basePath: 'isekaiPuniCharacters', characters: isekaiPositionCharacters },
+  'procrastination': { basePath: 'laterSlothCharacters', characters: procrastinationCharacters },
+  'past-life': { basePath: 'pastlifeChickCharacters', characters: pastLifeCharacters },
+  'self-esteem': { basePath: 'esteemPlantCharacters', characters: selfEsteemCharacters },
+  'stress-level': { basePath: 'stressBalloonCharacters', characters: stressLevelCharacters },
+  'animal-type': { basePath: 'animalTypeCharacters', characters: animalTypeCharacters },
+  'anger-style': { basePath: 'angerChiliCharacters', characters: angerStyleCharacters },
+  'shyness': { basePath: 'shynessHermitCharacters', characters: shynessCharacters },
+  'spending-type': { basePath: 'zeniTailCharacters', characters: zeniTailCharacters },
+  'scaredy-level': { basePath: 'scaredyYokaiCharacters', characters: scaredyYokaiCharacters },
+  'dream-type': { basePath: 'dreamTypeCharacters', characters: dreamTypeCharacters },
+  'hidden-talent': { basePath: 'hiddenTalentCharacters', characters: hiddenTalentCharacters },
+  'lending-type': { basePath: 'lendingTypeCharacters', characters: lendingTypeCharacters },
+}
+
+// 改名・廃止したURLの転送ページ(旧URL → 新URL)。
+// 本番はnginxを手動運用でリダイレクト設定を持たないため、旧パスに「転送用の静的ページ」を置いて404を防ぐ。
+// noindex + canonical(新URL) + 即時転送。SNSに投稿済みのシェアリンクもこれで生き返る。
+// 推し活タイプ診断のキャラ名変更(動物 → 精霊)で、旧 /r/ と /c/ が404になっていた分。
+const OSHIKATSU_RENAMED = [
+  ['oshi-altar-alpaca', 'oshi-altar-spirit'],
+  ['oshi-art-brush-squirrel', 'oshi-art-brush-spirit'],
+  ['oshi-badge-squirrel', 'oshi-badge-spirit'],
+  ['oshi-devotion-dragon', 'oshi-devotion-flame-spirit'],
+  ['oshi-gentle-watch-rabbit', 'oshi-gentle-watch-spirit'],
+  ['oshi-museum-whale', 'oshi-museum-spirit'],
+  ['oshi-night-talk-owl', 'oshi-night-talk-spirit'],
+  ['oshi-penlight-fairy', 'oshi-penlight-spirit'],
+  ['oshi-presentation-dog', 'oshi-presentation-spirit'],
+  ['oshi-secret-promo-hamster', 'oshi-secret-promo-spirit'],
+  ['oshi-swamp-guide-frog', 'oshi-swamp-guide-spirit'],
+  ['oshi-theory-tanuki', 'oshi-theory-spirit'],
+  ['oshi-tour-penguin', 'oshi-tour-spirit'],
+  ['oshi-tradingcard-cat', 'oshi-tradingcard-spirit'],
+]
+export const legacyRedirects = [
+  ...OSHIKATSU_RENAMED.flatMap(([from, to]) => [
+    [`/r/oshikatsu-type/${from}/`, `/r/oshikatsu-type/${to}/`],
+    [`/c/${from}/`, `/c/${to}/`],
+  ]),
+  // 7月版のメンヘラ度コラム(元原稿は削除済み。public/に古いHTMLだけ残っていた)→ 診断の解説ページへ
+  ['/column/menhera-level-guide/', '/diagnosis/menhera-level/'],
+]
+
+const buildRedirectPage = (to) => {
+  const url = `${SITE_ORIGIN}${to}`
+  return `<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, follow" />
+<title>ページが移動しました | 診断村</title>
+<link rel="canonical" href="${url}" />
+<meta http-equiv="refresh" content="0; url=${to}" />
+<script>location.replace(${JSON.stringify(to)})</script>
+</head>
+<body>
+<p>このページは移動しました。<a href="${to}">新しいページへ移動する</a></p>
+</body>
+</html>
+`
 }
 
 const escapeHtml = (s) =>
@@ -79,6 +164,7 @@ function buildPage({ diagnosis, resultTitle, character, detail }) {
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, follow" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <title>${escapeHtml(title)}</title>
 <meta name="description" content="${escapeHtml(description)}" />
@@ -142,7 +228,31 @@ function buildPage({ diagnosis, resultTitle, character, detail }) {
 }
 
 async function main() {
-  const urls = [`${SITE_ORIGIN}/`]
+  const urls = [`${SITE_ORIGIN}/`, `${SITE_ORIGIN}/column/`]
+  // コラム記事もsitemapに載せる
+  try {
+    const { loadColumns } = await import('./generate-columns.mjs')
+    for (const article of await loadColumns()) {
+      // 診断ごとの guide-* コラムは各診断の本体ページと重複する量産ページのため
+      // noindex 化しており、sitemapにも載せない(独自エッセイのコラムのみ掲載)。
+      if (typeof article.meta.slug === 'string' && article.meta.slug.startsWith('guide-')) continue
+      urls.push(`${SITE_ORIGIN}/column/${article.meta.slug}/`)
+    }
+  } catch {
+    // コラムがまだ無い場合はスキップ
+  }
+  // 診断の静的ページ(/diagnosis/ ハブ + 各診断)をsitemapに載せる。
+  // これらは generate-diagnosis-pages.mjs が生成する「有用性のある」インデックス対象ページ。
+  urls.push(`${SITE_ORIGIN}/diagnosis/`)
+  for (const diagnosis of diagnoses) {
+    if (diagnosis.hidden) continue
+    if (!characterCollections[diagnosis.id]) continue
+    urls.push(`${SITE_ORIGIN}/diagnosis/${diagnosis.id}/`)
+  }
+  // 村人図鑑(generate-diagnosis-pages.mjs が生成)
+  urls.push(`${SITE_ORIGIN}/zukan/`)
+  // 法務・運営情報ページ(generate-legal-pages.mjs が生成)
+  urls.push(`${SITE_ORIGIN}/privacy/`, `${SITE_ORIGIN}/about/`, `${SITE_ORIGIN}/contact/`)
   let count = 0
 
   for (const diagnosis of diagnoses) {
@@ -158,11 +268,19 @@ async function main() {
       const dir = path.join(publicDir, 'r', diagnosis.id, character.imageKey)
       await mkdir(dir, { recursive: true })
       await writeFile(path.join(dir, 'index.html'), html)
-      // sitemapにはSEO評価を集約するキャラ個別ページ(/c/)の方を載せる
-      // (シェアページはcanonicalで/c/を指しているためsitemapには含めない)
-      urls.push(`${SITE_ORIGIN}/c/${character.imageKey}/`)
+      // /c/ ページ(400枚)はsitemapに含めない。
+      // 理由: 1ページあたりのユニークテキストが少なく、AdSenseの「有用性の低いコンテンツ」判定を招く。
+      // 内部リンクからGooglebotが自然にたどれる状態は維持しているので、
+      // 個別ページのSEO評価は失わないまま、sitemap上の「薄いページ」比率だけ下げる。
       count++
     }
+  }
+
+  // 旧URLの転送ページ(sitemapには載せない)
+  for (const [from, to] of legacyRedirects) {
+    const dir = path.join(publicDir, ...from.split('/').filter(Boolean))
+    await mkdir(dir, { recursive: true })
+    await writeFile(path.join(dir, 'index.html'), buildRedirectPage(to))
   }
 
   const today = new Date().toISOString().slice(0, 10)
@@ -174,7 +292,7 @@ ${urls.map((u) => `  <url><loc>${u}</loc><lastmod>${today}</lastmod></url>`).joi
   await writeFile(path.join(publicDir, 'sitemap.xml'), sitemap)
   await writeFile(path.join(publicDir, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_ORIGIN}/sitemap.xml\n`)
 
-  console.log(`シェアページ ${count} 枚 + sitemap.xml(${urls.length} URL)+ robots.txt を生成しました`)
+  console.log(`シェアページ ${count} 枚 + sitemap.xml(${urls.length} URL)+ robots.txt + 転送ページ ${legacyRedirects.length} 枚を生成しました`)
 }
 
 // 直接実行されたときだけ生成する(他スクリプトからのimport時は実行しない)

@@ -8,6 +8,10 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2348704902723015"
+     crossorigin="anonymous"></script>
+
     <title>診断村｜無料で遊べる恋愛診断・性格診断・心理テスト</title>
     <meta name="description" content="診断村は、恋愛診断・性格診断・心理テストを無料で楽しめる診断サイトです。かわいいキャラクターと一緒に、あなたのタイプや隠れた性格を診断できます。" />
     <link rel="canonical" href="https://shindanmura.com/" />
@@ -49,19 +53,40 @@
           "applicationCategory": "EntertainmentApplication",
           "operatingSystem": "Web",
           "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
-          "description": "恋愛診断・性格診断・心理テストなど12種類以上の無料診断。8問・約1分で、結果はかわいいオリジナルキャラクターで表示されます。"
+          "description": "恋愛診断・性格診断・心理テストなど30種類以上の無料診断。8問・約1分で、結果はかわいいオリジナルキャラクターで表示されます。"
+        },
+        {
+          "@type": "Organization",
+          "name": "診断村",
+          "url": "https://shindanmura.com/",
+          "sameAs": [
+            "https://x.com/shindanmura",
+            "https://www.instagram.com/shindanmura/",
+            "https://www.threads.com/@shindanmura",
+            "https://www.facebook.com/profile.php?id=61591359254588",
+            "https://www.tiktok.com/@shindanmura",
+            "https://www.youtube.com/@shindanmura",
+            "https://note.com/shindanmura"
+          ]
         }
       ]
     }
     </script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5Q648ZRFZB"></script>
+    <!-- Google tag (gtag.js)
+         - 本番ドメイン(shindanmura.com)のときだけ読み込む。localhost・プレビュー環境のアクセスを本番の数値に混ぜないため。
+         - page_view は App.jsx の手動送信に一本化する(send_page_view: false)。
+           自動送信と手動送信が両方動くと、1回の表示が二重に数えられるため。 -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-5Q648ZRFZB');
+      if (/(^|\.)shindanmura\.com$/.test(location.hostname)) {
+        var gaScript = document.createElement('script');
+        gaScript.async = true;
+        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-5Q648ZRFZB';
+        document.head.appendChild(gaScript);
+        gtag('js', new Date());
+        gtag('config', 'G-5Q648ZRFZB', { send_page_view: false });
+      }
     </script>
   </head>
   <body>
