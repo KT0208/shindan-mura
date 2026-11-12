@@ -884,10 +884,8 @@ function App() {
     if (typeof window === 'undefined' || typeof window.gtag !== 'function') return
     let path
     let title
-    if (!hasEnteredVillage) {
-      path = '/gate/'
-      title = '診断村 - 入口'
-    } else if (showMyVillage) {
+    // 入口ゲートはホーム上部の演出(本文は常に表示)になったため、未入村でもホームとして計測する。
+    if (showMyVillage) {
       path = '/my-village/'
       title = '私の診断村'
     } else if (showCharacterGuide && guideDiagnosisId) {
@@ -1437,45 +1435,9 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [language])
 
-  if (!hasEnteredVillage) {
-    return (
-      <main className={`gate-page gate-${gateTheme} ${gateOpening ? 'gate-opening' : ''}`}>
-        <section className="village-gate-card">
-          <LanguageSwitcher language={language} setLanguage={setLanguage} />
-
-          <div className="gate-sky">
-            <div className="gate-moon" />
-            <div className="gate-sun" />
-            <div className="gate-stars" />
-          </div>
-
-          <div className="gate-sign">{t.brandName}</div>
-
-          <div className="gate-frame">
-            <div className="gate-post gate-post-left" />
-            <div className="gate-post gate-post-right" />
-
-            <div className="gate-doors">
-              <div className="gate-door gate-door-left">
-                <span />
-              </div>
-              <div className="gate-door gate-door-right">
-                <span />
-              </div>
-            </div>
-          </div>
-
-          <button className="gate-enter-button" onClick={enterVillage}>
-            {t.gate.enterButton}
-          </button>
-
-          <p className="gate-caption">
-            {t.gate.caption}
-          </p>
-        </section>
-      </main>
-    )
-  }
+  // 入口ゲートは全画面の関門にしない。
+  // 初回訪問者・審査クローラーにも本文(診断一覧など)が見えるよう、ホーム上部のバナーとして描画する。
+  // (旧実装は未入村だとゲートだけを返しており、トップの描画内容がほぼ空だった)
 
   if (legalPage && currentLegalPages[legalPage]) {
     const page = currentLegalPages[legalPage]
@@ -2459,6 +2421,19 @@ ${resultShareUrl}`
 
   return (
     <main className={`app top-app top-${gateTheme}`}>
+      {!hasEnteredVillage && (
+        <section
+          className={`gate-banner gate-${gateTheme} ${gateOpening ? 'gate-opening' : ''}`}
+          aria-label={t.brandName}
+        >
+          <div className="village-gate-card gate-banner-card">
+            <p className="gate-banner-caption">{t.gate.caption}</p>
+            <button className="gate-enter-button" onClick={enterVillage}>
+              {t.gate.enterButton}
+            </button>
+          </div>
+        </section>
+      )}
       <section className="hero top-hero">
         <LanguageSwitcher language={language} setLanguage={setLanguage} />
         <div className="top-hero-copy">
@@ -2816,6 +2791,7 @@ ${resultShareUrl}`
 
       <footer className="copyright-footer">
         <nav className="footer-links" aria-label={t.legalNav}>
+          <a href="/diagnosis/">{language === 'en' ? 'All quizzes' : '診断一覧'}</a>
           <a href="/column/">{language === 'en' ? 'Column' : 'コラム'}</a>
           <button
             type="button"

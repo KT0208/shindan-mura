@@ -1735,6 +1735,51 @@ button {
     font-size: 22px;
   }
 }
+/* 入口ゲート(ホーム上部バナー版)
+   全画面の関門ではなく、本文の上に置く演出。初回訪問者にも診断一覧が見える。 */
+.gate-banner {
+  margin: 0 0 18px;
+  border-radius: 28px;
+  overflow: hidden;
+}
+
+.gate-banner .gate-banner-card {
+  width: 100%;
+  height: auto;
+  min-height: 300px;
+  padding: 0 20px 28px;
+  border-radius: 28px;
+  background-position: center 58%;
+  gap: 14px;
+}
+
+.gate-banner-caption {
+  position: relative;
+  z-index: 3;
+  max-width: 30em;
+  margin: 0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.7;
+  text-align: center;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
+}
+
+@media (max-width: 620px) {
+  .gate-banner .gate-banner-card {
+    height: auto;
+    min-height: 260px;
+    padding-bottom: 22px;
+  }
+
+  .gate-banner .gate-enter-button {
+    min-width: 220px;
+    min-height: 56px;
+    font-size: 20px;
+  }
+}
+
 /* TOP app-style redesign */
 .top-app {
   width: min(760px, calc(100% - 28px));

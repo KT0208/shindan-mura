@@ -1,6 +1,9 @@
-// トップindex.htmlにSEO/Bot用のコンテンツを埋め込む
-// SPAで隠れているコンテンツ(診断一覧・コラム一覧・サイト説明)を、
-// <noscript>と非表示divで静的に書き出す。ビルド後(dist/index.html)を書き換える。
+// トップindex.htmlに、JavaScriptが動かない環境向けの代替コンテンツを埋め込む。
+// 診断一覧・コラム一覧・サイト説明を <noscript> で静的に書き出す。ビルド後(dist/index.html)を書き換える。
+//
+// 以前は画面外(left:-9999px)に飛ばした非表示divで出していたが、
+// 「人には見えずボットだけが読むテキスト」はGoogleの隠しテキストに該当しうるため廃止した。
+// 本文はSPA側で常に描画している(入口ゲートは本文の上のバナー)ので、ここはJS無効時の代替のみ。
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -32,7 +35,7 @@ async function main() {
       <p>${escape(meta.description)}</p>
     </article>`).join('\n    ')
 
-  const seoBlock = `<div id="seo-content" style="position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+  const seoBlock = `<noscript id="seo-content">
   <h1>診断村｜無料で遊べる恋愛診断・性格診断・心理テスト</h1>
   <p>診断村は、恋愛診断、性格診断、心理テストなど、キャラクターと一緒に楽しめる無料診断サイトです。会員登録不要、1分で完了する診断を${publicDiagnoses.length}本公開しています。診断結果はキャラクターの姿で現れ、友達と結果を見せ合って盛り上がれます。</p>
   <h2>診断一覧(全${publicDiagnoses.length}本)</h2>
@@ -56,13 +59,13 @@ async function main() {
     <a href="/contact/">お問い合わせ</a>
     <a href="/about/">運営者情報</a>
   </nav>
-</div>`
+</noscript>`
 
   let html = fs.readFileSync(HTML, 'utf8')
 
-  // 既に埋め込まれていたら置き換え
+  // 既に埋め込まれていたら置き換え(旧形式の非表示divも新形式のnoscriptも対象)
   if (html.includes('id="seo-content"')) {
-    html = html.replace(/<div id="seo-content"[\s\S]*?<\/div>\s*<\/body>/, seoBlock + '\n  </body>')
+    html = html.replace(/<(div|noscript) id="seo-content"[\s\S]*?<\/\1>\s*<\/body>/, seoBlock + '\n  </body>')
   } else {
     // </body>の直前に挿入
     html = html.replace('</body>', '  ' + seoBlock + '\n  </body>')
@@ -73,7 +76,7 @@ async function main() {
   console.log('index.htmlにSEOコンテンツを埋め込みました')
   console.log('  公開診断:', publicDiagnoses.length, '本')
   console.log('  コラム:', columns.length, '本')
-  console.log('  bot視点の本文文字数:', bodyTextLen, '字')
+  console.log('  noscript込みの本文文字数:', bodyTextLen, '字')
 }
 
 main().catch((e) => { console.error(e); process.exit(1) })
