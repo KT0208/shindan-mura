@@ -359,3 +359,29 @@ if (client) {
 } else {
   console.log('adsense: not configured (site.config.js)')
 }
+
+// ---- Google アナリティクス(GA4) ----
+// site.config.js に測定IDが入っていれば、全HTMLの<head>の先頭近くに計測コードを入れる。
+// 画面の切り替え(#/today など)は、GA4の自動計測(ブラウザの履歴の変化)でページビューとして記録される。
+const ga = siteConfig.gaMeasurementId
+if (ga) {
+  if (!/^G-[A-Z0-9]{6,12}$/.test(ga)) throw new Error(`gaMeasurementId の形式が正しくありません: ${ga}`)
+  const tag = `<script async src="https://www.googletagmanager.com/gtag/js?id=${ga}"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${ga}');</script>`
+  const htmlFiles = []
+  const walk = (dir) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name)
+      if (entry.isDirectory()) walk(full)
+      else if (entry.name.endsWith('.html')) htmlFiles.push(full)
+    }
+  }
+  walk(dist)
+  for (const file of htmlFiles) {
+    const html = fs.readFileSync(file, 'utf8')
+    if (!html.includes('googletagmanager.com/gtag')) fs.writeFileSync(file, html.replace('<meta charset="UTF-8" />', `<meta charset="UTF-8" />\n    ${tag}`))
+  }
+  console.log(`analytics: ${htmlFiles.length} pages`)
+} else {
+  console.log('analytics: not configured (site.config.js)')
+}

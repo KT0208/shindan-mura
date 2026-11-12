@@ -19,6 +19,7 @@ import { DictionaryContext, useDictionary } from './i18n/context'
 import { LANGUAGES, LANGUAGE_SUGGESTIONS, languageFromPath, languagePath, preferredLanguage } from './i18n/languages'
 import Omikuji from './Omikuji'
 import { shindanUrl } from './sisterSite'
+import { track } from './analytics'
 
 const MENU_IDS = [
   { id: 'birthday', emoji: '🎂' },
@@ -218,7 +219,7 @@ function BirthdayPage() {
 
   return (
     <Page id="birthday" lead={t.ui.birthday.lead}>
-      <form className="form" onSubmit={(e) => { e.preventDefault(); setSubmitted(true) }}>
+      <form className="form" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); track('kantei_result', { reading: 'birthday', number: lifePathNumber(birth) }) }}>
         <DateInput id="birth" value={birthText} onChange={(v) => { setBirthText(v); setSubmitted(false) }} />
         <button type="submit" className="primary" disabled={!birth}>{t.ui.submit}</button>
       </form>
@@ -261,7 +262,7 @@ function NamePage() {
   }
   return (
     <Page id="name" lead={t.ui.name.lead}>
-      <form className="form" onSubmit={(e) => { e.preventDefault(); setSubmitted(true) }}>
+      <form className="form" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); track('kantei_result', { reading: 'name' }) }}>
         <NameInput id="name" label={t.ui.name.label} value={name} onChange={(v) => { setName(v); setSubmitted(false) }} required />
         <button type="submit" className="primary" disabled={!valid}>{t.ui.submit}</button>
       </form>
@@ -291,7 +292,7 @@ function TodayPage() {
           key={birthText}
           fortune={f}
           dateLabel={formatLongDate(t.locale, y, m, d)}
-          onOpen={() => setOpened(true)}
+          onOpen={() => { setOpened(true); track('omikuji_draw', { rank: ['daikichi', 'chukichi', 'shokichi', 'kichi', 'suekichi', 'kyo'][f.omikujiIndex] }) }}
           onReset={() => setOpened(false)}
         />
       )}
@@ -379,7 +380,7 @@ function CompatPage() {
 
   return (
     <Page id="compat" lead={tc.lead}>
-      <form className="form" onSubmit={(e) => { e.preventDefault(); setSubmitted(true) }}>
+      <form className="form" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); track('kantei_result', { reading: 'compat' }) }}>
         <fieldset>
           <legend>{tc.you}</legend>
           <DateInput id="birth-a" value={birthA} onChange={reset(setBirthA)} />
