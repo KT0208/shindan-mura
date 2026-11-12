@@ -2617,3 +2617,58 @@ export const dreamTypeResultTypesEn = [
   ['Being-Chased Dream Type', 'Meeting-Your-Fave Dream Type', 'Reunion Dream Type', 'Adventure Hero Dream Type'],
   ['Teeth-Falling Dream Type', 'Flying Dream Type', 'Water Dream Type', 'Lucid Dream Type'],
 ]
+
+// Hidden Talent Diagnosis (talent spirits). Shared base = a round glowing light-spirit
+// (white core, dot eyes, tiny mouth); only aura color + symbol item change per type.
+export const hiddenTalentCharactersEn = {
+  'Great Listener Type': { characterName: 'Kiki the Talent Spirit', role: 'A reassuring spirit who hears you out to the end', visualConcept: 'A round lavender-glowing light-spirit tilting to listen, a gramophone and sound waves above, a soft speech bubble.', imageKey: '01-listener' },
+  'Mood-Softener Type': { characterName: 'Yawaragi the Talent Spirit', role: "A natural lubricant that melts a room's tension", visualConcept: 'A yellow-green glowing light-spirit wrapped in soft ribbons and a gentle breeze, sparkling, with a relaxed smile.', imageKey: '02-softener' },
+  'Attentive Type': { characterName: 'Kikubari the Talent Spirit', role: 'A spirit who notices before being told', visualConcept: 'A pink-glowing light-spirit nestled in flower petals, a little heart floating, offering something with a gentle smile.', imageKey: '03-attentive' },
+  'Organizer Type': { characterName: 'Matome the Talent Spirit', role: 'A commander spirit who binds people and ideas', visualConcept: 'A gold-glowing light-spirit with a small crown, gears and a cape behind, holding a little flag, dependable look.', imageKey: '04-leader' },
+  'Idea Spark Type': { characterName: 'Hirameki the Talent Spirit', role: 'A spirit of ideas that bubble up endlessly', visualConcept: 'A yellow star-shaped light-spirit with a lightbulb above, lightning and sparkles around, an excited "aha" face.', imageKey: '05-idea' },
+  'Expressive Communicator Type': { characterName: 'Tsutae the Talent Spirit', role: 'A communicator spirit who delivers in moving form', visualConcept: 'A magenta-purple glowing light-spirit holding a megaphone, music notes around, wearing a scarf, lively gesture.', imageKey: '06-expression' },
+  'Intuition & Sense Type': { characterName: 'Chokkan the Talent Spirit', role: 'A spirit who just knows before reasoning', visualConcept: 'A purple glowing light-spirit like a planet with Saturn-style rings, stars sparkling, a serene closed-eye look.', imageKey: '07-intuition' },
+  'Skilled Crafter Type': { characterName: 'Kiyou the Talent Spirit', role: 'A dexterous spirit who shapes anything', visualConcept: 'An ochre-glowing light-spirit in a pointed hat, attended by a thread spool, scissors and a button, enjoying the work.', imageKey: '08-dexterous' },
+  'Steady Persistence Type': { characterName: 'Kotsukotsu the Talent Spirit', role: 'A spirit who stacks up effort steadily', visualConcept: 'A gold-glowing light-spirit by a pile of stacked blocks topped with a small flag, a satisfied, accomplished look.', imageKey: '09-steady' },
+  'Analyst Type': { characterName: 'Minuki the Talent Spirit', role: 'A spirit who reads the essence of things', visualConcept: 'A light-blue, ice-cube-clear light-spirit holding a magnifier, a small chart beside it, a calm, discerning gaze.', imageKey: '10-analyst' },
+  'Quick-Action Type': { characterName: 'Sokkou the Talent Spirit', role: 'A spirit who moves before hesitating', visualConcept: 'A red-orange blazing light-spirit in goggles, trailing flames like a comet, full of drive.', imageKey: '11-action' },
+  'Fast Learner Type': { characterName: 'Manabi the Talent Spirit', role: 'A growth spirit who soaks up learning', visualConcept: 'A blue glowing light-spirit in a graduation cap, holding an open book, flowing water and light around, curious eyes.', imageKey: '12-learner' },
+  'Soothing Comfort Type': { characterName: 'Iyashi the Talent Spirit', role: 'A spirit whose very presence soothes', visualConcept: 'A soft-pink glowing light-spirit wrapped in a fluffy blanket, a warm lantern beside it, a drowsy, peaceful smile.', imageKey: '13-healer' },
+  'Tenacious Negotiator Type': { characterName: 'Nebari the Talent Spirit', role: 'A supple spirit who negotiates without breaking', visualConcept: 'A gold-and-red glowing light-spirit wound with rope and tassels, a calm, unshakable, friendly look.', imageKey: '14-negotiator' },
+  'Mood-Maker Type': { characterName: 'Moriage the Talent Spirit', role: 'A sun-like spirit who lights up the room', visualConcept: 'A rainbow-glowing light-spirit in a jester hat with colorful plumes, music notes and sparkles, a big cheerful grin.', imageKey: '15-moodmaker' },
+  'Unsung Support Type': { characterName: 'Sasae the Talent Spirit', role: 'A spirit who quietly holds up the whole', visualConcept: 'An amethyst-glowing light-spirit holding up a crystal arch and pillars, a star on top, a modest, dependable look.', imageKey: '16-supporter' },
+}
+
+export const hiddenTalentResultTypesEn = [
+  ['Great Listener Type', 'Idea Spark Type', 'Steady Persistence Type', 'Soothing Comfort Type'],
+  ['Mood-Softener Type', 'Expressive Communicator Type', 'Analyst Type', 'Tenacious Negotiator Type'],
+  ['Attentive Type', 'Intuition & Sense Type', 'Quick-Action Type', 'Mood-Maker Type'],
+  ['Organizer Type', 'Skilled Crafter Type', 'Fast Learner Type', 'Unsung Support Type'],
+]
+
+// Lending & Borrowing Diagnosis (the "lend-and-borrow tribe": lender x borrower live in pairs)
+export const lendingTypeCharactersEn = {
+  'Game-Addict Freeloader Type': { characterName: 'Couch Gamer', role: 'A smooth-talking borrower kept while gaming', visualConcept: 'A purple fluffball sprawled with a controller while its pink cat-girl partner reluctantly supports it; snacks and coins scattered.', imageKey: 'lend-game-freeloader' },
+  'Lazy Hammock Type': { characterName: 'Hammock Loafer', role: 'An easygoing borrower who sways in a hammock all day', visualConcept: 'A white fluff lazing in a hammock while its explorer partner spreads a map and looks after it.', imageKey: 'lend-hammock-lazy' },
+  'Dream-Chasing Bandmate Type': { characterName: 'Dream-Chasing Bandmate', role: 'A romantic who chases dreams and leaves money to the partner', visualConcept: 'A wolf strumming a guitar while its rabbit partner cheers with a glow stick; empty cans and an amp.', imageKey: 'lend-bandman-dreamer' },
+  'Fully Kept Type': { characterName: 'IV-Drip Freeloader', role: 'A fully dependent borrower kept alive by the partner', visualConcept: 'A robot hooked to a ¥-bag IV drip while its nurse partner dotes on it.', imageKey: 'lend-iv-dependent' },
+  'Equal Partners Type': { characterName: 'Sprout Couple', role: 'A healthy pair that splits every loan and shares fairly', visualConcept: 'A sprout and a flower creature snuggled close, sharing a small coin; hearts floating.', imageKey: 'lend-sprout-equal' },
+  'Easygoing Giver Type': { characterName: 'Mellow Caregiver', role: 'An unhurried giver who wraps you in calm', visualConcept: 'A cloud creature floating in a bath while its purple-haired partner watches over it gently; a duck and coins.', imageKey: 'lend-bubble-healer' },
+  'Caretaker Budgeter Type': { characterName: 'Budgeting Maid', role: 'A caretaking lender who props things up by budgeting', visualConcept: 'A maid-like creature preparing food on a budget for its gourmand partner.', imageKey: 'lend-maid-budget' },
+  'Devoted Giver Type': { characterName: 'All-In Devotee', role: 'A devoted lender who loosens the purse strings completely', visualConcept: 'A kimono-clad creature giving generously to a ghost clutching a bag of gold.', imageKey: 'lend-kimono-devotee' },
+  'Steady Slow-Life Type': { characterName: 'Forest Duo', role: 'A steady pair living modestly and down-to-earth', visualConcept: 'By a forest stump, a mushroom-headed creature and a flora creature live a steady, laid-back life.', imageKey: 'lend-forest-steady' },
+  'By-the-Book Type': { characterName: 'Abacus Owl', role: 'A by-the-book lender who records to the last cent', visualConcept: 'An owl with an abacus and ledger, its partner counting coins and tallying everything precisely.', imageKey: 'lend-abacus-owl' },
+  'Steady Dreamer Type': { characterName: 'Star Saver', role: 'A steady dreamer pair saving up toward a dream', visualConcept: 'An astronaut creature and a witch creature cradling coins turned into stars.', imageKey: 'lend-star-dreamer' },
+  'Ruthless Collector Type': { characterName: 'Collector Shark', role: 'A hard-nosed lender who collects with interest', visualConcept: 'A suited shark holding a rising chart to collect a debt while its drained partner lies limp.', imageKey: 'lend-shark-collector' },
+  'Laid-Back Type': { characterName: 'Coin Napper', role: 'A laid-back sort who keeps money matters loose', visualConcept: 'A creature napping buried in coins while its partner comes to catch it with a butterfly net.', imageKey: 'lend-coin-napper' },
+  'Resort Splurge Type': { characterName: 'Vacation Spender', role: 'A pair that enjoys now over saving, splurging together', visualConcept: 'A shark sipping a cocktail on a float and a sunglasses-wearing penguin living it up at a resort.', imageKey: 'lend-resort-splurge' },
+  'Charming Freeloader Type': { characterName: 'Charming Freeloader', role: 'A charming borrower who gets others to give', visualConcept: 'A pizza-holding purple devil with a gold chain while its angel partner dotes and gives.', imageKey: 'lend-devil-pizza' },
+  'Pampered King Type': { characterName: 'Pampered King', role: 'The final boss who gets endlessly pampered doing nothing', visualConcept: 'A crowned dragon lounging atop a treasure chest while its devil partner keeps on giving.', imageKey: 'lend-treasure-king' },
+}
+
+export const lendingTypeResultTypesEn = [
+  ['Game-Addict Freeloader Type', 'Equal Partners Type', 'Steady Slow-Life Type', 'Laid-Back Type'],
+  ['Lazy Hammock Type', 'Easygoing Giver Type', 'By-the-Book Type', 'Resort Splurge Type'],
+  ['Dream-Chasing Bandmate Type', 'Caretaker Budgeter Type', 'Steady Dreamer Type', 'Charming Freeloader Type'],
+  ['Fully Kept Type', 'Devoted Giver Type', 'Ruthless Collector Type', 'Pampered King Type'],
+]

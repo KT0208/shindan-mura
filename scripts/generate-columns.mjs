@@ -126,11 +126,11 @@ const STYLE = `
   .column-item p { font-size: 14px; color: #5b476f; }
 `
 
-function head({ title, description, url, extraJsonLd }) {
+function head({ title, description, url, extraJsonLd, robots }) {
   return `<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<title>${escapeHtml(title)}</title>
+${robots ? `<meta name="robots" content="${robots}" />\n` : ''}<title>${escapeHtml(title)}</title>
 <meta name="description" content="${escapeHtml(description)}" />
 <link rel="canonical" href="${url}" />
 <meta property="og:type" content="article" />
@@ -162,10 +162,14 @@ function buildArticle({ meta, body }) {
     publisher: { '@type': 'Organization', name: '診断村', url: SITE_ORIGIN },
     mainEntityOfPage: url,
   }
+  // 診断ごとの guide-* コラムは、各診断の本体ページ(/diagnosis/{id}/)と内容が重複する
+  // 同型の量産ページ。AdSense「有用性の低いコンテンツ」対策として、ページは残しつつ
+  // 検索インデックスからは外す(noindex, follow)。sitemapからも除外する。
+  const isGuide = typeof meta.slug === 'string' && meta.slug.startsWith('guide-')
   return `<!doctype html>
 <html lang="ja">
 <head>
-${head({ title: `${meta.title} | 診断村コラム`, description: meta.description, url, extraJsonLd: jsonLd })}
+${head({ title: `${meta.title} | 診断村コラム`, description: meta.description, url, extraJsonLd: jsonLd, robots: isGuide ? 'noindex, follow' : undefined })}
 </head>
 <body>
 <div class="page">

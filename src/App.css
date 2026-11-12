@@ -595,19 +595,83 @@ button {
 }
 
 .progress {
-  margin-bottom: 16px;
-  color: rgba(255, 255, 255, 0.72);
+  position: sticky;
+  top: 8px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(32, 18, 54, 0.82);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+}
+
+.progress-track {
+  flex: 1;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  min-width: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff4ecd, #ffb14e);
+  box-shadow: 0 0 12px rgba(255, 78, 205, 0.55);
+  transition: width 0.45s cubic-bezier(0.34, 1.3, 0.5, 1);
+}
+
+.progress-text {
+  flex: none;
+  color: #fff;
   font-weight: 800;
+  font-size: 13px;
+  white-space: nowrap;
 }
 
 .question {
   padding: 18px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  transition: opacity 0.3s ease;
+}
+
+.question.answered {
+  opacity: 0.78;
 }
 
 .question h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin: 0 0 14px;
-  font-size: 20px;
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+.qnum {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 30px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff4ecd, #7c5cff);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  box-shadow: 0 3px 10px rgba(124, 92, 255, 0.4);
+}
+
+.question.answered .qnum {
+  background: linear-gradient(135deg, #39d98a, #2fb6a8);
+  box-shadow: 0 3px 10px rgba(47, 182, 168, 0.4);
 }
 
 .answers {
@@ -617,15 +681,59 @@ button {
 }
 
 .answer {
-  min-height: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 72px;
   border-radius: 16px;
   color: #29183a;
   background: rgba(255, 255, 255, 0.94);
-  border: 1px solid rgba(255, 255, 255, 0.94);
+  border: 1.5px solid rgba(255, 255, 255, 0.94);
   font-weight: 800;
+  transition: transform 0.16s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
-.answer.active,
+.answer .ans-meter {
+  display: flex;
+  gap: 4px;
+}
+
+.answer .ans-meter i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(41, 24, 58, 0.16);
+  transition: background 0.2s ease, transform 0.16s ease;
+}
+
+/* 強度の数だけドットを点灯(違う=1 … 完全に自分=4) */
+.answer[data-level="0"] .ans-meter i:nth-child(-n + 1),
+.answer[data-level="1"] .ans-meter i:nth-child(-n + 2),
+.answer[data-level="2"] .ans-meter i:nth-child(-n + 3),
+.answer[data-level="3"] .ans-meter i:nth-child(-n + 4) {
+  background: #9a6cff;
+}
+
+.answer[data-level="2"] .ans-meter i:nth-child(-n + 3) { background: #ff7ab5; }
+.answer[data-level="3"] .ans-meter i:nth-child(-n + 4) { background: #ff3fb6; }
+
+.answer .ans-label {
+  font-size: 13.5px;
+}
+
+/* 強度スケールの色づけ(違う→完全に自分) */
+.answer[data-level="0"] { background: #eceaf2; border-color: #eceaf2; }
+.answer[data-level="1"] { background: #e8f0fb; border-color: #e8f0fb; }
+.answer[data-level="2"] { background: #ffeef7; border-color: #ffe0ef; }
+.answer[data-level="3"] { background: #ffdcef; border-color: #ffc7e4; }
+
+.answer:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+}
+
 .primary {
   background: linear-gradient(135deg, #ff4ecd, #7c5cff);
 }
@@ -633,6 +741,20 @@ button {
 .answer.active {
   color: #fff;
   border-color: transparent;
+  background: linear-gradient(135deg, #ff4ecd, #7c5cff);
+  transform: scale(1.05);
+  box-shadow: 0 10px 24px rgba(124, 92, 255, 0.45);
+}
+
+.answer.active .ans-meter i {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.answer.active[data-level="0"] .ans-meter i:nth-child(-n + 1),
+.answer.active[data-level="1"] .ans-meter i:nth-child(-n + 2),
+.answer.active[data-level="2"] .ans-meter i:nth-child(-n + 3),
+.answer.active[data-level="3"] .ans-meter i:nth-child(-n + 4) {
+  background: #fff;
 }
 
 .primary {

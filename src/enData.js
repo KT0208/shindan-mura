@@ -62,6 +62,10 @@ import {
   scaredyYokaiResultTypesEn,
   dreamTypeCharactersEn,
   dreamTypeResultTypesEn,
+  hiddenTalentCharactersEn,
+  hiddenTalentResultTypesEn,
+  lendingTypeCharactersEn,
+  lendingTypeResultTypesEn,
 } from './characterData.en.js'
 import { resultDetailsEn } from './resultDetails.en.js'
 import { randomCommentPoolsEn } from './randomComments.en.js'
@@ -110,6 +114,8 @@ export const resultTypesByDiagnosisEn = {
   'spending-type': zeniTailResultTypesEn,
   'scaredy-level': scaredyYokaiResultTypesEn,
   'dream-type': dreamTypeResultTypesEn,
+  'hidden-talent': hiddenTalentResultTypesEn,
+  'lending-type': lendingTypeResultTypesEn,
 }
 
 export const characterCollectionsEn = {
@@ -143,4 +149,6 @@ export const characterCollectionsEn = {
   'spending-type': { basePath: 'zeniTailCharacters', characters: zeniTailCharactersEn },
   'scaredy-level': { basePath: 'scaredyYokaiCharacters', characters: scaredyYokaiCharactersEn },
   'dream-type': { basePath: 'dreamTypeCharacters', characters: dreamTypeCharactersEn },
+  'hidden-talent': { basePath: 'hiddenTalentCharacters', characters: hiddenTalentCharactersEn },
+  'lending-type': { basePath: 'lendingTypeCharacters', characters: lendingTypeCharactersEn },
 }

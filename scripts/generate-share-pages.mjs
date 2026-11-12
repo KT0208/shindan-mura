@@ -47,6 +47,8 @@ import {
   zeniTailCharacters,
   scaredyYokaiCharacters,
   dreamTypeCharacters,
+  hiddenTalentCharacters,
+  lendingTypeCharacters,
 } from '../src/characterData.js'
 import { diagnoses } from '../src/diagnosisData.js'
 import { resultDetails } from '../src/resultDetails.js'
@@ -89,6 +91,8 @@ export const characterCollections = {
   'spending-type': { basePath: 'zeniTailCharacters', characters: zeniTailCharacters },
   'scaredy-level': { basePath: 'scaredyYokaiCharacters', characters: scaredyYokaiCharacters },
   'dream-type': { basePath: 'dreamTypeCharacters', characters: dreamTypeCharacters },
+  'hidden-talent': { basePath: 'hiddenTalentCharacters', characters: hiddenTalentCharacters },
+  'lending-type': { basePath: 'lendingTypeCharacters', characters: lendingTypeCharacters },
 }
 
 const escapeHtml = (s) =>
@@ -180,6 +184,9 @@ async function main() {
   try {
     const { loadColumns } = await import('./generate-columns.mjs')
     for (const article of await loadColumns()) {
+      // 診断ごとの guide-* コラムは各診断の本体ページと重複する量産ページのため
+      // noindex 化しており、sitemapにも載せない(独自エッセイのコラムのみ掲載)。
+      if (typeof article.meta.slug === 'string' && article.meta.slug.startsWith('guide-')) continue
       urls.push(`${SITE_ORIGIN}/column/${article.meta.slug}/`)
     }
   } catch {

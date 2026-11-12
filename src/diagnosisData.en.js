@@ -356,13 +356,6 @@ export const diagnosesEn = [
     questions: ["I can start conversations even with people I just met", "I notice danger or discomfort faster than others", "With friends, I naturally soften the mood", "Once interested, I pursue something thoroughly", "I perform better in small groups than large ones", "I become suddenly strong when I have something to protect", "I value my own territory — space and time", "People say I'm tougher than I look"],
     results: ["Easygoing Animal", "Beloved Animal", "Clever Animal", "Solitary Animal"],
   },
-]
-
-export const optionsEn = [
-  { label: "Not at all", value: 0 },
-  { label: "A little true", value: 1 },
-  { label: "Pretty true", value: 2 },
-  { label: "Totally me", value: 3 },
   {
     id: "anger-style",
     title: "Anger Style Diagnosis",
@@ -413,4 +406,31 @@ export const optionsEn = [
     questions: ["Lately I feel chased by deadlines or pressure", "Before sleep, I often dwell on worries and anxieties", "I often picture ideals and longings — 'if only this would happen'", "Right now I have a clear thing I want or a goal to reach", "My heart moves often over romance or relationships", "There's someone I want to see or can't stop thinking about", "I love immersing myself in daydreams and imagination", "Even in real life, I'd rather steer the flow myself"],
     results: ["Dreamless-Bliss Dream Type", "Lost Dream Type", "Adventure Hero Dream Type", "Lucid Dream Type"],
   },
+  {
+    id: "hidden-talent",
+    title: "Hidden Talent Diagnosis",
+    category: "Career",
+    emoji: "✨",
+    scenes: ["solo", "friends", "share"],
+    description: "What's your hidden talent? Sixteen talent spirits reveal the real strengths you can't easily see in yourself, in this free personality & talent quiz.",
+    questions: ["I tend to listen to people all the way through", "Ideas like 'this could be fun' often pop into my head", "I can keep at what I've decided, step by step", "People tell me I'm easy to talk to and relaxing to be around", "I'm quick to notice the mood or shifts in people's feelings", "I enjoy expressing my thoughts and feelings in words or form", "I tend to analyze how things work and why", "I'm good at brightening or easing the mood of a room"],
+    results: ["Great Listener Type", "Mood-Softener Type", "Attentive Type", "Organizer Type"],
+  },
+  {
+    id: "lending-type",
+    title: "Lending & Borrowing Diagnosis",
+    category: "Money",
+    emoji: "💸",
+    scenes: ["solo", "friends", "share"],
+    description: "Are you the lender or the borrower? The 'lend-and-borrow tribe' — 16 types where lenders and borrowers live in pairs — reveals your distance from money and people, in this free psychological money quiz.",
+    questions: ["When money is tight, I tend to lean on someone close and borrow", "For someone I love, I don't mind spending money", "I want to record and manage every loan and debt carefully", "I sometimes blow money on impulse or in the heat of the moment", "Honestly, if someone would support me financially, I'd be fine with that", "If it makes them happy, I'll go out of my way to give, even at my own expense", "I use money in a planned, waste-free way", "I tend to put the fun of the moment over keeping track of who owes what"],
+    results: ["Game-Addict Freeloader Type", "Lazy Hammock Type", "Dream-Chasing Bandmate Type", "Fully Kept Type"],
+  },
+]
+
+export const optionsEn = [
+  { label: "Not at all", value: 0 },
+  { label: "A little true", value: 1 },
+  { label: "Pretty true", value: 2 },
+  { label: "Totally me", value: 3 },
 ]

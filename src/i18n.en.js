@@ -160,12 +160,16 @@ export const legalPagesEn = {
     operator: {
       label: 'Operator',
       title: 'Operator Information',
-      lead: 'Operator information for Shindan Mura.',
+      lead: 'Shindan Mura is an independently operated character-quiz media site. The operator personally plans and edits the content, with a focus on quizzes that are genuinely fun to read.',
       sections: [
         { heading: 'Site Name', body: 'Shindan Mura' },
-        { heading: 'Operator', body: 'Katsuya Ohara' },
-        { heading: 'Site Content', body: 'We provide character-based quiz content on themes such as love, personality, career, money, and social media. Quiz results are intended for entertainment purposes.' },
-        { heading: 'Copyright Notice', body: '© 2026 Katsuya Ohara / Shindan Mura. All Rights Reserved.' },
+        { heading: 'Operator', body: 'Katsuya Ohara (individual operator)' },
+        { heading: 'Operating Since', body: 'In operation since spring 2026.' },
+        { heading: 'Site Content', body: 'We provide original character-based quiz content on themes such as love, personality, career, money, and social media. Each quiz offers around 16 result types, each with its own explanation. Quiz results are intended for entertainment purposes.' },
+        { heading: 'Content Policy', body: 'For each quiz, the operator plans the theme, the type classification, and the direction of the result text, and uses generative AI as part of the production process. Before publishing, the operator reviews and adjusts the content and checks characters and text for duplication and quality. We do not publish mass machine-generated pages as-is.' },
+        { heading: 'Updates', body: 'We continuously add new quizzes and columns, and regularly review and improve existing content.' },
+        { heading: 'Contact', body: 'For feedback, requests, or inquiries about the content, please contact info@shindanmura.com.' },
+        { heading: 'Copyright Notice', body: '© 2026 Katsuya Ohara / Shindan Mura. All Rights Reserved. Unauthorized reproduction or redistribution of the text, images, characters, or designs is prohibited.' },
       ],
     },
 }

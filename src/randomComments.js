@@ -30,6 +30,8 @@ import { comments as p_shyness } from './packs/shyness.js'
 import { comments as p_spending_type } from './packs/spending-type.js'
 import { comments as p_scaredy_level } from './packs/scaredy-level.js'
 import { comments as p_dream_type } from './packs/dream-type.js'
+import { comments as p_hidden_talent } from './packs/hidden-talent.js'
+import { comments as p_lending_type } from './packs/lending-type.js'
 
 export const randomCommentPools = {
   'hidden-personality': p_hidden_personality,
@@ -62,4 +64,6 @@ export const randomCommentPools = {
   'spending-type': p_spending_type,
   'scaredy-level': p_scaredy_level,
   'dream-type': p_dream_type,
+  'hidden-talent': p_hidden_talent,
+  'lending-type': p_lending_type,
 }

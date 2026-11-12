@@ -30,6 +30,8 @@ import { details as p_shyness } from './packs/shyness.js'
 import { details as p_spending_type } from './packs/spending-type.js'
 import { details as p_scaredy_level } from './packs/scaredy-level.js'
 import { details as p_dream_type } from './packs/dream-type.js'
+import { details as p_hidden_talent } from './packs/hidden-talent.js'
+import { details as p_lending_type } from './packs/lending-type.js'
 
 export const resultDetails = {
   'hidden-personality': p_hidden_personality,
@@ -62,4 +64,6 @@ export const resultDetails = {
   'spending-type': p_spending_type,
   'scaredy-level': p_scaredy_level,
   'dream-type': p_dream_type,
+  'hidden-talent': p_hidden_talent,
+  'lending-type': p_lending_type,
 }

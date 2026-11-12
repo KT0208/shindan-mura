@@ -59,6 +59,10 @@ import {
   scaredyYokaiResultTypes,
   dreamTypeCharacters,
   dreamTypeResultTypes,
+  hiddenTalentCharacters,
+  hiddenTalentResultTypes,
+  lendingTypeCharacters,
+  lendingTypeResultTypes,
 } from './characterData'
 import { loadJaPack, jaResultDetails, jaRandomCommentPools } from './jaPacks'
 import { categories as categoriesJa, scenes as scenesJa, sceneSets as sceneSetsJa, diagnoses as diagnosesJa, options as optionsJa } from './diagnosisData'
@@ -250,6 +254,8 @@ const tendencyIndexResolvers = {
   'spending-type': getBalancedTendencyIndex,
   'scaredy-level': getBalancedTendencyIndex,
   'dream-type': getBalancedTendencyIndex,
+  'hidden-talent': getBalancedTendencyIndex,
+  'lending-type': getBalancedTendencyIndex,
 }
 
 const resultTypesByDiagnosisJa = {
@@ -283,6 +289,8 @@ const resultTypesByDiagnosisJa = {
   'spending-type': zeniTailResultTypes,
   'scaredy-level': scaredyYokaiResultTypes,
   'dream-type': dreamTypeResultTypes,
+  'hidden-talent': hiddenTalentResultTypes,
+  'lending-type': lendingTypeResultTypes,
 }
 
 const resultTypesByDiagnosisByLanguage = {
@@ -338,6 +346,8 @@ const characterCollectionsJa = {
   'spending-type': { basePath: 'zeniTailCharacters', characters: zeniTailCharacters },
   'scaredy-level': { basePath: 'scaredyYokaiCharacters', characters: scaredyYokaiCharacters },
   'dream-type': { basePath: 'dreamTypeCharacters', characters: dreamTypeCharacters },
+  'hidden-talent': { basePath: 'hiddenTalentCharacters', characters: hiddenTalentCharacters },
+  'lending-type': { basePath: 'lendingTypeCharacters', characters: lendingTypeCharacters },
 }
 
 const characterCollectionsByLanguage = {
@@ -2236,19 +2246,29 @@ ${resultShareUrl}`
 
         {!showResult ? (
           <section className="panel">
-            <div className="progress">{t.diagnosis.progress(answeredCount, diagnosis.questions.length)}</div>
+            <div className="progress">
+              <div className="progress-track">
+                <div
+                  className="progress-fill"
+                  style={{ width: `${Math.round((answeredCount / diagnosis.questions.length) * 100)}%` }}
+                />
+              </div>
+              <span className="progress-text">{t.diagnosis.progress(answeredCount, diagnosis.questions.length)}</span>
+            </div>
 
             {diagnosis.questions.map((question, index) => (
-              <div className="question" key={question}>
-                <h2>Q{index + 1}. {question}</h2>
+              <div className={answers[index] != null ? 'question answered' : 'question'} key={question}>
+                <h2><span className="qnum">Q{index + 1}</span><span className="qtext">{question}</span></h2>
                 <div className="answers">
                   {options.map((option) => (
                     <button
                       key={option.label}
                       className={answers[index] === option.value ? 'answer active' : 'answer'}
+                      data-level={option.value}
                       onClick={() => updateAnswer(index, option.value)}
                     >
-                      {option.label}
+                      <span className="ans-meter" aria-hidden="true"><i /><i /><i /><i /></span>
+                      <span className="ans-label">{option.label}</span>
                     </button>
                   ))}
                 </div>

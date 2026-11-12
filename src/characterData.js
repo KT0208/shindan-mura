@@ -3199,3 +3199,59 @@ export const dreamTypeResultTypes = [
   ['追われる夢タイプ', '推しに会う夢タイプ', '会いたい人の夢タイプ', '冒険ヒーロー夢タイプ'],
   ['歯が抜ける夢タイプ', '空飛ぶ夢タイプ', '水の夢タイプ', '明晰夢タイプ'],
 ]
+
+// 隠れた才能診断(才能の精)。共通ベース=まんまるの光の精(白いコア＋点目＋小さな口)。
+// タイプごとにオーラ色＋象徴アイテムが変わる。人でも動物でもない完全オリジナル。
+export const hiddenTalentCharacters = {
+  '聞き上手タイプ': { characterName: 'きき上手せい', role: '人の話を最後まで受け止める、安心の才能の精', visualConcept: 'ラベンダー色に発光するまんまるの光の精。耳をかたむけるしぐさで、頭上に蓄音機と音の波、吹き出しがふわり。優しい点目でうなずく。', imageKey: '01-listener' },
+  '空気やわらげタイプ': { characterName: 'やわらげせい', role: '場の緊張をそっと溶かす、天然潤滑油の才能の精', visualConcept: '黄緑色に発光する光の精。体のまわりに緑のふわっとしたリボンとそよ風が舞い、きらきら。ゆるい半目でほほえむ。', imageKey: '02-softener' },
+  '気配り察しタイプ': { characterName: 'きくばりせい', role: '言われる前に気づく、察する才能の精', visualConcept: 'ピンク色に発光する光の精。花びらに包まれ、小さなハートがふわり。そっと差し出すしぐさで、やわらかく微笑む。', imageKey: '03-attentive' },
+  'まとめ役タイプ': { characterName: 'まとめやくせい', role: '人と意見を束ねる司令塔の才能の精', visualConcept: 'ゴールドに発光する光の精。小さな王冠をのせ、歯車とマントを背に、ちょこんと旗を持つ。たよれる表情。', imageKey: '04-leader' },
+  'ひらめきタイプ': { characterName: 'ひらめきせい', role: 'アイデアが次々わく、発想の才能の精', visualConcept: 'イエローに発光する星型の光の精。頭上に電球、まわりに稲妻ときらめき。ひらめいた瞬間のわくわく顔。', imageKey: '05-idea' },
+  '表現・伝え上手タイプ': { characterName: 'つたえせい', role: '心を動かす形で届ける、表現の才能の精', visualConcept: 'マゼンタ紫に発光する光の精。メガホンを手に、まわりに音符。スカーフをまとい、生き生きと伝えるしぐさ。', imageKey: '06-expression' },
+  '直感センスタイプ': { characterName: 'ちょっかんせい', role: '理屈より先にわかる、センスの才能の精', visualConcept: '紫に発光する、惑星のように土星の輪をまとった光の精。まわりに星がきらめき、すっと澄ました表情で目を閉じる。', imageKey: '07-intuition' },
+  '器用職人タイプ': { characterName: 'きようせい', role: 'なんでも形にする、手先の才能の精', visualConcept: '黄土色に発光する光の精。とんがり帽をかぶり、糸巻き・ハサミ・ボタンを従える。手を動かすのが楽しそうな顔。', imageKey: '08-dexterous' },
+  'コツコツ継続タイプ': { characterName: 'こつこつせい', role: '地道に積み上げる、継続の才能の精', visualConcept: 'ゴールドに発光する光の精。積み上がったブロックの山に小さな旗を立て、やりきった満足げな表情。', imageKey: '09-steady' },
+  '分析・見抜きタイプ': { characterName: 'みぬきせい', role: '本質を読み解く、見抜く才能の精', visualConcept: '水色に発光する、氷のキューブのような透明感の光の精。虫めがねを手に、横に小さなグラフ。冷静な目で見つめる。', imageKey: '10-analyst' },
+  '即行動タイプ': { characterName: 'そっこうせい', role: '迷う前に動き出す、瞬発力の才能の精', visualConcept: '赤オレンジに燃える光の精。ゴーグルをつけ、炎・彗星の尾を引いて勢いよく駆ける。やる気まんまんの顔。', imageKey: '11-action' },
+  '学び吸収タイプ': { characterName: 'まなびせい', role: 'スポンジのように学ぶ、成長の才能の精', visualConcept: 'ブルーに発光する光の精。卒業帽をかぶり、開いた本を抱えて、まわりに水の流れと光。知りたそうな目。', imageKey: '12-learner' },
+  '癒し安心タイプ': { characterName: 'いやしせい', role: '存在そのものが人を癒す、安心の才能の精', visualConcept: 'やわらかいピンクに発光する光の精。ふわふわの毛布に包まれ、そばにあたたかいランタン。とろんと安らいだ笑顔。', imageKey: '13-healer' },
+  '粘り交渉タイプ': { characterName: 'ねばりせい', role: 'しなやかに粘る、交渉の才能の精', visualConcept: '金と赤に発光する光の精。縄と房飾りをまとい、落としどころを探るような、にこやかで動じない表情。', imageKey: '14-negotiator' },
+  'ムードメーカータイプ': { characterName: 'もりあげせい', role: '場をパッと明るくする、太陽の才能の精', visualConcept: '虹色に発光する光の精。ジェスター帽とカラフルな羽飾り、まわりに音符ときらきら。元気いっぱいの満面の笑み。', imageKey: '15-moodmaker' },
+  '縁の下の支えタイプ': { characterName: 'ささえせい', role: '全体を静かに支える、縁の下の才能の精', visualConcept: '紫水晶色に発光する光の精。頭上の石・クリスタルのアーチと柱を両手で支え、てっぺんに星。控えめで頼もしい表情。', imageKey: '16-supporter' },
+}
+
+// 行=合計スコア帯(低→高)、列=才能グループ(対人/創造/実務/支え)。
+export const hiddenTalentResultTypes = [
+  ['聞き上手タイプ', 'ひらめきタイプ', 'コツコツ継続タイプ', '癒し安心タイプ'],
+  ['空気やわらげタイプ', '表現・伝え上手タイプ', '分析・見抜きタイプ', '粘り交渉タイプ'],
+  ['気配り察しタイプ', '直感センスタイプ', '即行動タイプ', 'ムードメーカータイプ'],
+  ['まとめ役タイプ', '器用職人タイプ', '学び吸収タイプ', '縁の下の支えタイプ'],
+]
+
+// 貸し借り診断(貸し借り族・貸す側×借りる側の対で生きる種族)
+export const lendingTypeCharacters = {
+  'ゲーム三昧の甘えんぼタイプ': { characterName: 'ごろ寝ゲーマー', role: 'ゲーム片手に養われる、甘え上手な借り手', visualConcept: '紫のモフモフがコントローラー片手にゴロ寝、相方のピンク猫娘が呆れつつ養う。お菓子とコインが散らばる。', imageKey: 'lend-game-freeloader' },
+  'ぐうたらハンモックタイプ': { characterName: 'ハンモックぐで', role: 'ハンモックで一日中ゆられる、のんびり借り手', visualConcept: '木陰のハンモックでだらける白モフを、相方の探検家が地図を広げて世話する。', imageKey: 'lend-hammock-lazy' },
+  '夢追いバンドマンタイプ': { characterName: '夢追いバンドマン', role: '夢を追ってお金は相方頼み、ロマン借り手', visualConcept: 'ギターをかき鳴らす狼を、相方のうさぎがペンライトで全力応援。空き缶とアンプ。', imageKey: 'lend-bandman-dreamer' },
+  '完全養われタイプ': { characterName: '点滴ヒモボット', role: '相方の仕送りで生かされる、ガチ依存の借り手', visualConcept: '¥袋の点滴につながれたロボを、相方のナースがかいがいしく看護する。', imageKey: 'lend-iv-dependent' },
+  '対等支え合いタイプ': { characterName: 'ふたば夫婦', role: '貸し借りを半分こ、対等に支え合う健全ペア', visualConcept: '若葉の子と花の子がぴったり寄り添い、小さなコインを分け合う。ハートが浮かぶ。', imageKey: 'lend-sprout-equal' },
+  'のんびり癒し尽くしタイプ': { characterName: 'ゆるゆる癒し', role: 'せかさず包む、のんびり尽くし手', visualConcept: 'お風呂でぷかぷか浮かぶ雲の子を、紫髪の相方がやさしく見守る。アヒルとコイン。', imageKey: 'lend-bubble-healer' },
+  '世話焼きやりくりタイプ': { characterName: 'やりくりメイド', role: '家計をやりくりして支える、世話焼きの貸し手', visualConcept: '食い道楽の相方に、メイド姿の子がやりくりしながら食事を用意する。', imageKey: 'lend-maid-budget' },
+  '貢ぎきり献身タイプ': { characterName: '貢ぎきり和装', role: '財布のひもをゆるめきる、献身の貸し手', visualConcept: '金袋を抱えた幽霊に、和装の相方が惜しみなく貢ぐ。', imageKey: 'lend-kimono-devotee' },
+  '堅実スローライフタイプ': { characterName: '森のふたり', role: '身の丈で地道に暮らす、堅実ペア', visualConcept: '森の切り株のそばで、きのこ頭の子と草花の子がのんびり堅実に暮らす。', imageKey: 'lend-forest-steady' },
+  '計算きっちりタイプ': { characterName: 'そろばんフクロウ', role: '一円単位で記録する、きっちり管理の貸し手', visualConcept: 'そろばんと帳簿を持つフクロウと、相方がコインを数えてきっちり計算する。', imageKey: 'lend-abacus-owl' },
+  'コツコツ夢見タイプ': { characterName: '星つみびと', role: '夢に向けてコツコツ貯める、堅実な夢見ペア', visualConcept: '宇宙服の子と魔法使いの子が、星になったコインを大事に抱える。', imageKey: 'lend-star-dreamer' },
+  '鬼の取り立てタイプ': { characterName: '取り立てザメ', role: '貸したら利子まできっちり回収する、シビアな貸し手', visualConcept: 'スーツのサメが右肩上がりのグラフを手に取り立て、搾取されきった相方がぐったり。', imageKey: 'lend-shark-collector' },
+  '脱力マイペースタイプ': { characterName: 'コイン寝落ち', role: '貸し借りもゆるっと、脱力マイペース', visualConcept: 'コインに埋もれて寝落ちする子を、相方が虫取り網で捕まえに来る。', imageKey: 'lend-coin-napper' },
+  'リゾート豪遊タイプ': { characterName: 'バカンス浪費', role: '貯金より今を楽しむ、一緒に散財するペア', visualConcept: '浮き輪でカクテルを傾けるサメと、サングラスのペンギンがリゾートで豪遊する。', imageKey: 'lend-resort-splurge' },
+  '魔性のヒモタイプ': { characterName: '魔性のヒモ', role: '甘え上手で貢がせる、魔性の借り手', visualConcept: 'ピザ片手の紫の悪魔っ子が金の鎖をつけ、天使の相方がうっとり貢ぐ。', imageKey: 'lend-devil-pizza' },
+  '貢がれ王様タイプ': { characterName: '貢がれキング', role: '何もせず貢がれ続ける、貸し借り界のラスボス', visualConcept: '王冠をのせたドラゴンが宝箱の上にふんぞり返り、相方の悪魔が貢ぎ続ける。', imageKey: 'lend-treasure-king' },
+}
+
+export const lendingTypeResultTypes = [
+  ['ゲーム三昧の甘えんぼタイプ', '対等支え合いタイプ', '堅実スローライフタイプ', '脱力マイペースタイプ'],
+  ['ぐうたらハンモックタイプ', 'のんびり癒し尽くしタイプ', '計算きっちりタイプ', 'リゾート豪遊タイプ'],
+  ['夢追いバンドマンタイプ', '世話焼きやりくりタイプ', 'コツコツ夢見タイプ', '魔性のヒモタイプ'],
+  ['完全養われタイプ', '貢ぎきり献身タイプ', '鬼の取り立てタイプ', '貢がれ王様タイプ'],
+]
