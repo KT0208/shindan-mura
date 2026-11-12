@@ -75,6 +75,7 @@ export default {
       readings: [
         { href: '/numerology.html', title: '¿Qué es la numerología?', text: 'Cómo calcular tu número del camino de vida' },
         { href: '/omikuji-guide.html', title: '¿Qué es el omikuji?', text: 'El orden de las fortunas y cómo atar el papel' },
+        { href: '/sanpai.html', title: 'Cómo rezar en un santuario', text: 'Purificar las manos y dos reverencias, dos palmadas, una reverencia' },
       ],
       readingsMore: 'Ver todos los artículos →',
     },

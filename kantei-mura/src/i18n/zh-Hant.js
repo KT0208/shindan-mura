@@ -75,6 +75,7 @@ export default {
       readings: [
         { href: '/numerology.html', title: '什麼是數字命理？', text: '生命靈數的算法與大師數' },
         { href: '/omikuji-guide.html', title: '什麼是御神籤？', text: '吉凶順序、籤詩項目與綁籤的習俗' },
+        { href: '/sanpai.html', title: '神社參拜禮儀', text: '手水淨手與「二禮二拍手一禮」（附插圖）' },
       ],
       readingsMore: '查看全部文章 →',
     },

@@ -76,6 +76,7 @@ export default {
       readings: [
         { href: '/numerology.html', title: '数秘術とは?', text: '運命数の出し方とマスターナンバーをやさしく解説' },
         { href: '/omikuji-guide.html', title: 'おみくじとは?', text: '吉凶の順番・項目の意味・結び方' },
+        { href: '/sanpai.html', title: '神社のお参りの作法', text: '手水の清め方と二礼二拍手一礼(イラスト付き)' },
       ],
       readingsMore: '読み物をすべて見る →',
     },

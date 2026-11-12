@@ -151,3 +151,50 @@ li { margin-bottom: 6px; }
 .site-footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 16px; margin-bottom: 10px; }
 .site-footer nav a { color: var(--ink); }
 .site-footer p { margin: 4px 0; }
+
+h3 { margin: 24px 0 10px; font-size: 1.05rem; color: var(--gold); }
+
+/* 手順(①②③…) */
+.steps { list-style: none; counter-reset: step; padding: 0; margin: 0 0 16px; display: grid; gap: 10px; }
+.steps li {
+  counter-increment: step;
+  position: relative;
+  margin: 0;
+  padding: 12px 14px 12px 54px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.24);
+  border: 1px solid var(--border);
+}
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f3d48a, #c89a3c);
+  color: #2a1a00;
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+/* イラスト */
+.figure { margin: 0 0 16px; padding: 12px; border-radius: 16px; background: rgba(0, 0, 0, 0.22); text-align: center; }
+.illust { width: 100%; max-width: 420px; height: auto; display: block; margin: 0 auto; }
+.steps li p { margin: 0; }
+.steps.illustrated { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.steps.illustrated li { padding: 12px 14px 14px; }
+.steps.illustrated li::before { display: none; }
+.steps.illustrated figure { margin: 0 0 8px; border-radius: 12px; background: rgba(0, 0, 0, 0.25); padding: 6px; }
+
+/* 比較表 */
+.table-wrap { overflow-x: auto; margin: 0 0 16px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th, td { padding: 8px 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.12); text-align: left; vertical-align: top; }
+thead th { color: var(--gold); border-bottom: 2px solid var(--border); }
+tbody th { color: var(--muted); font-weight: 400; white-space: nowrap; }

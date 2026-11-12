@@ -75,6 +75,7 @@ export default {
       readings: [
         { href: '/numerology.html', title: 'What is numerology?', text: 'How to find your life path number' },
         { href: '/omikuji-guide.html', title: 'What is omikuji?', text: 'The order of fortunes and how to tie your slip' },
+        { href: '/sanpai.html', title: 'How to pray at a shrine', text: 'Purifying your hands and the two bows, two claps, one bow' },
       ],
       readingsMore: 'See all articles →',
     },

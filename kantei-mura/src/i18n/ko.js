@@ -75,6 +75,7 @@ export default {
       readings: [
         { href: '/numerology.html', title: '수비학이란?', text: '라이프 패스 넘버 계산법과 마스터 넘버' },
         { href: '/omikuji-guide.html', title: '오미쿠지란?', text: '길흉의 순서, 항목의 의미, 묶는 방법' },
+        { href: '/sanpai.html', title: '신사 참배 예절', text: '손 씻는 법과 두 번 절・두 번 박수・한 번 절 (그림 포함)' },
       ],
       readingsMore: '읽을거리 모두 보기 →',
     },

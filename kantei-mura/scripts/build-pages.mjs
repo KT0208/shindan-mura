@@ -6,7 +6,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import ja from '../src/i18n/ja.js'
 import numberGuide from '../src/content/numberGuide.ja.js'
-import { articles, legalPages, CONTACT_EMAIL } from '../src/content/articles.ja.js'
+import { articles, shrineArticles, legalPages, CONTACT_EMAIL } from '../src/content/articles.ja.js'
 import { lifePathNumber, numberRelation, reduceNumber } from '../src/fortune.js'
 import { SITE_URL } from '../src/i18n/languages.js'
 
@@ -89,8 +89,19 @@ ${body}
 
 function renderSection(section) {
   const parts = [`      <h2>${esc(section.heading)}</h2>`]
+  // イラスト(SVG)は自分で作ったものなので、そのまま埋め込む
+  if (section.figure) parts.push(`      <figure class="figure">${section.figure}</figure>`)
+  if (section.table) {
+    const { head, rows } = section.table
+    parts.push(`      <div class="table-wrap"><table><thead><tr>${head.map((h) => `<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.map((r) => `<tr>${r.map((c, i) => (i === 0 ? `<th>${esc(c)}</th>` : `<td>${esc(c)}</td>`)).join('')}</tr>`).join('')}</tbody></table></div>`)
+  }
   for (const p of section.paragraphs || []) parts.push(`      <p>${linkify(p)}</p>`)
   if (section.example) parts.push(`      <div class="example">${section.example.map((line) => `<p>${esc(line)}</p>`).join('')}</div>`)
+  if (section.steps) {
+    const figures = section.stepFigures || []
+    const cls = figures.length ? 'steps illustrated' : 'steps'
+    parts.push(`      <ol class="${cls}">${section.steps.map((item, i) => `<li>${figures[i] ? `<figure>${figures[i]}</figure>` : ''}<p>${linkify(item)}</p></li>`).join('')}</ol>`)
+  }
   if (section.list) parts.push(`      <ul>${section.list.map((item) => `<li>${linkify(item)}</li>`).join('')}</ul>`)
   for (const p of section.after || []) parts.push(`      <p>${linkify(p)}</p>`)
   return parts.join('\n')
@@ -166,33 +177,61 @@ for (const n of NUMBERS) {
 }
 
 // ---- 読み物記事 ----
-for (const article of Object.values(articles)) {
+const allArticles = { ...articles, ...shrineArticles }
+const articleCard = (a) => `        <a class="card" href="/${a.file}"><b>${a.emoji || '📖'} ${esc(a.title)}</b><span>${esc(a.description)}</span></a>`
+const shortName = (a) => a.shortTitle || a.title.split(/[?|]/)[0]
+
+function related(keys) {
+  if (!keys?.length) return ''
+  return [`      <h2>あわせて読みたい</h2>`, `      <div class="cards">`, ...keys.map((k) => articleCard(allArticles[k])), `      </div>`].join('\n')
+}
+
+// 本文中の「〜」(記事名)を、その記事へのリンクにする
+function linkArticleNames(html, self) {
+  let out = html
+  for (const a of Object.values(allArticles)) {
+    if (a === self) continue
+    const name = shortName(a).replace(/\(.*\)$/, '')
+    out = out.replace(`「${esc(name)}」`, `「<a href="/${a.file}">${esc(name)}</a>」`)
+  }
+  return out
+}
+
+for (const article of Object.values(allArticles)) {
   const body = [
     `      <p class="eyebrow">読み物</p>`,
     `      <h1>${esc(article.title)}</h1>`,
     `      <p class="lead">${esc(article.lead)}</p>`,
-    ...article.sections.map(renderSection),
+    ...article.sections.map((section) => linkArticleNames(renderSection(section), article)),
     cta(article.cta),
     article === articles.numerology ? `      <h2>運命数ごとの解説</h2>\n${numberGrid(null)}` : '',
+    related(article.related),
   ].filter(Boolean).join('\n')
-  pages.push({ file: article.file, title: article.title, description: article.description, breadcrumb: [{ name: '読み物', href: `/${GUIDE_FILE}` }, { name: article.title.split('?')[0] + '?' }], body, jsonLd: { '@type': 'Article', headline: article.title, inLanguage: 'ja', author: { '@type': 'Organization', name: '鑑定村' } } })
+  pages.push({ file: article.file, title: article.title, description: article.description, breadcrumb: [{ name: '読み物', href: `/${GUIDE_FILE}` }, { name: shortName(article) }], body, jsonLd: { '@type': 'Article', headline: article.title, inLanguage: 'ja', author: { '@type': 'Organization', name: '鑑定村' } } })
 }
 
 // ---- 読み物一覧 ----
 pages.push({
   file: GUIDE_FILE,
-  title: '読み物一覧|数秘術とおみくじの解説',
-  description: '鑑定村の読み物一覧です。数秘術の基本、運命数1〜9・11・22・33の解説、おみくじの由来や吉凶の意味をまとめています。',
+  title: '読み物一覧|数秘術・おみくじ・神社のお参りの作法',
+  description: '鑑定村の読み物一覧です。数秘術の基本と運命数1〜9・11・22・33の解説、おみくじの意味、手水や二礼二拍手一礼など神社のお参りの作法をまとめています。',
   breadcrumb: [{ name: '読み物' }],
   body: [
     `      <p class="eyebrow">読み物</p>`,
     `      <h1>読み物一覧</h1>`,
-    `      <p class="lead">鑑定村の占いをもっと楽しむための解説ページです。数秘術のしくみや、運命数ごとの性格、おみくじの意味をまとめています。</p>`,
+    `      <p class="lead">鑑定村の占いをもっと楽しむための解説ページです。数秘術のしくみや運命数ごとの性格、おみくじの意味、神社でのお参りの作法をまとめています。</p>`,
+    `      <h2>神社・おみくじ</h2>`,
     `      <div class="cards">`,
-    `        <a class="card" href="/${articles.numerology.file}"><b>🔢 ${esc(articles.numerology.title)}</b><span>${esc(articles.numerology.description)}</span></a>`,
-    `        <a class="card" href="/${articles.omikuji.file}"><b>⛩️ ${esc(articles.omikuji.title)}</b><span>${esc(articles.omikuji.description)}</span></a>`,
+    articleCard(shrineArticles.sanpai),
+    articleCard(shrineArticles.temizu),
+    articleCard(shrineArticles.jinjaTera),
+    articleCard(articles.omikuji),
     `      </div>`,
-    `      <h2>運命数ごとの解説</h2>`,
+    `      <h2>数秘術</h2>`,
+    `      <div class="cards">`,
+    articleCard(articles.numerology),
+    `      </div>`,
+    `      <h3>運命数ごとの解説</h3>`,
     numberGrid(null),
     cta({ text: '読んだら、実際に鑑定してみましょう', href: '/', label: '鑑定村のトップへ' }),
   ].join('\n'),
