@@ -648,3 +648,126 @@ legend { color: var(--gold); padding: 0 6px; }
 .reading-card span { color: var(--muted); font-size: 0.85rem; }
 .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 14px; margin-bottom: 8px; }
 .footer-links a { color: var(--ink); }
+
+/* ---- 追加の鑑定 ---- */
+.menu-category { margin-top: 24px; }
+.category-heading {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.category-heading::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.menu-category .menu-grid { margin-top: 10px; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+.menu-category .menu-card { padding: 16px; }
+.menu-category .menu-card strong { font-size: 1.02rem; }
+.menu-category .menu-card span:last-child { font-size: 0.82rem; }
+
+.loading-box { min-height: 120px; opacity: 0.5; }
+.result-visual:empty { display: none; }
+.result-visual { display: flex; justify-content: center; margin: 6px 0; }
+.emoji-visual { font-size: 4rem; line-height: 1.2; }
+.zodiac-glyph { color: var(--gold); }
+.message-box {
+  margin: 0;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(232, 194, 106, 0.1);
+  border: 1px solid var(--border);
+  line-height: 1.9;
+}
+.chips-box .eyebrow { margin-bottom: 6px; }
+.chips { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.chips li { padding: 4px 12px; border-radius: 999px; background: rgba(0, 0, 0, 0.25); border: 1px solid var(--border); font-size: 0.9rem; }
+.lucky-grid.single { grid-template-columns: 1fr; }
+
+/* 数秘チャート */
+.chart-list { display: grid; gap: 10px; }
+.chart-row { display: flex; gap: 14px; align-items: flex-start; padding: 12px 14px; border-radius: 16px; background: rgba(0, 0, 0, 0.22); }
+.chart-number { font-size: 2.4rem; line-height: 1; color: var(--gold); min-width: 48px; text-align: center; text-shadow: 0 0 16px rgba(232, 194, 106, 0.5); }
+.chart-row strong { display: block; }
+.chart-about { margin: 2px 0 0; font-size: 0.85rem; color: var(--muted); }
+
+/* エンジェルナンバー */
+.example-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip-button { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border); background: rgba(0, 0, 0, 0.25); color: var(--ink); cursor: pointer; font-size: 0.95rem; }
+.chip-button:hover { border-color: var(--gold); }
+.angel-number { font-size: 3.2rem; letter-spacing: 0.15em; color: var(--gold); text-shadow: 0 0 24px rgba(255, 240, 200, 0.7); }
+.digit-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.digit-list li { display: grid; grid-template-columns: 32px 1fr; column-gap: 10px; }
+.digit-list b { grid-row: span 2; font-size: 1.6rem; color: var(--gold); text-align: center; }
+.digit-list small { color: var(--muted); }
+
+/* 守り本尊・九星 */
+.lotus { width: 140px; height: auto; }
+.mantra-box { text-align: center; padding: 16px; border-radius: 16px; border: 1px dashed var(--border); }
+.mantra { margin: 4px 0; font-size: 1.1rem; letter-spacing: 0.08em; color: var(--gold); }
+.star-badge {
+  width: 84px; height: 84px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.6rem; font-weight: 700; color: #1b1036;
+  background: radial-gradient(circle at 35% 30%, #fff, var(--star) 70%);
+  box-shadow: 0 0 24px rgba(232, 194, 106, 0.4);
+  border: 2px solid var(--gold);
+}
+
+/* 月 */
+.moon-img { display: block; filter: drop-shadow(0 0 18px rgba(246, 231, 176, 0.35)); }
+.today-moon { display: flex; align-items: center; gap: 14px; }
+
+/* タロット */
+.draw-stage { align-items: center; text-align: center; }
+.draw-stage .primary { width: 100%; }
+.deck { position: relative; width: 120px; height: 180px; margin: 8px auto; }
+.deck span {
+  position: absolute; inset: 0; border-radius: 12px;
+  background: repeating-linear-gradient(45deg, #2b1f55 0 8px, #34266a 8px 16px);
+  border: 2px solid var(--gold);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+}
+.deck span:nth-child(2) { transform: translate(4px, -4px); }
+.deck span:nth-child(3) { transform: translate(8px, -8px); }
+.deck.shuffling span:nth-child(1) { animation: shuffle-a 0.5s ease-in-out infinite; }
+.deck.shuffling span:nth-child(2) { animation: shuffle-b 0.5s ease-in-out infinite; }
+@keyframes shuffle-a { 50% { transform: translateX(-40px) rotate(-8deg); } }
+@keyframes shuffle-b { 50% { transform: translateX(44px) rotate(8deg); } }
+
+.tarot-card { width: 160px; height: 250px; padding: 0; border: none; background: none; perspective: 900px; cursor: pointer; margin: 8px auto; animation: paper-rise 0.5s ease-out; }
+.tarot-card:disabled { cursor: default; }
+.tarot-inner { position: relative; display: block; width: 100%; height: 100%; transition: transform 0.9s cubic-bezier(0.3, 0.7, 0.3, 1); transform-style: preserve-3d; }
+.tarot-card.face-up .tarot-inner { transform: rotateY(180deg); }
+.tarot-back, .tarot-front {
+  position: absolute; inset: 0; border-radius: 14px; backface-visibility: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+  border: 3px solid var(--gold); box-shadow: 0 12px 26px rgba(0, 0, 0, 0.5);
+}
+.tarot-back { background: repeating-linear-gradient(45deg, #2b1f55 0 10px, #34266a 10px 20px); color: var(--gold); font-size: 3rem; justify-content: center; }
+.tarot-card:not(.face-up):not(:disabled) .tarot-back { animation: paper-glow 1.6s ease-in-out infinite; }
+.tarot-front { transform: rotateY(180deg); background: linear-gradient(#fbf3dc, #f0dfb0); color: #3a2410; padding: 12px 8px; }
+.tarot-front.reversed > * { transform: rotate(180deg); }
+.tarot-front.reversed { flex-direction: column-reverse; }
+.tarot-roman { font-size: 1rem; letter-spacing: 0.1em; }
+.tarot-icon { font-size: 4rem; line-height: 1; }
+.tarot-name { font-size: 1rem; font-weight: 700; }
+
+/* ルーン */
+.rune-bag { font-size: 5rem; line-height: 1.2; }
+.rune-bag.shaking { animation: box-shake 0.25s ease-in-out infinite; }
+.rune-reveal { animation: paper-rise 0.6s ease-out; }
+.rune-stone { width: 130px; height: auto; filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.5)); }
+
+/* 振り子 */
+.pendulum-stage { display: flex; justify-content: center; }
+.pendulum { width: 120px; height: 170px; transform-origin: 60px 8px; }
+.pendulum.swinging { animation: pendulum-swing 0.9s ease-in-out infinite alternate; }
+.pendulum.answer-0 { animation: pendulum-yes 1.2s ease-in-out infinite; }
+.pendulum.answer-1 { animation: pendulum-swing 1.2s ease-in-out infinite alternate; }
+.pendulum.answer-2 { animation: pendulum-small 1.6s ease-in-out infinite alternate; }
+.pendulum.answer-3 { animation: none; }
+@keyframes pendulum-swing { from { transform: rotate(-28deg); } to { transform: rotate(28deg); } }
+@keyframes pendulum-small { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }
+/* 「はい」は前後に揺れる(縦の揺れを伸び縮みで表現) */
+@keyframes pendulum-yes { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.8); } }

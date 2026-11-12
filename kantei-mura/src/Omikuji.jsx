@@ -139,7 +139,9 @@ function TreeBranch() {
   )
 }
 
-export default function Omikuji({ fortune, dateLabel, onOpen, onReset }) {
+// sheet を渡すと、縁結び・金運などテーマ別のおみくじにできる。
+// sheet = { title: 紙の見出し(日本語), items: 紙に書く項目(日本語), translatedItems: 訳(日本語ページでは null), message: 紙の下のメッセージ }
+export default function Omikuji({ fortune, dateLabel, onOpen, onReset, sheet }) {
   const t = useDictionary()
   const o = t.ui.omikuji
   const [stage, setStage] = useState('idle')
@@ -253,6 +255,10 @@ export default function Omikuji({ fortune, dateLabel, onOpen, onReset }) {
   const [numBefore, numStrong, numAfter] = o.stickNumber(kanjiNumber, fortune.stickNumber)
   // 紙そのものは、どの言語でも日本語の縦書き(本物のおみくじらしさを残すため)。訳は紙の下に出す。
   const sheetRank = ja.omikujiRanks[fortune.omikujiIndex]
+  const sheetTitle = sheet?.title || 'おみくじ'
+  const sheetItems = sheet?.items || ja.omikujiItems
+  const translatedItems = sheet ? sheet.translatedItems : (t.code === 'ja' ? null : t.omikujiItems)
+  const sheetMessage = sheet?.message || t.omikujiMessages[fortune.omikujiIndex]
   const isKyo = fortune.omikujiIndex === 5
 
   return (
@@ -317,9 +323,9 @@ export default function Omikuji({ fortune, dateLabel, onOpen, onReset }) {
         <div className="stage-open">
           <div className="omikuji-sheet-wrap">
             <div className={`omikuji-sheet rank-${fortune.omikujiIndex}`} role="img" aria-label={`${t.omikujiRanks[fortune.omikujiIndex]}`}>
-              <VText className="sheet-head" text={`おみくじ\u3000第${kanjiNumber}番`} />
+              <VText className="sheet-head" text={`${sheetTitle}\u3000第${kanjiNumber}番`} />
               <VText className="sheet-rank" text={sheetRank} />
-              {ja.omikujiItems.map((item, i) => (
+              {sheetItems.map((item, i) => (
                 <span key={item.label} className="sheet-item">
                   <VText className="sheet-label" text={item.label} />
                   <VText text={item.tiers[tier][fortune.itemPicks[i]]} />
@@ -327,21 +333,21 @@ export default function Omikuji({ fortune, dateLabel, onOpen, onReset }) {
               ))}
             </div>
           </div>
-          {o.translation && (
+          {o.translation && translatedItems && (
             <div className="sheet-translation">
               <p className="eyebrow">{o.translation}</p>
               <h4>{sheetRank} — {t.omikujiRanks[fortune.omikujiIndex]}</h4>
               <dl>
-                {t.omikujiItems.map((item, i) => (
+                {translatedItems.map((item, i) => (
                   <div key={item.label}>
-                    <dt>{ja.omikujiItems[i].label} · {item.label}</dt>
+                    <dt>{sheetItems[i].label} · {item.label}</dt>
                     <dd>{item.tiers[tier][fortune.itemPicks[i]]}</dd>
                   </div>
                 ))}
               </dl>
             </div>
           )}
-          <p className="omikuji-message">{t.omikujiMessages[fortune.omikujiIndex]}</p>
+          <p className="omikuji-message">{sheetMessage}</p>
           {isKyo && (
             <button type="button" className="primary" onClick={tie}>{o.tie}</button>
           )}

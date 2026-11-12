@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react'
 import {
   compatibility,
-  containsHan,
   dailyFortune,
   formatDate,
   lifePathNumber,
-  loadStrokeTable,
   nameNumber,
   normalizeName,
   parseDate,
@@ -14,19 +12,16 @@ import {
   zodiacIndex,
   ZODIAC_EMOJI,
 } from './fortune'
+import { formatLongDate, useStoredState, useStrokesReady } from './hooks'
+import { DateInput, NameInput, NumberCard, Page, ReadingSections, ShareButtons, SisterCard, Stars } from './ui'
+import { MENU_CATEGORIES } from './menus'
+import { READING_PAGES } from './readings'
 import { loadDictionary, ja } from './i18n'
 import { DictionaryContext, useDictionary } from './i18n/context'
 import { LANGUAGES, LANGUAGE_SUGGESTIONS, languageFromPath, languagePath, preferredLanguage } from './i18n/languages'
 import Omikuji from './Omikuji'
 import { shindanUrl } from './sisterSite'
 import { track } from './analytics'
-
-const MENU_IDS = [
-  { id: 'birthday', emoji: '🎂' },
-  { id: 'name', emoji: '🖋️' },
-  { id: 'today', emoji: '⛩️' },
-  { id: 'compat', emoji: '💞' },
-]
 
 // URLのハッシュ(#/birthday など)でページを切り替える。サーバー設定なしで静的ホスティングできる。
 function useHashRoute() {
@@ -41,149 +36,6 @@ function useHashRoute() {
     return () => window.removeEventListener('hashchange', onChange)
   }, [])
   return route
-}
-
-// 生年月日などはブラウザ内(localStorage)にだけ保存し、次回の入力を省略する。
-function useStoredState(key, initial) {
-  const [value, setValue] = useState(() => {
-    try {
-      return window.localStorage.getItem(key) ?? initial
-    } catch {
-      return initial
-    }
-  })
-  const update = (next) => {
-    setValue(next)
-    try {
-      window.localStorage.setItem(key, next)
-    } catch {
-      // 保存できない環境(プライベートモード等)では無視
-    }
-  }
-  return [value, update]
-}
-
-// 漢字の名前が入っていたら画数表を読み込む。読み込み中は false。
-function useStrokesReady(...names) {
-  const needed = names.some((n) => containsHan(n))
-  const [loaded, setLoaded] = useState(false)
-  useEffect(() => {
-    if (!needed || loaded) return
-    let alive = true
-    loadStrokeTable().then(() => alive && setLoaded(true))
-    return () => {
-      alive = false
-    }
-  }, [needed, loaded])
-  return !needed || loaded
-}
-
-function formatLongDate(locale, year, month, day) {
-  return new Intl.DateTimeFormat(locale, { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(new Date(Date.UTC(year, month - 1, day)))
-}
-
-function Stars({ value }) {
-  const t = useDictionary()
-  return (
-    <span className="stars" role="img" aria-label={t.ui.stars(value)}>
-      {'★'.repeat(value)}
-      <span className="stars-off">{'★'.repeat(5 - value)}</span>
-    </span>
-  )
-}
-
-function ShareButtons({ text }) {
-  const t = useDictionary()
-  const [copied, setCopied] = useState(false)
-  const url = window.location.href
-  const fullText = `${text}\n${t.ui.share.hashtag}`
-  const xUrl = `https://x.com/intent/post?text=${encodeURIComponent(fullText)}&url=${encodeURIComponent(url)}`
-  const lineUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(url)}&text=${encodeURIComponent(fullText)}`
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(`${fullText}\n${url}`)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 1800)
-    } catch {
-      setCopied(false)
-    }
-  }
-  return (
-    <div className="share">
-      <a className="share-btn share-x" href={xUrl} target="_blank" rel="noopener noreferrer">{t.ui.share.x}</a>
-      <a className="share-btn share-line" href={lineUrl} target="_blank" rel="noopener noreferrer">{t.ui.share.line}</a>
-      <button type="button" className="share-btn share-copy" onClick={copy}>{copied ? t.ui.share.copied : t.ui.share.copy}</button>
-    </div>
-  )
-}
-
-function DateInput({ id, value, onChange }) {
-  const t = useDictionary()
-  return (
-    <label className="field" htmlFor={id}>
-      <span>{t.ui.birthDate}</span>
-      <input id={id} type="date" min="1900-01-01" max={formatDate(new Date())} value={value} onChange={(e) => onChange(e.target.value)} required />
-    </label>
-  )
-}
-
-function NameInput({ id, label, value, onChange, required = false }) {
-  const t = useDictionary()
-  return (
-    <label className="field" htmlFor={id}>
-      <span>{label}</span>
-      <input id={id} type="text" inputMode="text" maxLength={40} placeholder={t.ui.name.placeholder} value={value} onChange={(e) => onChange(e.target.value)} required={required} />
-    </label>
-  )
-}
-
-// 結果の下に出す、姉妹サイト「診断村」の案内カード(1つだけ)
-function SisterCard({ page }) {
-  const t = useDictionary()
-  const sister = t.ui.sister
-  const item = sister.pages[page]
-  return (
-    <a className="sister-card" href={shindanUrl(t.code, page, `result_${page}`)} target="_blank" rel="noopener">
-      <span className="sister-label">{sister.label} 🧩 診断村</span>
-      <span className="sister-body">
-        <span className="sister-emoji" aria-hidden="true">{item.emoji}</span>
-        <span>
-          <strong>{item.title}</strong>
-          <small>{item.text}</small>
-        </span>
-      </span>
-      <span className="sister-button">{sister.button} →</span>
-    </a>
-  )
-}
-
-function NumberCard({ number, heading }) {
-  const t = useDictionary()
-  const info = t.numberTypes[number]
-  return (
-    <div className="number-card">
-      <p className="eyebrow">{heading}</p>
-      <div className="big-number">{number}</div>
-      <h3>{info.title}</h3>
-      <ul className="keywords">
-        {info.keywords.map((k) => <li key={k}>{k}</li>)}
-      </ul>
-    </div>
-  )
-}
-
-function ReadingSections({ number }) {
-  const t = useDictionary()
-  const info = t.numberTypes[number]
-  const s = t.ui.sections
-  return (
-    <div className="sections">
-      <section><h4>{s.nature}</h4><p>{info.nature}</p></section>
-      <section><h4>{s.love}</h4><p>{info.love}</p></section>
-      <section><h4>{s.work}</h4><p>{info.work}</p></section>
-      <section><h4>{s.advice}</h4><p>{info.advice}</p></section>
-    </div>
-  )
 }
 
 // ---- 各鑑定ページ ----
@@ -400,44 +252,6 @@ function CompatPage() {
 
 // ---- レイアウト ----
 
-function Page({ id, lead, children }) {
-  const t = useDictionary()
-  const menu = MENU_IDS.find((m) => m.id === id)
-  const title = t.ui.menus[id].title
-  useEffect(() => {
-    document.title = `${title}｜${t.siteName}`
-  }, [title, t.siteName])
-  return (
-    <main className="page">
-      <a className="back" href="#/">{t.ui.back}</a>
-      <header className="page-header">
-        <div className="page-emoji">{menu.emoji}</div>
-        <h2>{title}</h2>
-        <p>{lead}</p>
-      </header>
-      {children}
-      <OtherMenus />
-    </main>
-  )
-}
-
-function OtherMenus() {
-  const t = useDictionary()
-  return (
-    <nav className="other-menus" aria-label={t.ui.otherMenus}>
-      <p className="eyebrow">{t.ui.otherMenus}</p>
-      <div className="menu-grid compact">
-        {MENU_IDS.map((menu) => (
-          <a key={menu.id} className="menu-card" href={`#/${menu.id}`}>
-            <span className="menu-emoji">{menu.emoji}</span>
-            <strong>{t.ui.menus[menu.id].title}</strong>
-          </a>
-        ))}
-      </div>
-    </nav>
-  )
-}
-
 function Home() {
   const t = useDictionary()
   useEffect(() => {
@@ -451,15 +265,20 @@ function Home() {
         {t.siteName !== '鑑定村' && <p className="hero-sub">{t.siteName}</p>}
         <p>{t.ui.heroText}</p>
       </header>
-      <div className="menu-grid">
-        {MENU_IDS.map((menu) => (
-          <a key={menu.id} className="menu-card" href={`#/${menu.id}`}>
-            <span className="menu-emoji">{menu.emoji}</span>
-            <strong>{t.ui.menus[menu.id].title}</strong>
-            <span>{t.ui.menus[menu.id].text}</span>
-          </a>
-        ))}
-      </div>
+      {MENU_CATEGORIES.map((category) => (
+        <section key={category.id} className="menu-category">
+          <h2 className="category-heading">{t.ui.categories[category.id]}</h2>
+          <div className="menu-grid">
+            {category.items.map((menu) => (
+              <a key={menu.id} className="menu-card" href={`#/${menu.id}`}>
+                <span className="menu-emoji">{menu.emoji}</span>
+                <strong>{t.ui.menus[menu.id].title}</strong>
+                <span>{t.ui.menus[menu.id].text}</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      ))}
       <section className="readings" aria-label={t.ui.links.readingsHeading}>
         <p className="eyebrow">{t.ui.links.readingsHeading}</p>
         <div className="readings-list">
@@ -538,7 +357,7 @@ export default function App() {
 
   if (!dictionary) return <div className="app loading" aria-busy="true" />
 
-  const pages = { birthday: BirthdayPage, name: NamePage, today: TodayPage, compat: CompatPage }
+  const pages = { birthday: BirthdayPage, name: NamePage, today: TodayPage, compat: CompatPage, ...READING_PAGES }
   const Current = pages[route] || Home
   return (
     <DictionaryContext.Provider value={dictionary}>
