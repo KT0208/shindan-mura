@@ -2,5 +2,5 @@
 export default {
   // Google アドセンスのサイト運営者ID(例: 'ca-pub-1234567890123456')。
   // 入れるとビルド時に、全ページへアドセンスのコードを入れ、ads.txt を作る。空のときは何もしない。
-  adsenseClient: '',
+  adsenseClient: 'ca-pub-2348704902723015',
 }
