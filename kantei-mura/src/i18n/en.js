@@ -65,6 +65,19 @@ export default {
       subs: { talk: 'Conversation', heart: 'Emotional bond', future: 'Future together' },
       share: (a, b, percent, title) => `${a} & ${b}: ${percent}% compatible! “${title}” 💞`,
     },
+    links: {
+      guide: 'Articles (Japanese)',
+      privacy: 'Privacy policy (Japanese)',
+      contact: 'Contact (Japanese)',
+      operator: 'About us (Japanese)',
+      numberDetail: (n) => `Read more about life path number ${n} (Japanese) →`,
+      readingsHeading: '📖 Articles (Japanese)',
+      readings: [
+        { href: '/numerology.html', title: 'What is numerology?', text: 'How to find your life path number' },
+        { href: '/omikuji-guide.html', title: 'What is omikuji?', text: 'The order of fortunes and how to tie your slip' },
+      ],
+      readingsMore: 'See all articles →',
+    },
     sister: {
       label: 'Sister site',
       footer: '🧩 Personality quizzes with cute characters: Shindan Mura',

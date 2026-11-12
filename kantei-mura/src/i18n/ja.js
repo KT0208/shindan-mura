@@ -66,6 +66,19 @@ export default {
       subs: { talk: '会話の相性', heart: '心の相性', future: '将来の相性' },
       share: (a, b, percent, title) => `${a}と${b}の相性は${percent}%!「${title}」でした💞`,
     },
+    links: {
+      guide: '読み物',
+      privacy: 'プライバシーポリシー',
+      contact: 'お問い合わせ',
+      operator: '運営者情報',
+      numberDetail: (n) => `運命数${n}をもっとくわしく読む →`,
+      readingsHeading: '📖 読み物',
+      readings: [
+        { href: '/numerology.html', title: '数秘術とは?', text: '運命数の出し方とマスターナンバーをやさしく解説' },
+        { href: '/omikuji-guide.html', title: 'おみくじとは?', text: '吉凶の順番・項目の意味・結び方' },
+      ],
+      readingsMore: '読み物をすべて見る →',
+    },
     sister: {
       label: '姉妹サイト',
       footer: '🧩 キャラクターで性格がわかる「診断村」',

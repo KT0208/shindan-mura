@@ -204,6 +204,7 @@ function BirthdayPage() {
         <NumberCard number={lp} heading={t.ui.birthday.numberHeading} />
         <p className="sub-info">{ZODIAC_EMOJI[z]} {t.zodiac[z]} / {t.ui.birthday.born(formatLongDate(t.locale, birth.year, birth.month, birth.day))}</p>
         <ReadingSections number={lp} />
+        <a className="detail-link" href={`/number-${lp}.html`}>{t.ui.links.numberDetail(lp)}</a>
         <div className="year-box">
           <p className="eyebrow">{t.ui.birthday.yearHeading(thisYear, py)}</p>
           <h4>{t.yearThemes[py].theme}</h4>
@@ -247,6 +248,7 @@ function NamePage() {
           {parts.map((part, i) => (i % 2 === 1 ? <strong key={i}>{part}</strong> : <span key={i}>{part}</span>))}
         </p>
         <ReadingSections number={n} />
+        <a className="detail-link" href={`/number-${n}.html`}>{t.ui.links.numberDetail(n)}</a>
         <div className="year-box">
           <p className="eyebrow">{t.ui.name.innerHeading}</p>
           <h4>{t.numberTypes[s].title}</h4>
@@ -457,6 +459,18 @@ function Home() {
           </a>
         ))}
       </div>
+      <section className="readings" aria-label={t.ui.links.readingsHeading}>
+        <p className="eyebrow">{t.ui.links.readingsHeading}</p>
+        <div className="readings-list">
+          {t.ui.links.readings.map((item) => (
+            <a key={item.href} className="reading-card" href={item.href}>
+              <strong>{item.title}</strong>
+              <span>{item.text}</span>
+            </a>
+          ))}
+        </div>
+        <a className="detail-link" href="/guide.html">{t.ui.links.readingsMore}</a>
+      </section>
     </main>
   )
 }
@@ -535,6 +549,12 @@ export default function App() {
         <LanguageSuggestion current={currentLanguage} />
         <Current />
         <footer className="footer">
+          <nav className="footer-links" aria-label={dictionary.ui.links.guide}>
+            <a href="/guide.html">{dictionary.ui.links.guide}</a>
+            <a href="/privacy.html">{dictionary.ui.links.privacy}</a>
+            <a href="/contact.html">{dictionary.ui.links.contact}</a>
+            <a href="/operator.html">{dictionary.ui.links.operator}</a>
+          </nav>
           {dictionary.ui.footer.map((line) => <p key={line}>{line}</p>)}
           <p className="sister-footer">
             {dictionary.ui.sister.label}: <a href={shindanUrl(dictionary.code, null, 'footer')} target="_blank" rel="noopener">{dictionary.ui.sister.footer}</a>

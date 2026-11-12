@@ -65,6 +65,19 @@ export default {
       subs: { talk: 'Conversación', heart: 'Conexión emocional', future: 'Futuro juntos' },
       share: (a, b, percent, title) => `¡${a} y ${b}: ${percent}% de compatibilidad! «${title}» 💞`,
     },
+    links: {
+      guide: 'Artículos (en japonés)',
+      privacy: 'Política de privacidad (en japonés)',
+      contact: 'Contacto (en japonés)',
+      operator: 'Quiénes somos (en japonés)',
+      numberDetail: (n) => `Más sobre el número del camino de vida ${n} (en japonés) →`,
+      readingsHeading: '📖 Artículos (en japonés)',
+      readings: [
+        { href: '/numerology.html', title: '¿Qué es la numerología?', text: 'Cómo calcular tu número del camino de vida' },
+        { href: '/omikuji-guide.html', title: '¿Qué es el omikuji?', text: 'El orden de las fortunas y cómo atar el papel' },
+      ],
+      readingsMore: 'Ver todos los artículos →',
+    },
     sister: {
       label: 'Sitio hermano',
       footer: '🧩 Tests de personalidad con personajes: Shindan Mura (en inglés)',

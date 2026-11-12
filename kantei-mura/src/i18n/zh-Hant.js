@@ -65,6 +65,19 @@ export default {
       subs: { talk: '聊天契合度', heart: '心靈契合度', future: '未來契合度' },
       share: (a, b, percent, title) => `${a}和${b}的契合度是${percent}%！「${title}」💞`,
     },
+    links: {
+      guide: '文章（日文）',
+      privacy: '隱私權政策（日文）',
+      contact: '聯絡我們（日文）',
+      operator: '營運者資訊（日文）',
+      numberDetail: (n) => `詳細了解生命靈數${n}（日文）→`,
+      readingsHeading: '📖 文章（日文）',
+      readings: [
+        { href: '/numerology.html', title: '什麼是數字命理？', text: '生命靈數的算法與大師數' },
+        { href: '/omikuji-guide.html', title: '什麼是御神籤？', text: '吉凶順序、籤詩項目與綁籤的習俗' },
+      ],
+      readingsMore: '查看全部文章 →',
+    },
     sister: {
       label: '姊妹網站',
       footer: '🧩 用可愛角色測性格：Shindan Mura（英文）',

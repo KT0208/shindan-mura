@@ -17,6 +17,8 @@
   言語ごとのページとサイトマップは、ビルド後に `scripts/build-languages.mjs` が作る。
 - 名前鑑定はひらがな・カタカナ・ローマ字(ピンイン)・ハングル(字母に分解)・漢字(画数)に対応。
   画数表 `src/strokes-data.js` は cnchar(MIT)から生成済み(`scripts/generate-strokes.cjs`)。漢字の名前が入力されたときだけ読み込む。
+- 読み物・運命数の解説・規約ページ(日本語)は、ビルド後に `scripts/build-pages.mjs` が静的HTML(`numerology.html` など)として書き出す。文章は `src/content/`。
+- Google アドセンス: `site.config.js` に運営者ID(ca-pub-…)を入れてビルドすると、全ページにコードが入り `ads.txt` も作られる。
 - 入力はすべてブラウザ内で処理し、生年月日・名前は localStorage にだけ保存します。
 - 同じ入力には常に同じ結果を返します(シード付き乱数)。
 

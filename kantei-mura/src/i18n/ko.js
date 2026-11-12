@@ -65,6 +65,19 @@ export default {
       subs: { talk: '대화 궁합', heart: '마음 궁합', future: '미래 궁합' },
       share: (a, b, percent, title) => `${a}와(과) ${b}의 궁합은 ${percent}%! 「${title}」💞`,
     },
+    links: {
+      guide: '읽을거리 (일본어)',
+      privacy: '개인정보처리방침 (일본어)',
+      contact: '문의 (일본어)',
+      operator: '운영자 정보 (일본어)',
+      numberDetail: (n) => `라이프 패스 넘버 ${n} 자세히 보기 (일본어) →`,
+      readingsHeading: '📖 읽을거리 (일본어)',
+      readings: [
+        { href: '/numerology.html', title: '수비학이란?', text: '라이프 패스 넘버 계산법과 마스터 넘버' },
+        { href: '/omikuji-guide.html', title: '오미쿠지란?', text: '길흉의 순서, 항목의 의미, 묶는 방법' },
+      ],
+      readingsMore: '읽을거리 모두 보기 →',
+    },
     sister: {
       label: '자매 사이트',
       footer: '🧩 귀여운 캐릭터로 알아보는 성격 테스트: Shindan Mura (영어)',

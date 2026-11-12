@@ -620,3 +620,31 @@ legend { color: var(--gold); padding: 0 6px; }
   font-size: 0.88rem;
 }
 .footer .sister-footer a { color: var(--ink); }
+
+/* ---- 読み物・規約ページへのリンク ---- */
+.detail-link { display: block; text-align: center; color: var(--gold); font-size: 0.9rem; }
+.readings {
+  margin-top: 20px;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.readings-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.reading-card {
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+.reading-card:hover { border-color: var(--gold); }
+.reading-card strong { color: var(--gold); }
+.reading-card span { color: var(--muted); font-size: 0.85rem; }
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 14px; margin-bottom: 8px; }
+.footer-links a { color: var(--ink); }
