@@ -95,6 +95,55 @@ export const characterCollections = {
   'lending-type': { basePath: 'lendingTypeCharacters', characters: lendingTypeCharacters },
 }
 
+// 改名・廃止したURLの転送ページ(旧URL → 新URL)。
+// 本番はnginxを手動運用でリダイレクト設定を持たないため、旧パスに「転送用の静的ページ」を置いて404を防ぐ。
+// noindex + canonical(新URL) + 即時転送。SNSに投稿済みのシェアリンクもこれで生き返る。
+// 推し活タイプ診断のキャラ名変更(動物 → 精霊)で、旧 /r/ と /c/ が404になっていた分。
+const OSHIKATSU_RENAMED = [
+  ['oshi-altar-alpaca', 'oshi-altar-spirit'],
+  ['oshi-art-brush-squirrel', 'oshi-art-brush-spirit'],
+  ['oshi-badge-squirrel', 'oshi-badge-spirit'],
+  ['oshi-devotion-dragon', 'oshi-devotion-flame-spirit'],
+  ['oshi-gentle-watch-rabbit', 'oshi-gentle-watch-spirit'],
+  ['oshi-museum-whale', 'oshi-museum-spirit'],
+  ['oshi-night-talk-owl', 'oshi-night-talk-spirit'],
+  ['oshi-penlight-fairy', 'oshi-penlight-spirit'],
+  ['oshi-presentation-dog', 'oshi-presentation-spirit'],
+  ['oshi-secret-promo-hamster', 'oshi-secret-promo-spirit'],
+  ['oshi-swamp-guide-frog', 'oshi-swamp-guide-spirit'],
+  ['oshi-theory-tanuki', 'oshi-theory-spirit'],
+  ['oshi-tour-penguin', 'oshi-tour-spirit'],
+  ['oshi-tradingcard-cat', 'oshi-tradingcard-spirit'],
+]
+export const legacyRedirects = [
+  ...OSHIKATSU_RENAMED.flatMap(([from, to]) => [
+    [`/r/oshikatsu-type/${from}/`, `/r/oshikatsu-type/${to}/`],
+    [`/c/${from}/`, `/c/${to}/`],
+  ]),
+  // 7月版のメンヘラ度コラム(元原稿は削除済み。public/に古いHTMLだけ残っていた)→ 診断の解説ページへ
+  ['/column/menhera-level-guide/', '/diagnosis/menhera-level/'],
+]
+
+const buildRedirectPage = (to) => {
+  const url = `${SITE_ORIGIN}${to}`
+  return `<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, follow" />
+<title>ページが移動しました | 診断村</title>
+<link rel="canonical" href="${url}" />
+<meta http-equiv="refresh" content="0; url=${to}" />
+<script>location.replace(${JSON.stringify(to)})</script>
+</head>
+<body>
+<p>このページは移動しました。<a href="${to}">新しいページへ移動する</a></p>
+</body>
+</html>
+`
+}
+
 const escapeHtml = (s) =>
   String(s).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;')
 
@@ -227,6 +276,13 @@ async function main() {
     }
   }
 
+  // 旧URLの転送ページ(sitemapには載せない)
+  for (const [from, to] of legacyRedirects) {
+    const dir = path.join(publicDir, ...from.split('/').filter(Boolean))
+    await mkdir(dir, { recursive: true })
+    await writeFile(path.join(dir, 'index.html'), buildRedirectPage(to))
+  }
+
   const today = new Date().toISOString().slice(0, 10)
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -236,7 +292,7 @@ ${urls.map((u) => `  <url><loc>${u}</loc><lastmod>${today}</lastmod></url>`).joi
   await writeFile(path.join(publicDir, 'sitemap.xml'), sitemap)
   await writeFile(path.join(publicDir, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_ORIGIN}/sitemap.xml\n`)
 
-  console.log(`シェアページ ${count} 枚 + sitemap.xml(${urls.length} URL)+ robots.txt を生成しました`)
+  console.log(`シェアページ ${count} 枚 + sitemap.xml(${urls.length} URL)+ robots.txt + 転送ページ ${legacyRedirects.length} 枚を生成しました`)
 }
 
 // 直接実行されたときだけ生成する(他スクリプトからのimport時は実行しない)

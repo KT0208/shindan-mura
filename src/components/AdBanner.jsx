@@ -3,13 +3,17 @@
 // - 割り当てが無い / diagnosisId 無し(ホーム等)の場合は、従来の汎用バナー(PC728×90 / スマホ300×250)を表示。
 // 診断中の質問・回答画面には表示しないこと。
 import { useMemo } from 'react'
-import { getAdForDiagnosis, getDefaultAd } from '../adsConfig'
+import { getAdForDiagnosis, getDefaultAd, noAdDiagnoses } from '../adsConfig'
 import { trackEvent } from '../analytics'
 
 export default function AdBanner({ diagnosisId }) {
   // ランダム出し分けが再描画のたびに変わらないよう、診断IDごとに一度だけ選ぶ。
   // 割り当てが無い診断・ホームは「安全なデフォルト広告」から選ぶ(ちょびリッチ固定をやめ、出会い系も出さない)。
-  const matched = useMemo(() => (diagnosisId ? getAdForDiagnosis(diagnosisId) : null) || getDefaultAd(), [diagnosisId])
+  const matched = useMemo(() => {
+    // メンタル系など「広告なし」の診断では何も出さない(デフォルト広告にも落とさない)
+    if (diagnosisId && noAdDiagnoses.has(diagnosisId)) return null
+    return (diagnosisId ? getAdForDiagnosis(diagnosisId) : null) || getDefaultAd()
+  }, [diagnosisId])
 
   if (matched) {
     const { banner, text } = matched
@@ -53,6 +57,6 @@ export default function AdBanner({ diagnosisId }) {
     )
   }
 
-  // ここに来るのは getDefaultAd が null の時だけ(通常は到達しない)。ちょびリッチ固定はやめたので何も出さない。
+  // ここに来るのは「広告なし」の診断(noAdDiagnoses)か、getDefaultAd が null の時。何も出さない。
   return null
 }

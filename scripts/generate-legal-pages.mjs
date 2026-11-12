@@ -72,9 +72,10 @@ function head({ title, description, url }) {
 function buildLegalPage(page, url) {
   const sections = page.sections
     .map((s) => {
+      // 本文中のURL(オプトアウト先など)はリンクにする。escape後の文字列に対して置換するので安全。
       const body = isEmail(s.body)
         ? `<a href="mailto:${escapeHtml(s.body)}">${escapeHtml(s.body)}</a>`
-        : escapeHtml(s.body)
+        : escapeHtml(s.body).replace(/https?:\/\/[^\s()（）]+/g, (u) => `<a href="${u}" target="_blank" rel="noopener noreferrer">${u}</a>`)
       return `    <h2>${escapeHtml(s.heading)}</h2>
     <p class="body">${body}</p>`
     })

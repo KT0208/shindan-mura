@@ -1465,7 +1465,14 @@ function App() {
           {page.sections.map((section) => (
             <article className="legal-section" key={section.heading}>
               <h2>{section.heading}</h2>
-              <p>{section.body}</p>
+              <p>
+                {/* 本文中のURL(広告のオプトアウト先など)はリンクとして表示する */}
+                {String(section.body).split(/(https?:\/\/[^\s()（）]+)/g).map((part, i) =>
+                  /^https?:\/\//.test(part)
+                    ? <a key={i} href={part} target="_blank" rel="noopener noreferrer">{part}</a>
+                    : part,
+                )}
+              </p>
             </article>
           ))}
         </section>

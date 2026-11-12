@@ -167,15 +167,13 @@ export const diagnosisAdMap = {
   // 😴 睡眠・朝 → サプリ(リアルメイト / Morning Booster)をローテ
   'sleep-type': ['realmate-supp', 'morning-booster'], // 睡眠タイプ診断
 
-  // 💰 お金 → 証券 / 家賃クレカ をローテ
-  'money-luck': ['fpo-stock', 'kurekari-credit'], // 金運タイプ診断
+  // 💰 お金 → 家賃クレカ
+  // ※証券の銘柄推奨(fpo-stock)はAdSense再申請に向けて停止(金融系の推奨広告は審査・ブランド面のリスクが高い)
+  'money-luck': 'kurekari-credit', // 金運タイプ診断
 
-  // 🔮 メンタル・闇・性格・自分探し・ネタ系 → 電話占い(ココナラ / ヴェルニ をローテ)
-  'menhera-level': URANAI, // メンヘラ度診断
-  'dark-fall': URANAI, // 闇落ち度診断
-  'dark-depth': URANAI, // 性格の闇深度診断
+  // 🔮 性格・自分探し・ネタ系 → 電話占い(ココナラ / ヴェルニ をローテ)
+  // ※メンタル系(メンヘラ度・闇落ち度・闇深度・自己肯定感・ストレス)は noAdDiagnoses で広告なし
   'hidden-personality': URANAI, // 裏人格診断
-  'self-esteem': URANAI, // 自己肯定感タイプ診断
   'my-pace': URANAI, // マイペース度診断
   'anger-style': URANAI, // キレ方診断
   'past-life': URANAI, // 前世診断(前世×占いドンピシャ)
@@ -187,10 +185,20 @@ export const diagnosisAdMap = {
   'reply-type': URANAI, // 返信タイプ診断
 
   // 🎈 その他(旧・未割り当て=デフォルトちょびリッチだった分を明示割当)
-  'stress-level': ['realmate-supp', 'cocosapli-uranai'], // ストレス限界度診断(サプリ/占い)
   'animal-type': 'oshi-goods', // 動物タイプ診断(グッズ)
-  'spending-type': ['fpo-stock', 'kurekari-credit'], // お金の使い方診断(証券/クレカ)
+  'spending-type': 'kurekari-credit', // お金の使い方診断(家賃クレカ)
 }
+
+// 広告を一切出さない診断。
+// メンタル・心の不調に触れる診断の結果直下に、占い・サプリなどの広告を置かない(AdSense再申請・ブランド安全性のため)。
+// ここに入れた診断は、デフォルト広告も出ない。
+export const noAdDiagnoses = new Set([
+  'menhera-level', // メンヘラ度診断
+  'dark-fall', // 闇落ち度診断
+  'dark-depth', // 性格の闇深度診断
+  'self-esteem', // 自己肯定感タイプ診断
+  'stress-level', // ストレス限界度診断
+])
 
 export function getAdForDiagnosis(diagnosisId) {
   const value = diagnosisAdMap[diagnosisId]
@@ -201,7 +209,8 @@ export function getAdForDiagnosis(diagnosisId) {
 }
 
 // バナーの割り当てが無い診断・ホーム用の「安全なデフォルト広告」プール(出会い系は入れない)。
-const SAFE_DEFAULT = ['cocosapli-uranai', 'vernis-uranai', 'comm-cert', 'oshi-goods', 'realmate-supp']
+// サプリ(健康系)は、どの診断か分からない場所には出さない。
+const SAFE_DEFAULT = ['cocosapli-uranai', 'vernis-uranai', 'comm-cert', 'oshi-goods']
 export function getDefaultAd() {
   const pick = SAFE_DEFAULT[Math.floor(Math.random() * SAFE_DEFAULT.length)]
   return adCreatives[pick] || null
