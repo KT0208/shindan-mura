@@ -131,3 +131,26 @@ export function postText(dateText, ranking = dailyRanking(dateText)) {
 export function intentUrl(text) {
   return `https://x.com/intent/post?text=${encodeURIComponent(text)}`
 }
+
+export const INSTAGRAM_HASHTAGS = ['#占い', '#今日の運勢', '#数秘術', '#運命数', '#開運', '#スピリチュアル', '#運勢', '#占い好きな人と繋がりたい', '#鑑定村']
+
+// Instagram 用の文章。リンクは押せないので、プロフィールのリンクへ案内する
+export function instagramText(dateText, ranking = dailyRanking(dateText)) {
+  const medals = ['👑', '🥈', '🥉']
+  const last = ranking[ranking.length - 1]
+  const lines = [
+    `🔮${dateLabel(dateText)} 運命数別 今日の運勢`,
+    '',
+    ...ranking.map((r, i) => `${medals[i] || '・'}${r.rank}位 運命数${r.number}:${r.message}(ラッキーカラー:${r.color})`),
+    '',
+    `9位の運命数${last.number}さんは「${last.action}」で運気アップ✨`,
+    '※運命数11・22・33の人は、2・4・6を見てください',
+    '',
+    '自分の運命数は、生年月日を足して出す数です。',
+    'プロフィールのリンク(鑑定村)から無料で調べられます🔮',
+    '毎日ひけるおみくじもあります⛩',
+    '',
+    INSTAGRAM_HASHTAGS.join(' '),
+  ]
+  return lines.join('\n')
+}

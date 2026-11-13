@@ -21,3 +21,11 @@ test('投稿文は1年分すべてXの文字数制限におさまる', () => {
     assert.ok(xWeightedLength(postText(text)) <= 280, text)
   }
 })
+
+test('Instagram用の文章は9位まで入り、2200文字以内', async () => {
+  const { instagramText } = await import('../src/sns.js')
+  const text = instagramText('2026-11-14')
+  for (let rank = 1; rank <= 9; rank++) assert.ok(text.includes(`${rank}位 運命数`))
+  assert.ok([...text].length <= 2200)
+  assert.ok(!text.includes('http'))
+})

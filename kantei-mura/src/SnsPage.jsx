@@ -2,7 +2,7 @@
 // メニューには出さず、kanteimura.com/#/sns で開く。
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { formatDate } from './fortune'
-import { dailyRanking, dateLabel, intentUrl, postText, xWeightedLength } from './sns'
+import { dailyRanking, dateLabel, instagramText, intentUrl, postText, xWeightedLength } from './sns'
 
 const W = 1080
 const H = 1350
@@ -113,12 +113,13 @@ export default function SnsPage() {
   const today = formatDate(new Date())
   const [dateText, setDateText] = useState(today)
   const [copied, setCopied] = useState(false)
+  const [platform, setPlatform] = useState('x')
   const canvasRef = useRef(null)
   const ranking = useMemo(() => dailyRanking(dateText), [dateText])
-  const text = useMemo(() => postText(dateText, ranking), [dateText, ranking])
+  const text = useMemo(() => (platform === 'x' ? postText : instagramText)(dateText, ranking), [platform, dateText, ranking])
 
   useEffect(() => {
-    document.title = 'X投稿用ランキング｜鑑定村'
+    document.title = 'SNS投稿用ランキング｜鑑定村'
     const canvas = canvasRef.current
     if (!canvas) return
     const draw = () => drawRanking(canvas, dateText, ranking)
@@ -157,14 +158,16 @@ export default function SnsPage() {
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const length = xWeightedLength(text)
+  const isX = platform === 'x'
+  const length = isX ? xWeightedLength(text) : [...text].length
+  const limit = isX ? 280 : 2200
 
   return (
     <main className="page">
       <a className="back" href="#/">← トップへ</a>
       <header className="page-header">
-        <h2>X投稿用 今日の運勢ランキング</h2>
-        <p className="lead">運営者用のページです。毎朝、画像を保存して文章をコピーし、Xに投稿してください。</p>
+        <h2>SNS投稿用 今日の運勢ランキング</h2>
+        <p className="lead">運営者用のページです。毎朝、画像を保存して文章をコピーし、XやInstagramに投稿してください。</p>
       </header>
       <div className="form sns-tools">
         <div className="sns-dates">
@@ -172,15 +175,25 @@ export default function SnsPage() {
           <button type="button" className={dateText === addDays(today, 1) ? 'primary' : 'secondary'} onClick={() => setDateText(addDays(today, 1))}>明日</button>
           <input type="date" value={dateText} onChange={(e) => e.target.value && setDateText(e.target.value)} aria-label="日付" />
         </div>
+        <div className="sns-dates">
+          <button type="button" className={isX ? 'primary' : 'secondary'} onClick={() => setPlatform('x')}>X用</button>
+          <button type="button" className={!isX ? 'primary' : 'secondary'} onClick={() => setPlatform('instagram')}>Instagram用</button>
+        </div>
       </div>
       <div className="result">
         <canvas ref={canvasRef} width={W} height={H} className="sns-canvas" />
         <button type="button" className="primary" onClick={saveImage}>① 画像を保存する</button>
         <textarea className="sns-text" readOnly value={text} rows={12} />
-        <p className="note">文字数:{length} / 280 {length > 280 ? '(多すぎます)' : '(OK)'}</p>
+        <p className="note">文字数:{length} / {limit} {length > limit ? '(多すぎます)' : '(OK)'}</p>
         <button type="button" className="primary" onClick={copyText}>{copied ? 'コピーしました!' : '② 文章をコピーする'}</button>
-        <a className="secondary sns-intent" href={intentUrl(text)} target="_blank" rel="noopener">③ Xの投稿画面を開く(文章入り)</a>
-        <p className="note">Xの投稿画面で、①で保存した画像を追加してから投稿してください。</p>
+        {isX ? (
+          <>
+            <a className="secondary sns-intent" href={intentUrl(text)} target="_blank" rel="noopener">③ Xの投稿画面を開く(文章入り)</a>
+            <p className="note">Xの投稿画面で、①で保存した画像を追加してから投稿してください。</p>
+          </>
+        ) : (
+          <p className="note">③ Instagramアプリで①の画像を選び、キャプションに②の文章を貼り付けて投稿してください。</p>
+        )}
       </div>
     </main>
   )
