@@ -21,6 +21,7 @@ import { loadDictionary, ja } from './i18n'
 import { DictionaryContext, useDictionary } from './i18n/context'
 import { LANGUAGES, LANGUAGE_SUGGESTIONS, languageFromPath, languagePath, preferredLanguage } from './i18n/languages'
 import Omikuji from './Omikuji'
+import SnsPage from './SnsPage'
 import { shindanUrl } from './sisterSite'
 import { track } from './analytics'
 
@@ -358,7 +359,7 @@ export default function App() {
 
   if (!dictionary) return <div className="app loading" aria-busy="true" />
 
-  const pages = { birthday: BirthdayPage, name: NamePage, today: TodayPage, compat: CompatPage, ...READING_PAGES }
+  const pages = { birthday: BirthdayPage, name: NamePage, today: TodayPage, compat: CompatPage, ...READING_PAGES, ...(dictionary.code === 'ja' ? { sns: SnsPage } : {}) }
   const Current = pages[route] || Home
   return (
     <DictionaryContext.Provider value={dictionary}>

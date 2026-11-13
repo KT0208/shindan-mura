@@ -780,3 +780,10 @@ legend { color: var(--gold); padding: 0 6px; }
 @keyframes pendulum-small { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }
 /* 「はい」は前後に揺れる(縦の揺れを伸び縮みで表現) */
 @keyframes pendulum-yes { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.8); } }
+
+/* X投稿用ランキング(運営者用) */
+.sns-dates { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.sns-dates input { flex: 1; min-width: 150px; }
+.sns-canvas { width: 100%; height: auto; border-radius: 16px; }
+.sns-text { width: 100%; box-sizing: border-box; padding: 12px; border-radius: 12px; background: rgba(0, 0, 0, 0.3); color: inherit; border: 1px solid var(--border); font: inherit; font-size: 0.9rem; }
+.sns-intent { display: block; text-align: center; text-decoration: none; }
