@@ -6,7 +6,7 @@ const { jinjaTeraCompare, sando, sanpaiSteps, temizuSteps, omamori, saisen, hats
 // 読み物ページと規約ページ(日本語)。scripts/build-pages.mjs がHTMLにする。
 // 各セクション: { heading, paragraphs: [...], list?: [...], example?: [...] }
 
-export const CONTACT_EMAIL = 'katuya0208@gmail.com'
+export const CONTACT_EMAIL = 'info@kanteimura.com'
 export const OPERATOR_NAME = 'Katsuya Ohara'
 
 export const articles = {
