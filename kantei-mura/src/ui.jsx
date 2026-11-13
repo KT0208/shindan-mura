@@ -4,6 +4,8 @@ import { formatDate } from './fortune'
 import { useDictionary } from './i18n/context'
 import { MENU_ITEMS, menuEmoji } from './menus'
 import { shindanUrl } from './sisterSite'
+import { amazonEnabled, amazonSearchUrl } from './amazon'
+import { track } from './analytics'
 
 export function Stars({ value }) {
   const t = useDictionary()
@@ -57,6 +59,18 @@ export function NameInput({ id, label, value, onChange, required = false }) {
       <span>{label}</span>
       <input id={id} type="text" inputMode="text" maxLength={40} placeholder={t.ui.name.placeholder} value={value} onChange={(e) => onChange(e.target.value)} required={required} />
     </label>
+  )
+}
+
+// ラッキーアイテムなどの下に出す「Amazonで見る」リンク(日本語ページだけ)
+export function AmazonLink({ keyword, label = 'Amazonで見る', place }) {
+  const t = useDictionary()
+  const url = amazonEnabled(t.code) ? amazonSearchUrl(keyword) : null
+  if (!url) return null
+  return (
+    <a className="amazon-link" href={url} target="_blank" rel="sponsored noopener" onClick={() => track('amazon_click', { place })}>
+      <span className="pr-label">PR</span> {label} →
+    </a>
   )
 }
 

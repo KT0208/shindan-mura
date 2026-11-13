@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { formatDate, parseDate, zodiacIndex, ZODIAC_EMOJI } from '../fortune'
 import { formatLongDate, useStoredState } from '../hooks'
 import { useDictionary } from '../i18n/context'
-import { DateInput, NameInput, Page, ShareButtons, SisterCard, Stars } from '../ui'
+import { AmazonLink, DateInput, NameInput, Page, ShareButtons, SisterCard, Stars } from '../ui'
 import Omikuji from '../Omikuji'
 import { track } from '../analytics'
 import {
@@ -411,6 +411,7 @@ export function ZodiacPage() {
             <p className="eyebrow">{d.labels.birthstone(birth.month)}</p>
             <h4>💎 {stone.name}</h4>
             <p>{stone.meaning}</p>
+            <AmazonLink keyword={`${stone.name} アクセサリー`} label={`${stone.name}のアクセサリーをAmazonで見る`} place="birthstone" />
           </div>
           <ShareButtons text={d.share(t.zodiac[index])} />
           <SisterCard page="compat" />

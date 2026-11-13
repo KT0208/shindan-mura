@@ -6,4 +6,7 @@ export default {
   // Google アナリティクス(GA4)の測定ID(例: 'G-ABCDE12345')。
   // 入れるとビルド時に、全ページへ計測コードを入れる。空のときは何もしない。
   gaMeasurementId: 'G-WMBV27HFBQ',
+  // Amazon アソシエイトのトラッキングID(例: 'xxxx-22')。
+  // 入れると日本語ページのラッキーアイテム・誕生石に「Amazonで見る」リンクを出す。空のときは出さない。
+  amazonTag: 'katuyajp02-22',
 }

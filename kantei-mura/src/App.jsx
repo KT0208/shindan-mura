@@ -13,7 +13,8 @@ import {
   ZODIAC_EMOJI,
 } from './fortune'
 import { formatLongDate, useStoredState, useStrokesReady } from './hooks'
-import { DateInput, NameInput, NumberCard, Page, ReadingSections, ShareButtons, SisterCard, Stars } from './ui'
+import { AmazonLink, DateInput, NameInput, NumberCard, Page, ReadingSections, ShareButtons, SisterCard, Stars } from './ui'
+import { AMAZON_DISCLOSURE, LUCKY_ITEM_KEYWORDS, amazonEnabled } from './amazon'
 import { MENU_CATEGORIES } from './menus'
 import { READING_PAGES } from './readings'
 import { loadDictionary, ja } from './i18n'
@@ -159,7 +160,7 @@ function TodayPage() {
           </table>
           <div className="lucky-grid">
             <div><span>{tt.lucky.color}</span><strong>{t.luckyColors[f.luckyColor]}</strong></div>
-            <div><span>{tt.lucky.item}</span><strong>{t.luckyItems[f.luckyItem]}</strong></div>
+            <div><span>{tt.lucky.item}</span><strong>{t.luckyItems[f.luckyItem]}</strong><AmazonLink keyword={LUCKY_ITEM_KEYWORDS[f.luckyItem]} place="today_item" /></div>
             <div><span>{tt.lucky.number}</span><strong>{f.luckyNumber}</strong></div>
             <div><span>{tt.lucky.action}</span><strong>{t.luckyActions[f.luckyAction]}</strong></div>
           </div>
@@ -379,6 +380,7 @@ export default function App() {
           <p className="sister-footer">
             {dictionary.ui.sister.label}: <a href={shindanUrl(dictionary.code, null, 'footer')} target="_blank" rel="noopener">{dictionary.ui.sister.footer}</a>
           </p>
+          {amazonEnabled(dictionary.code) && <p>{AMAZON_DISCLOSURE}</p>}
           <p>© {dictionary.siteName}</p>
         </footer>
       </div>
