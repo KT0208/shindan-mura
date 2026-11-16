@@ -267,6 +267,16 @@ function Home() {
         {t.siteName !== '鑑定村' && <p className="hero-sub">{t.siteName}</p>}
         <p>{t.ui.heroText}</p>
       </header>
+      {t.code === 'ja' && (
+        <a className="year-banner" href="/2027.html">
+          <span className="year-banner-emoji" aria-hidden="true">🎍</span>
+          <span>
+            <strong>2027年の運勢を公開中</strong>
+            <small>九星気学・干支・数秘術で、あなたの1年を占います</small>
+          </span>
+          <span aria-hidden="true">→</span>
+        </a>
+      )}
       {MENU_CATEGORIES.map((category) => (
         <section key={category.id} className="menu-category">
           <h2 className="category-heading">{t.ui.categories[category.id]}</h2>

@@ -33,3 +33,27 @@ export function amazonEnabled(languageCode, tag = siteConfig.amazonTag) {
 }
 
 export const AMAZON_DISCLOSURE = 'Amazonのアソシエイトとして、鑑定村は適格販売により収入を得ています。'
+
+// 読み物ページのラッキーアイテム名 → Amazonの検索ことば(リンクにしないものは null)
+const ITEM_KEYWORDS = {
+  手帳: '手帳',
+  財布: '財布',
+  観葉植物: '観葉植物 ミニ',
+  サングラス: 'サングラス',
+  マグカップ: 'マグカップ',
+  エプロン: 'エプロン',
+  イヤホン: 'ワイヤレスイヤホン',
+  香水: '香水',
+  ノート: 'ノート',
+  花: 'プリザーブドフラワー',
+  スニーカー: 'スニーカー',
+  本: '小説 ベストセラー',
+  腕時計: '腕時計',
+  ペン: 'ボールペン',
+  ヘアアクセサリー: 'ヘアアクセサリー',
+  ハーブティー: 'ハーブティー',
+  ハンカチ: 'ハンカチ',
+}
+export function amazonKeywordFor(item) {
+  return ITEM_KEYWORDS[item] || null
+}

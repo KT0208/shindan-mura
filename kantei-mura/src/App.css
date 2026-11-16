@@ -787,3 +787,14 @@ legend { color: var(--gold); padding: 0 6px; }
 .sns-canvas { width: 100%; height: auto; border-radius: 16px; }
 .sns-text { width: 100%; box-sizing: border-box; padding: 12px; border-radius: 12px; background: rgba(0, 0, 0, 0.3); color: inherit; border: 1px solid var(--border); font: inherit; font-size: 0.9rem; }
 .sns-intent { display: block; text-align: center; text-decoration: none; }
+
+/* 年間の運勢への案内 */
+.year-banner {
+  display: flex; align-items: center; gap: 12px; margin: 0 0 22px; padding: 14px 18px; border-radius: 18px;
+  background: linear-gradient(120deg, rgba(232, 194, 106, 0.22), rgba(140, 90, 255, 0.18));
+  border: 1px solid rgba(232, 194, 106, 0.55); color: inherit; text-decoration: none;
+}
+.year-banner > span:nth-child(2) { flex: 1; display: flex; flex-direction: column; }
+.year-banner strong { color: var(--gold); }
+.year-banner small { font-size: 0.8rem; color: var(--muted); }
+.year-banner-emoji { font-size: 1.8rem; }

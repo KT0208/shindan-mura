@@ -198,3 +198,15 @@ table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
 th, td { padding: 8px 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.12); text-align: left; vertical-align: top; }
 thead th { color: var(--gold); border-bottom: 2px solid var(--border); }
 tbody th { color: var(--muted); font-weight: 400; white-space: nowrap; }
+
+/* 年間の運勢ページ */
+.rating-line { margin: 0 0 8px; color: var(--muted); }
+.rating { color: var(--gold); letter-spacing: 2px; font-size: 1.15rem; }
+.rating span { color: rgba(255, 255, 255, 0.2); }
+.lucky-box { padding: 14px 18px; border-radius: 16px; background: var(--card); border: 1px solid var(--border); }
+.lucky-box p { margin: 0 0 4px; }
+.amazon-link {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; padding: 6px 14px; border-radius: 999px;
+  background: #ff9900; color: #1a1a1a; font-size: 0.85rem; font-weight: 700; text-decoration: none; font-family: sans-serif;
+}
+.amazon-link .pr-label { font-size: 0.68rem; padding: 1px 5px; border-radius: 4px; background: rgba(0, 0, 0, 0.75); color: #fff; }

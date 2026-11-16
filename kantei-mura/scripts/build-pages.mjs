@@ -11,6 +11,10 @@ import numberGuide from '../src/content/numberGuide.ja.js'
 import { articles, shrineArticles, legalPages, CONTACT_EMAIL } from '../src/content/articles.ja.js'
 import { lifePathNumber, numberRelation, reduceNumber } from '../src/fortune.js'
 import { LANGUAGES, SITE_URL, languagePath } from '../src/i18n/languages.js'
+import * as f2027 from '../src/content/fortune2027.ja.js'
+import readingsJa from '../src/readings/data/ja.js'
+import { etoIndex, kyuseiOfYear, kyuseiPalace } from '../src/readings/logic.js'
+import { AMAZON_DISCLOSURE, amazonKeywordFor, amazonSearchUrl } from '../src/amazon.js'
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 const dist = path.join(root, 'dist')
@@ -68,7 +72,7 @@ for (const lang of LANGUAGES) cultures[lang.code] = await loadCulture(lang)
 
 const pageUrl = (lang, file) => `${SITE_URL}${languagePath(lang)}${file}`
 
-function layout({ lang, file, title, description, breadcrumb, body, jsonLd, alternates = [] }) {
+function layout({ lang, file, title, description, breadcrumb, body, jsonLd, alternates = [], amazon = false }) {
   const ui = cultures[lang.code].ui
   const base = languagePath(lang)
   const url = pageUrl(lang, file)
@@ -131,7 +135,7 @@ ${body}
       </nav>
       <p><a href="${sisterHref}" rel="noopener">${esc(ui.sister)}</a></p>
       <p>${esc(ui.disclaimer)}</p>
-      <p>© 2026 ${esc(ui.siteName)}</p>
+${amazon ? `      <p>${esc(AMAZON_DISCLOSURE)}</p>\n` : ''}      <p>© 2026 ${esc(ui.siteName)}</p>
     </footer>
   </body>
 </html>
@@ -295,11 +299,204 @@ for (const lang of LANGUAGES) {
     ...CULTURE_KEYS.map((k) => articleCard(all[k], base)),
     `      </div>`,
     lang.code === 'ja'
-      ? [`      <h2>数秘術</h2>`, `      <div class="cards">`, articleCard(articles.numerology, '/'), `      </div>`, `      <h3>運命数ごとの解説</h3>`, numberGrid(null)].join('\n')
+      ? [`      <h2>${f2027.YEAR}年の運勢</h2>`, `      <div class="cards">`, articleCard({ file: `${f2027.YEAR}.html`, emoji: '🎍', title: f2027.hub.shortTitle, description: f2027.hub.description }, '/'), `      </div>`, `      <h2>数秘術</h2>`, `      <div class="cards">`, articleCard(articles.numerology, '/'), `      </div>`, `      <h3>運命数ごとの解説</h3>`, numberGrid(null)].join('\n')
       : '',
     cta({ text: g.cta.text, href: base, label: g.cta.label }),
   ].filter(Boolean).join('\n')
   pages.push({ lang, file: GUIDE_FILE, title: g.title, description: g.description, breadcrumb: [{ name: ui.readings }], body: guideBody, alternates: available })
+}
+
+// ---- 2027年の運勢(日本語のみ) ----
+{
+  const Y = f2027.YEAR
+  const kd = readingsJa.kyusei
+  const ed = readingsJa.eto
+  const KYUSEI_CENTER = kyuseiOfYear(Y)
+  const ETO_SLUG = ['ne', 'ushi', 'tora', 'u', 'tatsu', 'mi', 'uma', 'hitsuji', 'saru', 'tori', 'inu', 'i']
+  const ETO_EMOJI = ['🐭', '🐮', '🐯', '🐰', '🐲', '🐍', '🐴', '🐑', '🐵', '🐔', '🐶', '🐗']
+  const files = {
+    hub: `${Y}.html`,
+    kyusei: `${Y}-kyusei.html`,
+    eto: `${Y}-eto.html`,
+    numerology: `${Y}-numerology.html`,
+    star: (n) => `${Y}-kyusei-${n}.html`,
+    sign: (i) => `${Y}-eto-${ETO_SLUG[i]}.html`,
+    year: (n) => `${Y}-year-${n}.html`,
+  }
+  const starName = (n) => kd.stars[n].name
+  const etoName = (i) => ed.animals[i].name
+  const starsLine = (count) => `<span class="rating" aria-label="5段階中${count}">${'★'.repeat(count)}<span>${'★'.repeat(5 - count)}</span></span>`
+  const hubCrumb = { name: `${Y}年の運勢`, href: `/${files.hub}` }
+  const readingsCrumb = { name: '読み物', href: `/${GUIDE_FILE}` }
+
+  // その本命星・干支になる生まれ年(1930〜2026)
+  const yearsOf = (test) => {
+    const list = []
+    for (let y = 1930; y <= 2026; y += 1) if (test(y)) list.push(y)
+    return list
+  }
+  const starYears = (n) => yearsOf((y) => kyuseiOfYear(y) === n)
+  const etoYears = (i) => yearsOf((y) => etoIndex({ year: y }) === i)
+
+  const luckySection = (item) => {
+    const url = amazonSearchUrl(amazonKeywordFor(item.item))
+    return [
+      `      <h2>ラッキーカラー・ラッキーアイテム</h2>`,
+      `      <div class="lucky-box"><p>🎨 ラッキーカラー:<b>${esc(item.color)}</b></p><p>🍀 ラッキーアイテム:<b>${esc(item.item)}</b></p>${url ? `<a class="amazon-link" href="${url}" target="_blank" rel="sponsored noopener"><span class="pr-label">PR</span> ${esc(item.item)}をAmazonで見る →</a>` : ''}</div>`,
+    ].join('\n')
+  }
+  const hasAmazon = (item) => Boolean(amazonSearchUrl(amazonKeywordFor(item.item)))
+
+  const grid = (entries, current) => `      <div class="number-grid">${entries.map(({ key, href, big, small }) => (key === current
+    ? `<span class="current"><b>${esc(big)}</b><small>${esc(small)}</small></span>`
+    : `<a href="${href}"><b>${esc(big)}</b><small>${esc(small)}</small></a>`)).join('')}</div>`
+  const starGrid = (current) => grid([1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => ({ key: n, href: `/${files.star(n)}`, big: starName(n).slice(0, 2), small: starName(n) })), current)
+  const etoGrid = (current) => grid(ETO_SLUG.map((_, i) => ({ key: i, href: `/${files.sign(i)}`, big: ETO_EMOJI[i], small: etoName(i) })), current)
+  const yearGrid = (current) => grid([1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => ({ key: n, href: `/${files.year(n)}`, big: String(n), small: f2027.numerology.years[n].theme })), current)
+
+  const otherYearLinks = [
+    `      <h2>ほかの占いで見る${Y}年</h2>`,
+    `      <ul><li><a href="/${files.kyusei}">九星気学 本命星別の${Y}年の運勢</a></li><li><a href="/${files.eto}">干支別の${Y}年の運勢</a></li><li><a href="/${files.numerology}">数秘術 個人年数別の${Y}年の運勢</a></li></ul>`,
+  ].join('\n')
+
+  const fortuneBody = ({ eyebrow, h1, sub, rating, entry, extraSections = [], ctaInfo, gridHtml, gridHeading }) => [
+    `      <p class="eyebrow">${esc(eyebrow)}</p>`,
+    `      <h1>${esc(h1)}<span>${esc(sub)}</span></h1>`,
+    `      <p class="rating-line">${Y}年の運気 ${starsLine(rating)}</p>`,
+    `      <p class="lead">${esc(entry.overall)}</p>`,
+    renderSection({ heading: '恋愛運', paragraphs: [entry.love] }),
+    renderSection({ heading: '仕事運', paragraphs: [entry.work] }),
+    renderSection({ heading: '金運', paragraphs: [entry.money] }),
+    entry.health ? renderSection({ heading: '健康運', paragraphs: [entry.health] }) : '',
+    renderSection({ heading: `${Y}年の開運アクション`, list: entry.actions }),
+    luckySection(entry),
+    ...extraSections,
+    cta(ctaInfo),
+    `      <h2>${esc(gridHeading)}</h2>`,
+    gridHtml,
+    otherYearLinks,
+  ].filter(Boolean).join('\n')
+
+  // 九星気学:本命星ごと
+  for (let n = 1; n <= 9; n += 1) {
+    const entry = f2027.kyusei.stars[n]
+    const palace = kd.palaces[kyuseiPalace(n, KYUSEI_CENTER)]
+    const name = starName(n)
+    const title = `${name}の${Y}年の運勢|総合運・恋愛運・仕事運・金運`
+    const body = fortuneBody({
+      eyebrow: `九星気学 ${Y}年の運勢`,
+      h1: `${name}の${Y}年`,
+      sub: palace.title,
+      rating: entry.stars,
+      entry,
+      extraSections: [
+        renderSection({ heading: `${Y}年、${name}が入る場所`, paragraphs: [`${Y}年の${name}は「${palace.title}」に入ります。${palace.text}`, `九星気学の1年は立春から始まるため、この運勢は${Y}年2月4日から${Y + 1}年2月3日までの流れです。`] }),
+        renderSection({ heading: `${name}の人の生まれ年`, paragraphs: [`${starYears(n).map((y) => `${y}年`).join('・')}生まれ(いずれも2月4日〜翌年2月3日生まれ)の人が${name}です。`] }),
+        renderSection({ heading: `${name}の性格`, paragraphs: [kd.stars[n].nature] }),
+      ],
+      ctaInfo: { text: '自分の本命星がわからない人は、生年月日を入れるだけで調べられます', href: '/#/kyusei', label: '九星気学で鑑定する' },
+      gridHeading: `ほかの本命星の${Y}年`,
+      gridHtml: starGrid(n),
+    })
+    pages.push({ lang: jaLang, file: files.star(n), title, description: `${name}の${Y}年は「${palace.title}」。${entry.overall}`.slice(0, 150), breadcrumb: [readingsCrumb, hubCrumb, { name: `九星気学`, href: `/${files.kyusei}` }, { name }], body, jsonLd: articleLd(title, 'ja'), amazon: hasAmazon(entry) })
+  }
+
+  // 干支ごと
+  for (let i = 0; i < 12; i += 1) {
+    const entry = f2027.eto.signs[i]
+    const name = etoName(i)
+    const relation = f2027.eto.relations[entry.relation]
+    const title = `${name}年生まれの${Y}年の運勢|恋愛運・仕事運・金運`
+    const body = fortuneBody({
+      eyebrow: `干支別 ${Y}年(丁未年)の運勢`,
+      h1: `${ETO_EMOJI[i]} ${name}年生まれの${Y}年`,
+      sub: relation,
+      rating: entry.stars,
+      entry,
+      extraSections: [
+        renderSection({ heading: `${name}年生まれの人`, paragraphs: [`${etoYears(i).map((y) => `${y}年`).join('・')}生まれの人が${name}年です。`] }),
+        renderSection({ heading: `${name}年生まれの性格`, paragraphs: [ed.animals[i].nature] }),
+      ],
+      ctaInfo: { text: '干支の性格と相性の良い干支は、干支占いで見られます', href: '/#/eto', label: '干支占いをする' },
+      gridHeading: `ほかの干支の${Y}年`,
+      gridHtml: etoGrid(i),
+    })
+    pages.push({ lang: jaLang, file: files.sign(i), title, description: `${Y}年(丁未年)の${name}年生まれは「${relation.split('…')[0]}」の年。${entry.overall}`.slice(0, 150), breadcrumb: [readingsCrumb, hubCrumb, { name: '干支別', href: `/${files.eto}` }, { name }], body, jsonLd: articleLd(title, 'ja'), amazon: hasAmazon(entry) })
+  }
+
+  // 数秘術:個人年数ごと
+  for (let n = 1; n <= 9; n += 1) {
+    const entry = f2027.numerology.years[n]
+    const title = `個人年数${n}の${Y}年の運勢「${entry.theme}」|数秘術`
+    const body = fortuneBody({
+      eyebrow: `数秘術 ${Y}年の運勢`,
+      h1: `個人年数${n}の${Y}年`,
+      sub: entry.theme,
+      rating: entry.stars,
+      entry,
+      extraSections: [
+        renderSection({ heading: '個人年数の出し方', paragraphs: f2027.numerology.howTo, example: f2027.numerology.example }),
+      ],
+      ctaInfo: { text: '生まれ持った運命数も、生年月日を入れるだけで鑑定できます', href: '/#/birthday', label: '誕生日鑑定をする' },
+      gridHeading: `ほかの個人年数の${Y}年`,
+      gridHtml: yearGrid(n),
+    })
+    pages.push({ lang: jaLang, file: files.year(n), title, description: `数秘術で見る${Y}年。個人年数${n}の人は「${entry.theme}」。${entry.overall}`.slice(0, 150), breadcrumb: [readingsCrumb, hubCrumb, { name: '数秘術', href: `/${files.numerology}` }, { name: `個人年数${n}` }], body, jsonLd: articleLd(title, 'ja'), amazon: hasAmazon(entry) })
+  }
+
+  // 一覧ページ(九星・干支・数秘)
+  const table = (head, rows) => renderSection({ heading: '早見表', table: { head, rows } })
+  const listPage = (key, crumbName, sections, gridHtml) => {
+    const p = f2027[key]
+    const body = [
+      `      <p class="eyebrow">${Y}年の運勢</p>`,
+      `      <h1>${esc(p.title)}</h1>`,
+      `      <p class="lead">${esc(p.lead)}</p>`,
+      ...sections,
+      `      <h2>あなたの${crumbName}を選んでください</h2>`,
+      gridHtml,
+      otherYearLinks,
+    ].join('\n')
+    pages.push({ lang: jaLang, file: files[key], title: p.title, description: p.description, breadcrumb: [readingsCrumb, hubCrumb, { name: crumbName }], body, jsonLd: articleLd(p.title, 'ja') })
+  }
+  listPage('kyusei', '本命星', [
+    renderSection({ heading: `${Y}年は九紫火星の年`, paragraphs: [`${Y}年は、九紫火星が九星の中心(中宮)に入る年です。それぞれの本命星が1年間どの場所(宮)に入るかによって、運気の流れが変わります。`, `九星気学の1年は立春(${Y}年2月4日)から始まります。1月1日〜2月3日生まれの人は、前の年の星になるので注意してください。`] }),
+    renderSection({ heading: `本命星別 ${Y}年の運気`, table: { head: ['本命星', '入る場所', '運気'], rows: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => [starName(n), kd.palaces[kyuseiPalace(n, KYUSEI_CENTER)].title, '★'.repeat(f2027.kyusei.stars[n].stars)]) } }),
+    table(['本命星', '生まれ年(2月4日〜翌年2月3日)'], [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => [starName(n), starYears(n).filter((y) => y >= 1950).join('・')])),
+  ], starGrid(null))
+  listPage('eto', '干支', [
+    renderSection({ heading: `${Y}年は丁未(ひのと・ひつじ)年`, paragraphs: ['十二支どうしには、助け合う「三合」「支合」や、ぶつかりやすい「冲」などの関係があります。その年の干支と、生まれ年の干支との関係から、1年の運気の流れを読み解きます。'] }),
+    renderSection({ heading: `干支別 ${Y}年の運気`, table: { head: ['干支', 'ひつじ年との関係', '運気'], rows: f2027.eto.signs.map((s, i) => [etoName(i), f2027.eto.relations[s.relation].split('…')[0], '★'.repeat(s.stars)]) } }),
+    table(['干支', '生まれ年'], ETO_SLUG.map((_, i) => [etoName(i), etoYears(i).filter((y) => y >= 1950).join('・')])),
+  ], etoGrid(null))
+  listPage('numerology', '個人年数', [
+    renderSection({ heading: '個人年数の出し方', paragraphs: f2027.numerology.howTo, example: f2027.numerology.example, after: ['途中で11や22になったときも、1けたになるまで足してください。'] }),
+    renderSection({ heading: `個人年数別 ${Y}年のテーマ`, table: { head: ['個人年数', 'テーマ', '運気'], rows: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => [String(n), f2027.numerology.years[n].theme, '★'.repeat(f2027.numerology.years[n].stars)]) } }),
+  ], yearGrid(null))
+
+  // まとめページ
+  {
+    const h = f2027.hub
+    const card = (file, emoji, title, text) => `        <a class="card" href="/${file}"><b>${emoji} ${esc(title)}</b><span>${esc(text)}</span></a>`
+    const body = [
+      `      <p class="eyebrow">${Y}年の運勢</p>`,
+      `      <h1>${esc(h.shortTitle)}<span>九星気学・干支・数秘術</span></h1>`,
+      `      <p class="lead">${esc(h.lead)}</p>`,
+      `      <div class="cards">`,
+      card(files.kyusei, '⭐', f2027.kyusei.shortTitle, '一白水星〜九紫火星。本命星が入る場所から1年を読みます'),
+      card(files.eto, '🐑', f2027.eto.shortTitle, '丁未(ひつじ)年と、あなたの干支との関係から読みます'),
+      card(files.numerology, '🔢', f2027.numerology.shortTitle, '誕生日から出す「個人年数」で、9年サイクルの位置を読みます'),
+      `      </div>`,
+      ...h.about.map(renderSection),
+      cta({ text: '新しい年のはじまりに、今日のおみくじも引いてみましょう', href: '/#/today', label: '今日のおみくじを引く' }),
+      `      <h2>${Y}年のはじまりに読みたい記事</h2>`,
+      `      <div class="cards">`,
+      articleCard(cultures.ja.articles.hatsumode, '/'),
+      articleCard(cultures.ja.articles.sanpai, '/'),
+      `      </div>`,
+    ].join('\n')
+    pages.push({ lang: jaLang, file: files.hub, title: h.title, description: h.description, breadcrumb: [readingsCrumb, { name: h.shortTitle }], body, jsonLd: articleLd(h.title, 'ja') })
+  }
 }
 
 // ---- 規約ページ(日本語のみ) ----
