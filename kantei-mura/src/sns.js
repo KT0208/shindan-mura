@@ -1,6 +1,7 @@
 // SNS(X)に毎日投稿する「運命数別 今日の運勢ランキング」を作る。
 // 日付だけで決まるので、同じ日なら何度作っても同じ順位になる。
 import { hashString, seededRandom } from './fortune.js'
+import { TAROT_SLUGS } from './guideLinks.js'
 
 export const SITE_NUMBER_URL = 'https://kanteimura.com/#/birthday'
 export const HASHTAGS = ['#占い', '#今日の運勢', '#数秘術']
@@ -153,4 +154,72 @@ export function instagramText(dateText, ranking = dailyRanking(dateText)) {
     INSTAGRAM_HASHTAGS.join(' '),
   ]
   return lines.join('\n')
+}
+
+// ---- 今日のタロット ----
+
+export const TAROT_ROMAN = ['0', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX', 'XXI']
+
+function shuffledBlock(block) {
+  const rand = seededRandom(hashString(`sns-tarot-block:${block}`))
+  const order = TAROT_SLUGS.map((_, i) => i)
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1))
+    ;[order[i], order[j]] = [order[j], order[i]]
+  }
+  return order
+}
+
+// 22日ごとに22枚を1回ずつ出す。区切りの日に前の日と同じカードが続かないよう入れ替える
+function tarotBlock(block) {
+  const order = shuffledBlock(block)
+  const prevLast = shuffledBlock(block - 1).at(-1)
+  if (order[0] === prevLast) [order[0], order[1]] = [order[1], order[0]]
+  return order
+}
+
+// 日付で決まる今日のカード
+export function dailyTarotIndex(dateText) {
+  const [y, m, d] = dateText.split('-').map(Number)
+  const day = Math.floor((Date.UTC(y, m - 1, d) - Date.UTC(2026, 0, 1)) / 86400000)
+  const block = Math.floor(day / TAROT_SLUGS.length)
+  return tarotBlock(block)[day - block * TAROT_SLUGS.length]
+}
+
+export function tarotPageUrl(index) {
+  return `https://kanteimura.com/tarot-${TAROT_SLUGS[index]}.html`
+}
+
+// card は鑑定データのカード({ name, keywords, upright, advice })
+export function tarotPostText(dateText, index, card) {
+  return [
+    `🃏${dateLabel(dateText)} 今日のタロット`,
+    `「${card.name}」${card.keywords.join('・')}`,
+    '',
+    card.upright,
+    `${card.advice.replace(/。$/, "")}✨`,
+    '',
+    'カードのくわしい意味はこちら👇',
+    tarotPageUrl(index),
+    '#タロット #今日の運勢 #占い',
+  ].join('\n')
+}
+
+export function tarotInstagramText(dateText, index, card) {
+  return [
+    `🃏${dateLabel(dateText)} 今日のタロット`,
+    '',
+    `今日のカードは「${card.name}」`,
+    `キーワード:${card.keywords.join('・')}`,
+    '',
+    card.upright,
+    '',
+    `💬 カードからのアドバイス`,
+    card.advice,
+    '',
+    '大アルカナ22枚の意味は、プロフィールのリンク(鑑定村)から読めます🔮',
+    'あなたも1枚引いてみてね⛩',
+    '',
+    ['#タロット', '#タロット占い', '#今日のタロット', '#今日の運勢', '#占い', '#開運', '#スピリチュアル', '#占い好きな人と繋がりたい', '#鑑定村'].join(' '),
+  ].join('\n')
 }

@@ -2,7 +2,7 @@
 // メニューには出さず、kanteimura.com/#/sns で開く。
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { formatDate } from './fortune'
-import { dailyRanking, dateLabel, instagramText, intentUrl, postText, xWeightedLength } from './sns'
+import { TAROT_ROMAN, dailyRanking, dailyTarotIndex, dateLabel, instagramText, intentUrl, postText, tarotInstagramText, tarotPostText, xWeightedLength } from './sns'
 
 const W = 1080
 const H = 1350
@@ -40,19 +40,7 @@ function drawStar(ctx, cx, cy, size, fill) {
 
 function drawRanking(canvas, dateText, ranking) {
   const ctx = canvas.getContext('2d')
-  // 背景(夜空)
-  const bg = ctx.createRadialGradient(W * 0.3, H * 0.15, 50, W * 0.5, H * 0.5, H)
-  bg.addColorStop(0, '#3a2370')
-  bg.addColorStop(0.55, '#1b1036')
-  bg.addColorStop(1, '#0d0820')
-  ctx.fillStyle = bg
-  ctx.fillRect(0, 0, W, H)
-  for (let i = 0; i < 90; i++) {
-    ctx.fillStyle = `rgba(255,255,255,${0.25 + (i % 5) / 8})`
-    ctx.beginPath()
-    ctx.arc((i * 137.5) % W, (i * 83.3) % H, (i % 3) + 1, 0, Math.PI * 2)
-    ctx.fill()
-  }
+  drawBackground(ctx)
 
   ctx.textBaseline = 'middle'
   ctx.textAlign = 'center'
@@ -109,26 +97,148 @@ function drawRanking(canvas, dateText, ranking) {
   ctx.fillText('自分の運命数は 鑑定村 kanteimura.com', W / 2, H - 62)
 }
 
+// 日本語の文章を、幅に合わせて1文字ずつ折り返す
+function wrapLines(ctx, text, maxWidth) {
+  const lines = []
+  let line = ''
+  for (const ch of text) {
+    if (ctx.measureText(line + ch).width > maxWidth && line) {
+      lines.push(line)
+      line = ch
+    } else {
+      line += ch
+    }
+  }
+  if (line) lines.push(line)
+  return lines
+}
+
+function drawBackground(ctx) {
+  const bg = ctx.createRadialGradient(W * 0.3, H * 0.15, 50, W * 0.5, H * 0.5, H)
+  bg.addColorStop(0, '#3a2370')
+  bg.addColorStop(0.55, '#1b1036')
+  bg.addColorStop(1, '#0d0820')
+  ctx.fillStyle = bg
+  ctx.fillRect(0, 0, W, H)
+  for (let i = 0; i < 90; i++) {
+    ctx.fillStyle = `rgba(255,255,255,${0.25 + (i % 5) / 8})`
+    ctx.beginPath()
+    ctx.arc((i * 137.5) % W, (i * 83.3) % H, (i % 3) + 1, 0, Math.PI * 2)
+    ctx.fill()
+  }
+}
+
+function drawTarotPost(canvas, dateText, index, card) {
+  const ctx = canvas.getContext('2d')
+  drawBackground(ctx)
+  ctx.textBaseline = 'middle'
+  ctx.textAlign = 'center'
+  ctx.fillStyle = MUTED
+  ctx.font = `600 40px ${FONT}`
+  ctx.fillText(dateLabel(dateText), W / 2, 80)
+  ctx.fillStyle = GOLD
+  ctx.font = `700 70px ${FONT}`
+  ctx.fillText('今日のタロット', W / 2, 160)
+
+  // カード
+  const cw = 360
+  const ch = 560
+  const cx = (W - cw) / 2
+  const cy = 230
+  roundRect(ctx, cx, cy, cw, ch, 26)
+  const cardBg = ctx.createLinearGradient(cx, cy, cx + cw, cy + ch)
+  cardBg.addColorStop(0, '#2b1a55')
+  cardBg.addColorStop(1, '#140b2e')
+  ctx.fillStyle = cardBg
+  ctx.fill()
+  ctx.strokeStyle = GOLD
+  ctx.lineWidth = 6
+  ctx.stroke()
+  roundRect(ctx, cx + 18, cy + 18, cw - 36, ch - 36, 16)
+  ctx.strokeStyle = 'rgba(232,194,106,0.5)'
+  ctx.lineWidth = 2
+  ctx.stroke()
+  ctx.fillStyle = GOLD
+  ctx.font = `700 56px ${FONT}`
+  ctx.fillText(TAROT_ROMAN[index], W / 2, cy + 80)
+  drawStar(ctx, W / 2, cy + ch / 2 - 10, 90, GOLD)
+  ctx.beginPath()
+  ctx.arc(W / 2, cy + ch / 2 - 10, 130, 0, Math.PI * 2)
+  ctx.strokeStyle = 'rgba(232,194,106,0.6)'
+  ctx.lineWidth = 3
+  ctx.stroke()
+  ctx.fillStyle = TEXT
+  ctx.font = `700 ${card.name.length > 4 ? 46 : 58}px ${FONT}`
+  ctx.fillText(card.name, W / 2, cy + ch - 70)
+
+  // キーワードと意味
+  ctx.fillStyle = GOLD
+  ctx.font = `600 38px ${FONT}`
+  ctx.fillText(card.keywords.join(' ・ '), W / 2, cy + ch + 70)
+  ctx.fillStyle = TEXT
+  ctx.font = `500 36px ${FONT}`
+  const lines = wrapLines(ctx, card.upright, W - 200)
+  lines.slice(0, 3).forEach((line, i) => ctx.fillText(line, W / 2, cy + ch + 150 + i * 54))
+
+  // カードからのアドバイス
+  const boxY = cy + ch + 150 + Math.min(lines.length, 3) * 54 + 20
+  roundRect(ctx, 120, boxY, W - 240, 120, 24)
+  ctx.fillStyle = 'rgba(232,194,106,0.14)'
+  ctx.fill()
+  ctx.strokeStyle = 'rgba(232,194,106,0.55)'
+  ctx.lineWidth = 2
+  ctx.stroke()
+  ctx.fillStyle = MUTED
+  ctx.font = `600 26px ${FONT}`
+  ctx.fillText('カードからのアドバイス', W / 2, boxY + 36)
+  ctx.fillStyle = GOLD
+  ctx.font = `700 36px ${FONT}`
+  ctx.fillText(card.advice, W / 2, boxY + 82)
+
+  ctx.fillStyle = GOLD
+  ctx.font = `700 36px ${FONT}`
+  ctx.fillText('カードの意味は 鑑定村 kanteimura.com', W / 2, H - 62)
+}
+
 export default function SnsPage() {
   const today = formatDate(new Date())
   const [dateText, setDateText] = useState(today)
   const [copied, setCopied] = useState(false)
   const [platform, setPlatform] = useState('x')
+  const [kind, setKind] = useState('ranking')
+  const [tarotCards, setTarotCards] = useState(null)
   const canvasRef = useRef(null)
   const ranking = useMemo(() => dailyRanking(dateText), [dateText])
-  const text = useMemo(() => (platform === 'x' ? postText : instagramText)(dateText, ranking), [platform, dateText, ranking])
+  const tarotIndex = dailyTarotIndex(dateText)
+  const card = tarotCards?.[tarotIndex]
+
+  // タロットの文章は鑑定データから読みこむ
+  useEffect(() => {
+    import('./readings/data/ja.js').then((m) => setTarotCards(m.default.tarot.cards))
+  }, [])
+
+  const text = useMemo(() => {
+    if (kind === 'tarot') return card ? (platform === 'x' ? tarotPostText : tarotInstagramText)(dateText, tarotIndex, card) : ''
+    return (platform === 'x' ? postText : instagramText)(dateText, ranking)
+  }, [kind, platform, dateText, ranking, tarotIndex, card])
 
   useEffect(() => {
-    document.title = 'SNS投稿用ランキング｜鑑定村'
+    document.title = 'SNS投稿用｜鑑定村'
     const canvas = canvasRef.current
     if (!canvas) return
-    const draw = () => drawRanking(canvas, dateText, ranking)
+    const draw = () => {
+      if (kind === 'tarot') {
+        if (card) drawTarotPost(canvas, dateText, tarotIndex, card)
+      } else {
+        drawRanking(canvas, dateText, ranking)
+      }
+    }
     draw()
     // フォントの読み込みが終わったら描き直す
     document.fonts?.ready.then(draw)
-  }, [dateText, ranking])
+  }, [kind, dateText, ranking, tarotIndex, card])
 
-  const fileName = `kanteimura-ranking-${dateText}.png`
+  const fileName = `kanteimura-${kind}-${dateText}.png`
 
   const saveImage = () => {
     canvasRef.current.toBlob(async (blob) => {
@@ -166,10 +276,14 @@ export default function SnsPage() {
     <main className="page">
       <a className="back" href="#/">← トップへ</a>
       <header className="page-header">
-        <h2>SNS投稿用 今日の運勢ランキング</h2>
-        <p className="lead">運営者用のページです。毎朝、画像を保存して文章をコピーし、XやInstagramに投稿してください。</p>
+        <h2>SNS投稿用ページ</h2>
+        <p className="lead">運営者用のページです。画像を保存して文章をコピーし、XやInstagramに投稿してください。朝は「運勢ランキング」、空いた時間は「今日のタロット」がおすすめです。</p>
       </header>
       <div className="form sns-tools">
+        <div className="sns-dates">
+          <button type="button" className={kind === 'ranking' ? 'primary' : 'secondary'} onClick={() => setKind('ranking')}>🔢 運勢ランキング</button>
+          <button type="button" className={kind === 'tarot' ? 'primary' : 'secondary'} onClick={() => setKind('tarot')}>🃏 今日のタロット</button>
+        </div>
         <div className="sns-dates">
           <button type="button" className={dateText === today ? 'primary' : 'secondary'} onClick={() => setDateText(today)}>今日</button>
           <button type="button" className={dateText === addDays(today, 1) ? 'primary' : 'secondary'} onClick={() => setDateText(addDays(today, 1))}>明日</button>

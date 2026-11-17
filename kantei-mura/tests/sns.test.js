@@ -29,3 +29,20 @@ test('Instagram用の文章は9位まで入り、2200文字以内', async () => 
   assert.ok([...text].length <= 2200)
   assert.ok(!text.includes('http'))
 })
+
+test('今日のタロットは毎日決まり、前の日と同じにならず、Xの文字数におさまる', async () => {
+  const { dailyTarotIndex, tarotPostText, tarotInstagramText, xWeightedLength } = await import('../src/sns.js')
+  const { default: ja } = await import('../src/readings/data/ja.js')
+  let prev = null
+  for (let i = 0; i < 366; i++) {
+    const d = new Date(Date.UTC(2027, 0, 1 + i)).toISOString().slice(0, 10)
+    const index = dailyTarotIndex(d)
+    assert.equal(index, dailyTarotIndex(d))
+    assert.ok(index >= 0 && index < 22)
+    assert.notEqual(index, prev, d)
+    prev = index
+    const card = ja.tarot.cards[index]
+    assert.ok(xWeightedLength(tarotPostText(d, index, card)) <= 280, d)
+    assert.ok([...tarotInstagramText(d, index, card)].length <= 2200)
+  }
+})
