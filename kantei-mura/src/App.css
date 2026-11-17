@@ -798,3 +798,6 @@ legend { color: var(--gold); padding: 0 6px; }
 .year-banner strong { color: var(--gold); }
 .year-banner small { font-size: 0.8rem; color: var(--muted); }
 .year-banner-emoji { font-size: 1.8rem; }
+
+.guide-link { display: block; text-align: center; padding: 12px; border-radius: 14px; border: 1px solid var(--border); color: var(--gold); text-decoration: none; }
+.guide-link:hover { background: rgba(232, 194, 106, 0.1); }

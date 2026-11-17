@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react'
 import { formatDate, parseDate, zodiacIndex, ZODIAC_EMOJI } from '../fortune'
 import { formatLongDate, useStoredState } from '../hooks'
 import { useDictionary } from '../i18n/context'
-import { AmazonLink, DateInput, NameInput, Page, ShareButtons, SisterCard, Stars } from '../ui'
+import { AmazonLink, DateInput, GuideLink, NameInput, Page, ShareButtons, SisterCard, Stars } from '../ui'
+import { guideHref } from '../guideLinks'
 import Omikuji from '../Omikuji'
 import { track } from '../analytics'
 import {
@@ -348,6 +349,7 @@ export function KyuseiPage() {
             <h4>{d.palaces[palace].title}</h4>
             <p>{d.palaces[palace].text}</p>
           </div>
+          <GuideLink href={guideHref.kyusei(star)} label={`${s.name}のくわしい解説`} />
           <ShareButtons text={d.share(s.name)} />
           <SisterCard page="birthday" />
         </div>
@@ -379,6 +381,7 @@ export function EtoPage() {
           <Sections items={[{ heading: d.labels.nature, text: a.nature }, { heading: d.labels.love, text: a.love }, { heading: d.labels.work, text: a.work }]} />
           <Chips heading={d.labels.sango} items={partners.sango.map((i) => d.animals[i].name)} />
           <Chips heading={d.labels.rokugo} items={[d.animals[partners.rokugo].name]} />
+          <GuideLink href={guideHref.eto(index)} label={`${a.name}年生まれのくわしい解説`} />
           <ShareButtons text={d.share(a.name)} />
           <SisterCard page="name" />
         </div>
@@ -413,6 +416,7 @@ export function ZodiacPage() {
             <p>{stone.meaning}</p>
             <AmazonLink keyword={`${stone.name} アクセサリー`} label={`${stone.name}のアクセサリーをAmazonで見る`} place="birthstone" />
           </div>
+          <GuideLink href={guideHref.zodiac(index)} label={`${t.zodiac[index]}のくわしい解説`} />
           <ShareButtons text={d.share(t.zodiac[index])} />
           <SisterCard page="compat" />
         </div>
@@ -560,6 +564,7 @@ export function TarotPage() {
           <ResultHead eyebrow={pos} visual={null} title={`${ROMAN[draw.card]}. ${card.name}`} keywords={card.keywords} />
           <Sections items={[{ heading: `${d.labels.meaning}(${pos})`, text: draw.reversed ? card.reversed : card.upright }, { heading: d.labels.advice, text: card.advice }]} />
           <button type="button" className="secondary" onClick={() => setStage('idle')}>{d.labels.again}</button>
+          <GuideLink href={guideHref.tarot(draw.card)} label={`「${card.name}」のくわしい意味`} />
           <ShareButtons text={d.share(card.name, pos)} />
           <SisterCard page="compat" />
         </div>

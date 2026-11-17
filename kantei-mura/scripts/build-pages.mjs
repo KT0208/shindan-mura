@@ -9,11 +9,13 @@ import { fileURLToPath } from 'node:url'
 import ja from '../src/i18n/ja.js'
 import numberGuide from '../src/content/numberGuide.ja.js'
 import { articles, shrineArticles, legalPages, CONTACT_EMAIL } from '../src/content/articles.ja.js'
-import { lifePathNumber, numberRelation, reduceNumber } from '../src/fortune.js'
+import { ZODIAC_EMOJI, lifePathNumber, numberRelation, reduceNumber, zodiacIndex } from '../src/fortune.js'
 import { LANGUAGES, SITE_URL, languagePath } from '../src/i18n/languages.js'
 import * as f2027 from '../src/content/fortune2027.ja.js'
 import readingsJa from '../src/readings/data/ja.js'
-import { etoIndex, kyuseiOfYear, kyuseiPalace } from '../src/readings/logic.js'
+import { ZODIAC_ELEMENT, etoIndex, etoPartners, kyuseiOfYear, kyuseiPalace, kyuseiPartners, zodiacPartners } from '../src/readings/logic.js'
+import * as guidesKE from '../src/content/guides/kyuseiEto.ja.js'
+import * as guidesZT from '../src/content/guides/zodiacTarot.ja.js'
 import { AMAZON_DISCLOSURE, amazonKeywordFor, amazonSearchUrl } from '../src/amazon.js'
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
@@ -182,6 +184,7 @@ const langDicts = {}
 for (const lang of LANGUAGES) langDicts[lang.code] = (await import(`../src/i18n/${lang.code}.js`)).default
 
 const pages = []
+const guides = { ...guidesKE, ...guidesZT }
 const jaLang = LANGUAGES[0]
 
 // ---- 運命数の解説ページ(日本語のみ) ----
@@ -299,7 +302,18 @@ for (const lang of LANGUAGES) {
     ...CULTURE_KEYS.map((k) => articleCard(all[k], base)),
     `      </div>`,
     lang.code === 'ja'
-      ? [`      <h2>${f2027.YEAR}年の運勢</h2>`, `      <div class="cards">`, articleCard({ file: `${f2027.YEAR}.html`, emoji: '🎍', title: f2027.hub.shortTitle, description: f2027.hub.description }, '/'), `      </div>`, `      <h2>数秘術</h2>`, `      <div class="cards">`, articleCard(articles.numerology, '/'), `      </div>`, `      <h3>運命数ごとの解説</h3>`, numberGrid(null)].join('\n')
+      ? [
+        `      <h2>${f2027.YEAR}年の運勢</h2>`, `      <div class="cards">`,
+        articleCard({ file: `${f2027.YEAR}.html`, emoji: '🎍', title: f2027.hub.shortTitle, description: f2027.hub.description }, '/'),
+        `      </div>`,
+        `      <h2>占いの解説</h2>`, `      <div class="cards">`,
+        articleCard({ file: 'kyusei.html', emoji: '⭐', title: guides.kyusei.shortTitle, description: guides.kyusei.description }, '/'),
+        articleCard({ file: 'eto.html', emoji: '🐉', title: guides.eto.shortTitle, description: guides.eto.description }, '/'),
+        articleCard({ file: 'zodiac.html', emoji: '♈', title: guides.zodiac.shortTitle, description: guides.zodiac.description }, '/'),
+        articleCard({ file: 'tarot.html', emoji: '🃏', title: guides.tarot.shortTitle, description: guides.tarot.description }, '/'),
+        `      </div>`,
+        `      <h2>数秘術</h2>`, `      <div class="cards">`, articleCard(articles.numerology, '/'), `      </div>`, `      <h3>運命数ごとの解説</h3>`, numberGrid(null),
+      ].join('\n')
       : '',
     cta({ text: g.cta.text, href: base, label: g.cta.label }),
   ].filter(Boolean).join('\n')
@@ -496,6 +510,213 @@ for (const lang of LANGUAGES) {
       `      </div>`,
     ].join('\n')
     pages.push({ lang: jaLang, file: files.hub, title: h.title, description: h.description, breadcrumb: [readingsCrumb, { name: h.shortTitle }], body, jsonLd: articleLd(h.title, 'ja') })
+  }
+}
+
+// ---- 鑑定の解説ページ(九星気学・干支・星座・タロット/日本語のみ) ----
+{
+  const rd = readingsJa
+  const readingsCrumb = { name: '読み物', href: `/${GUIDE_FILE}` }
+  const keywordsHtml = (list) => `      <ul class="keywords">${list.map((k) => `<li>${esc(k)}</li>`).join('')}</ul>`
+  const gridOf = (entries, current) => `      <div class="number-grid">${entries.map(({ key, href, big, small }) => (key === current
+    ? `<span class="current"><b>${esc(big)}</b><small>${esc(small)}</small></span>`
+    : `<a href="${href}"><b>${esc(big)}</b><small>${esc(small)}</small></a>`)).join('')}</div>`
+  const dataTable = (rows) => `      <div class="table-wrap"><table><tbody>${rows.map(([h, v]) => `<tr><th>${esc(h)}</th><td>${v}</td></tr>`).join('')}</tbody></table></div>`
+  const linkList = (items) => `      <ul>${items.map(({ href, text, note }) => `<li><a href="${href}">${esc(text)}</a>${note ? `:${esc(note)}` : ''}</li>`).join('')}</ul>`
+  const yearsBetween = (test) => {
+    const list = []
+    for (let y = 1950; y <= 2026; y += 1) if (test(y)) list.push(`${y}年`)
+    return list.join('・')
+  }
+  const hubPage = ({ file, data, gridHeading, grid, extra = [] }) => {
+    const body = [
+      `      <p class="eyebrow">占いの解説</p>`,
+      `      <h1>${esc(data.title.split('|')[0])}</h1>`,
+      `      <p class="lead">${esc(data.lead)}</p>`,
+      `      <h2>${esc(gridHeading)}</h2>`,
+      grid,
+      ...data.about.map(renderSection),
+      ...extra,
+    ].join('\n')
+    pages.push({ lang: jaLang, file, title: data.title, description: data.description, breadcrumb: [readingsCrumb, { name: data.shortTitle }], body, jsonLd: articleLd(data.title, 'ja') })
+  }
+
+  // 九星気学
+  {
+    const g = guides.kyusei
+    const file = (n) => `kyusei-${n}.html`
+    const name = (n) => rd.kyusei.stars[n].name
+    const grid = (current) => gridOf([1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => ({ key: n, href: `/${file(n)}`, big: name(n).slice(0, 2), small: name(n) })), current)
+    for (let n = 1; n <= 9; n += 1) {
+      const s = rd.kyusei.stars[n]
+      const x = g.stars[n]
+      const palace = rd.kyusei.palaces[kyuseiPalace(n, kyuseiOfYear(2027))]
+      const title = `${s.name}の性格・恋愛・仕事・相性|九星気学`
+      const body = [
+        `      <p class="eyebrow">九星気学・本命星の解説</p>`,
+        `      <h1>${esc(s.name)}<span>${esc(x.reading)}</span></h1>`,
+        keywordsHtml(s.keywords),
+        `      <p class="lead">${esc(x.summary)}</p>`,
+        `      <h2>${esc(s.name)}の基本データ</h2>`,
+        dataTable([['五行', esc(x.element)], ['方位', esc(x.direction)], ['象意(あらわすもの)', esc(x.symbols)], ['ラッキーカラー', esc(x.color)], ['生まれ年', `${esc(yearsBetween((y) => kyuseiOfYear(y) === n))}<br><small>※2月4日〜翌年2月3日生まれ</small>`]]),
+        renderSection({ heading: `${s.name}の性格`, paragraphs: [s.nature] }),
+        renderSection({ heading: `${s.name}の強み`, list: x.strengths }),
+        renderSection({ heading: '気をつけたいこと', list: x.cautions }),
+        renderSection({ heading: `${s.name}の恋愛`, paragraphs: [s.love] }),
+        renderSection({ heading: `${s.name}に向いている仕事`, paragraphs: [s.work] }),
+        `      <h2>${esc(s.name)}と相性の良い星</h2>`,
+        `      <p>五行で生かし合う関係や、同じ五行の星とは、自然体でいられる良い相性です。</p>`,
+        linkList(kyuseiPartners(n).map((m) => ({ href: `/${file(m)}`, text: name(m), note: `五行は「${g.stars[m].element}」` }))),
+        `      <h2>${esc(s.name)}の2027年の運勢</h2>`,
+        `      <p>2027年の${esc(s.name)}は「${esc(palace.title)}」に入ります。くわしくは<a href="/2027-kyusei-${n}.html">${esc(s.name)}の2027年の運勢</a>をご覧ください。</p>`,
+        renderSection({ heading: '開運アドバイス', paragraphs: [x.advice] }),
+        cta({ text: '生年月日を入れるだけで、あなたの本命星と今年の運勢がわかります', href: '/#/kyusei', label: '九星気学で鑑定する' }),
+        `      <h2>ほかの本命星</h2>`,
+        grid(n),
+        `      <p><a href="/kyusei.html">九星気学とは?本命星の調べ方</a></p>`,
+      ].join('\n')
+      pages.push({ lang: jaLang, file: file(n), title, description: `${x.summary} ${s.name}の性格・強み・恋愛・仕事・相性の良い星を解説します。`.slice(0, 150), breadcrumb: [readingsCrumb, { name: '九星気学', href: '/kyusei.html' }, { name: s.name }], body, jsonLd: articleLd(title, 'ja') })
+    }
+    hubPage({ file: 'kyusei.html', data: g, gridHeading: '9つの本命星', grid: grid(null), extra: [
+      renderSection({ heading: '本命星の早見表', table: { head: ['本命星', '生まれ年(2月4日〜翌年2月3日)'], rows: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => [name(n), yearsBetween((y) => kyuseiOfYear(y) === n)]) } }),
+      cta({ text: '生年月日を入れるだけで、あなたの本命星がわかります', href: '/#/kyusei', label: '九星気学で鑑定する' }),
+      `      <p>🎍 <a href="/2027-kyusei.html">本命星別 2027年の運勢</a>も公開中です。</p>`,
+    ] })
+  }
+
+  // 干支
+  {
+    const g = guides.eto
+    const file = (i) => `eto-${g.animals[i].slug}.html`
+    const name = (i) => rd.eto.animals[i].name
+    const EMOJI = ['🐭', '🐮', '🐯', '🐰', '🐲', '🐍', '🐴', '🐑', '🐵', '🐔', '🐶', '🐗']
+    const grid = (current) => gridOf(g.animals.map((_, i) => ({ key: i, href: `/${file(i)}`, big: EMOJI[i], small: name(i) })), current)
+    for (let i = 0; i < 12; i += 1) {
+      const a = rd.eto.animals[i]
+      const x = g.animals[i]
+      const { sango, rokugo } = etoPartners(i)
+      const short = a.name.replace(/\(.*\)/, '')
+      const title = `${a.name}年生まれの性格・恋愛・仕事・相性|干支`
+      const body = [
+        `      <p class="eyebrow">十二支(干支)の解説</p>`,
+        `      <h1>${EMOJI[i]} ${esc(a.name)}年<span>${esc(x.reading)}どし</span></h1>`,
+        keywordsHtml(a.keywords),
+        `      <p class="lead">${esc(x.summary)}</p>`,
+        `      <h2>${esc(short)}年生まれの人</h2>`,
+        dataTable([['生まれ年', esc(yearsBetween((y) => etoIndex({ year: y }) === i))], ['十二支の順番', `${i + 1}番目`]]),
+        renderSection({ heading: `${short}年生まれの性格`, paragraphs: [a.nature] }),
+        renderSection({ heading: `${short}年生まれの強み`, list: x.strengths }),
+        renderSection({ heading: '気をつけたいこと', list: x.cautions }),
+        renderSection({ heading: `${short}年生まれの恋愛`, paragraphs: [a.love] }),
+        renderSection({ heading: `${short}年生まれに向いている仕事`, paragraphs: [a.work] }),
+        `      <h2>${esc(short)}年生まれと相性の良い干支</h2>`,
+        linkList([...sango.map((m) => ({ href: `/${file(m)}`, text: `${name(m)}年`, note: '三合(強く助け合う関係)' })), { href: `/${file(rokugo)}`, text: `${name(rokugo)}年`, note: '支合(結びつきの強い関係)' }]),
+        `      <h2>${esc(short)}年生まれの2027年の運勢</h2>`,
+        `      <p>2027年(丁未・ひつじ年)の運勢は、<a href="/2027-eto-${x.slug}.html">${esc(a.name)}年生まれの2027年の運勢</a>で解説しています。</p>`,
+        renderSection({ heading: '開運アドバイス', paragraphs: [x.advice] }),
+        cta({ text: '生年月日から、干支の性格と守り本尊も調べられます', href: '/#/eto', label: '干支占いをする' }),
+        `      <h2>ほかの干支</h2>`,
+        grid(i),
+        `      <p><a href="/eto.html">干支(十二支)とは?</a></p>`,
+      ].join('\n')
+      pages.push({ lang: jaLang, file: file(i), title, description: `${x.summary} 性格・強み・恋愛・仕事・相性の良い干支を解説します。`.slice(0, 150), breadcrumb: [readingsCrumb, { name: '十二支', href: '/eto.html' }, { name: `${short}年` }], body, jsonLd: articleLd(title, 'ja') })
+    }
+    hubPage({ file: 'eto.html', data: g, gridHeading: '12の干支', grid: grid(null), extra: [
+      renderSection({ heading: '生まれ年の早見表', table: { head: ['干支', '生まれ年'], rows: g.animals.map((_, i) => [name(i), yearsBetween((y) => etoIndex({ year: y }) === i)]) } }),
+      cta({ text: '生年月日を入れるだけで、干支の性格と相性がわかります', href: '/#/eto', label: '干支占いをする' }),
+      `      <p>🎍 <a href="/2027-eto.html">干支別 2027年の運勢</a>も公開中です。</p>`,
+    ] })
+  }
+
+  // 星座
+  {
+    const g = guides.zodiac
+    const names = ja.zodiac
+    const file = (i) => `zodiac-${g.signs[i].slug}.html`
+    // 星座の期間を、誕生日→星座の計算からさかのぼって求める
+    const periods = names.map(() => ({ start: null, end: null }))
+    let prev = null
+    for (let d = new Date(2001, 0, 1); d.getFullYear() === 2001; d.setDate(d.getDate() + 1)) {
+      const idx = zodiacIndex({ month: d.getMonth() + 1, day: d.getDate() })
+      const label = `${d.getMonth() + 1}月${d.getDate()}日`
+      if (idx !== prev) periods[idx].start = label
+      periods[idx].end = label
+      prev = idx
+    }
+    // やぎ座は年をまたぐ(12月22日〜1月19日)
+    {
+      let last
+      for (let day = 1; day <= 31; day += 1) if (zodiacIndex({ month: 1, day }) === 0) last = day
+      let first
+      for (let day = 31; day >= 1; day -= 1) if (zodiacIndex({ month: 12, day }) === 0) first = day
+      periods[0] = { start: `12月${first}日`, end: `1月${last}日` }
+    }
+    const period = (i) => `${periods[i].start}〜${periods[i].end}`
+    const grid = (current) => gridOf(names.map((n, i) => ({ key: i, href: `/${file(i)}`, big: ZODIAC_EMOJI[i], small: n })), current)
+    for (let i = 0; i < 12; i += 1) {
+      const s = rd.zodiac.signs[i]
+      const x = g.signs[i]
+      const title = `${names[i]}の性格・恋愛・仕事・相性|12星座`
+      const body = [
+        `      <p class="eyebrow">12星座の解説</p>`,
+        `      <h1>${ZODIAC_EMOJI[i]} ${esc(names[i])}<span>${esc(x.english)}</span></h1>`,
+        keywordsHtml(s.keywords),
+        `      <p class="lead">${esc(x.summary)}</p>`,
+        `      <h2>${esc(names[i])}の基本データ</h2>`,
+        dataTable([['期間', esc(period(i))], ['エレメント', esc(rd.zodiac.elements[ZODIAC_ELEMENT[i]])], ['守護星', esc(x.ruler)]]),
+        renderSection({ heading: `${names[i]}の性格`, paragraphs: [s.nature] }),
+        renderSection({ heading: `${names[i]}の強み`, list: x.strengths }),
+        renderSection({ heading: '気をつけたいこと', list: x.cautions }),
+        renderSection({ heading: `${names[i]}の恋愛`, paragraphs: [s.love] }),
+        renderSection({ heading: `${names[i]}に向いている仕事`, paragraphs: [s.work] }),
+        `      <h2>${esc(names[i])}と相性の良い星座</h2>`,
+        `      <p>同じエレメントの星座や、お互いを高め合うエレメントの星座とは、自然に気が合います。</p>`,
+        linkList(zodiacPartners(i).map((m) => ({ href: `/${file(m)}`, text: names[m], note: `${rd.zodiac.elements[ZODIAC_ELEMENT[m]]}のエレメント` }))),
+        renderSection({ heading: '開運アドバイス', paragraphs: [x.advice] }),
+        cta({ text: '誕生日を入れるだけで、星座と誕生石がわかります', href: '/#/zodiac', label: '星座占いをする' }),
+        `      <h2>ほかの星座</h2>`,
+        grid(i),
+        `      <p><a href="/zodiac.html">12星座の性格一覧</a></p>`,
+      ].join('\n')
+      pages.push({ lang: jaLang, file: file(i), title, description: `${names[i]}(${period(i)}生まれ)の性格・強み・恋愛・仕事・相性の良い星座を解説します。${x.summary}`.slice(0, 150), breadcrumb: [readingsCrumb, { name: '12星座', href: '/zodiac.html' }, { name: names[i] }], body, jsonLd: articleLd(title, 'ja') })
+    }
+    hubPage({ file: 'zodiac.html', data: g, gridHeading: '12星座', grid: grid(null), extra: [
+      renderSection({ heading: '誕生日と星座の一覧', table: { head: ['星座', '期間', 'エレメント'], rows: names.map((n, i) => [n, period(i), rd.zodiac.elements[ZODIAC_ELEMENT[i]]]) } }),
+      cta({ text: '誕生日を入れるだけで、星座と誕生石がわかります', href: '/#/zodiac', label: '星座占いをする' }),
+    ] })
+  }
+
+  // タロット
+  {
+    const g = guides.tarot
+    const cards = rd.tarot.cards
+    const file = (i) => `tarot-${g.cards[i].slug}.html`
+    const grid = (current) => gridOf(cards.map((c, i) => ({ key: i, href: `/${file(i)}`, big: String(i), small: c.name })), current)
+    for (let i = 0; i < cards.length; i += 1) {
+      const c = cards[i]
+      const x = g.cards[i]
+      const title = `タロット「${c.name}」の意味|正位置・逆位置・恋愛・仕事`
+      const body = [
+        `      <p class="eyebrow">タロットカードの意味・大アルカナ${i}番</p>`,
+        `      <h1>${esc(c.name)}<span>${esc(x.english)}</span></h1>`,
+        keywordsHtml(c.keywords),
+        `      <p class="lead">${esc(x.summary)}</p>`,
+        renderSection({ heading: '正位置の意味', paragraphs: [c.upright] }),
+        renderSection({ heading: '逆位置の意味', paragraphs: [c.reversed] }),
+        renderSection({ heading: '恋愛での意味', paragraphs: [x.love] }),
+        renderSection({ heading: '仕事での意味', paragraphs: [x.work] }),
+        renderSection({ heading: `「${c.name}」からのアドバイス`, paragraphs: [c.advice] }),
+        cta({ text: '今のあなたへのメッセージを、タロットで1枚引いてみましょう', href: '/#/tarot', label: 'タロット占いをする' }),
+        `      <h2>大アルカナ22枚の意味</h2>`,
+        grid(i),
+        `      <p><a href="/tarot.html">タロットカードの意味一覧</a></p>`,
+      ].join('\n')
+      pages.push({ lang: jaLang, file: file(i), title, description: `タロットカード大アルカナ${i}番「${c.name}」の意味。${x.summary}正位置・逆位置・恋愛・仕事での意味を解説します。`.slice(0, 150), breadcrumb: [readingsCrumb, { name: 'タロット', href: '/tarot.html' }, { name: c.name }], body, jsonLd: articleLd(title, 'ja') })
+    }
+    hubPage({ file: 'tarot.html', data: g, gridHeading: '大アルカナ22枚', grid: grid(null), extra: [
+      renderSection({ heading: 'カードのキーワード一覧', table: { head: ['番号・カード', 'キーワード'], rows: cards.map((c, i) => [`${i} ${c.name}`, c.keywords.join('・')]) } }),
+      cta({ text: '今のあなたへのメッセージを、タロットで1枚引いてみましょう', href: '/#/tarot', label: 'タロット占いをする' }),
+    ] })
   }
 }
 

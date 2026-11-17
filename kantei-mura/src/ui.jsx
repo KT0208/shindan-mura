@@ -74,6 +74,13 @@ export function AmazonLink({ keyword, label = 'Amazonで見る', place }) {
   )
 }
 
+// 鑑定結果の下に出す、くわしい解説ページへのリンク(日本語ページだけ)
+export function GuideLink({ href, label }) {
+  const t = useDictionary()
+  if (t.code !== 'ja') return null
+  return <a className="guide-link" href={href}>📖 {label} →</a>
+}
+
 // 結果の下に出す、姉妹サイト「診断村」の案内カード(1つだけ)
 export function SisterCard({ page }) {
   const t = useDictionary()
