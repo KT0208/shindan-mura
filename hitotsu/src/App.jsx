@@ -38,6 +38,7 @@ const ERRORS = {
   invalid_input: '入力が足りない項目があります。お名前と、思い出を2つ以上ご記入ください。',
   too_many_requests: '短い時間に多くの贈り物が作成されました。少し時間をおいてから、もう一度お試しください。',
   not_found: 'この贈り物は見つかりませんでした。リンクが正しいかご確認ください。',
+  invalid_delivery: 'メールアドレスか日時が正しくありません。日時は、今より先で1年以内を指定してください。',
   payment_unavailable: 'お支払いページを開けませんでした。少し時間をおいてお試しください。',
 }
 
@@ -71,6 +72,20 @@ function rememberGift(entry) {
 
 const giftUrl = (id) => `${window.location.origin}/?id=${id}`
 const ownerUrl = (id, key) => `/?id=${id}&key=${key}`
+// 日付入力(<input type="date">)用の YYYY-MM-DD。days 日後の日付を返す
+function dateInput(days = 0) {
+  const d = new Date(Date.now() + days * 86400000)
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+}
+
+// '2027-03-01 00:00:00' → '2027年3月1日 0:00'
+function formatSchedule(at) {
+  const [date, time] = at.split(/[ T]/)
+  const [y, m, d] = date.split('-').map(Number)
+  const [h, min] = time.split(':')
+  return `${y}年${m}月${d}日 ${Number(h)}:${min}`
+}
+
 const yen = (n) => `${Number(n).toLocaleString('ja-JP')}円`
 
 // 写真を送る前に、長い辺 1400px の JPEG に縮める(通信量と保存容量を抑える)
@@ -352,6 +367,8 @@ function CreatePage() {
           <dd>作成と試し遊びは無料です。内容を確かめて、相手に贈るときにだけお支払いいただきます。スタンダード（3章・写真3枚まで）は {yen(SITE.plans.standard.price)}、プレミアム（4章・写真10枚まで）は {yen(SITE.plans.premium.price)} です（いずれも税込）。</dd>
           <dt>写真は入れなくても作れますか？</dt>
           <dd>作れます。写真がない章は、言葉だけで進みます。添えた写真は相手に見せるためだけに使い、AI には送りません。</dd>
+          <dt>誕生日の0時ちょうどに届けられますか？</dt>
+          <dd>はい。お支払いの前に「日時を予約する」を選ぶと、決めた日時にメールで自動的にお届けします。1年先まで予約できます。</dd>
           <dt>相手は何か準備が必要ですか？</dt>
           <dd>必要ありません。届いたリンクをスマートフォンで開くだけで遊べます。アプリや会員登録はいりません。</dd>
           <dt>どんな支払い方法が使えますか？</dt>
@@ -396,6 +413,8 @@ function OwnerPage({ id, editKey, justPaid }) {
   const [playing, setPlaying] = useState(false)
   const [paying, setPaying] = useState(false)
   const [payError, setPayError] = useState('')
+  // 届け方: link = 自分でリンクを送る / email = 日時を指定してメールで届ける
+  const [delivery, setDelivery] = useState({ mode: 'link', email: '', date: '', time: '00:00' })
 
   if (state.loading) return <Loading />
   if (state.error) return <ErrorPanel text={state.error} />
@@ -410,13 +429,17 @@ function OwnerPage({ id, editKey, justPaid }) {
       const data = await api('checkout.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, key: editKey }),
+        body: JSON.stringify({
+          id,
+          key: editKey,
+          delivery: delivery.mode === 'email' ? { mode: 'email', email: delivery.email.trim(), at: `${delivery.date}T${delivery.time}` } : { mode: 'link' },
+        }),
       })
       if (data.url) {
         window.location.href = data.url
         return
       }
-      setState({ gift: { ...gift, status: data.status } })
+      setState({ gift: { ...gift, status: data.status, deliverAt: data.deliverAt, deliverEmail: data.deliverEmail } })
     } catch (err) {
       setPayError(errorText(err.message))
     }
@@ -424,6 +447,7 @@ function OwnerPage({ id, editKey, justPaid }) {
   }
 
   const paid = gift.status === 'paid'
+  const scheduleReady = delivery.mode === 'link' || (delivery.email.trim() && delivery.date && delivery.time)
 
   return (
     <section className="panel narrow center">
@@ -450,8 +474,42 @@ function OwnerPage({ id, editKey, justPaid }) {
           <button className="button secondary wide" onClick={() => setPlaying(true)}>
             試しに遊んでみる（無料）
           </button>
-          <button className="button primary wide" onClick={pay} disabled={paying}>
-            {paying ? 'お支払いページを開いています…' : `${yen(gift.price)}で${gift.recipientName}さんに贈る`}
+          <fieldset className="delivery">
+            <legend>届け方</legend>
+            <div className="plans">
+              <button type="button" className={delivery.mode === 'link' ? 'plan on' : 'plan'} aria-pressed={delivery.mode === 'link'} onClick={() => setDelivery({ ...delivery, mode: 'link' })}>
+                <b>自分で送る</b>
+                <span>リンクを LINE などで、好きなときに送ります</span>
+              </button>
+              <button type="button" className={delivery.mode === 'email' ? 'plan on' : 'plan'} aria-pressed={delivery.mode === 'email'} onClick={() => setDelivery({ ...delivery, mode: 'email' })}>
+                <b>日時を予約する</b>
+                <span>決めた日時に、メールで自動的にお届けします</span>
+              </button>
+            </div>
+            {delivery.mode === 'email' && (
+              <div className="form schedule">
+                <label>
+                  <span>お相手のメールアドレス</span>
+                  <input type="email" value={delivery.email} onChange={(e) => setDelivery({ ...delivery, email: e.target.value })} placeholder="例：saki@example.com" autoComplete="off" />
+                </label>
+                <div className="field-row">
+                  <label>
+                    <span>届ける日</span>
+                    <input type="date" value={delivery.date} min={dateInput()} max={dateInput(SITE.scheduleMaxDays)} onChange={(e) => setDelivery({ ...delivery, date: e.target.value })} />
+                  </label>
+                  <label>
+                    <span>時刻<i>日本時間</i></span>
+                    <input type="time" value={delivery.time} onChange={(e) => setDelivery({ ...delivery, time: e.target.value })} />
+                  </label>
+                </div>
+                <p className="hint">
+                  1年先まで予約できます。メールは指定の時刻から数分以内に送られます。迷惑メールに振り分けられる場合に備えて、お支払い後に表示されるリンクも控えておくと安心です。
+                </p>
+              </div>
+            )}
+          </fieldset>
+          <button className="button primary wide" onClick={pay} disabled={paying || !scheduleReady}>
+            {paying ? 'お支払いページを開いています…' : delivery.mode === 'email' ? `${yen(gift.price)}で予約する` : `${yen(gift.price)}で${gift.recipientName}さんに贈る`}
           </button>
           {payError && <p className="error">{payError}</p>}
           <p className="hint">
@@ -490,11 +548,24 @@ function SharePanel({ gift, justPaid }) {
 
   return (
     <>
-      <p className="serif">
-        {justPaid ? 'ありがとうございます。贈り物の準備が整いました。' : '贈り物の準備は整っています。'}
-        <br />
-        下のリンクを、{gift.recipientName}さんにお送りください。
-      </p>
+      {gift.deliverAt ? (
+        <>
+          <p className="serif">
+            {gift.deliveredAt ? `${formatSchedule(gift.deliveredAt)} に、メールでお届けしました。` : 'ご予約を承りました。'}
+          </p>
+          <ul className="summary">
+            <li><span>届ける日時</span>{formatSchedule(gift.deliverAt)}</li>
+            <li><span>宛先</span>{gift.deliverEmail}</li>
+          </ul>
+          <p className="hint">下のリンクからも同じ贈り物を開けます。メールが届かなかったときのために、控えておいてください。</p>
+        </>
+      ) : (
+        <p className="serif">
+          {justPaid ? 'ありがとうございます。贈り物の準備が整いました。' : '贈り物の準備は整っています。'}
+          <br />
+          下のリンクを、{gift.recipientName}さんにお送りください。
+        </p>
+      )}
       <div className="share-url">{url}</div>
       <button className="button primary wide" onClick={copy}>{copied ? 'コピーしました' : 'リンクをコピー'}</button>
       <a className="button line wide" href={`https://line.me/R/msg/text/?${encodeURIComponent(`${text}\n${url}`)}`} target="_blank" rel="noreferrer">

@@ -28,6 +28,14 @@ return [
     'price_standard_jpy' => 500,
     'price_premium_jpy' => 1000,
 
+    // 予約送信(メール)
+    // mail_from: 送信元のメールアドレス。サイトと同じドメインのもの(例 gift@hitotsu.gift)をサーバーで作って入れる
+    'mail_from' => '',
+    // 何日先まで予約できるか
+    'schedule_max_days' => 365,
+    // send-scheduled.php をURLから呼ぶときの合言葉(cron から php コマンドで動かすなら空でよい)
+    'cron_token' => '',
+
     // 1つのIPアドレスから1時間に作れるゲームの数(AI 代の使いすぎ防止)
     'create_limit_per_hour' => 6,
 ];

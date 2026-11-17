@@ -1,5 +1,6 @@
 <?php
-// POST {id, key} -> Stripe の支払いページURLを返す。
+// POST {id, key, delivery?} -> Stripe の支払いページURLを返す。
+// delivery = {mode: 'email', email, at} なら、支払い後に指定の日時でメールを送る(予約送信)。
 // Stripe の鍵が未設定なら(動作確認用)支払いなしで送れる状態にする。
 declare(strict_types=1);
 require __DIR__ . '/lib.php';
@@ -13,10 +14,15 @@ if (gift_sync_payment($gift)) {
     gift_ok(['status' => 'paid']);
 }
 
+// 届け方を保存する(支払い前なら何度でも選び直せる)
+$delivery = gift_parse_delivery($body['delivery'] ?? null);
+gift_db()->prepare('UPDATE gifts SET deliver_email = ?, deliver_at = ? WHERE id = ?')
+    ->execute([$delivery['email'] ?? null, $delivery['at'] ?? null, $gift['id']]);
+
 $config = gift_config();
 if ((string) ($config['stripe_secret_key'] ?? '') === '') {
     gift_mark_paid($gift);
-    gift_ok(['status' => 'paid', 'free' => true]);
+    gift_ok(['status' => 'paid', 'free' => true, 'deliverAt' => $delivery['at'] ?? null, 'deliverEmail' => $delivery ? gift_mask_email($delivery['email']) : null]);
 }
 
 // 前に作った支払いページがまだ使えるならそれを返す(二重の支払いページで入金を見失わないように)

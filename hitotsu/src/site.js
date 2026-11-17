@@ -2,6 +2,8 @@
 export const SITE = {
   name: import.meta.env.VITE_SITE_NAME,
   nameLatin: import.meta.env.VITE_SITE_NAME_LATIN,
+  // 予約送信で指定できる最長の日数(サーバー側 config.php の schedule_max_days と合わせること)
+  scheduleMaxDays: 365,
   // プラン。chapters = 章の数、extra = スライドショーだけに出る写真の枚数
   // (価格と枚数はサーバー側 server/api/lib.php・config.php と合わせること)
   plans: {

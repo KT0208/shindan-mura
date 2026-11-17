@@ -56,6 +56,9 @@ function view(gift, owner) {
     senderName: gift.input.senderName,
     game: gift.game,
     plan: gift.input.plan,
+    deliverAt: owner ? gift.deliverAt || null : null,
+    deliverEmail: owner ? gift.deliverEmail || null : null,
+    deliveredAt: null,
     price: PLANS[gift.input.plan].price,
   }
 }
@@ -89,8 +92,15 @@ export function devApi() {
           const body = await readJson(req)
           const gift = gifts.get(body.id)
           if (!gift || body.key !== gift.key) return send(res, 404, { error: 'not_found' })
+          // 開発用: 予約の内容を覚えるだけで、メールは送らない
+          const d = body.delivery
+          if (d?.mode === 'email') {
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email || '') || !(new Date(d.at) > new Date())) return send(res, 400, { error: 'invalid_delivery' })
+            gift.deliverAt = `${d.at.replace('T', ' ')}:00`
+            gift.deliverEmail = `${d.email.slice(0, 2)}***@${d.email.split('@')[1]}`
+          }
           gift.status = 'paid'
-          return send(res, 200, { status: 'paid', free: true })
+          return send(res, 200, { status: 'paid', free: true, deliverAt: gift.deliverAt || null, deliverEmail: gift.deliverEmail || null })
         }
         return send(res, 404, { error: 'not_found' })
       })

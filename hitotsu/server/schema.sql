@@ -12,5 +12,11 @@ CREATE TABLE IF NOT EXISTS gifts (
   opened_count INT UNSIGNED NOT NULL DEFAULT 0,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   paid_at DATETIME NULL,
-  KEY idx_ip_created (creator_ip, created_at)
+  -- 予約送信(メール)。deliver_at は日本時間。未指定なら NULL
+  deliver_email VARCHAR(255) NULL,
+  deliver_at DATETIME NULL,
+  delivered_at DATETIME NULL,
+  deliver_attempts TINYINT UNSIGNED NOT NULL DEFAULT 0,
+  KEY idx_ip_created (creator_ip, created_at),
+  KEY idx_deliver (delivered_at, deliver_at)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

@@ -147,6 +147,13 @@ main { padding: 0 20px; }
 .extra button { position: absolute; top: -8px; right: -8px; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--line); background: #fff; color: var(--muted); font-size: 13px; line-height: 1; cursor: pointer; padding: 0; }
 .extra button:hover { color: var(--ink); border-color: var(--ink); }
 
+/* 届け方(作った人のページ) */
+.delivery { border: 0; padding: 0; margin: 26px 0 6px; min-width: 0; text-align: left; }
+.delivery legend { font-size: 13px; font-weight: 700; letter-spacing: .08em; margin-bottom: 10px; padding: 0; }
+.schedule { margin-top: 18px; }
+.schedule label { margin-bottom: 14px; }
+.form input[type='date'], .form input[type='time'] { min-height: 50px; -webkit-appearance: none; appearance: none; }
+
 /* 作成フォームの思い出ブロック */
 .memory { border-top: 1px solid var(--line); padding: 16px 0 8px; }
 .memory-no { font-family: var(--serif); font-size: 14px; color: var(--gold); letter-spacing: .2em; margin-bottom: 8px; }

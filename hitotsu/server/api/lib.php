@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
+// 予約送信の日時はすべて日本時間で扱う
+date_default_timezone_set('Asia/Tokyo');
 
 const GIFT_RELATIONS = ['partner' => '恋人・パートナー', 'friend' => '友だち', 'family' => '家族', 'coworker' => '職場の人', 'new' => '最近知り合った人'];
 const GIFT_TONES = ['sweet' => '甘くてやさしい', 'funny' => 'わいわい楽しい', 'thanks' => 'まじめに感謝', 'casual' => 'ゆるくて気楽'];
@@ -371,6 +373,56 @@ function gift_find(string $id): ?array
 function gift_owns(array $gift, string $key): bool
 {
     return $key !== '' && hash_equals($gift['edit_key'], $key);
+}
+
+// 予約送信の指定を検証する。「自分でリンクを送る」なら null。問題があれば 400 で終わる。
+// 受け取る形: {mode: 'email', email: '...', at: '2027-03-01T00:00'}(日時は日本時間)
+function gift_parse_delivery(mixed $delivery): ?array
+{
+    if (!is_array($delivery) || ($delivery['mode'] ?? 'link') !== 'email') {
+        return null;
+    }
+    $email = trim((string) ($delivery['email'] ?? ''));
+    $at = DateTime::createFromFormat('Y-m-d\TH:i', (string) ($delivery['at'] ?? ''));
+    $maxDays = (int) (gift_config()['schedule_max_days'] ?? 365);
+    if (strlen($email) > 254 || !filter_var($email, FILTER_VALIDATE_EMAIL) || $at === false
+        || $at < new DateTime('+5 minutes') || $at > new DateTime("+{$maxDays} days")) {
+        gift_fail(400, 'invalid_delivery');
+    }
+    return ['email' => $email, 'at' => $at->format('Y-m-d H:i:00')];
+}
+
+// 作った人の画面に出す用に、メールアドレスの一部を伏せる(sa***@example.com)
+function gift_mask_email(string $email): string
+{
+    [$name, $domain] = array_pad(explode('@', $email, 2), 2, '');
+    return mb_substr($name, 0, 2) . '***@' . $domain;
+}
+
+// 予約した相手に、贈り物のリンクをメールで送る。送れたら true。
+function gift_send_delivery_mail(array $gift): bool
+{
+    $config = gift_config();
+    $from = (string) ($config['mail_from'] ?? '');
+    if ($from === '' || !function_exists('mb_send_mail')) {
+        error_log('gift: mail_from is not configured');
+        return false;
+    }
+    $input = json_decode($gift['input_json'], true);
+    $site = (string) ($config['site_name'] ?? 'ひとつ');
+    $sender = ($input['senderName'] ?? '') !== '' ? "{$input['senderName']}さん" : 'ある方';
+    $url = rtrim($config['site_url'], '/') . '/?id=' . $gift['id'];
+    $subject = "{$sender}から、贈り物が届いています";
+    $body = "{$input['recipientName']}さんへ\n\n"
+        . "{$sender}から、あなたのためだけに作られた贈り物が届いています。\n"
+        . "下のリンクを開いて、受け取ってください。\n\n{$url}\n\n"
+        . "――\n{$site}\n"
+        . "このメールは、贈り主が指定した日時に自動でお送りしています。\n"
+        . "お心当たりがない場合は、このメールを破棄してください。\n";
+    mb_language('uni');
+    mb_internal_encoding('UTF-8');
+    $headers = 'From: ' . mb_encode_mimeheader($site) . " <{$from}>";
+    return mb_send_mail($gift['deliver_email'], $subject, $body, $headers, '-f' . $from);
 }
 
 // Stripe API を叩く(SDKを入れずに curl で呼ぶ)

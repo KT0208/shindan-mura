@@ -27,5 +27,9 @@ gift_ok([
     'senderName' => $input['senderName'] ?? '',
     'game' => json_decode($gift['game_json'], true),
     'plan' => $input['plan'] ?? 'standard',
+    // 予約送信の情報は作った人にだけ返す
+    'deliverAt' => $owner ? $gift['deliver_at'] : null,
+    'deliverEmail' => $owner && $gift['deliver_email'] ? gift_mask_email($gift['deliver_email']) : null,
+    'deliveredAt' => $owner ? $gift['delivered_at'] : null,
     'price' => gift_price($input['plan'] ?? 'standard'),
 ]);
