@@ -1,10 +1,10 @@
 <?php
-// POST {recipientName, senderName, relation, tone, occasion, memories[{text, photo}], message}
+// POST {plan, recipientName, senderName, relation, tone, occasion, memories[{text, photo}], extraPhotos[], message}
 // -> AIでゲームを作って保存し {id, key, game, status} を返す。作成とプレビューは無料。
 declare(strict_types=1);
 require __DIR__ . '/lib.php';
 
-[$input, $photos] = gift_parse_input(gift_require_post());
+[$input, $photos, $extras] = gift_parse_input(gift_require_post());
 $config = gift_config();
 $ip = gift_client_ip();
 
@@ -27,7 +27,9 @@ $key = gift_random(16);
 foreach ($game['stages'] as $i => $stage) {
     $game['stages'][$i]['photo'] = gift_save_photo($photos[$i] ?? '', $id);
 }
+// スライドショーだけに出る写真(プレミアムのみ)
+$game['album'] = array_values(array_filter(array_map(fn ($p) => gift_save_photo($p, $id), $extras)));
 gift_db()->prepare('INSERT INTO gifts (id, edit_key, status, input_json, game_json, source, creator_ip) VALUES (?, ?, ?, ?, ?, ?, ?)')
     ->execute([$id, $key, 'draft', json_encode($input, JSON_UNESCAPED_UNICODE), json_encode($game, JSON_UNESCAPED_UNICODE), $source, $ip]);
 
-gift_ok(['id' => $id, 'key' => $key, 'status' => 'draft', 'source' => $source, 'game' => $game, 'price' => (int) $config['price_jpy']]);
+gift_ok(['id' => $id, 'key' => $key, 'status' => 'draft', 'source' => $source, 'game' => $game, 'plan' => $input['plan'], 'price' => gift_price($input['plan'])]);

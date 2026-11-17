@@ -44,6 +44,8 @@ main { padding: 0 20px; }
 .hero h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(32px, 8.4vw, 50px); line-height: 1.5; letter-spacing: .12em; margin-top: 18px; }
 .lead { color: var(--muted); font-size: 15px; line-height: 2.2; margin-bottom: 34px; }
 @media (max-width: 480px) { .lead { font-size: 14px; letter-spacing: 0; } }
+/* 文の区切りでだけ折り返す */
+.lead span { display: inline-block; }
 .hero-note { font-size: 12px; color: var(--muted); margin-top: 14px; }
 
 /* セクション */
@@ -130,6 +132,20 @@ main { padding: 0 20px; }
 .envelope::after { right: 0; transform: rotate(56.5deg); }
 .envelope-seal { position: absolute; left: 50%; top: 56px; width: 34px; height: 34px; margin-left: -17px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #c9ab74, #94753f); box-shadow: 0 2px 5px rgba(60, 45, 20, .3), inset 0 0 0 4px rgba(255, 255, 255, .16); z-index: 1; }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+
+/* プラン選択 */
+.plans { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.plan { font: inherit; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 2px; padding: 16px 10px; cursor: pointer; display: grid; gap: 2px; text-align: center; font-size: 12px; line-height: 1.7; }
+.plan b { font-family: var(--serif); font-size: 15px; letter-spacing: .12em; }
+.plan-price { font-family: var(--serif); font-size: 22px; color: var(--gold); }
+.plan:hover { border-color: var(--gold); }
+.plan.on { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); background: var(--soft); }
+.plan-hint { margin: 12px 0 0; }
+.extras { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.extra { position: relative; }
+.extra img { display: block; width: 72px; height: 72px; object-fit: cover; border: 1px solid var(--line); padding: 3px; background: #fff; }
+.extra button { position: absolute; top: -8px; right: -8px; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--line); background: #fff; color: var(--muted); font-size: 13px; line-height: 1; cursor: pointer; padding: 0; }
+.extra button:hover { color: var(--ink); border-color: var(--ink); }
 
 /* 作成フォームの思い出ブロック */
 .memory { border-top: 1px solid var(--line); padding: 16px 0 8px; }

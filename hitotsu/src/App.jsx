@@ -30,8 +30,9 @@ const MEMORY_HINTS = [
   '例：初めて会ったのは、大学のサークルの新歓だった',
   '例：去年の夏、ふたりで花火を見に行った',
   '例：落ち込んだとき、いつも黙って隣にいてくれる',
+  '例：これからも、毎年いっしょに桜を見たい',
 ]
-const CHAPTERS = ['一', '二', '三']
+const CHAPTERS = ['一', '二', '三', '四']
 
 const ERRORS = {
   invalid_input: '入力が足りない項目があります。お名前と、思い出を2つ以上ご記入ください。',
@@ -62,7 +63,7 @@ function readMyGifts() {
 function rememberGift(entry) {
   try {
     const list = readMyGifts().filter((g) => g.id !== entry.id)
-    localStorage.setItem(MY_GIFTS_KEY, JSON.stringify([entry, ...list].slice(0, 20)))
+    localStorage.setItem(MY_GIFTS_KEY, JSON.stringify([{ ...entry, at: Date.now() }, ...list].slice(0, 20)))
   } catch {
     // 保存できなくても続ける(プライベートモードなど)
   }
@@ -121,12 +122,14 @@ function Ornament() {
 
 function CreatePage() {
   const [form, setForm] = useState({
+    plan: 'standard',
+    extraPhotos: [],
     recipientName: '',
     senderName: '',
     relation: 'friend',
     tone: 'sweet',
     occasion: 'birthday',
-    memories: [{ text: '', photo: null }, { text: '', photo: null }, { text: '', photo: null }],
+    memories: [0, 1, 2, 3].map(() => ({ text: '', photo: null })),
     message: '',
   })
   const [loading, setLoading] = useState(false)
@@ -134,9 +137,22 @@ function CreatePage() {
   const myGifts = readMyGifts()
 
   const set = (field) => (e) => setForm({ ...form, [field]: e.target.value })
+  const plan = SITE.plans[form.plan]
+  const memories = form.memories.slice(0, plan.chapters)
+  // 写真の読み込み中に入力が進んでも消えないよう、最新の状態をもとに更新する
   const setMemory = (i, patch) => {
-    const memories = form.memories.map((m, j) => (j === i ? { ...m, ...patch } : m))
-    setForm({ ...form, memories })
+    setForm((f) => ({ ...f, memories: f.memories.map((m, j) => (j === i ? { ...m, ...patch } : m)) }))
+  }
+  async function addExtras(files) {
+    setError('')
+    for (const file of [...files]) {
+      try {
+        const photo = await resizePhoto(file)
+        setForm((f) => (f.extraPhotos.length < plan.extra ? { ...f, extraPhotos: [...f.extraPhotos, photo] } : f))
+      } catch {
+        setError('読み込めない写真がありました。別の写真（JPEG・PNG）でお試しください。')
+      }
+    }
   }
   async function pickPhoto(i, file) {
     if (!file) return
@@ -147,7 +163,7 @@ function CreatePage() {
       setError('この写真は読み込めませんでした。別の写真（JPEG・PNG）でお試しください。')
     }
   }
-  const filled = form.memories.filter((m) => m.text.trim()).length
+  const filled = memories.filter((m) => m.text.trim()).length
   const canSubmit = form.recipientName.trim() && filled >= 2 && !loading
 
   async function submit(e) {
@@ -160,10 +176,14 @@ function CreatePage() {
       const data = await api('create.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, memories: form.memories.filter((m) => m.text.trim()) }),
+        body: JSON.stringify({
+          ...form,
+          memories: memories.filter((m) => m.text.trim()),
+          extraPhotos: form.extraPhotos.slice(0, plan.extra),
+        }),
       })
-      rememberGift({ id: data.id, key: data.key, to: form.recipientName.trim(), at: Date.now() })
-      window.location.href = ownerUrl(data.id, data.key)
+      rememberGift({ id: data.id, key: data.key, to: form.recipientName.trim() })
+      window.location.assign(ownerUrl(data.id, data.key))
     } catch (err) {
       setError(errorText(err.message))
       setLoading(false)
@@ -191,9 +211,9 @@ function CreatePage() {
         </h1>
         <Ornament />
         <p className="lead">
-三つの思い出と写真を、その人のためだけのゲームに。
+          <span>ふたりの思い出と写真を、</span><span>その人のためだけのゲームに。</span>
           <br />
-          最後に、音楽とともに写真と言葉が届きます。
+          <span>最後に、音楽とともに</span><span>写真と言葉が届きます。</span>
         </p>
         <a className="button primary" href="#create">贈り物をつくる</a>
         <p className="hero-note">作成と試し遊びは無料です</p>
@@ -205,12 +225,12 @@ function CreatePage() {
           <li>
             <b>01</b>
             <h3>思い出を書く</h3>
-            <p>ふたりだけが知っている思い出を三つ。それぞれに写真を一枚ずつ添えられます。</p>
+            <p>ふたりだけが知っている思い出を三つ。それぞれに写真を一枚ずつ添えられます。プレミアムなら四つ、写真は十枚まで。</p>
           </li>
           <li>
             <b>02</b>
             <h3>試しに遊ぶ</h3>
-            <p>思い出が三章のゲームになります。どの答えを選んでも、あなたの気持ちが言葉になって返ります。</p>
+            <p>思い出が、章立てのゲームになります。どの答えを選んでも、あなたの気持ちが言葉になって返ります。</p>
           </li>
           <li>
             <b>03</b>
@@ -223,6 +243,20 @@ function CreatePage() {
       <section className="section" id="create">
         <h2 className="section-title"><span>Create</span>贈り物をつくる</h2>
         <form className="panel form" onSubmit={submit}>
+          <fieldset>
+            <legend>プラン</legend>
+            <div className="plans">
+              {Object.entries(SITE.plans).map(([id, p]) => (
+                <button type="button" key={id} className={id === form.plan ? 'plan on' : 'plan'} aria-pressed={id === form.plan} onClick={() => setForm({ ...form, plan: id })}>
+                  <b>{p.label}</b>
+                  <span className="plan-price">{yen(p.price)}</span>
+                  <span>{p.chapters}章・写真{p.chapters + p.extra}枚まで</span>
+                </button>
+              ))}
+            </div>
+            <p className="hint plan-hint">どちらも、作成と試し遊びは無料です。あとからプランは変えられないため、写真をたくさん贈りたい場合はプレミアムをお選びください。</p>
+          </fieldset>
+
           <div className="field-row">
             <label>
               <span>贈る相手のお名前<em>必須</em></span>
@@ -239,13 +273,13 @@ function CreatePage() {
           <ChoiceGroup label="贈るきっかけ" options={OCCASIONS} value={form.occasion} onChange={(v) => setForm({ ...form, occasion: v })} />
 
           <fieldset>
-            <legend>三つの思い出<em>2つ以上</em></legend>
+            <legend>{plan.chapters === 4 ? '四つ' : '三つ'}の思い出<em>2つ以上</em></legend>
             <p className="hint">
               思い出ひとつが、ゲームの一章になります。写真を添えると、その章を終えたときに一枚ずつ開き、最後に音楽つきのスライドショーになります。
             </p>
-            {form.memories.map((m, i) => (
+            {memories.map((m, i) => (
               <div className="memory" key={i}>
-                <p className="memory-no">第{CHAPTERS[i]}章{i === 2 && <i>なくても作れます</i>}</p>
+                <p className="memory-no">第{CHAPTERS[i]}章{i >= 2 && <i>なくても作れます</i>}</p>
                 <input value={m.text} onChange={(e) => setMemory(i, { text: e.target.value })} maxLength={120} placeholder={MEMORY_HINTS[i]} aria-label={`思い出 ${i + 1}`} />
                 {m.photo ? (
                   <div className="memory-photo">
@@ -262,6 +296,27 @@ function CreatePage() {
             ))}
           </fieldset>
 
+          {plan.extra > 0 && (
+            <fieldset>
+              <legend>スライドショーだけの写真<i>最大{plan.extra}枚</i></legend>
+              <p className="hint">ゲームの途中では見せず、最後のスライドショーで初めて流れる写真です。</p>
+              <div className="extras">
+                {form.extraPhotos.slice(0, plan.extra).map((src, i) => (
+                  <div className="extra" key={i}>
+                    <img src={src} alt="" />
+                    <button type="button" aria-label="この写真を外す" onClick={() => setForm((f) => ({ ...f, extraPhotos: f.extraPhotos.filter((_, j) => j !== i) }))}>×</button>
+                  </div>
+                ))}
+                {form.extraPhotos.length < plan.extra && (
+                  <label className="photo-picker">
+                    <input type="file" accept="image/*" multiple onChange={(e) => { addExtras(e.target.files); e.target.value = '' }} />
+                    ＋ 写真を追加
+                  </label>
+                )}
+              </div>
+            </fieldset>
+          )}
+
           <label>
             <span>最後に届けるメッセージ<i>空欄の場合は、思い出をもとに作成します</i></span>
             <textarea value={form.message} onChange={set('message')} maxLength={400} rows={4} placeholder="例：誕生日おめでとう。今年もたくさん笑って過ごそうね。" />
@@ -272,7 +327,7 @@ function CreatePage() {
           <button className="button primary wide" type="submit" disabled={!canSubmit}>
             無料でつくってみる
           </button>
-          <p className="price-note">作成と試し遊びは無料。贈るときだけ {yen(SITE.price)}（税込）です。</p>
+          <p className="price-note">作成と試し遊びは無料。贈るときだけ {yen(plan.price)}（税込）です。</p>
         </form>
       </section>
 
@@ -294,7 +349,7 @@ function CreatePage() {
         <h2 className="section-title"><span>Q &amp; A</span>よくあるご質問</h2>
         <dl className="faq">
           <dt>料金はいつかかりますか？</dt>
-          <dd>作成と試し遊びは無料です。内容を確かめて、相手に贈るときにだけ {yen(SITE.price)}（税込）をお支払いいただきます。</dd>
+          <dd>作成と試し遊びは無料です。内容を確かめて、相手に贈るときにだけお支払いいただきます。スタンダード（3章・写真3枚まで）は {yen(SITE.plans.standard.price)}、プレミアム（4章・写真10枚まで）は {yen(SITE.plans.premium.price)} です（いずれも税込）。</dd>
           <dt>写真は入れなくても作れますか？</dt>
           <dd>作れます。写真がない章は、言葉だけで進みます。添えた写真は相手に見せるためだけに使い、AI には送りません。</dd>
           <dt>相手は何か準備が必要ですか？</dt>
@@ -388,7 +443,8 @@ function OwnerPage({ id, editKey, justPaid }) {
           {justPaid && <p className="notice">お支払いの確認がまだ取れていません。少し待ってから、ページを読み込み直してください。</p>}
           <ul className="summary">
             <li><span>章</span>{gift.game.stages.length}章</li>
-            <li><span>写真</span>{gift.game.stages.filter((st) => st.photo).length}枚</li>
+            <li><span>写真</span>{gift.game.stages.filter((st) => st.photo).length + (gift.game.album?.length || 0)}枚</li>
+            <li><span>プラン</span>{SITE.plans[gift.plan]?.label}（{yen(gift.price)}）</li>
             <li><span>贈る称号</span>{gift.game.badge.name}</li>
           </ul>
           <button className="button secondary wide" onClick={() => setPlaying(true)}>
@@ -612,6 +668,8 @@ function Slideshow({ gift, onMute, onDone }) {
   const slides = [
     { kind: 'title', seconds: 5 },
     ...game.stages.map((s) => ({ kind: 'memory', photo: s.photo, caption: s.caption, seconds: 7 })),
+    // スライドショーだけに出る写真(プレミアム)
+    ...(game.album || []).map((photo) => ({ kind: 'memory', photo, caption: '', seconds: 5 })),
     { kind: 'message', seconds: 11 },
   ]
   const [index, setIndex] = useState(0)

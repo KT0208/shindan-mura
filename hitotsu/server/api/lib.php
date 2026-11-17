@@ -7,6 +7,8 @@ header('Cache-Control: no-store');
 
 const GIFT_RELATIONS = ['partner' => '恋人・パートナー', 'friend' => '友だち', 'family' => '家族', 'coworker' => '職場の人', 'new' => '最近知り合った人'];
 const GIFT_TONES = ['sweet' => '甘くてやさしい', 'funny' => 'わいわい楽しい', 'thanks' => 'まじめに感謝', 'casual' => 'ゆるくて気楽'];
+// プラン: chapters = 章の数(= 思い出の数の上限)、extra = スライドショーだけに出る写真の枚数
+const GIFT_PLANS = ['standard' => ['chapters' => 3, 'extra' => 0], 'premium' => ['chapters' => 4, 'extra' => 6]];
 const GIFT_OCCASIONS = ['birthday' => '誕生日', 'anniversary' => '記念日', 'thanks' => 'ありがとう', 'farewell' => 'おわかれ・門出', 'valentine' => 'バレンタイン・ホワイトデー', 'none' => '特になし'];
 
 function gift_config(): array
@@ -20,6 +22,13 @@ function gift_config(): array
         $config = require $path;
     }
     return $config;
+}
+
+// プランごとの価格(円)。設定ファイルに無ければ 500円 / 1000円
+function gift_price(string $plan): int
+{
+    $config = gift_config();
+    return $plan === 'premium' ? (int) ($config['price_premium_jpy'] ?? 1000) : (int) ($config['price_standard_jpy'] ?? 500);
 }
 
 function gift_fail(int $status, string $error): void
@@ -85,11 +94,13 @@ function gift_clean(mixed $value, int $max): string
     return mb_substr($s, 0, $max);
 }
 
-// 作成フォームの入力を検証して整える。[入力, 写真(dataURL)の配列] を返す。問題があれば 400 で終わる。
-// 思い出は最大3つ。1つの思い出が1つの章になり、写真は同じ番号の章で開く。
+// 作成フォームの入力を検証して整える。[入力, 章の写真(dataURL), スライドショー専用の写真(dataURL)] を返す。
+// 問題があれば 400 で終わる。1つの思い出が1つの章になり、写真は同じ番号の章で開く。
 function gift_parse_input(array $body): array
 {
+    $plan = isset(GIFT_PLANS[$body['plan'] ?? '']) ? (string) $body['plan'] : 'standard';
     $input = [
+        'plan' => $plan,
         'recipientName' => gift_clean($body['recipientName'] ?? '', 20),
         'senderName' => gift_clean($body['senderName'] ?? '', 20),
         'relation' => (string) ($body['relation'] ?? ''),
@@ -99,7 +110,7 @@ function gift_parse_input(array $body): array
         'message' => mb_substr(trim((string) ($body['message'] ?? '')), 0, 400),
     ];
     $photos = [];
-    foreach (array_slice((array) ($body['memories'] ?? []), 0, 3) as $m) {
+    foreach (array_slice((array) ($body['memories'] ?? []), 0, GIFT_PLANS[$plan]['chapters']) as $m) {
         $text = gift_clean(is_array($m) ? ($m['text'] ?? '') : $m, 120);
         if ($text === '') {
             continue;
@@ -111,7 +122,8 @@ function gift_parse_input(array $body): array
         || !isset(GIFT_OCCASIONS[$input['occasion']]) || count($input['memories']) < 2) {
         gift_fail(400, 'invalid_input');
     }
-    return [$input, $photos];
+    $extras = array_map('strval', array_slice((array) ($body['extraPhotos'] ?? []), 0, GIFT_PLANS[$plan]['extra']));
+    return [$input, $photos, $extras];
 }
 
 // 写真(ブラウザ側で縮小済みの JPEG dataURL)を uploads/ に保存してURLを返す。保存できなければ null。

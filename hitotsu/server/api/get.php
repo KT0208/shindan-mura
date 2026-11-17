@@ -26,5 +26,6 @@ gift_ok([
     'recipientName' => $input['recipientName'] ?? '',
     'senderName' => $input['senderName'] ?? '',
     'game' => json_decode($gift['game_json'], true),
-    'price' => (int) gift_config()['price_jpy'],
+    'plan' => $input['plan'] ?? 'standard',
+    'price' => gift_price($input['plan'] ?? 'standard'),
 ]);

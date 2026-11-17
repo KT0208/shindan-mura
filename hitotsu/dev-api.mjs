@@ -4,6 +4,7 @@
 import { randomBytes } from 'node:crypto'
 
 const gifts = new Map()
+const PLANS = { standard: { price: 500, chapters: 3, extra: 0 }, premium: { price: 1000, chapters: 4, extra: 6 } }
 
 function templateGame(input) {
   const name = input.recipientName
@@ -26,6 +27,7 @@ function templateGame(input) {
     ending: ['すべての思い出をたどり終えました。', 'それでは、贈り物をお渡しします。'],
     message: input.message || `${name}さん、いつもありがとう。これからもよろしくね。`,
     badge: { name: 'かけがえのない人', description: `${from}にとって、世界にひとりだけの大切な人。` },
+    album: input.extraPhotos,
   }
 }
 
@@ -53,7 +55,8 @@ function view(gift, owner) {
     recipientName: gift.input.recipientName,
     senderName: gift.input.senderName,
     game: gift.game,
-    price: 500,
+    plan: gift.input.plan,
+    price: PLANS[gift.input.plan].price,
   }
 }
 
@@ -66,13 +69,15 @@ export function devApi() {
         const url = new URL(req.url, 'http://localhost')
         if (url.pathname === '/create.php' && req.method === 'POST') {
           const body = await readJson(req)
-          const memories = (body.memories || []).map((m) => ({ text: String(m?.text || '').trim(), photo: m?.photo || null })).filter((m) => m.text).slice(0, 3)
+          const planId = PLANS[body.plan] ? body.plan : 'standard'
+          const plan = PLANS[planId]
+          const memories = (body.memories || []).map((m) => ({ text: String(m?.text || '').trim(), photo: m?.photo || null })).filter((m) => m.text).slice(0, plan.chapters)
           if (!String(body.recipientName || '').trim() || memories.length < 2) return send(res, 400, { error: 'invalid_input' })
-          const input = { ...body, recipientName: String(body.recipientName).trim(), senderName: String(body.senderName || '').trim(), memories, message: String(body.message || '').trim() }
+          const input = { ...body, plan: planId, extraPhotos: (body.extraPhotos || []).slice(0, plan.extra), recipientName: String(body.recipientName).trim(), senderName: String(body.senderName || '').trim(), memories, message: String(body.message || '').trim() }
           const gift = { id: randomBytes(6).toString('hex'), key: randomBytes(16).toString('hex'), status: 'draft', input, game: templateGame(input) }
           gifts.set(gift.id, gift)
           await new Promise((r) => setTimeout(r, 1200)) // AIの待ち時間のかわり
-          return send(res, 200, { id: gift.id, key: gift.key, status: 'draft', source: 'template', game: gift.game, price: 500 })
+          return send(res, 200, { id: gift.id, key: gift.key, status: 'draft', source: 'template', game: gift.game, plan: planId, price: plan.price })
         }
         if (url.pathname === '/get.php') {
           const gift = gifts.get(url.searchParams.get('id'))

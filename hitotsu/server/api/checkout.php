@@ -35,7 +35,7 @@ $session = gift_stripe('POST', 'checkout/sessions', [
         'quantity' => 1,
         'price_data' => [
             'currency' => 'jpy',
-            'unit_amount' => (int) $config['price_jpy'],
+            'unit_amount' => gift_price($input['plan'] ?? 'standard'),
             'product_data' => ['name' => ($config['site_name'] ?? 'ひとつ') . ' 贈り物ゲーム(' . ($input['recipientName'] ?? '') . 'さんへ)'],
         ],
     ]],
