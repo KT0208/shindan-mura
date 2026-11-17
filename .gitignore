@@ -74,3 +74,6 @@ data/shorts-announced.json
 
 # デプロイ用ZIP(1GB近くありGitHubに上げられない)
 /dist.zip
+
+# 贈り物サイト「ひとつ」(hitotsu/)の鍵(Claude API / Stripe)。絶対にコミットしない
+hitotsu/server/api/config.php

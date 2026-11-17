@@ -1,0 +1,4 @@
+# 設定ファイルと共通処理は直接開けないようにする(Apache互換サーバー用)
+<FilesMatch "^(config|config\.example|lib)\.php$">
+  Require all denied
+</FilesMatch>
