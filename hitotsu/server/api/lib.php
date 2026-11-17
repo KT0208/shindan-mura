@@ -425,6 +425,30 @@ function gift_send_delivery_mail(array $gift): bool
     return mb_send_mail($gift['deliver_email'], $subject, $body, $headers, '-f' . $from);
 }
 
+// Cloudflare Turnstile(ロボットよけ)の確認。シークレットキーが未設定なら確認しない。
+// 作成のたびに AI の利用料がかかるので、自動プログラムによる連打を防ぐ。
+function gift_verify_turnstile(string $token): bool
+{
+    $secret = (string) (gift_config()['turnstile_secret_key'] ?? '');
+    if ($secret === '') {
+        return true;
+    }
+    if ($token === '' || strlen($token) > 2048) {
+        return false;
+    }
+    $ch = curl_init('https://challenges.cloudflare.com/turnstile/v0/siteverify');
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 10,
+        CURLOPT_POSTFIELDS => http_build_query(['secret' => $secret, 'response' => $token, 'remoteip' => gift_client_ip()]),
+    ]);
+    $raw = curl_exec($ch);
+    curl_close($ch);
+    $result = json_decode((string) $raw, true);
+    return ($result['success'] ?? false) === true;
+}
+
 // Stripe API を叩く(SDKを入れずに curl で呼ぶ)
 function gift_stripe(string $method, string $path, array $params = []): ?array
 {

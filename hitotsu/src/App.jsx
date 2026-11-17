@@ -40,6 +40,7 @@ const ERRORS = {
   invalid_input: '入力が足りない項目があります。お名前と、思い出を2つ以上ご記入ください。',
   too_many_requests: '短い時間に多くの贈り物が作成されました。少し時間をおいてから、もう一度お試しください。',
   not_found: 'この贈り物は見つかりませんでした。リンクが正しいかご確認ください。',
+  bot_check_failed: 'ロボットでないことの確認ができませんでした。もう一度お試しください。',
   invalid_delivery: 'メールアドレスか日時が正しくありません。日時は、今より先で1年以内を指定してください。',
   payment_unavailable: 'お支払いページを開けませんでした。少し時間をおいてお試しください。',
 }
@@ -137,6 +138,48 @@ export default function App() {
   )
 }
 
+// Cloudflare Turnstile(ロボットよけ)。確認が済むと onToken に合言葉が渡る。
+// 作成のたびに AI の利用料がかかるので、自動プログラムによる連打を防ぐために入れている。
+let turnstileScript
+function loadTurnstile() {
+  if (!turnstileScript) {
+    turnstileScript = new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'
+      script.async = true
+      script.onload = () => resolve(window.turnstile)
+      script.onerror = reject
+      document.head.appendChild(script)
+    })
+  }
+  return turnstileScript
+}
+
+function Turnstile({ onToken }) {
+  const box = useRef(null)
+  useEffect(() => {
+    let widgetId
+    let cancelled = false
+    loadTurnstile()
+      .then((turnstile) => {
+        if (cancelled) return
+        widgetId = turnstile.render(box.current, {
+          sitekey: SITE.turnstileKey,
+          language: 'ja',
+          callback: onToken,
+          'expired-callback': () => onToken(''),
+          'error-callback': () => onToken(''),
+        })
+      })
+      .catch(() => onToken(''))
+    return () => {
+      cancelled = true
+      if (widgetId !== undefined) window.turnstile?.remove(widgetId)
+    }
+  }, [onToken])
+  return <div ref={box} className="turnstile" />
+}
+
 function Ornament() {
   return <div className="ornament" aria-hidden="true"><span /></div>
 }
@@ -157,6 +200,9 @@ function CreatePage() {
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  // ロボットよけの確認が済むと入る合言葉(1回の送信にしか使えない)
+  const [botToken, setBotToken] = useState('')
+  const needsBotCheck = !DEMO && SITE.turnstileKey !== ''
   const myGifts = readMyGifts()
 
   const set = (field) => (e) => setForm({ ...form, [field]: e.target.value })
@@ -187,13 +233,14 @@ function CreatePage() {
     }
   }
   const filled = memories.filter((m) => m.text.trim()).length
-  const canSubmit = form.recipientName.trim() && filled >= 2 && !loading
+  const canSubmit = form.recipientName.trim() && filled >= 2 && !loading && (!needsBotCheck || botToken)
 
   async function submit(e) {
     e.preventDefault()
     if (!canSubmit) return
     setLoading(true)
     setError('')
+    setBotToken('')
     window.scrollTo(0, 0)
     try {
       const data = await api('create.php', {
@@ -203,6 +250,7 @@ function CreatePage() {
           ...form,
           memories: memories.filter((m) => m.text.trim()),
           extraPhotos: form.extraPhotos.slice(0, plan.extra),
+          turnstileToken: botToken,
         }),
       })
       rememberGift({ id: data.id, key: data.key, to: form.recipientName.trim() })
@@ -346,6 +394,7 @@ function CreatePage() {
           </label>
 
           <p className="hint">ご住所や電話番号など、知られたくない個人情報は書かないでください。</p>
+          {needsBotCheck && <Turnstile onToken={setBotToken} />}
           {error && <p className="error">{error}</p>}
           <button className="button primary wide" type="submit" disabled={!canSubmit}>
             無料でつくってみる

@@ -4,7 +4,11 @@
 declare(strict_types=1);
 require __DIR__ . '/lib.php';
 
-[$input, $photos, $extras] = gift_parse_input(gift_require_post());
+$body = gift_require_post();
+if (!gift_verify_turnstile((string) ($body['turnstileToken'] ?? ''))) {
+    gift_fail(400, 'bot_check_failed');
+}
+[$input, $photos, $extras] = gift_parse_input($body);
 $config = gift_config();
 $ip = gift_client_ip();
 

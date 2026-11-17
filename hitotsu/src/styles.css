@@ -136,6 +136,9 @@ main { padding: 0 20px; }
 .envelope-seal { position: absolute; left: 50%; top: 56px; width: 34px; height: 34px; margin-left: -17px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #c9ab74, #94753f); box-shadow: 0 2px 5px rgba(60, 45, 20, .3), inset 0 0 0 4px rgba(255, 255, 255, .16); z-index: 1; }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
 
+/* ロボットよけの確認(Cloudflare Turnstile) */
+.turnstile { display: flex; justify-content: center; margin: 4px 0 14px; min-height: 65px; }
+
 /* プラン選択 */
 .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .plan { font: inherit; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 2px; padding: 16px 10px; cursor: pointer; display: grid; gap: 2px; text-align: center; font-size: 12px; line-height: 1.7; }

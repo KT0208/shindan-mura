@@ -36,6 +36,10 @@ return [
     // send-scheduled.php をURLから呼ぶときの合言葉(cron から php コマンドで動かすなら空でよい)
     'cron_token' => '',
 
+    // Cloudflare Turnstile(ロボットよけ)のシークレットキー。空なら確認しない(本番では必ず入れる)
+    // サイトキーのほうは .env の VITE_TURNSTILE_SITE_KEY に入れてビルドする
+    'turnstile_secret_key' => '',
+
     // 1つのIPアドレスから1時間に作れるゲームの数(AI 代の使いすぎ防止)
     'create_limit_per_hour' => 6,
 ];

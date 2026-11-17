@@ -49,11 +49,13 @@ Vercel では `vercel.json` がこのビルドを指定している。Vercel の
 2. phpMyAdmin で `server/schema.sql` を実行する
 3. `server/api/config.example.php` をコピーして `config.php` を作り、DB情報・Claude API キー・Stripe のテストキー(`sk_test_…`)を入れる
 4. ビルドして `dist/` の中身を公開フォルダへ、`server/api/` の中身(config.php を含む)を公開フォルダの `api/` へアップロードする
-5. 予約送信の準備: サーバーでサイトのドメインのメールアドレス(例 `gift@ドメイン`)を作って `config.php` の `mail_from` に入れ、
+5. ロボットよけの準備: Cloudflare(無料)で Turnstile にサイトのドメインを登録し、サイトキーを `.env` の `VITE_TURNSTILE_SITE_KEY` に、
+   シークレットキーを `config.php` の `turnstile_secret_key` に入れる(`.env` を変えたらビルドし直す)
+6. 予約送信の準備: サーバーでサイトのドメインのメールアドレス(例 `gift@ドメイン`)を作って `config.php` の `mail_from` に入れ、
    サーバーの cron 設定に `*/5 * * * * php /…/public_html/api/send-scheduled.php` を登録する。
    迷惑メール扱いを減らすため、ドメインの SPF / DKIM を有効にしておく
-6. `tokushoho/` と `privacy/` の【要記入】(販売事業者名・責任者名・メールアドレス)を埋める
-7. テストカード 4242 4242 4242 4242 で支払いまで確認してから、Stripe 鍵を本番(`sk_live_…`)に差し替える
+7. `tokushoho/` と `privacy/` の【要記入】(販売事業者名・責任者名・メールアドレス)を埋める
+8. テストカード 4242 4242 4242 4242 で支払いまで確認してから、Stripe 鍵を本番(`sk_live_…`)に差し替える
 
 ## まだ確認できていないこと
 - PHP の API 一式、Claude での生成、写真の保存、Stripe の支払い、予約メールの送信(cron)は、実サーバーでまだ一度も動かしていない
