@@ -1,0 +1,5 @@
+{
+  "framework": "vite",
+  "buildCommand": "VITE_DEMO=1 npx vite build",
+  "outputDirectory": "dist"
+}
