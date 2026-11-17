@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { SITE } from './site.js'
+import { createBgm } from './bgm.js'
 
 const API = '/api'
 const MY_GIFTS_KEY = 'hitotsu.myGifts'
@@ -26,12 +27,11 @@ const OCCASIONS = [
   ['none', '特になし'],
 ]
 const MEMORY_HINTS = [
-  '例：初めて会ったのは大学のサークル',
-  '例：好きな食べ物はたこ焼き',
-  '例：去年の夏、一緒に花火を見た',
-  '例：口ぐせは「まあいっか」',
-  '例：朝はいつも寝ぐせがついている',
+  '例：初めて会ったのは、大学のサークルの新歓だった',
+  '例：去年の夏、ふたりで花火を見に行った',
+  '例：落ち込んだとき、いつも黙って隣にいてくれる',
 ]
+const CHAPTERS = ['一', '二', '三']
 
 const ERRORS = {
   invalid_input: '入力が足りない項目があります。お名前と、思い出を2つ以上ご記入ください。',
@@ -71,6 +71,17 @@ function rememberGift(entry) {
 const giftUrl = (id) => `${window.location.origin}/?id=${id}`
 const ownerUrl = (id, key) => `/?id=${id}&key=${key}`
 const yen = (n) => `${Number(n).toLocaleString('ja-JP')}円`
+
+// 写真を送る前に、長い辺 1400px の JPEG に縮める(通信量と保存容量を抑える)
+async function resizePhoto(file) {
+  const bitmap = await createImageBitmap(file, { imageOrientation: 'from-image' })
+  const scale = Math.min(1, 1400 / Math.max(bitmap.width, bitmap.height))
+  const canvas = document.createElement('canvas')
+  canvas.width = Math.round(bitmap.width * scale)
+  canvas.height = Math.round(bitmap.height * scale)
+  canvas.getContext('2d').drawImage(bitmap, 0, 0, canvas.width, canvas.height)
+  return canvas.toDataURL('image/jpeg', 0.82)
+}
 
 export default function App() {
   const params = new URLSearchParams(window.location.search)
@@ -115,7 +126,7 @@ function CreatePage() {
     relation: 'friend',
     tone: 'sweet',
     occasion: 'birthday',
-    memories: ['', '', ''],
+    memories: [{ text: '', photo: null }, { text: '', photo: null }, { text: '', photo: null }],
     message: '',
   })
   const [loading, setLoading] = useState(false)
@@ -123,12 +134,20 @@ function CreatePage() {
   const myGifts = readMyGifts()
 
   const set = (field) => (e) => setForm({ ...form, [field]: e.target.value })
-  const setMemory = (i) => (e) => {
-    const memories = [...form.memories]
-    memories[i] = e.target.value
+  const setMemory = (i, patch) => {
+    const memories = form.memories.map((m, j) => (j === i ? { ...m, ...patch } : m))
     setForm({ ...form, memories })
   }
-  const filled = form.memories.filter((m) => m.trim()).length
+  async function pickPhoto(i, file) {
+    if (!file) return
+    setError('')
+    try {
+      setMemory(i, { photo: await resizePhoto(file) })
+    } catch {
+      setError('この写真は読み込めませんでした。別の写真（JPEG・PNG）でお試しください。')
+    }
+  }
+  const filled = form.memories.filter((m) => m.text.trim()).length
   const canSubmit = form.recipientName.trim() && filled >= 2 && !loading
 
   async function submit(e) {
@@ -141,7 +160,7 @@ function CreatePage() {
       const data = await api('create.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, memories: form.memories.filter((m) => m.trim()) }),
+        body: JSON.stringify({ ...form, memories: form.memories.filter((m) => m.text.trim()) }),
       })
       rememberGift({ id: data.id, key: data.key, to: form.recipientName.trim(), at: Date.now() })
       window.location.href = ownerUrl(data.id, data.key)
@@ -172,9 +191,9 @@ function CreatePage() {
         </h1>
         <Ornament />
         <p className="lead">
-          ふたりの思い出を、その人のためだけのゲームに。
+三つの思い出と写真を、その人のためだけのゲームに。
           <br />
-          遊び終えたとき、あなたの言葉が届きます。
+          最後に、音楽とともに写真と言葉が届きます。
         </p>
         <a className="button primary" href="#create">贈り物をつくる</a>
         <p className="hero-note">作成と試し遊びは無料です</p>
@@ -186,17 +205,17 @@ function CreatePage() {
           <li>
             <b>01</b>
             <h3>思い出を書く</h3>
-            <p>出会った場所、好きなもの、口ぐせ。ふたりだけが知っていることを、いくつか書きます。</p>
+            <p>ふたりだけが知っている思い出を三つ。それぞれに写真を一枚ずつ添えられます。</p>
           </li>
           <li>
             <b>02</b>
             <h3>試しに遊ぶ</h3>
-            <p>思い出がクイズゲームになります。相手に届く内容を、そのまま無料で確かめられます。</p>
+            <p>思い出が三章のゲームになります。どの答えを選んでも、あなたの気持ちが言葉になって返ります。</p>
           </li>
           <li>
             <b>03</b>
             <h3>リンクで贈る</h3>
-            <p>できあがったリンクを、LINE やメールで送るだけ。相手はアプリも登録もいりません。</p>
+            <p>リンクを LINE やメールで送るだけ。章を終えるたびに写真が開き、最後はスライドショーに。</p>
           </li>
         </ol>
       </section>
@@ -220,16 +239,27 @@ function CreatePage() {
           <ChoiceGroup label="贈るきっかけ" options={OCCASIONS} value={form.occasion} onChange={(v) => setForm({ ...form, occasion: v })} />
 
           <fieldset>
-            <legend>思い出・お相手のこと<em>2つ以上</em></legend>
-            <p className="hint">ここに書いたことが、クイズの問題になります。ふたりだけが知っていることほど、特別な贈り物になります。</p>
+            <legend>三つの思い出<em>2つ以上</em></legend>
+            <p className="hint">
+              思い出ひとつが、ゲームの一章になります。写真を添えると、その章を終えたときに一枚ずつ開き、最後に音楽つきのスライドショーになります。
+            </p>
             {form.memories.map((m, i) => (
-              <input key={i} value={m} onChange={setMemory(i)} maxLength={120} placeholder={MEMORY_HINTS[i]} aria-label={`思い出 ${i + 1}`} />
+              <div className="memory" key={i}>
+                <p className="memory-no">第{CHAPTERS[i]}章{i === 2 && <i>なくても作れます</i>}</p>
+                <input value={m.text} onChange={(e) => setMemory(i, { text: e.target.value })} maxLength={120} placeholder={MEMORY_HINTS[i]} aria-label={`思い出 ${i + 1}`} />
+                {m.photo ? (
+                  <div className="memory-photo">
+                    <img src={m.photo} alt="" />
+                    <button type="button" className="text-button" onClick={() => setMemory(i, { photo: null })}>写真を外す</button>
+                  </div>
+                ) : (
+                  <label className="photo-picker">
+                    <input type="file" accept="image/*" onChange={(e) => pickPhoto(i, e.target.files[0])} />
+                    ＋ 写真を添える
+                  </label>
+                )}
+              </div>
             ))}
-            {form.memories.length < 5 && (
-              <button type="button" className="text-button" onClick={() => setForm({ ...form, memories: [...form.memories, ''] })}>
-                ＋ もうひとつ書く
-              </button>
-            )}
           </fieldset>
 
           <label>
@@ -265,6 +295,8 @@ function CreatePage() {
         <dl className="faq">
           <dt>料金はいつかかりますか？</dt>
           <dd>作成と試し遊びは無料です。内容を確かめて、相手に贈るときにだけ {yen(SITE.price)}（税込）をお支払いいただきます。</dd>
+          <dt>写真は入れなくても作れますか？</dt>
+          <dd>作れます。写真がない章は、言葉だけで進みます。添えた写真は相手に見せるためだけに使い、AI には送りません。</dd>
           <dt>相手は何か準備が必要ですか？</dt>
           <dd>必要ありません。届いたリンクをスマートフォンで開くだけで遊べます。アプリや会員登録はいりません。</dd>
           <dt>どんな支払い方法が使えますか？</dt>
@@ -355,7 +387,8 @@ function OwnerPage({ id, editKey, justPaid }) {
           </p>
           {justPaid && <p className="notice">お支払いの確認がまだ取れていません。少し待ってから、ページを読み込み直してください。</p>}
           <ul className="summary">
-            <li><span>問題</span>{gift.game.stages.length}問</li>
+            <li><span>章</span>{gift.game.stages.length}章</li>
+            <li><span>写真</span>{gift.game.stages.filter((st) => st.photo).length}枚</li>
             <li><span>贈る称号</span>{gift.game.badge.name}</li>
           </ul>
           <button className="button secondary wide" onClick={() => setPlaying(true)}>
@@ -454,29 +487,27 @@ function RecipientPage({ id }) {
 
 function GamePlayer({ gift, preview = false, onExit }) {
   const { game } = gift
-  // 進み方: intro(1行ずつ) → 問題 → ending(1行ずつ) → 開封
+  // 進み方: intro(1行ずつ) → 章(問いかけ → 言葉と写真) → ending(1行ずつ) → スライドショー → 手紙
   const [phase, setPhase] = useState('intro')
   const [line, setLine] = useState(0)
   const [stage, setStage] = useState(0)
   const [picked, setPicked] = useState(null)
-  const [score, setScore] = useState(0)
+  const bgm = useRef(null)
 
   const intro = game.intro.length ? game.intro : [`${gift.recipientName}さん、贈り物をお届けにまいりました。`]
   const ending = game.ending.length ? game.ending : ['それでは、贈り物をお渡しします。']
   const current = game.stages[stage]
+  const hasPhotos = game.stages.some((s) => s.photo)
+
+  // ページを離れるときは音を止める
+  useEffect(() => () => bgm.current?.stop(), [])
 
   function nextLine(lines, after) {
     if (line + 1 < lines.length) setLine(line + 1)
     else {
       setLine(0)
-      setPhase(after)
+      after()
     }
-  }
-
-  function pick(i) {
-    if (picked !== null) return
-    setPicked(i)
-    if (i === current.answer) setScore(score + 1)
   }
 
   function nextStage() {
@@ -484,6 +515,21 @@ function GamePlayer({ gift, preview = false, onExit }) {
     if (stage + 1 < game.stages.length) setStage(stage + 1)
     else setPhase('ending')
   }
+
+  // 音はボタンを押した直後にしか鳴らせないので、ここ(クリックの処理の中)で始める
+  function startShow() {
+    bgm.current?.stop()
+    bgm.current = createBgm()
+    setPhase('show')
+  }
+
+  function endShow() {
+    bgm.current?.stop()
+    bgm.current = null
+    setPhase('open')
+  }
+
+  if (phase === 'show') return <Slideshow gift={gift} onMute={(m) => bgm.current?.setMuted(m)} onDone={endShow} />
 
   return (
     <section className="panel narrow game">
@@ -498,38 +544,45 @@ function GamePlayer({ gift, preview = false, onExit }) {
         <div className="scene center" key={`i${line}`}>
           <Ornament />
           <p className="narration">{intro[line]}</p>
-          <button className="button primary wide" onClick={() => nextLine(intro, 'quiz')}>
+          <button className="button primary wide" onClick={() => nextLine(intro, () => setPhase('stage'))}>
             {line + 1 < intro.length ? '次へ' : 'はじめる'}
           </button>
         </div>
       )}
 
-      {phase === 'quiz' && (
-        <div className="scene" key={`q${stage}`}>
-          <p className="counter">
-            <b>{String(stage + 1).padStart(2, '0')}</b> / {String(game.stages.length).padStart(2, '0')}
-          </p>
+      {phase === 'stage' && (
+        <div className="scene" key={`s${stage}`}>
+          {hasPhotos && (
+            <div className="frames" aria-hidden="true">
+              {game.stages.map((s, i) => {
+                const open = i < stage || (i === stage && picked !== null)
+                return <span key={i} className={open ? 'open' : ''} style={open && s.photo ? { backgroundImage: `url("${s.photo}")` } : undefined} />
+              })}
+            </div>
+          )}
+          <p className="chapter">第{CHAPTERS[stage]}章</p>
           <h2 className="question">{current.question}</h2>
-          <div className="choices">
-            {current.choices.map((c, i) => {
-              let cls = 'choice'
-              if (picked !== null && i === current.answer) cls += ' right'
-              else if (picked === i) cls += ' wrong'
-              return (
-                <button key={i} className={cls} onClick={() => pick(i)} disabled={picked !== null}>
-                  <i>{'ABCD'[i]}</i>
-                  {c}
+
+          {picked === null ? (
+            <div className="choices">
+              {current.choices.map((c, i) => (
+                <button key={i} className="choice" onClick={() => setPicked(i)}>
+                  {c.label}
                 </button>
-              )
-            })}
-          </div>
-          {picked !== null && (
-            <div className="feedback">
-              <p className="narration small">
-                {picked === current.answer ? current.correct || '正解です。' : current.wrong || '惜しい。'}
-              </p>
+              ))}
+            </div>
+          ) : (
+            <div className="reveal">
+              <p className="picked">{current.choices[picked].label}</p>
+              <p className="reply">{current.choices[picked].reply}</p>
+              {current.photo && (
+                <figure className="photo">
+                  <img src={current.photo} alt="" />
+                  {current.caption && <figcaption>{current.caption}</figcaption>}
+                </figure>
+              )}
               <button className="button primary wide" onClick={nextStage}>
-                {stage + 1 < game.stages.length ? '次の問題へ' : '結果を見る'}
+                {stage + 1 < game.stages.length ? '次の章へ' : '最後まで読みました'}
               </button>
             </div>
           )}
@@ -538,25 +591,92 @@ function GamePlayer({ gift, preview = false, onExit }) {
 
       {phase === 'ending' && (
         <div className="scene center" key={`e${line}`}>
-          {line === 0 && (
-            <p className="score">
-              {game.stages.length}問中<b>{score}</b>問 正解
-            </p>
-          )}
           <Ornament />
           <p className="narration">{ending[line]}</p>
-          <button className="button primary wide" onClick={() => nextLine(ending, 'open')}>
+          <button className="button primary wide" onClick={() => nextLine(ending, startShow)}>
             {line + 1 < ending.length ? '次へ' : '贈り物を受け取る'}
           </button>
+          {line + 1 === ending.length && <p className="hint center-hint">音楽が流れます</p>}
         </div>
       )}
 
-      {phase === 'open' && <OpenedGift gift={gift} preview={preview} onExit={onExit} />}
+      {phase === 'open' && <OpenedGift gift={gift} preview={preview} onExit={onExit} onReplay={startShow} />}
     </section>
   )
 }
 
-function OpenedGift({ gift, preview, onExit }) {
+/* ---------- 音楽つきスライドショー ---------- */
+
+function Slideshow({ gift, onMute, onDone }) {
+  const { game } = gift
+  const slides = [
+    { kind: 'title', seconds: 5 },
+    ...game.stages.map((s) => ({ kind: 'memory', photo: s.photo, caption: s.caption, seconds: 7 })),
+    { kind: 'message', seconds: 11 },
+  ]
+  const [index, setIndex] = useState(0)
+  const [muted, setMuted] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (index + 1 < slides.length) setIndex(index + 1)
+      else onDone()
+    }, slides[index].seconds * 1000)
+    return () => clearTimeout(timer)
+    // slides と onDone は毎回作り直されるが、中身は変わらないので index だけ見る
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index])
+
+  function next() {
+    if (index + 1 < slides.length) setIndex(index + 1)
+    else onDone()
+  }
+
+  function toggleMute(e) {
+    e.stopPropagation()
+    onMute(!muted)
+    setMuted(!muted)
+  }
+
+  return (
+    <div className="show" onClick={next} role="presentation">
+      {slides.map((s, i) => (
+        <div key={i} className={`slide ${s.kind} ${i === index ? 'on' : ''}`} aria-hidden={i !== index}>
+          {s.kind === 'title' && (
+            <>
+              <p className="eyebrow">{gift.senderName ? `From ${gift.senderName}` : 'A gift for you'}</p>
+              <p className="show-title">{gift.recipientName}さんへ</p>
+              <Ornament />
+            </>
+          )}
+          {s.kind === 'memory' && (
+            <>
+              {s.photo && <div className="show-photo"><img src={s.photo} alt="" /></div>}
+              {s.caption && <p className={s.photo ? 'show-caption' : 'show-caption alone'}>{s.caption}</p>}
+            </>
+          )}
+          {s.kind === 'message' && (
+            <>
+              <p className="show-message">{game.message}</p>
+              {gift.senderName && <p className="show-from">{gift.senderName}より</p>}
+            </>
+          )}
+        </div>
+      ))}
+      <div className="show-bar">
+        {slides.map((_, i) => (
+          <span key={i} className={i < index ? 'done' : i === index ? 'now' : ''} style={i === index ? { animationDuration: `${slides[i].seconds}s` } : undefined} />
+        ))}
+      </div>
+      <div className="show-controls">
+        <button onClick={toggleMute}>{muted ? '音を出す' : '音を消す'}</button>
+        <button onClick={(e) => { e.stopPropagation(); onDone() }}>スキップ</button>
+      </div>
+    </div>
+  )
+}
+
+function OpenedGift({ gift, preview, onExit, onReplay }) {
   const { game } = gift
   return (
     <div className="opened">
@@ -570,6 +690,7 @@ function OpenedGift({ gift, preview, onExit }) {
         <p className="badge-name">{game.badge.name}</p>
         {game.badge.description && <p className="badge-desc">{game.badge.description}</p>}
       </div>
+      <button className="button secondary wide" onClick={onReplay}>スライドショーをもう一度見る</button>
       {preview ? (
         <button className="button secondary wide" onClick={onExit}>試し遊びを終える</button>
       ) : (

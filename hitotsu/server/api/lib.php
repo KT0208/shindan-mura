@@ -85,7 +85,8 @@ function gift_clean(mixed $value, int $max): string
     return mb_substr($s, 0, $max);
 }
 
-// 作成フォームの入力を検証して整える。問題があれば 400 を返して終わる。
+// 作成フォームの入力を検証して整える。[入力, 写真(dataURL)の配列] を返す。問題があれば 400 で終わる。
+// 思い出は最大3つ。1つの思い出が1つの章になり、写真は同じ番号の章で開く。
 function gift_parse_input(array $body): array
 {
     $input = [
@@ -97,17 +98,55 @@ function gift_parse_input(array $body): array
         'memories' => [],
         'message' => mb_substr(trim((string) ($body['message'] ?? '')), 0, 400),
     ];
-    foreach (array_slice((array) ($body['memories'] ?? []), 0, 5) as $m) {
-        $m = gift_clean($m, 120);
-        if ($m !== '') {
-            $input['memories'][] = $m;
+    $photos = [];
+    foreach (array_slice((array) ($body['memories'] ?? []), 0, 3) as $m) {
+        $text = gift_clean(is_array($m) ? ($m['text'] ?? '') : $m, 120);
+        if ($text === '') {
+            continue;
         }
+        $input['memories'][] = $text;
+        $photos[] = is_array($m) ? (string) ($m['photo'] ?? '') : '';
     }
     if ($input['recipientName'] === '' || !isset(GIFT_RELATIONS[$input['relation']]) || !isset(GIFT_TONES[$input['tone']])
         || !isset(GIFT_OCCASIONS[$input['occasion']]) || count($input['memories']) < 2) {
         gift_fail(400, 'invalid_input');
     }
-    return $input;
+    return [$input, $photos];
+}
+
+// 写真(ブラウザ側で縮小済みの JPEG dataURL)を uploads/ に保存してURLを返す。保存できなければ null。
+// 写真は AI には送らない。
+function gift_save_photo(string $dataUrl, string $giftId): ?string
+{
+    $prefix = 'data:image/jpeg;base64,';
+    if (strncmp($dataUrl, $prefix, strlen($prefix)) !== 0) {
+        return null;
+    }
+    $bin = base64_decode(substr($dataUrl, strlen($prefix)), true);
+    if ($bin === false || strlen($bin) > 1500000) {
+        return null;
+    }
+    $info = @getimagesizefromstring($bin);
+    if (!$info || $info[2] !== IMAGETYPE_JPEG || $info[0] > 4000 || $info[1] > 4000) {
+        return null;
+    }
+    $dir = dirname(__DIR__) . '/uploads';
+    if (!is_dir($dir)) {
+        mkdir($dir, 0755, true);
+        // 万一おかしなファイルが置かれても、プログラムとして動かないようにする
+        file_put_contents($dir . '/.htaccess', "<FilesMatch \"\\.(php|phtml|cgi)$\">\n  Require all denied\n</FilesMatch>\n");
+    }
+    // 推測できないファイル名にする(リンクを知らない人に写真を見られないように)
+    $name = $giftId . '-' . gift_random(8) . '.jpg';
+    $path = $dir . '/' . $name;
+    if (function_exists('imagecreatefromstring') && ($img = @imagecreatefromstring($bin))) {
+        // 描き直して保存する(画像に埋め込まれた位置情報などを落とす)
+        $ok = imagejpeg($img, $path, 85);
+        imagedestroy($img);
+    } else {
+        $ok = file_put_contents($path, $bin) !== false;
+    }
+    return $ok ? '/uploads/' . $name : null;
 }
 
 // ゲームJSONの形。Claude の structured outputs にもそのまま渡す。
@@ -126,13 +165,19 @@ function gift_game_schema(): array
                 'items' => [
                     'type' => 'object',
                     'additionalProperties' => false,
-                    'required' => ['question', 'choices', 'answer', 'correct', 'wrong'],
+                    'required' => ['question', 'choices', 'caption'],
                     'properties' => [
                         'question' => $str,
-                        'choices' => ['type' => 'array', 'items' => $str],
-                        'answer' => ['type' => 'integer'],
-                        'correct' => $str,
-                        'wrong' => $str,
+                        'choices' => [
+                            'type' => 'array',
+                            'items' => [
+                                'type' => 'object',
+                                'additionalProperties' => false,
+                                'required' => ['label', 'reply'],
+                                'properties' => ['label' => $str, 'reply' => $str],
+                            ],
+                        ],
+                        'caption' => $str,
                     ],
                 ],
             ],
@@ -154,35 +199,37 @@ function gift_normalize_game(mixed $game, array $input): ?array
     if (!is_array($game) || !is_array($game['stages'] ?? null)) {
         return null;
     }
-    $lines = fn ($v) => array_values(array_filter(array_map(fn ($s) => mb_substr(trim((string) $s), 0, 160), array_slice((array) $v, 0, 4)), fn ($s) => $s !== ''));
+    $cut = fn ($v, int $max) => mb_substr(trim((string) $v), 0, $max);
+    $lines = fn ($v) => array_values(array_filter(array_map(fn ($s) => $cut($s, 160), array_slice((array) $v, 0, 4)), fn ($s) => $s !== ''));
     $stages = [];
-    foreach (array_slice($game['stages'], 0, 6) as $s) {
-        $choices = array_values(array_filter(array_map(fn ($c) => mb_substr(trim((string) $c), 0, 60), array_slice((array) ($s['choices'] ?? []), 0, 4)), fn ($c) => $c !== ''));
-        $answer = (int) ($s['answer'] ?? -1);
-        if (count($choices) < 2 || $answer < 0 || $answer >= count($choices) || trim((string) ($s['question'] ?? '')) === '') {
-            continue;
+    // 章の数は思い出の数に合わせる(写真は同じ番号の章で開くため)
+    foreach (array_slice($game['stages'], 0, count($input['memories'])) as $s) {
+        $choices = [];
+        foreach (array_slice((array) ($s['choices'] ?? []), 0, 4) as $c) {
+            $label = $cut($c['label'] ?? '', 40);
+            $reply = $cut($c['reply'] ?? '', 200);
+            if ($label !== '' && $reply !== '') {
+                $choices[] = ['label' => $label, 'reply' => $reply];
+            }
         }
-        $stages[] = [
-            'question' => mb_substr(trim((string) $s['question']), 0, 120),
-            'choices' => $choices,
-            'answer' => $answer,
-            'correct' => mb_substr(trim((string) ($s['correct'] ?? '')), 0, 160),
-            'wrong' => mb_substr(trim((string) ($s['wrong'] ?? '')), 0, 160),
-        ];
+        if (count($choices) < 2 || $cut($s['question'] ?? '', 1) === '') {
+            return null;
+        }
+        $stages[] = ['question' => $cut($s['question'], 120), 'choices' => $choices, 'caption' => $cut($s['caption'] ?? '', 60)];
     }
-    if (count($stages) < 2) {
+    if (count($stages) < count($input['memories'])) {
         return null;
     }
     return [
-        'title' => mb_substr(trim((string) ($game['title'] ?? '')), 0, 40) ?: "{$input['recipientName']}さんへの贈り物",
+        'title' => $cut($game['title'] ?? '', 40) ?: "{$input['recipientName']}さんへの贈り物",
         'intro' => $lines($game['intro'] ?? []),
         'stages' => $stages,
         'ending' => $lines($game['ending'] ?? []),
         // 作った人が書いたメッセージがあれば必ずそれを使う
-        'message' => $input['message'] !== '' ? $input['message'] : mb_substr(trim((string) ($game['message'] ?? '')), 0, 400),
+        'message' => $input['message'] !== '' ? $input['message'] : $cut($game['message'] ?? '', 400),
         'badge' => [
-            'name' => mb_substr(trim((string) ($game['badge']['name'] ?? '')), 0, 30) ?: 'かけがえのない人',
-            'description' => mb_substr(trim((string) ($game['badge']['description'] ?? '')), 0, 160),
+            'name' => $cut($game['badge']['name'] ?? '', 30) ?: 'かけがえのない人',
+            'description' => $cut($game['badge']['description'] ?? '', 160),
         ],
     ];
 }
@@ -197,21 +244,25 @@ function gift_generate_with_claude(array $input): ?array
     }
 
     $system = <<<TXT
-あなたは、贈り物サービスの「案内人」です。贈り主から預かった思い出をもとに、たった一人の相手のためだけの短いクイズゲームを作ります。
-ゲームは相手のスマホで遊ばれ、最後に贈り主からのメッセージが届きます。上品で落ち着いた、丁寧な言葉づかいにしてください。
+あなたは、贈り物サービスの「案内人」です。贈り主から預かった思い出をもとに、たった一人の相手のためだけの短い物語のようなゲームを作ります。
+ゲームは相手のスマホで遊ばれます。思い出ひとつが一つの「章」になり、章を終えるたびに贈り主が選んだ写真が一枚ずつ開きます。すべての章を終えると、写真のスライドショーと贈り主のメッセージが届きます。
+
+いちばん大切なこと: このゲームに不正解はありません。相手がどの選択肢を選んでも、贈り主の気持ちが伝わる、あたたかい言葉が返るようにしてください。相手を試したり、間違いを指摘したりしません。
 
 ルール:
 - 贈り主が書いた「思い出・相手のこと」だけを事実として使う。書かれていない出来事を事実のように作らない。
-- 問題は4〜5問。各問の選択肢は3〜4個で、正解は思い出から作り、ほかの選択肢はありそうだけど違うものにする。正解の位置はばらばらにする。
-- answer は正解の選択肢の番号(0始まり)。
-- correct/wrong は案内人が相手に話しかける一言(各40字以内)。wrong でも責めず、正解をやさしく伝える。
-- intro は2〜3行、ending は2〜3行。案内人の口調で、相手の名前を呼ぶ。絵文字は使わない。
+- stages は、渡された思い出と同じ数・同じ順番で作る(1番目の思い出が1章)。
+- question は、その思い出について相手の気持ちや記憶をたずねる、やわらかい問いかけ(60字以内)。答えがひとつに決まるクイズにしない。
+- choices は3個。label は相手が選ぶ短い答え(20字以内)で、どれも自然にありえる答えにする。
+- reply は、その label を選んだ相手への言葉(80字以内)。選んだ答えを受けとめたうえで、その思い出にこめた贈り主の気持ちへつなげる。3つの reply はそれぞれ違う文章にし、どれを読んでも胸があたたかくなるようにする。大げさな美辞麗句や決まり文句は避け、その思い出ならではの具体的な言葉にする。
+- caption は、その章で開く写真に添える短い一行(25字以内)。写真の中身は分からないので、思い出そのものを言葉にする。
+- intro は2〜3行、ending は2〜3行。案内人の丁寧で落ち着いた口調で、相手の名前を呼ぶ。絵文字は使わない。
 - message は贈り主から相手への締めのメッセージ(120字以内、贈り主の一人称)。
-- badge は相手に贈る称号(name は15字以内、description は60字以内)。からかいすぎず、もらってうれしいものにする。
+- badge は相手に贈る称号(name は15字以内、description は60字以内)。もらってうれしいものにする。
 - 指定された雰囲気と関係性に合わせる。恋人以外に恋愛っぽい言い回しは使わない。
 TXT;
 
-    $memories = implode("\n", array_map(fn ($m) => "- {$m}", $input['memories']));
+    $memories = implode("\n", array_map(fn ($m, $i) => ($i + 1) . ". {$m}", $input['memories'], array_keys($input['memories'])));
     $user = "相手の名前: {$input['recipientName']}\n"
         . '贈り主の名前: ' . ($input['senderName'] !== '' ? $input['senderName'] : '(なし。「贈り主」と呼ぶ)') . "\n"
         . '関係: ' . GIFT_RELATIONS[$input['relation']] . "\n"
@@ -225,7 +276,7 @@ TXT;
         'system' => $system,
         'messages' => [['role' => 'user', 'content' => $user]],
         'output_config' => [
-            'effort' => 'low',
+            'effort' => 'medium',
             'format' => ['type' => 'json_schema', 'schema' => gift_game_schema()],
         ],
         // 安全分類器が誤って断ったときに別モデルで作り直す
@@ -267,33 +318,28 @@ TXT;
     return gift_normalize_game(json_decode($text, true), $input);
 }
 
-// AIが使えないときのテンプレート版。思い出1つにつき1問、正解は本物の思い出。
+// AIが使えないときのテンプレート版。思い出1つにつき1章。どれを選んでもあたたかい言葉が返る。
 function gift_generate_template(array $input): array
 {
     $name = $input['recipientName'];
-    $decoys = [
-        '月まで歩いて行ったことがある', '猫と会話ができる', '一晩で本を百冊読んだ', '雲の上で昼寝をしたことがある',
-        'くじらに乗ったことがある', '虹の根元を見つけた', '星をひとつ持っている', '風船で空を飛んだことがある',
-    ];
-    shuffle($decoys);
+    $from = $input['senderName'] !== '' ? "{$input['senderName']}さん" : 'ある方';
     $stages = [];
-    foreach ($input['memories'] as $i => $memory) {
-        $choices = [$memory, $decoys[$i * 2 % 8], $decoys[($i * 2 + 1) % 8]];
-        shuffle($choices);
+    foreach ($input['memories'] as $memory) {
         $stages[] = [
-            'question' => "{$name}さんについて、本当なのはどれでしょう。",
-            'choices' => $choices,
-            'answer' => array_search($memory, $choices, true),
-            'correct' => '正解です。よく覚えていらっしゃいますね。',
-            'wrong' => "惜しい。答えは「{$memory}」でした。",
+            'question' => "「{$memory}」——このこと、覚えていますか。",
+            'choices' => [
+                ['label' => 'はっきり覚えている', 'reply' => "覚えていてくれて、うれしいです。{$from}にとっても、ずっと大切にしている思い出です。"],
+                ['label' => 'なんとなく覚えている', 'reply' => "おぼろげでも、心のどこかに残っていたのですね。{$from}は、今もあざやかに覚えています。"],
+                ['label' => 'もう一度、思い出したい', 'reply' => "それなら、いま一緒に思い出しましょう。{$from}が、あなたに伝えたかった思い出です。"],
+            ],
+            'caption' => $memory,
         ];
     }
-    $from = $input['senderName'] !== '' ? "{$input['senderName']}さん" : 'ある方';
     return [
         'title' => "{$name}さんへの贈り物",
-        'intro' => ["{$name}さん、こんにちは。", "{$from}から、あなたのためだけの贈り物をお預かりしています。", 'いくつかの問いに答えて、贈り物を開けてみてください。'],
+        'intro' => ["{$name}さん、こんにちは。", "{$from}から、あなたのためだけの贈り物をお預かりしています。", '思い出をひとつずつ、たどってみてください。'],
         'stages' => $stages,
-        'ending' => ['すべての問いが終わりました。', 'それでは、贈り物をお渡しします。'],
+        'ending' => ['すべての思い出をたどり終えました。', 'それでは、贈り物をお渡しします。'],
         'message' => $input['message'] !== '' ? $input['message'] : "{$name}さん、いつもありがとう。これからもよろしくね。",
         'badge' => ['name' => 'かけがえのない人', 'description' => "{$from}にとって、世界にひとりだけの大切な人。"],
     ];

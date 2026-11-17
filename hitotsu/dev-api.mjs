@@ -7,23 +7,23 @@ const gifts = new Map()
 
 function templateGame(input) {
   const name = input.recipientName
-  const decoys = ['月まで歩いて行ったことがある', '猫と会話ができる', '一晩で本を百冊読んだ', '雲の上で昼寝をしたことがある', 'くじらに乗ったことがある', '虹の根元を見つけた']
-  const stages = input.memories.map((memory, i) => {
-    const choices = [memory, decoys[(i * 2) % 6], decoys[(i * 2 + 1) % 6]].sort(() => Math.random() - 0.5)
-    return {
-      question: `${name}さんについて、本当なのはどれでしょう。`,
-      choices,
-      answer: choices.indexOf(memory),
-      correct: '正解です。よく覚えていらっしゃいますね。',
-      wrong: `惜しい。答えは「${memory}」でした。`,
-    }
-  })
   const from = input.senderName ? `${input.senderName}さん` : 'ある方'
+  const stages = input.memories.map((memory) => ({
+    question: `「${memory.text}」——このこと、覚えていますか。`,
+    choices: [
+      { label: 'はっきり覚えている', reply: `覚えていてくれて、うれしいです。${from}にとっても、ずっと大切にしている思い出です。` },
+      { label: 'なんとなく覚えている', reply: `おぼろげでも、心のどこかに残っていたのですね。${from}は、今もあざやかに覚えています。` },
+      { label: 'もう一度、思い出したい', reply: `それなら、いま一緒に思い出しましょう。${from}が、あなたに伝えたかった思い出です。` },
+    ],
+    caption: memory.text,
+    // 本番はサーバーに保存してURLを返す。開発用はブラウザから来た画像データをそのまま返す
+    photo: memory.photo || null,
+  }))
   return {
     title: `${name}さんへの贈り物`,
-    intro: [`${name}さん、こんにちは。`, `${from}から、あなたのためだけの贈り物をお預かりしています。`, 'いくつかの問いに答えて、贈り物を開けてみてください。'],
+    intro: [`${name}さん、こんにちは。`, `${from}から、あなたのためだけの贈り物をお預かりしています。`, '思い出をひとつずつ、たどってみてください。'],
     stages,
-    ending: ['すべての問いが終わりました。', 'それでは、贈り物をお渡しします。'],
+    ending: ['すべての思い出をたどり終えました。', 'それでは、贈り物をお渡しします。'],
     message: input.message || `${name}さん、いつもありがとう。これからもよろしくね。`,
     badge: { name: 'かけがえのない人', description: `${from}にとって、世界にひとりだけの大切な人。` },
   }
@@ -66,7 +66,7 @@ export function devApi() {
         const url = new URL(req.url, 'http://localhost')
         if (url.pathname === '/create.php' && req.method === 'POST') {
           const body = await readJson(req)
-          const memories = (body.memories || []).map((m) => String(m).trim()).filter(Boolean).slice(0, 5)
+          const memories = (body.memories || []).map((m) => ({ text: String(m?.text || '').trim(), photo: m?.photo || null })).filter((m) => m.text).slice(0, 3)
           if (!String(body.recipientName || '').trim() || memories.length < 2) return send(res, 400, { error: 'invalid_input' })
           const input = { ...body, recipientName: String(body.recipientName).trim(), senderName: String(body.senderName || '').trim(), memories, message: String(body.message || '').trim() }
           const gift = { id: randomBytes(6).toString('hex'), key: randomBytes(16).toString('hex'), status: 'draft', input, game: templateGame(input) }
