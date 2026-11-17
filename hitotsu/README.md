@@ -39,6 +39,11 @@
 
 別リポジトリに切り出したあとは、このフォルダで `npm install` → `npm run dev` / `npm run build`。
 
+## お試し版(友人に見せる用)
+`VITE_DEMO=1` を付けてビルドすると、サーバーなしで動くお試し版になる(`src/demo-api.js` がブラウザの中で仮APIの役をする)。
+AI・支払い・メール送信は行わず、作った贈り物はその端末のブラウザ内にだけ保存される。
+Vercel では `vercel.json` がこのビルドを指定している。Vercel のプロジェクト設定で Root Directory を `hitotsu` にすること。
+
 ## 公開の手順
 1. ドメインを取り、レンタルサーバーに追加する(PHP 8 + MySQL)
 2. phpMyAdmin で `server/schema.sql` を実行する

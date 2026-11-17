@@ -3,6 +3,8 @@ import { SITE } from './site.js'
 import { createBgm } from './bgm.js'
 
 const API = '/api'
+// お試し版(友人に見せる用)。サーバーなしで動き、AI・支払い・メール送信は行わない
+const DEMO = import.meta.env.VITE_DEMO === '1'
 const MY_GIFTS_KEY = 'hitotsu.myGifts'
 
 const RELATIONS = [
@@ -47,6 +49,7 @@ function errorText(code) {
 }
 
 async function api(path, options) {
+  if (DEMO) return (await import('./demo-api.js')).demoApi(path, options)
   const res = await fetch(`${API}/${path}`, options)
   const data = await res.json().catch(() => ({}))
   if (!res.ok) throw new Error(data.error || 'network')
@@ -106,6 +109,11 @@ export default function App() {
 
   return (
     <>
+      {DEMO && (
+        <p className="demo-bar">
+          これは公開前のお試し版です。お支払いは発生せず、メールも送られません。文章は仮のもので、作った贈り物はこの端末の中にだけ保存されます。
+        </p>
+      )}
       <header className="site-header">
         <a className="logo" href="/">
           {SITE.name}
