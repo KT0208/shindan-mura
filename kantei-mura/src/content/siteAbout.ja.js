@@ -16,6 +16,7 @@ export const siteAbout = {
   ],
   guidesHeading: '占いの解説',
   guides: [
+    { href: '/column-why-kanteimura.html', title: '運営者コラム:鑑定村をはじめた理由', text: 'おみくじと神社の作法を、世界の人に届けたい' },
     { href: '/2027.html', title: '2027年の運勢', text: '九星気学・干支・数秘術で占う、2027年の1年' },
     { href: '/kyusei.html', title: '九星気学の本命星', text: '一白水星〜九紫火星の性格と、生まれ年の早見表' },
     { href: '/eto.html', title: '十二支の性格', text: '12の干支の性格と相性の良い干支' },

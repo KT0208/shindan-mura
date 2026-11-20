@@ -12,6 +12,7 @@ import { articles, shrineArticles, legalPages, CONTACT_EMAIL } from '../src/cont
 import { ZODIAC_EMOJI, lifePathNumber, numberRelation, reduceNumber, zodiacIndex } from '../src/fortune.js'
 import { LANGUAGES, SITE_URL, languagePath } from '../src/i18n/languages.js'
 import * as f2027 from '../src/content/fortune2027.ja.js'
+import { COLUMN_AUTHOR, columns } from '../src/content/columns.ja.js'
 import readingsJa from '../src/readings/data/ja.js'
 import { ZODIAC_ELEMENT, etoIndex, etoPartners, kyuseiOfYear, kyuseiPalace, kyuseiPartners, zodiacPartners } from '../src/readings/logic.js'
 import * as guidesKE from '../src/content/guides/kyuseiEto.ja.js'
@@ -303,6 +304,7 @@ for (const lang of LANGUAGES) {
     `      </div>`,
     lang.code === 'ja'
       ? [
+        `      <h2>運営者コラム</h2>`, `      <div class="cards">`, ...columns.map((c) => articleCard(c, '/')), `      </div>`,
         `      <h2>${f2027.YEAR}年の運勢</h2>`, `      <div class="cards">`,
         articleCard({ file: `${f2027.YEAR}.html`, emoji: '🎍', title: f2027.hub.shortTitle, description: f2027.hub.description }, '/'),
         `      </div>`,
@@ -717,6 +719,29 @@ for (const lang of LANGUAGES) {
       renderSection({ heading: 'カードのキーワード一覧', table: { head: ['番号・カード', 'キーワード'], rows: cards.map((c, i) => [`${i} ${c.name}`, c.keywords.join('・')]) } }),
       cta({ text: '今のあなたへのメッセージを、タロットで1枚引いてみましょう', href: '/#/tarot', label: 'タロット占いをする' }),
     ] })
+  }
+}
+
+// ---- 運営者コラム(日本語のみ) ----
+{
+  const known = [...Object.values(cultures.ja.articles), articles.numerology, { file: 'tarot.html', emoji: '🃏', title: guides.tarot.shortTitle, description: guides.tarot.description }]
+  for (const c of columns) {
+    const related = c.related.map((href) => known.find((a) => `/${a.file}` === href)).filter(Boolean)
+    const body = [
+      `      <p class="eyebrow">運営者コラム</p>`,
+      `      <h1>${esc(c.title.split('|')[0])}</h1>`,
+      `      <p class="byline">文:${esc(COLUMN_AUTHOR)} ・ ${esc(c.date)}</p>`,
+      `      <p class="lead">${esc(c.lead)}</p>`,
+      ...c.sections.map(renderSection),
+      cta(c.cta),
+      `      <h2>ほかのコラム</h2>`,
+      `      <div class="cards">`,
+      ...columns.filter((o) => o !== c).map((o) => articleCard(o, '/')),
+      `      </div>`,
+      related.length ? [`      <h2>あわせて読みたい</h2>`, `      <div class="cards">`, ...related.map((a) => articleCard(a, '/')), `      </div>`].join('\n') : '',
+    ].filter(Boolean).join('\n')
+    const ld = { '@type': 'Article', headline: c.title, inLanguage: 'ja', author: { '@type': 'Person', name: 'Katsuya' }, publisher: { '@type': 'Organization', name: '鑑定村' } }
+    pages.push({ lang: jaLang, file: c.file, title: c.title, description: c.description, breadcrumb: [{ name: '読み物', href: `/${GUIDE_FILE}` }, { name: c.shortTitle }], body, jsonLd: ld })
   }
 }
 

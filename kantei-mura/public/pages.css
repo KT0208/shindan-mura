@@ -210,3 +210,5 @@ tbody th { color: var(--muted); font-weight: 400; white-space: nowrap; }
   background: #ff9900; color: #1a1a1a; font-size: 0.85rem; font-weight: 700; text-decoration: none; font-family: sans-serif;
 }
 .amazon-link .pr-label { font-size: 0.68rem; padding: 1px 5px; border-radius: 4px; background: rgba(0, 0, 0, 0.75); color: #fff; }
+
+.byline { margin: -6px 0 14px; font-size: 0.85rem; color: var(--muted); }
