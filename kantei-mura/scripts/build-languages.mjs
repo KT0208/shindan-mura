@@ -5,6 +5,8 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { LANGUAGES, SITE_URL, languagePath } from '../src/i18n/languages.js'
+import { MENU_CATEGORIES } from '../src/menus.js'
+import { siteAbout } from '../src/content/siteAbout.ja.js'
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 const dist = path.join(root, 'dist')
@@ -25,9 +27,34 @@ function replaceMeta(html, selector, value) {
   return html.replace(pattern, `$1${escapeAttr(value)}$2`)
 }
 
+const esc = (text) => String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+
+// トップページの中身を、JavaScriptを読まなくても読めるHTMLとして入れておく
+// (表示されるとアプリの画面に置き換わる。検索エンジンや審査で中身が伝わるようにするため)
+function staticHome(lang, dict) {
+  const ui = dict.ui
+  const base = languagePath(lang)
+  const card = (href, title, text, cls) => `<a class="${cls}" href="${href}"><strong>${esc(title)}</strong><span>${esc(text)}</span></a>`
+  const parts = [
+    '<main>',
+    `<header class="hero"><p class="eyebrow">${esc(ui.heroEyebrow)}</p><h1>鑑定村</h1>${dict.siteName !== '鑑定村' ? `<p class="hero-sub">${esc(dict.siteName)}</p>` : ''}<p>${esc(ui.heroText)}</p></header>`,
+    ...MENU_CATEGORIES.map((c) => `<section class="menu-category"><h2 class="category-heading">${esc(ui.categories[c.id])}</h2><div class="menu-grid">${c.items.map((m) => card(`${base}#/${m.id}`, `${m.emoji} ${ui.menus[m.id].title}`, ui.menus[m.id].text, 'menu-card')).join('')}</div></section>`),
+    `<section class="readings"><h2 class="eyebrow">${esc(ui.links.readingsHeading)}</h2><div class="readings-list">${ui.links.readings.map((r) => card(r.href, r.title, r.text, 'reading-card')).join('')}</div><a class="detail-link" href="${base}guide.html">${esc(ui.links.readingsMore)}</a></section>`,
+  ]
+  if (lang.code === 'ja') {
+    const a = siteAbout
+    parts.push(`<section class="site-about"><h2>${esc(a.guidesHeading)}</h2><div class="readings-list">${a.guides.map((g) => card(g.href, g.title, g.text, 'reading-card')).join('')}</div></section>`)
+    parts.push(`<section class="site-about"><h2>${esc(a.heading)}</h2>${a.paragraphs.map((p) => `<p>${esc(p)}</p>`).join('')}<h3>${esc(a.policyHeading)}</h3>${a.policies.map((p) => `<p>${esc(p)}</p>`).join('')}</section>`)
+  }
+  parts.push(`<footer class="footer">${ui.footer.map((line) => `<p>${esc(line)}</p>`).join('')}<p><a href="/privacy.html">${esc(ui.links.privacy)}</a> ・ <a href="/contact.html">${esc(ui.links.contact)}</a> ・ <a href="/operator.html">${esc(ui.links.operator)}</a></p></footer>`)
+  parts.push('</main>')
+  return parts.join('\n')
+}
+
 function buildPage(lang, dict) {
   let html = template
   html = html.replace(/<html lang="[^"]*">/, `<html lang="${lang.code}">`)
+  html = html.replace('<div id="root"></div>', `<div id="root"><div class="app">${staticHome(lang, dict)}</div></div>`)
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${escapeAttr(dict.meta.title)}</title>`)
   html = html.replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${pageUrl(lang)}" />\n    ${alternates}`)
   html = replaceMeta(html, 'name="description"', dict.meta.description)

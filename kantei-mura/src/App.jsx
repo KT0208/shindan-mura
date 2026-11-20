@@ -22,6 +22,7 @@ import { DictionaryContext, useDictionary } from './i18n/context'
 import { LANGUAGES, LANGUAGE_SUGGESTIONS, languageFromPath, languagePath, preferredLanguage } from './i18n/languages'
 import Omikuji from './Omikuji'
 import SnsPage from './SnsPage'
+import { siteAbout } from './content/siteAbout.ja'
 import { shindanUrl } from './sisterSite'
 import { track } from './analytics'
 
@@ -303,6 +304,27 @@ function Home() {
         </div>
         <a className="detail-link" href={`${languagePath(currentLanguage)}guide.html`}>{t.ui.links.readingsMore}</a>
       </section>
+      {t.code === 'ja' && (
+        <>
+          <section className="site-about">
+            <h2>{siteAbout.guidesHeading}</h2>
+            <div className="readings-list">
+              {siteAbout.guides.map((g) => (
+                <a key={g.href} className="reading-card" href={g.href}>
+                  <strong>{g.title}</strong>
+                  <span>{g.text}</span>
+                </a>
+              ))}
+            </div>
+          </section>
+          <section className="site-about">
+            <h2>{siteAbout.heading}</h2>
+            {siteAbout.paragraphs.map((p) => <p key={p}>{p}</p>)}
+            <h3>{siteAbout.policyHeading}</h3>
+            {siteAbout.policies.map((p) => <p key={p}>{p}</p>)}
+          </section>
+        </>
+      )}
     </main>
   )
 }
