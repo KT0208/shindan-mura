@@ -1,0 +1,99 @@
+.compat-page { color: #fff; }
+.compat-hero p:not(.label) { margin: 8px 0 0; opacity: 0.85; }
+
+.compat-pair {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 20px 0 4px;
+}
+.compat-x {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff4ecd, #7c5cff);
+  font-weight: 900; font-size: 20px;
+  pointer-events: none;
+}
+.compat-slot {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  min-height: 220px;
+  padding: 16px 10px;
+  border: 2px dashed rgba(255, 255, 255, 0.25);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+}
+.compat-slot.filled { border-style: solid; border-color: rgba(255, 255, 255, 0.18); background: rgba(255, 255, 255, 0.08); }
+.compat-slot img { width: min(140px, 100%); aspect-ratio: 1; object-fit: contain; }
+.compat-slot strong { font-size: 16px; line-height: 1.3; }
+.compat-slot small { opacity: 0.7; font-size: 12px; line-height: 1.3; }
+.compat-slot-plus { font-size: 44px; line-height: 1; opacity: 0.6; }
+
+.compat-result { margin-top: 20px; padding: 28px 22px; text-align: center; }
+.compat-score { margin: 0; font-weight: 900; font-size: 22px; }
+.compat-score span {
+  font-size: 72px; line-height: 1;
+  background: linear-gradient(135deg, #ff9be6, #a99bff);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.compat-grade { margin: 4px 0 0; font-weight: 800; opacity: 0.85; }
+.compat-result h2 { margin: 14px 0 6px; font-size: 24px; }
+.compat-types { margin: 0 0 18px; font-size: 13px; opacity: 0.7; }
+.compat-section { text-align: left; margin-top: 14px; padding: 16px 18px; border-radius: 18px; background: rgba(255, 255, 255, 0.06); }
+.compat-section h3 { margin: 0 0 6px; font-size: 15px; }
+.compat-section p { margin: 0; line-height: 1.8; }
+.compat-tip { background: rgba(255, 78, 205, 0.12); }
+.compat-note { margin: 12px 0 0; font-size: 13px; opacity: 0.75; }
+.compat-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
+.compat-actions a { text-decoration: none; }
+
+.compat-random {
+  width: 100%; min-height: 52px; margin-bottom: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08); color: #fff;
+  font-weight: 900; font-size: 16px; cursor: pointer;
+}
+.compat-block { margin-top: 20px; }
+.compat-block h2 { font-size: 17px; margin: 0 0 10px; }
+.compat-diagnosis-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+.compat-diagnosis {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.13); border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06); color: #fff;
+  font-weight: 800; font-size: 14px; text-align: left; cursor: pointer;
+}
+.compat-diagnosis img { width: 40px; height: 40px; object-fit: contain; flex: none; }
+.compat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; margin-top: 12px; }
+.compat-tile {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 12px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.13); border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06); color: #fff;
+  cursor: pointer; text-align: center;
+}
+.compat-tile:hover, .compat-diagnosis:hover, .compat-slot:hover { background: rgba(255, 255, 255, 0.12); }
+.compat-tile img { width: 96px; height: 96px; object-fit: contain; }
+.compat-tile strong { font-size: 13px; line-height: 1.3; }
+.compat-tile small { font-size: 11px; line-height: 1.35; opacity: 0.7; }
+
+@media (max-width: 520px) {
+  .compat-slot { min-height: 180px; }
+  .compat-slot img { width: 100px; }
+  .compat-score span { font-size: 60px; }
+  .compat-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+  .compat-tile img { width: 76px; height: 76px; }
+}
+
+.compat-image-button { background: linear-gradient(135deg, #ff4ecd, #7c5cff); border-color: transparent; }
+.compat-image-button:disabled { opacity: 0.7; cursor: wait; }
+.compat-preview { margin: 20px auto 0; max-width: 320px; }
+.compat-preview img { width: 100%; border-radius: 18px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35); }
+.compat-preview figcaption { margin-top: 8px; font-size: 12px; opacity: 0.7; }

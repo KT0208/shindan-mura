@@ -3255,3 +3255,111 @@ export const lendingTypeResultTypes = [
   ['夢追いバンドマンタイプ', '世話焼きやりくりタイプ', 'コツコツ夢見タイプ', '魔性のヒモタイプ'],
   ['完全養われタイプ', '貢ぎきり献身タイプ', '鬼の取り立てタイプ', '貢がれ王様タイプ'],
 ]
+
+// 恋の落ち方診断(落ちる族=オチー。「恋に落ちる」を"落ちるもの"で表現)
+export const fallingTypeCharacters = {
+  'イルカダイブタイプ': { characterName: 'ダイブルカ', role: '恋に頭から飛び込む、ダイブ型の落ち方', visualConcept: '水しぶきを上げて跳ねる、ハート目のイルカ。ためらわず恋に飛び込む。', imageKey: 'fall-dolphin' },
+  'のんびり浮き輪タイプ': { characterName: 'ぷかうきわ', role: 'ぷかぷか漂い、気づけば好きになっている落ち方', visualConcept: '水面でのんびり浮かぶ、ハート目の浮き輪。焦らず自然に恋に落ちる。', imageKey: 'fall-floatie' },
+  'スルッと滑り込みタイプ': { characterName: 'すべりんこ', role: '警戒せずスルッと滑り落ちる落ち方', visualConcept: 'ハート目のすべり台。あっという間にスルッと恋に滑り込む。', imageKey: 'fall-slide' },
+  'はかなく散る桜タイプ': { characterName: 'さくらおち', role: '一瞬で散る、切なくはかない落ち方', visualConcept: 'ひらひら花びらを散らす、ハート目の桜。美しくもはかない恋。', imageKey: 'fall-sakura' },
+  'まっすぐ直球タイプ': { characterName: 'はねっこハート', role: '好きをまっすぐ表に出す、直球の落ち方', visualConcept: '羽を広げてまっすぐ飛ぶ、ハート目のハート。隠さず一直線。', imageKey: 'fall-winged-heart' },
+  'ふわっとシャボンタイプ': { characterName: 'しゃぼんふわ', role: 'ふわっと浮いて儚く落ちる、壊れやすい恋', visualConcept: '虹色に輝く、ハート目のシャボン玉。きれいだけど割れやすい恋。', imageKey: 'fall-bubble' },
+  'ドミノ一気タイプ': { characterName: 'ドミノくずれ', role: '一度崩れ出すと止まらない、一気の落ち方', visualConcept: '次々倒れていく、ハート目のドミノ。きっかけ一つで全部倒れる。', imageKey: 'fall-domino' },
+  '甘くとろけるタイプ': { characterName: 'とろけアイス', role: '甘やかされてとろけ落ちる恋', visualConcept: 'とろりと溶ける、ハート目のアイスクリーム。甘さに弱い。', imageKey: 'fall-icecream' },
+  'ビビッと一目惚れタイプ': { characterName: 'ビビッと磁石', role: '見た瞬間に引き寄せられる、一目惚れの落ち方', visualConcept: '火花を散らす、ハート目の磁石。ビビッと一瞬で引き寄せられる。', imageKey: 'fall-magnet' },
+  'しとしと雨傘タイプ': { characterName: 'しとしとがさ', role: '静かにじんわり染みてくる落ち方', visualConcept: '雨の中にたたずむ、ハート目の傘。しとしとと静かに恋が染みる。', imageKey: 'fall-umbrella' },
+  'どっぷりベタ惚れタイプ': { characterName: 'べたべたスライム', role: 'どっぷり全身で惚れ込む落ち方', visualConcept: 'べちゃっと広がる、ハート目の紫スライム。全身でベタ惚れ。', imageKey: 'fall-slime' },
+  'ダメ恋堕天使タイプ': { characterName: 'おち天使', role: 'ダメな相手ほど“堕ちて”しまう落ち方', visualConcept: '輪っかと翼の、ハート目の堕天使。わかっててもダメ恋に堕ちる。', imageKey: 'fall-fallen-angel' },
+  '運命の流れ星タイプ': { characterName: 'うんめい星', role: '運命を感じて一瞬で落ちる落ち方', visualConcept: '虹の尾を引く、ハート目の流れ星。運命だと信じて一瞬で落ちる。', imageKey: 'fall-shooting-star' },
+  'じわじわパラシュートタイプ': { characterName: 'ぱらしゅーと', role: '時間をかけてしっかり着地する落ち方', visualConcept: 'ゆっくり降りてくる、ハート目のパラシュート。じわじわ確実に落ちる。', imageKey: 'fall-parachute' },
+  '抜け出せない沼タイプ': { characterName: 'ぬまバサミ', role: '一度ハマったら抜け出せない落ち方', visualConcept: 'ガチッと閉じた、ハート目のトラバサミ。ハマったら最後、抜けられない。', imageKey: 'fall-trap' },
+  '禁断のリンゴタイプ': { characterName: 'きんだんりんご', role: '禁断ほど燃える、危険な落ち方', visualConcept: 'かじり跡と茨の、ハート目のリンゴ。ダメと言われるほど惹かれる。', imageKey: 'fall-apple' },
+}
+
+export const fallingTypeResultTypes = [
+  ['イルカダイブタイプ', 'のんびり浮き輪タイプ', 'スルッと滑り込みタイプ', 'はかなく散る桜タイプ'],
+  ['まっすぐ直球タイプ', 'ふわっとシャボンタイプ', 'ドミノ一気タイプ', '甘くとろけるタイプ'],
+  ['ビビッと一目惚れタイプ', 'しとしと雨傘タイプ', 'どっぷりベタ惚れタイプ', 'ダメ恋堕天使タイプ'],
+  ['運命の流れ星タイプ', 'じわじわパラシュートタイプ', '抜け出せない沼タイプ', '禁断のリンゴタイプ'],
+]
+
+// 好きバレ度診断(バレキュン族=好きがバレたくないのに気持ちが漏れ出す精霊)
+export const barekyunCharacters = {
+  '平静を装うタイプ': { characterName: 'かくしバレキュン', role: '必死に隠して平静を装う、好きバレ最小の子', visualConcept: 'フードをすっぽりかぶってハートを隠し持つバレキュン。顔を隠しても、こっそりハートがのぞく。', imageKey: 'bare-hide' },
+  '好きメーター漏れタイプ': { characterName: 'メーターバレキュン', role: '好き度メーターがじわり動いてバレる子', visualConcept: '好き度メーターを抱えるバレキュン。針がハートに向かって動き、気持ちがじわり漏れる。', imageKey: 'bare-gauge' },
+  'のぼせアツアツタイプ': { characterName: 'のぼせバレキュン', role: 'のぼせて顔がアツアツになる子', visualConcept: '氷のうを乗せ、温度計を抱えて湯気を出すバレキュン。顔が熱くて汗だく。', imageKey: 'bare-fever' },
+  '鼓動ダダ漏れタイプ': { characterName: 'ドキドキバレキュン', role: '心拍モニターで鼓動が全部バレる子', visualConcept: '心拍モニターを抱えるバレキュン。画面にハート波形が激しく表示され、ドキドキが筒抜け。', imageKey: 'bare-heartbeat' },
+  '浮かれふわふわタイプ': { characterName: 'ふわふわバレキュン', role: '浮かれてふわふわ浮いてしまう子', visualConcept: 'ハート風船に引っ張られて浮かぶバレキュン。嬉しくて地に足がつかない。', imageKey: 'bare-balloon' },
+  'ダダ漏れ蛇口タイプ': { characterName: 'ダダ漏れバレキュン', role: '気持ちが蛇口からダダ漏れする子', visualConcept: 'ハートが流れ出る蛇口の下で傘をさすバレキュン。止めようとしても漏れ続ける。', imageKey: 'bare-faucet' },
+  '沸騰吹きこぼれタイプ': { characterName: 'ふっとうバレキュン', role: '気持ちが沸騰して吹きこぼれる子', visualConcept: '火にかけた鍋でぐつぐつ沸くバレキュン。ハートの泡が吹きこぼれる。', imageKey: 'bare-pot' },
+  '打ち上げ大爆発タイプ': { characterName: 'はなびバレキュン', role: '気持ちが花火みたいに打ち上がる子', visualConcept: '浴衣で花火を打ち上げるバレキュン。好きが夜空に大爆発、周囲に丸わかり。', imageKey: 'bare-fireworks' },
+  'すぐ赤面タイプ': { characterName: 'あかめんバレキュン', role: '好きな人を前にするとすぐ赤面する子', visualConcept: 'ほっぺを真っ赤にして照れるバレキュン。顔色だけで気持ちがバレる。', imageKey: 'bare-blush' },
+  'あせあせ挙動不審タイプ': { characterName: 'あせあせバレキュン', role: '緊張で汗だく、挙動不審になる子', visualConcept: '滝のような汗をかいて震えるバレキュン。落ち着こうとするほど怪しい。', imageKey: 'bare-sweat' },
+  '顔パッと発光タイプ': { characterName: 'ピカッとバレキュン', role: '好きな人を見た瞬間、顔がパッと輝く子', visualConcept: '頭上の電球がピカッと光るバレキュン。好きな人を見ると表情が明るく輝く。', imageKey: 'bare-lightbulb' },
+  '心まる見えタイプ': { characterName: 'すけすけバレキュン', role: '心が透けて丸見えになる子', visualConcept: '透けるベールの中で、光るハートが丸見えのバレキュン。隠しても中身が透ける。', imageKey: 'bare-transparent' },
+  '金庫で封印タイプ': { characterName: 'きんこバレキュン', role: '金庫に気持ちを封印…したつもりの子', visualConcept: 'ハート錠の宝箱に入って鍵をかけるバレキュン。封印したのにハートがあふれ出る。', imageKey: 'bare-safe' },
+  '手紙はみ出しタイプ': { characterName: 'てがみバレキュン', role: '隠したラブレターがはみ出す子', visualConcept: 'たくさんのラブレターに埋もれるバレキュン。隠したはずの手紙がはみ出して見える。', imageKey: 'bare-letter' },
+  '鏡に本心タイプ': { characterName: 'かがみバレキュン', role: '本心が鏡に映ってバレる子', visualConcept: '鏡を抱えるバレキュン。すまし顔でも、鏡にはデレデレの本心が映る。', imageKey: 'bare-mirror' },
+  '拡声器で全世界発表タイプ': { characterName: 'メガホンバレキュン', role: '好きを拡声器で全世界に発表しちゃう子', visualConcept: '拡声器でハートを打ち鳴らすバレキュン。もう隠す気ゼロ、全開でバレてる。', imageKey: 'bare-megaphone' },
+}
+
+export const barekyunResultTypes = [
+  ['平静を装うタイプ', '浮かれふわふわタイプ', 'すぐ赤面タイプ', '金庫で封印タイプ'],
+  ['好きメーター漏れタイプ', 'ダダ漏れ蛇口タイプ', 'あせあせ挙動不審タイプ', '手紙はみ出しタイプ'],
+  ['のぼせアツアツタイプ', '沸騰吹きこぼれタイプ', '顔パッと発光タイプ', '鏡に本心タイプ'],
+  ['鼓動ダダ漏れタイプ', '打ち上げ大爆発タイプ', '心まる見えタイプ', '拡声器で全世界発表タイプ'],
+]
+
+// 恋の冷め方診断(冷めカエル=蛙化。恋の熱が冷めた16匹の村人カエル)
+export const coolingFrogCharacters = {
+  '線香花火タイプ': { characterName: 'せんこうガエル', role: 'パッと燃えてパッと冷める、儚い恋のカエル', visualConcept: '浴衣で線香花火を持つカエル。一瞬で盛り上がってスッと終わる。', imageKey: 'cool-sparkler' },
+  '割れハート氷結タイプ': { characterName: 'われハートガエル', role: '失恋のショックで一気に冷えるカエル', visualConcept: '絆創膏を貼り、割れたハートを抱えて涙ぐむカエル。', imageKey: 'cool-broken-heart' },
+  '氷漬けタイプ': { characterName: 'こおりガエル', role: '気持ちが一瞬で凍りつくカエル', visualConcept: '氷漬けになり、凍ったハートを抱えるカエル。急冷で動けない。', imageKey: 'cool-ice-heart' },
+  '雪だるま氷点下タイプ': { characterName: 'ゆきだるまガエル', role: '完全氷点下、恋が凍結しきったカエル', visualConcept: 'マフラーを巻いた雪だるま姿のカエル。もう芯まで冷えきっている。', imageKey: 'cool-snowman' },
+  '冷めコーヒータイプ': { characterName: 'さめコーヒーガエル', role: 'ゆっくり熱が冷めていくダンディなカエル', visualConcept: 'ベレー帽でマグカップを持つカエル。湯気が消え、じわじわ冷める。', imageKey: 'cool-coffee' },
+  'じわ下がり温度計タイプ': { characterName: 'おんどけいガエル', role: '気持ちの温度がじわじわ下がるカエル', visualConcept: 'マフラーにくるまり温度計を抱えるカエル。目盛りがゆっくり下がる。', imageKey: 'cool-thermometer' },
+  '消えかけロウソクタイプ': { characterName: 'ロウソクガエル', role: '恋の灯が消えかけているカエル', visualConcept: '溶けたロウソクになったカエル。小さな炎が今にも消えそう。', imageKey: 'cool-candle' },
+  '砂時計タイムオーバータイプ': { characterName: 'すなどけいガエル', role: '時間切れで恋が終わるカエル', visualConcept: '砂時計の横で目を伏せるカエル。砂が落ちきって、恋もタイムオーバー。', imageKey: 'cool-hourglass' },
+  '溶けアイスタイプ': { characterName: 'とろけアイスガエル', role: '甘い理想がとろけて幻滅するカエル', visualConcept: 'ソフトクリームが溶けて崩れたカエル。甘い夢がとろけ落ちる。', imageKey: 'cool-icecream' },
+  '曇り鏡タイプ': { characterName: 'くもりかがみガエル', role: '相手の見え方が曇って冷めるメガネのカエル', visualConcept: 'メガネをかけ、曇った鏡を見つめるカエル。理想像がぼやけていく。', imageKey: 'cool-mirror' },
+  '魔法が解けるカボチャタイプ': { characterName: 'カボチャガエル', role: '魔法が解けて現実に戻るシンデレラなカエル', visualConcept: 'カボチャの馬車に乗るカエル。12時の鐘で魔法が解け、ただのカボチャに。', imageKey: 'cool-pumpkin' },
+  'メッキ剥がれ王様タイプ': { characterName: 'おうさまガエル', role: '理想が高く、メッキが剥がれると幻滅する王様カエル', visualConcept: '王冠とマントのカエル。金のメッキが剥がれて、幻滅が始まる。', imageKey: 'cool-king' },
+  '炭酸抜けタイプ': { characterName: 'たんさんガエル', role: 'ドキドキが抜けて飽きるカエル', visualConcept: '炭酸の抜けたソーダのそばでぼんやりするカエル。シュワシュワが消えた。', imageKey: 'cool-soda' },
+  '枯れバラタイプ': { characterName: 'かればらガエル', role: '鮮度が落ちてマンネリ化するカエル', visualConcept: '枯れたバラを抱えるカエル。咲いていた頃のときめきが色あせる。', imageKey: 'cool-rose' },
+  '色あせ写真タイプ': { characterName: 'しゃしんガエル', role: '思い出が色あせてマンネリになるカエル', visualConcept: '色あせた写真の中にいるカエル。楽しかった記憶がセピア色に。', imageKey: 'cool-photo' },
+  '燃え尽き灰タイプ': { characterName: 'もえつきガエル', role: '情熱を燃やし尽くして灰になるカエル', visualConcept: '燃え尽きた灰の中でぐったりするカエル。全部出しきって真っ白。', imageKey: 'cool-ashes' },
+}
+
+export const coolingFrogResultTypes = [
+  ['線香花火タイプ', '冷めコーヒータイプ', '溶けアイスタイプ', '炭酸抜けタイプ'],
+  ['割れハート氷結タイプ', 'じわ下がり温度計タイプ', '曇り鏡タイプ', '枯れバラタイプ'],
+  ['氷漬けタイプ', '消えかけロウソクタイプ', '魔法が解けるカボチャタイプ', '色あせ写真タイプ'],
+  ['雪だるま氷点下タイプ', '砂時計タイムオーバータイプ', 'メッキ剥がれ王様タイプ', '燃え尽き灰タイプ'],
+]
+
+// ハイスペ診断: ハイスペな人につく"オトモ"16体。あなたの隠れたタイプがわかる。
+export const hiSpecCharacters = {
+  'ぽよボンタイプ': { characterName: 'ぽよボン', role: '考えるより先に動く、愛されおとぼけオトモ', visualConcept: '涙目で口を開けたふわふわのオトモ。お菓子を抱えてよく転ぶ天然キャラ。', imageKey: 'spec-poyo' },
+  'もぐピヨタイプ': { characterName: 'もぐピヨ', role: '好きなものに全集中する食いしん坊オトモ', visualConcept: 'いつもお腹をすかせた黄色いヒヨコ型オトモ。おいしいものに猛ダッシュ。', imageKey: 'spec-mogu' },
+  'たびニャタイプ': { characterName: 'たびニャ', role: '好奇心と運で未知を引き寄せる冒険家オトモ', visualConcept: 'ゴーグルと地図を持つ探検家ネコ型オトモ。新しい場所を見つけるのが得意。', imageKey: 'spec-tabi' },
+  'いたずらスライムタイプ': { characterName: 'いたずらスライム', role: '変幻自在で場を沸かすトリックスターオトモ', visualConcept: '帽子をかぶった青いスライム。変身やイタズラが得意なムードメーカー。', imageKey: 'spec-slime' },
+  'のんびりパンダタイプ': { characterName: 'のんびりパンダ', role: 'いるだけで場を和ませる癒し系オトモ', visualConcept: '笹を抱えてマイペースに寝そべるパンダ型オトモ。がんばった人をそっと癒す。', imageKey: 'spec-panda' },
+  'フローラタイプ': { characterName: 'フローラ', role: '花も人もじっくり育てる穏やかなガーデナーオトモ', visualConcept: '花冠をつけたネコ型オトモ。植物を育て、空間を可愛く整えるセンスの持ち主。', imageKey: 'spec-flora' },
+  'グルメマスタータイプ': { characterName: 'グルメマスター', role: '人を喜ばせる料理の天才オトモ', visualConcept: 'コック帽をかぶったブタ型オトモ。食べる人の笑顔がいちばんのごほうび。', imageKey: 'spec-gourmet' },
+  'てんしナースタイプ': { characterName: 'てんしナース', role: '困っている人を放っておけない癒しのプロオトモ', visualConcept: 'ナースキャップと天使の輪を持つ白いオトモ。手当ても料理も得意で安心感抜群。', imageKey: 'spec-nurse' },
+  'ひらめきフクロウタイプ': { characterName: 'ひらめきフクロウ', role: '学ぶのが大好きな頼れる頭脳派オトモ', visualConcept: '角帽とメガネをかけ本を読むフクロウ型オトモ。知らないことがあると燃える。', imageKey: 'spec-owl' },
+  'メカ職人タイプ': { characterName: 'メカ職人', role: 'なんでも作って直す手を動かす技術派オトモ', visualConcept: 'ゴーグルとレンチを持つエンジニアオトモ。小さなロボットを連れている。', imageKey: 'spec-mecha' },
+  '聖なる魔法使いタイプ': { characterName: '聖なる魔法使い', role: '自然の力を扱うやさしい魔法使いオトモ', visualConcept: '角とマントを持つシカ型の魔法使いオトモ。植物・天候・癒しの魔法が得意。', imageKey: 'spec-mage' },
+  '星の占い師タイプ': { characterName: '星の占い師', role: '直感で未来を見通すカリスマ占い師オトモ', visualConcept: 'ローブと星の道具を持つネコ型占い師オトモ。悩みにやさしく寄り添う。', imageKey: 'spec-oracle' },
+  '天空の歌姫タイプ': { characterName: '天空の歌姫', role: '歌とパフォーマンスで魅了する努力家オトモ', visualConcept: '翼とマイクを持つ歌姫オトモ。空気を明るくする天才で練習を欠かさない。', imageKey: 'spec-diva' },
+  '影の暗殺者タイプ': { characterName: '影の暗殺者', role: '静かに任務をこなすクールな実力者オトモ', visualConcept: 'フードを深くかぶった黒ネコ型オトモ。口数は少ないが信頼した相手に忠実。', imageKey: 'spec-shadow' },
+  '龍の騎士タイプ': { characterName: '龍の騎士', role: '仲間を守る責任感の強い戦士オトモ', visualConcept: '王冠とマントをまとった龍型オトモ。圧倒的なパワーとカリスマのリーダー気質。', imageKey: 'spec-dragon' },
+  '獅子の王様タイプ': { characterName: '獅子の王様', role: 'みんなをまとめる統率力の王者オトモ', visualConcept: '王冠と杖を持つライオン型オトモ。決断が早く包容力があり、信頼が厚い。', imageKey: 'spec-lion' },
+}
+
+export const hiSpecResultTypes = [
+  ['ぽよボンタイプ', 'のんびりパンダタイプ', 'ひらめきフクロウタイプ', '天空の歌姫タイプ'],
+  ['もぐピヨタイプ', 'フローラタイプ', 'メカ職人タイプ', '影の暗殺者タイプ'],
+  ['たびニャタイプ', 'グルメマスタータイプ', '聖なる魔法使いタイプ', '龍の騎士タイプ'],
+  ['いたずらスライムタイプ', 'てんしナースタイプ', '星の占い師タイプ', '獅子の王様タイプ'],
+]

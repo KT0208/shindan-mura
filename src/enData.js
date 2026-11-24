@@ -66,6 +66,14 @@ import {
   hiddenTalentResultTypesEn,
   lendingTypeCharactersEn,
   lendingTypeResultTypesEn,
+  fallingTypeCharactersEn,
+  fallingTypeResultTypesEn,
+  barekyunCharactersEn,
+  barekyunResultTypesEn,
+  coolingFrogCharactersEn,
+  coolingFrogResultTypesEn,
+  hiSpecCharactersEn,
+  hiSpecResultTypesEn,
 } from './characterData.en.js'
 import { resultDetailsEn } from './resultDetails.en.js'
 import { randomCommentPoolsEn } from './randomComments.en.js'
@@ -116,6 +124,10 @@ export const resultTypesByDiagnosisEn = {
   'dream-type': dreamTypeResultTypesEn,
   'hidden-talent': hiddenTalentResultTypesEn,
   'lending-type': lendingTypeResultTypesEn,
+  'falling-type': fallingTypeResultTypesEn,
+  'love-leak': barekyunResultTypesEn,
+  'cooling-type': coolingFrogResultTypesEn,
+  'high-spec': hiSpecResultTypesEn,
 }
 
 export const characterCollectionsEn = {
@@ -151,4 +163,8 @@ export const characterCollectionsEn = {
   'dream-type': { basePath: 'dreamTypeCharacters', characters: dreamTypeCharactersEn },
   'hidden-talent': { basePath: 'hiddenTalentCharacters', characters: hiddenTalentCharactersEn },
   'lending-type': { basePath: 'lendingTypeCharacters', characters: lendingTypeCharactersEn },
+  'falling-type': { basePath: 'fallingTypeCharacters', characters: fallingTypeCharactersEn },
+  'love-leak': { basePath: 'barekyunCharacters', characters: barekyunCharactersEn },
+  'cooling-type': { basePath: 'coolingFrogCharacters', characters: coolingFrogCharactersEn },
+  'high-spec': { basePath: 'hiSpecCharacters', characters: hiSpecCharactersEn },
 }

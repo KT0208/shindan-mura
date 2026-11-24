@@ -2672,3 +2672,111 @@ export const lendingTypeResultTypesEn = [
   ['Dream-Chasing Bandmate Type', 'Caretaker Budgeter Type', 'Steady Dreamer Type', 'Charming Freeloader Type'],
   ['Fully Kept Type', 'Devoted Giver Type', 'Ruthless Collector Type', 'Pampered King Type'],
 ]
+
+// How You Fall in Love (the "Ochī" / falling tribe: cute things that fall = falling in love)
+export const fallingTypeCharactersEn = {
+  'Dolphin Dive Type': { characterName: 'Dive Dolphin', role: 'A headfirst dive into love', visualConcept: 'A heart-eyed dolphin leaping in a splash, diving into love without hesitation.', imageKey: 'fall-dolphin' },
+  'Easy Floatie Type': { characterName: 'Drifty Floatie', role: 'Drifting along until you realize you are in love', visualConcept: 'A heart-eyed pool float bobbing on the water, falling for someone naturally and unhurried.', imageKey: 'fall-floatie' },
+  'Smooth Slide Type': { characterName: 'Slippy Slide', role: 'Sliding right in with no resistance', visualConcept: 'A heart-eyed slide. You slip into love in no time flat.', imageKey: 'fall-slide' },
+  'Fleeting Blossom Type': { characterName: 'Petal Fall', role: 'A beautiful, fleeting, bittersweet fall', visualConcept: 'A heart-eyed cherry blossom scattering petals. Lovely but fleeting love.', imageKey: 'fall-sakura' },
+  'Straight-Shot Type': { characterName: 'Winged Heart', role: 'Showing your feelings straight, no games', visualConcept: 'A heart-eyed heart flying straight with wings. Honest and direct.', imageKey: 'fall-winged-heart' },
+  'Fragile Bubble Type': { characterName: 'Floaty Bubble', role: 'A floaty, fragile fall that pops easily', visualConcept: 'A heart-eyed rainbow soap bubble. Beautiful but easy to break.', imageKey: 'fall-bubble' },
+  'Domino Rush Type': { characterName: 'Toppling Domino', role: 'Once the first tile falls, it all goes at once', visualConcept: 'Heart-eyed dominoes toppling in a row. One trigger and everything falls.', imageKey: 'fall-domino' },
+  'Sweet Melt Type': { characterName: 'Melty Scoop', role: 'Melting when you are spoiled with sweetness', visualConcept: 'A heart-eyed ice cream melting. Weak to sweetness.', imageKey: 'fall-icecream' },
+  'Love-at-First-Sight Type': { characterName: 'Zap Magnet', role: 'Pulled in the instant you see them', visualConcept: 'A heart-eyed magnet throwing sparks. Zapped and drawn in at a glance.', imageKey: 'fall-magnet' },
+  'Gentle Rain Type': { characterName: 'Drizzle Brolly', role: 'Quietly seeping in over time', visualConcept: 'A heart-eyed umbrella in the rain. Love that soaks in softly and quietly.', imageKey: 'fall-umbrella' },
+  'Head-Over-Heels Type': { characterName: 'Gooey Slime', role: 'Falling head over heels, all in', visualConcept: 'A heart-eyed purple slime splatting. In love with your whole self.', imageKey: 'fall-slime' },
+  'Bad-Love Angel Type': { characterName: 'Fallen Angel', role: 'Falling for the ones you know are trouble', visualConcept: 'A heart-eyed fallen angel with a halo and wings. You fall for bad love even knowing better.', imageKey: 'fall-fallen-angel' },
+  'Destined Star Type': { characterName: 'Fate Star', role: 'Falling in an instant when you feel it is fate', visualConcept: 'A heart-eyed shooting star with a rainbow tail. You fall at once, believing in fate.', imageKey: 'fall-shooting-star' },
+  'Slow Parachute Type': { characterName: 'Drop Parachute', role: 'Landing slowly and surely over time', visualConcept: 'A heart-eyed parachute drifting down. You fall slowly but surely.', imageKey: 'fall-parachute' },
+  'No-Escape Swamp Type': { characterName: 'Snap Trap', role: 'Once hooked, there is no getting out', visualConcept: 'A heart-eyed bear trap snapped shut. Once caught, you cannot escape.', imageKey: 'fall-trap' },
+  'Forbidden Apple Type': { characterName: 'Forbidden Apple', role: 'The more forbidden, the more it burns', visualConcept: 'A heart-eyed apple with a bite mark and thorns. The more off-limits, the stronger the pull.', imageKey: 'fall-apple' },
+}
+
+export const fallingTypeResultTypesEn = [
+  ['Dolphin Dive Type', 'Easy Floatie Type', 'Smooth Slide Type', 'Fleeting Blossom Type'],
+  ['Straight-Shot Type', 'Fragile Bubble Type', 'Domino Rush Type', 'Sweet Melt Type'],
+  ['Love-at-First-Sight Type', 'Gentle Rain Type', 'Head-Over-Heels Type', 'Bad-Love Angel Type'],
+  ['Destined Star Type', 'Slow Parachute Type', 'No-Escape Swamp Type', 'Forbidden Apple Type'],
+]
+
+// How Obvious Is Your Crush (the "Barekyun": spirits whose hidden love keeps leaking out)
+export const barekyunCharactersEn = {
+  'Poker-Face Type': { characterName: 'Hidden Barekyun', role: 'Lowest crush-leak; plays it cool and hides it', visualConcept: 'A Barekyun hiding a heart under a hood. Even with its face covered, a heart peeks out.', imageKey: 'bare-hide' },
+  'Crush-Meter Leak Type': { characterName: 'Meter Barekyun', role: 'Its crush-meter needle creeps up and leaks', visualConcept: 'A Barekyun holding a crush-meter whose needle edges toward a heart, feelings slipping out.', imageKey: 'bare-gauge' },
+  'Flushed Fever Type': { characterName: 'Feverish Barekyun', role: 'Gets flushed and hot in the face', visualConcept: 'A Barekyun with an ice pack and a thermometer, steaming and sweating from a hot, flushed face.', imageKey: 'bare-fever' },
+  'Racing-Heart Type': { characterName: 'Pounding Barekyun', role: 'Its racing heartbeat is fully exposed on a monitor', visualConcept: 'A Barekyun holding a heart-rate monitor with a wild heart waveform, its pounding heart laid bare.', imageKey: 'bare-heartbeat' },
+  'Floaty Giddy Type': { characterName: 'Floaty Barekyun', role: 'Floats up, giddy with joy', visualConcept: 'A Barekyun lifted by heart balloons, so happy its feet leave the ground.', imageKey: 'bare-balloon' },
+  'Leaky Faucet Type': { characterName: 'Leaky Barekyun', role: 'Feelings gush out like a leaky faucet', visualConcept: 'A Barekyun holding an umbrella under a faucet pouring out hearts; it just keeps leaking.', imageKey: 'bare-faucet' },
+  'Boiling-Over Type': { characterName: 'Boiling Barekyun', role: 'Feelings boil over the pot', visualConcept: 'A Barekyun bubbling in a pot over a fire, heart-shaped foam boiling over.', imageKey: 'bare-pot' },
+  'Fireworks Burst Type': { characterName: 'Fireworks Barekyun', role: 'Feelings launch like fireworks', visualConcept: 'A Barekyun in a yukata setting off fireworks; its love bursts across the night sky for all to see.', imageKey: 'bare-fireworks' },
+  'Quick Blush Type': { characterName: 'Blushy Barekyun', role: 'Blushes instantly in front of a crush', visualConcept: 'A Barekyun with bright red cheeks, its feelings given away by color alone.', imageKey: 'bare-blush' },
+  'Nervous Sweat Type': { characterName: 'Sweaty Barekyun', role: 'Sweats buckets and acts suspicious from nerves', visualConcept: 'A Barekyun trembling in a waterfall of sweat; the more it tries to be calm, the more suspicious it looks.', imageKey: 'bare-sweat' },
+  'Beaming Face Type': { characterName: 'Beaming Barekyun', role: 'Its face lights up the instant it sees a crush', visualConcept: 'A Barekyun with a lightbulb glowing bright overhead; its face lights up at the sight of a crush.', imageKey: 'bare-lightbulb' },
+  'See-Through Heart Type': { characterName: 'See-Through Barekyun', role: 'Its heart shows right through', visualConcept: 'A Barekyun under a sheer veil with a glowing heart fully visible; even hidden, the inside shows.', imageKey: 'bare-transparent' },
+  'Locked-Vault Type': { characterName: 'Vault Barekyun', role: 'Thinks it locked its feelings in a vault', visualConcept: 'A Barekyun locking itself in a heart-locked chest; sealed away, yet hearts overflow out.', imageKey: 'bare-safe' },
+  'Spilling Letters Type': { characterName: 'Letter Barekyun', role: 'Its hidden love letters spill out', visualConcept: 'A Barekyun buried in love letters; the letters it tried to hide are peeking out.', imageKey: 'bare-letter' },
+  'Mirror Tells-All Type': { characterName: 'Mirror Barekyun', role: 'Its true feelings show in the mirror', visualConcept: 'A Barekyun holding a mirror; even with a straight face, the mirror reflects its lovestruck true self.', imageKey: 'bare-mirror' },
+  'Megaphone Broadcast Type': { characterName: 'Megaphone Barekyun', role: 'Broadcasts its crush to the whole world', visualConcept: 'A Barekyun blasting hearts through a megaphone; no intention of hiding, fully out in the open.', imageKey: 'bare-megaphone' },
+}
+
+export const barekyunResultTypesEn = [
+  ['Poker-Face Type', 'Floaty Giddy Type', 'Quick Blush Type', 'Locked-Vault Type'],
+  ['Crush-Meter Leak Type', 'Leaky Faucet Type', 'Nervous Sweat Type', 'Spilling Letters Type'],
+  ['Flushed Fever Type', 'Boiling-Over Type', 'Beaming Face Type', 'Mirror Tells-All Type'],
+  ['Racing-Heart Type', 'Fireworks Burst Type', 'See-Through Heart Type', 'Megaphone Broadcast Type'],
+]
+
+// How Your Love Cools Off (the "cooling frogs": 16 frog villagers whose love has gone cold)
+export const coolingFrogCharactersEn = {
+  'Sparkler Burnout Type': { characterName: 'Sparkler Frog', role: 'Burns bright and cools fast — a fleeting love', visualConcept: 'A frog in a yukata holding a sparkler. It flares up in an instant and quietly fizzles out.', imageKey: 'cool-sparkler' },
+  'Shattered Freeze Type': { characterName: 'Cracked-Heart Frog', role: 'Chills all at once from a heartbreak shock', visualConcept: 'A bandaged frog hugging a broken heart, tears welling up.', imageKey: 'cool-broken-heart' },
+  'Frozen Heart Type': { characterName: 'Iced Frog', role: 'Feelings freeze solid in a flash (the ick)', visualConcept: 'A frog iced over, clutching a frozen heart. Flash-frozen and unable to move.', imageKey: 'cool-ice-heart' },
+  'Snowman Zero Type': { characterName: 'Snowman Frog', role: 'Below zero — love frozen through and through', visualConcept: 'A frog as a scarf-wrapped snowman. Chilled right to the core.', imageKey: 'cool-snowman' },
+  'Cooling Coffee Type': { characterName: 'Cold-Coffee Frog', role: 'A dandy whose warmth slowly cools', visualConcept: 'A beret-wearing frog with a mug. The steam fades and the warmth seeps away.', imageKey: 'cool-coffee' },
+  'Dropping Mercury Type': { characterName: 'Thermometer Frog', role: 'Its emotional temperature slips down bit by bit', visualConcept: 'A frog bundled in a scarf holding a thermometer whose mercury slowly drops.', imageKey: 'cool-thermometer' },
+  'Dying Candle Type': { characterName: 'Candle Frog', role: 'The flame of love is flickering out', visualConcept: 'A frog turned into a melting candle. A tiny flame about to go out.', imageKey: 'cool-candle' },
+  'Hourglass Timeout Type': { characterName: 'Hourglass Frog', role: 'Love ends when the time runs out', visualConcept: 'A frog beside an hourglass, eyes lowered. The sand runs out and so does the love.', imageKey: 'cool-hourglass' },
+  'Melting Dream Type': { characterName: 'Melting-Scoop Frog', role: 'Sweet ideals melt into disappointment', visualConcept: 'A frog as a melting, collapsing ice cream. The sweet dream drips away.', imageKey: 'cool-icecream' },
+  'Clouded Mirror Type': { characterName: 'Foggy-Mirror Frog', role: 'A bespectacled frog who cools as the view clouds over', visualConcept: 'A glasses-wearing frog staring into a clouded mirror. The ideal image blurs away.', imageKey: 'cool-mirror' },
+  'Spell-Broken Type': { characterName: 'Pumpkin Frog', role: 'A Cinderella frog snapped back to reality', visualConcept: 'A frog riding a pumpkin carriage. At the stroke of twelve the spell breaks and it is just a pumpkin again.', imageKey: 'cool-pumpkin' },
+  'Peeling Gilt Type': { characterName: 'King Frog', role: 'A high-ideals king frog who cools when the gilt peels', visualConcept: 'A crowned, caped frog. The gold plating peels off and disappointment sets in.', imageKey: 'cool-king' },
+  'Flat Soda Type': { characterName: 'Flat-Soda Frog', role: 'Cools off as the butterflies go flat', visualConcept: 'A frog zoning out beside a glass of soda gone flat. The fizz is gone.', imageKey: 'cool-soda' },
+  'Wilting Rose Type': { characterName: 'Wilted-Rose Frog', role: 'Cools into a rut as the freshness fades', visualConcept: 'A frog holding a wilted rose. The thrill of its blooming days fades away.', imageKey: 'cool-rose' },
+  'Faded Photo Type': { characterName: 'Faded-Photo Frog', role: 'Cools into a rut as memories fade', visualConcept: 'A frog inside a faded photo. Happy memories turning sepia.', imageKey: 'cool-photo' },
+  'Burnt-Out Ash Type': { characterName: 'Burnt-Out Frog', role: 'Burns passion to ash and fizzles out', visualConcept: 'A frog slumped in burnt-out ashes. It gave everything and went blank.', imageKey: 'cool-ashes' },
+}
+
+export const coolingFrogResultTypesEn = [
+  ['Sparkler Burnout Type', 'Cooling Coffee Type', 'Melting Dream Type', 'Flat Soda Type'],
+  ['Shattered Freeze Type', 'Dropping Mercury Type', 'Clouded Mirror Type', 'Wilting Rose Type'],
+  ['Frozen Heart Type', 'Dying Candle Type', 'Spell-Broken Type', 'Faded Photo Type'],
+  ['Snowman Zero Type', 'Hourglass Timeout Type', 'Peeling Gilt Type', 'Burnt-Out Ash Type'],
+]
+
+// High-Spec quiz: the 16 "buddies" that accompany a high-spec person. Reveals your hidden type.
+export const hiSpecCharactersEn = {
+  'Goofball Buddy Type': { characterName: 'Poyobon', role: 'A lovable goofball buddy who acts before thinking', visualConcept: 'A fluffy teary-eyed buddy clutching snacks, forever tripping over its own feet.', imageKey: 'spec-poyo' },
+  'Hungry Chick Type': { characterName: 'Mogupiyo', role: 'A hungry buddy with laser focus on what it loves', visualConcept: 'A yellow chick-like buddy, always starving and dashing toward anything tasty.', imageKey: 'spec-mogu' },
+  'Explorer Cat Type': { characterName: 'Tabinya', role: 'A curious explorer buddy who draws luck and discovery', visualConcept: 'A cat-like explorer with goggles and a map, great at finding new places.', imageKey: 'spec-tabi' },
+  'Trickster Slime Type': { characterName: 'Prank Slime', role: 'A shape-shifting trickster buddy who lights up the room', visualConcept: 'A blue slime in a little hat, a mood-maker who loves transforming and pranks.', imageKey: 'spec-slime' },
+  'Chill Panda Type': { characterName: 'Chill Panda', role: 'A healing buddy who calms the room just by being there', visualConcept: 'A panda-like buddy lounging with bamboo, soothing anyone who overworked.', imageKey: 'spec-panda' },
+  'Garden Flora Type': { characterName: 'Flora', role: 'A gentle gardener buddy who patiently grows people and plants', visualConcept: 'A flower-crowned cat buddy with a knack for nurturing and decorating.', imageKey: 'spec-flora' },
+  'Gourmet Master Type': { characterName: 'Gourmet Master', role: 'A culinary genius buddy who loves delighting others', visualConcept: 'A chef-hatted pig buddy whose greatest reward is a happy eater.', imageKey: 'spec-gourmet' },
+  'Angel Nurse Type': { characterName: 'Angel Nurse', role: 'A healing pro buddy who can’t leave anyone in trouble', visualConcept: 'A white buddy with a nurse cap and halo, great at first aid and comfort.', imageKey: 'spec-nurse' },
+  'Bright Owl Type': { characterName: 'Bright Owl', role: 'A reliable brainy buddy who loves to learn', visualConcept: 'An owl buddy in a grad cap and glasses reading a book, fired up by the unknown.', imageKey: 'spec-owl' },
+  'Mecha Maker Type': { characterName: 'Mecha Maker', role: 'A hands-on tinkerer buddy who builds and fixes anything', visualConcept: 'An engineer buddy with goggles and a wrench, a little robot at its side.', imageKey: 'spec-mecha' },
+  'Holy Mage Type': { characterName: 'Holy Mage', role: 'A gentle nature-mage buddy who supports everyone', visualConcept: 'An antlered deer-like mage buddy with a cape, skilled in nature and healing magic.', imageKey: 'spec-mage' },
+  'Star Oracle Type': { characterName: 'Star Oracle', role: 'A charismatic fortune-teller buddy who sees ahead', visualConcept: 'A robed cat oracle with star tools, gently guiding anyone who is lost.', imageKey: 'spec-oracle' },
+  'Sky Diva Type': { characterName: 'Sky Diva', role: 'A hardworking star buddy who enchants with song', visualConcept: 'A winged diva buddy with a mic, a born spirit-lifter who never skips practice.', imageKey: 'spec-diva' },
+  'Shadow Agent Type': { characterName: 'Shadow Agent', role: 'A cool professional buddy who gets the job done quietly', visualConcept: 'A hooded black-cat buddy, few words but fiercely loyal once it trusts you.', imageKey: 'spec-shadow' },
+  'Dragon Knight Type': { characterName: 'Dragon Knight', role: 'A dutiful warrior buddy who protects its friends', visualConcept: 'A crowned, caped dragon buddy with overwhelming power and leaderly charisma.', imageKey: 'spec-dragon' },
+  'Lion King Type': { characterName: 'Lion King', role: 'A commanding ruler buddy who brings everyone together', visualConcept: 'A lion buddy with crown and scepter, decisive and warm, deeply trusted.', imageKey: 'spec-lion' },
+}
+
+export const hiSpecResultTypesEn = [
+  ['Goofball Buddy Type', 'Chill Panda Type', 'Bright Owl Type', 'Sky Diva Type'],
+  ['Hungry Chick Type', 'Garden Flora Type', 'Mecha Maker Type', 'Shadow Agent Type'],
+  ['Explorer Cat Type', 'Gourmet Master Type', 'Holy Mage Type', 'Dragon Knight Type'],
+  ['Trickster Slime Type', 'Angel Nurse Type', 'Star Oracle Type', 'Lion King Type'],
+]

@@ -77,3 +77,10 @@ data/shorts-announced.json
 
 # 贈り物サイト「ひとつ」(hitotsu/)の鍵(Claude API / Stripe)。絶対にコミットしない
 hitotsu/server/api/config.php
+
+# Xの予約投稿用に生成した投稿文・画像(npm run x:batch)
+/x-schedule/
+/ig-schedule/
+
+# Instagram APIのアクセストークン(コミットしない)
+data/instagram-credentials.json

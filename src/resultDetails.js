@@ -32,6 +32,10 @@ import { details as p_scaredy_level } from './packs/scaredy-level.js'
 import { details as p_dream_type } from './packs/dream-type.js'
 import { details as p_hidden_talent } from './packs/hidden-talent.js'
 import { details as p_lending_type } from './packs/lending-type.js'
+import { details as p_falling_type } from './packs/falling-type.js'
+import { details as p_love_leak } from './packs/love-leak.js'
+import { details as p_cooling_type } from './packs/cooling-type.js'
+import { details as p_high_spec } from './packs/high-spec.js'
 
 export const resultDetails = {
   'hidden-personality': p_hidden_personality,
@@ -66,4 +70,8 @@ export const resultDetails = {
   'dream-type': p_dream_type,
   'hidden-talent': p_hidden_talent,
   'lending-type': p_lending_type,
+  'falling-type': p_falling_type,
+  'love-leak': p_love_leak,
+  'cooling-type': p_cooling_type,
+  'high-spec': p_high_spec,
 }
