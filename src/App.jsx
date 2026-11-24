@@ -72,6 +72,7 @@ import { uiText, legalPagesByLanguage, answerCommentsByLanguage } from './i18n'
 import { getEnPack, loadEnPack } from './langPacks'
 import { getReplyTypeFontStyle } from './fontStyles'
 import AdBanner from './components/AdBanner'
+import CompatPage from './components/CompatPage'
 import { trackEvent } from './analytics'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import './App.css'
@@ -784,6 +785,8 @@ function App() {
   const [hasEnteredVillage, setHasEnteredVillage] = useState(() => safeGetItem('shindanMuraEntered') === 'true')
   const [gateOpening, setGateOpening] = useState(false)
   const [showCharacterGuide, setShowCharacterGuide] = useState(false)
+  // 全住人相性診断(#compat)
+  const [showCompat, setShowCompat] = useState(false)
   const [showAllHistory, setShowAllHistory] = useState(false)
   const [showAllTopics, setShowAllTopics] = useState(false)
   const [showMyVillage, setShowMyVillage] = useState(false)
@@ -967,6 +970,8 @@ function App() {
 
     if (legalPage && currentLegalPages[legalPage]) {
       nextTitle = `${currentLegalPages[legalPage].title} | ${t.brandName}`
+    } else if (showCompat) {
+      nextTitle = `全住人相性診断｜村の住人どうしの相性 | ${t.brandName}`
     } else if (showMyVillage) {
       nextTitle = `${t.myVillage.title} | ${t.brandName}`
     } else if (showCharacterGuide) {
@@ -984,7 +989,7 @@ function App() {
     }
 
     document.title = nextTitle
-  }, [diagnosis, legalPage, showMyVillage, showCharacterGuide, showAllHistory, showAllTopics, selectedHistory, showResult, resultTitle, language, t, currentLegalPages])
+  }, [diagnosis, legalPage, showCompat, showMyVillage, showCharacterGuide, showAllHistory, showAllTopics, selectedHistory, showResult, resultTitle, language, t, currentLegalPages])
 
   const startDiagnosis = (id, shouldPushState = true) => {
     const nextDiagnosis = diagnoses.find((item) => item.id === id)
@@ -1318,6 +1323,21 @@ function App() {
       setVillageSelectedId(null)
       setVillageEditMode(false)
       setShowAllTopics(false)
+      setShowCompat(false)
+
+      if (hash === '#compat' || hash.startsWith('#compat=')) {
+        setSelectedId(null)
+        setShowResult(false)
+        setAnswers([])
+        setRandomComments({})
+        setSelectedHistory(null)
+        setLegalPage(null)
+        setShowAllHistory(false)
+        setShowCharacterGuide(false)
+        setShowCompat(true)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        return
+      }
 
       if (hash === '#village') {
         setSelectedId(null)
@@ -1873,6 +1893,22 @@ function App() {
           </div>
         )}
       </main>
+    )
+  }
+
+  if (showCompat) {
+    return (
+      <CompatPage
+        collections={characterCollectionsJa}
+        diagnoses={diagnosesJa}
+        historyItems={diagnosisHistory}
+        toDisplayImage={toDisplayImage}
+        onBack={() => {
+          window.history.pushState(null, '', '#home')
+          setShowCompat(false)
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        }}
+      />
     )
   }
 
@@ -2467,6 +2503,13 @@ ${resultShareUrl}`
               setShowMyVillage(true)
               window.scrollTo({ top: 0, behavior: 'smooth' })
             }}>{t.home.myVillageButton}</button>
+            {language === 'ja' && (
+              <button className="share-button compat-enter" onClick={() => {
+                window.history.pushState(null, '', '#compat')
+                setShowCompat(true)
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}>💞 住人どうしの相性</button>
+            )}
           </div>
         </div>
         <div className="top-hero-card village-welcome-sign">
