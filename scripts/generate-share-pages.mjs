@@ -49,6 +49,10 @@ import {
   dreamTypeCharacters,
   hiddenTalentCharacters,
   lendingTypeCharacters,
+  fallingTypeCharacters,
+  barekyunCharacters,
+  coolingFrogCharacters,
+  hiSpecCharacters,
 } from '../src/characterData.js'
 import { diagnoses } from '../src/diagnosisData.js'
 import { resultDetails } from '../src/resultDetails.js'
@@ -93,6 +97,10 @@ export const characterCollections = {
   'dream-type': { basePath: 'dreamTypeCharacters', characters: dreamTypeCharacters },
   'hidden-talent': { basePath: 'hiddenTalentCharacters', characters: hiddenTalentCharacters },
   'lending-type': { basePath: 'lendingTypeCharacters', characters: lendingTypeCharacters },
+  'falling-type': { basePath: 'fallingTypeCharacters', characters: fallingTypeCharacters },
+  'love-leak': { basePath: 'barekyunCharacters', characters: barekyunCharacters },
+  'cooling-type': { basePath: 'coolingFrogCharacters', characters: coolingFrogCharacters },
+  'high-spec': { basePath: 'hiSpecCharacters', characters: hiSpecCharacters },
 }
 
 // 改名・廃止したURLの転送ページ(旧URL → 新URL)。

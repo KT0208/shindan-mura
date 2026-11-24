@@ -10,6 +10,8 @@
     "preview": "vite preview",
     "post:x": "node scripts/post-to-x.js",
     "post:x:test": "node scripts/post-to-x.js --dry-run",
+    "x:batch": "node scripts/x-schedule-batch.mjs",
+    "ig:batch": "node scripts/ig-schedule-batch.mjs",
     "generate:share": "node scripts/generate-share-pages.mjs",
     "generate:ogp": "node scripts/generate-ogp-images.mjs",
     "prebuild": "npm run generate:columns && npm run generate:diagnosis && npm run generate:legal && npm run generate:share && npm run generate:characters",

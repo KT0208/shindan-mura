@@ -47,6 +47,11 @@ import {
   animalTypeCharacters,
   angerStyleCharacters,
   shynessCharacters,
+  zeniTailCharacters,
+  scaredyYokaiCharacters,
+  dreamTypeCharacters,
+  hiddenTalentCharacters,
+  lendingTypeCharacters,
 } from '../src/characterData.js'
 import { diagnoses } from '../src/diagnosisData.js'
 
@@ -92,6 +97,11 @@ const CHARACTER_COLLECTIONS = {
   'animal-type': { basePath: 'animalTypeCharacters', characters: animalTypeCharacters },
   'anger-style': { basePath: 'angerChiliCharacters', characters: angerStyleCharacters },
   'shyness': { basePath: 'shynessHermitCharacters', characters: shynessCharacters },
+  'spending-type': { basePath: 'zeniTailCharacters', characters: zeniTailCharacters },
+  'scaredy-level': { basePath: 'scaredyYokaiCharacters', characters: scaredyYokaiCharacters },
+  'dream-type': { basePath: 'dreamTypeCharacters', characters: dreamTypeCharacters },
+  'hidden-talent': { basePath: 'hiddenTalentCharacters', characters: hiddenTalentCharacters },
+  'lending-type': { basePath: 'lendingTypeCharacters', characters: lendingTypeCharacters },
 }
 
 // キャラクターを使わない投稿タイプ(診断あるある等)で使う、村の雰囲気画像。

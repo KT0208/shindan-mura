@@ -97,7 +97,7 @@ export function buildStorySvg({ diagnosisTitle, characterName, resultTitle }) {
 }
 
 // 投稿キャプション(コピペ用)
-function buildCaption({ diagnosis, resultTitle, character, detail }) {
+export function buildCaption({ diagnosis, resultTitle, character, detail }) {
   const lines = [
     `【${diagnosis.title}】今日のキャラ紹介`,
     ``,
@@ -126,10 +126,12 @@ async function exists(p) {
   }
 }
 
-async function composite(sharp, svg, charImagePath, circle, outPath) {
+export async function composite(sharp, svg, charImagePath, circle, outPath) {
   const buf = await readFile(charImagePath)
   if (buf.length === 0) throw new Error('empty file')
+  // 元画像は透明な余白が大きいので、切り取ってから円の中に収める
   const charImage = await sharp(buf)
+    .trim()
     .resize(circle.size, circle.size, { fit: 'inside', withoutEnlargement: true })
     .png()
     .toBuffer()
