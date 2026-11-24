@@ -74,3 +74,10 @@ data/shorts-announced.json
 
 # デプロイ用ZIP(1GB近くありGitHubに上げられない)
 /dist.zip
+
+# Xの予約投稿用に生成した投稿文・画像(npm run x:batch)
+/x-schedule/
+/ig-schedule/
+
+# Instagram APIのアクセストークン(コミットしない)
+data/instagram-credentials.json

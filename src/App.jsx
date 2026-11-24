@@ -63,6 +63,14 @@ import {
   hiddenTalentResultTypes,
   lendingTypeCharacters,
   lendingTypeResultTypes,
+  fallingTypeCharacters,
+  fallingTypeResultTypes,
+  barekyunCharacters,
+  barekyunResultTypes,
+  coolingFrogCharacters,
+  coolingFrogResultTypes,
+  hiSpecCharacters,
+  hiSpecResultTypes,
 } from './characterData'
 import { loadJaPack, jaResultDetails, jaRandomCommentPools } from './jaPacks'
 import { categories as categoriesJa, scenes as scenesJa, sceneSets as sceneSetsJa, diagnoses as diagnosesJa, options as optionsJa } from './diagnosisData'
@@ -256,6 +264,10 @@ const tendencyIndexResolvers = {
   'dream-type': getBalancedTendencyIndex,
   'hidden-talent': getBalancedTendencyIndex,
   'lending-type': getBalancedTendencyIndex,
+  'falling-type': getBalancedTendencyIndex,
+  'love-leak': getBalancedTendencyIndex,
+  'cooling-type': getBalancedTendencyIndex,
+  'high-spec': getBalancedTendencyIndex,
 }
 
 const resultTypesByDiagnosisJa = {
@@ -291,6 +303,10 @@ const resultTypesByDiagnosisJa = {
   'dream-type': dreamTypeResultTypes,
   'hidden-talent': hiddenTalentResultTypes,
   'lending-type': lendingTypeResultTypes,
+  'falling-type': fallingTypeResultTypes,
+  'love-leak': barekyunResultTypes,
+  'cooling-type': coolingFrogResultTypes,
+  'high-spec': hiSpecResultTypes,
 }
 
 const resultTypesByDiagnosisByLanguage = {
@@ -348,6 +364,10 @@ const characterCollectionsJa = {
   'dream-type': { basePath: 'dreamTypeCharacters', characters: dreamTypeCharacters },
   'hidden-talent': { basePath: 'hiddenTalentCharacters', characters: hiddenTalentCharacters },
   'lending-type': { basePath: 'lendingTypeCharacters', characters: lendingTypeCharacters },
+  'falling-type': { basePath: 'fallingTypeCharacters', characters: fallingTypeCharacters },
+  'love-leak': { basePath: 'barekyunCharacters', characters: barekyunCharacters },
+  'cooling-type': { basePath: 'coolingFrogCharacters', characters: coolingFrogCharacters },
+  'high-spec': { basePath: 'hiSpecCharacters', characters: hiSpecCharacters },
 }
 
 const characterCollectionsByLanguage = {
